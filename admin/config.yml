@@ -13,6 +13,9 @@ backend:
 
 media_folder: "static/img" # Media files will be stored in the repo under images/uploads
 
+# Please run "npx netlify-cms-proxy-server" for local backend
+local_backend: true
+
 collections:
   # Our blog posts
   - name: "blog" # Used in routes, e.g., /admin/collections/blog
@@ -20,6 +23,9 @@ collections:
     folder: "posts" # The path to the folder where the documents are stored
     create: true # Allow users to create new documents in this collection
     slug: "{{slug}}" # Filename template, e.g., YYYY-MM-DD-title.md
+    path: '{{slug}}/{{title}}'
+    media_folder: ''
+    public_folder: ''
     fields: # The fields for each document, usually in front matter
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Publish Date", name: "date", widget: "datetime" }

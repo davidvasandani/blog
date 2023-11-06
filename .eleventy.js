@@ -4,10 +4,14 @@ const UglifyJS = require("uglify-js");
 const htmlmin = require("html-minifier");
 const eleventyNavigationPlugin = require("@11ty/eleventy-navigation");
 
+const pluginImages = require("./.eleventy.config.images.js");
+
 module.exports = function(eleventyConfig) {
 
   // Eleventy Navigation https://www.11ty.dev/docs/plugins/navigation/
   eleventyConfig.addPlugin(eleventyNavigationPlugin);
+  
+  eleventyConfig.addPlugin(pluginImages);
 
   // Configuration API: use eleventyConfig.addLayoutAlias(from, to) to add
   // layout aliases! Say you have a bunch of existing content using
@@ -83,19 +87,21 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy("_includes/assets/css/inline.css");
 
   /* Markdown Plugins */
-  let markdownIt = require("markdown-it");
-  let markdownItAnchor = require("markdown-it-anchor");
-  let options = {
-    breaks: true,
-    linkify: true
-  };
-  let opts = {
-    permalink: false
-  };
-
-  eleventyConfig.setLibrary("md", markdownIt(options)
-    .use(markdownItAnchor, opts)
-  );
+  // let markdownIt = require("markdown-it");
+  const markdownItAnchor = require("markdown-it-anchor");
+  	// Customize Markdown library settings:
+	eleventyConfig.amendLibrary("md", mdLib => {
+		mdLib.use(markdownItAnchor, {
+			permalink: markdownItAnchor.permalink.ariaHidden({
+				placement: "after",
+				class: "header-anchor",
+				symbol: "#",
+				ariaHidden: false,
+			}),
+			level: [1,2,3,4],
+			slugify: eleventyConfig.getFilter("slugify")
+		});
+	});
 
   return {
     templateFormats: ["md", "njk", "liquid"],
