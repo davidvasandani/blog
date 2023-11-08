@@ -8,7 +8,7 @@ tags:
 ---
 Configuring git for multiple personas:
 
-generate new key
+### generate new key
 
 ```
 gpg --full-generate-key
@@ -29,16 +29,21 @@ You selected this USER-ID:
 Change (N)ame, (C)omment, (E)mail or (O)kay/(Q)uit? O
 ```
 
-list existing keys and find the shortcode of the new key
+### export your public key
+
+list existing keys and copy the ID; it’s preceded by: `sec   ed25519/` and export the public key to your clipboard.
 
 ```
 gpg --list-secret-keys --keyid-format=long
 
 sec   ed25519/31AF7204918814FF 2023-11-08 [SC]
-      68D53E8B77B7A66EA693565931AF7204918814FF
-uid                 [ultimate] David Vasandani <david.vasandani@sweetgreen.com>
-ssb   cv25519/14CD5BDDF3388068 2023-11-08 [E]
+
+gpg --armor --export 31AF7204918814FF > pbcopy
 ```
+
+Add the key to your [GitHub profile](https://github.com/settings/keys).
+
+### configure your git client
 
 ```
 [includeIf "gitdir:~/src/"]
@@ -46,6 +51,8 @@ ssb   cv25519/14CD5BDDF3388068 2023-11-08 [E]
 [includeIf "gitdir:~/dev/"]
   path = .gitconfig-work
 ```
+
+### amend a group of commits to sign them
 
 ```
 git rebase --exec 'git commit --amend --no-edit --author="David Vasandani <david@vasandani.me>" -n -S' -i main
