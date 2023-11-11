@@ -57,3 +57,6 @@ Add the key to your [GitHub profile](https://github.com/settings/keys).
 ```
 git rebase --exec 'git commit --amend --no-edit --author="David Vasandani <david@vasandani.me>" -n -S' -i main
 ```
+
+## Improvement with 1Password
+https://blog.1password.com/git-commit-signing/
