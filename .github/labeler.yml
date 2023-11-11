@@ -1,0 +1,12 @@
+# Add  to any change to .txt files within the entire repository. Quotation marks are required for the leading asterisk
+format:
+- '**/*.njk'
+
+GitHub:
+- '.github/*'
+
+config:
+_ '.eleventy.config.images.js'
+- '.eleventy.js'
+- '.eleventyignore'
+- '.gitignore'
