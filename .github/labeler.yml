@@ -6,7 +6,7 @@ GitHub:
 - '.github/*'
 
 config:
-_ '.eleventy.config.images.js'
+- '.eleventy.config.images.js'
 - '.eleventy.js'
 - '.eleventyignore'
 - '.gitignore'
