@@ -11,4 +11,10 @@ eleventyNavigation:
 ---
 This is where I'll blog about things I've learned.
 
+### Notes
+
 Obsidian for notes synced between devices via iCloud and backed up to Keybase Git via the Obsidian Git.
+
+Newsletters
+
+Matter
