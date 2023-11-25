@@ -41,6 +41,15 @@ module.exports = function(eleventyConfig) {
     }, {});
   });
 
+  eleventyConfig.addCollection("authorData", function(collection) {
+    let authorDataArray = collection.getFilteredByGlob("authors/*.md");
+    let authorDataMap = {};
+    for(let item of authorDataArray) {
+      authorDataMap[item.data.name] = item.data;
+    }
+    return authorDataMap;
+  });
+
   // Date formatting (human readable)
   eleventyConfig.addFilter("readableDate", dateObj => {
     return DateTime.fromJSDate(dateObj).toFormat("dd LLL yyyy");
@@ -86,6 +95,7 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy({ "static/root": "/" });
   // We additionally output a copy of our CSS for use in Decap CMS previews
   eleventyConfig.addPassthroughCopy("_includes/assets/css/inline.css");
+  eleventyConfig.addPassthroughCopy("authors/*.jpg");
 
   /* Markdown Plugins */
   // let markdownIt = require("markdown-it");
