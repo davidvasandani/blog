@@ -17,7 +17,7 @@
     "gemini": "npm run gemini:prebuild && concurrently \"npx @11ty/eleventy --watch --quiet --config=.eleventy.config.gemini.js\" \"npm run gemini:start\"",
     "gemini:server:debug": "trash _gemini && npm run gemini:prebuild && concurrently \"DEBUG=* npx @11ty/eleventy --watch --quiet --config=.eleventy.config.gemini.js\" \"npm run gemini:start\"",
     "gemini:debug": "DEBUG=* npx @11ty/eleventy --watch --quiet --config=.eleventy.config.gemini.js",
-    "debug": "DEBUG=* npx @11ty/eleventy"
+    "debug": "DEBUG=* npx @11ty/eleventy --serve --quiet"
   },
   "repository": {
     "type": "git",
