@@ -27,7 +27,7 @@ module.exports = function(eleventyConfig) {
   // Adds an authors collection using the author key in our post frontmatter
   // Thanks to @pdehaan: https://github.com/pdehaan
   eleventyConfig.addCollection("authors", collection => {
-    const blogs = collection.getFilteredByGlob("posts/*.md");
+    const blogs = collection.getFilteredByGlob("posts/*/*.md");
     return blogs.reduce((coll, post) => {
       const author = post.data.author;
       if (!author) {
@@ -122,5 +122,5 @@ module.exports = function(eleventyConfig) {
       data: "_data",
       output: "_site"
     }
-  };
+  };  
 };
