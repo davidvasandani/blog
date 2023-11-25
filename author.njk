@@ -20,7 +20,11 @@ eleventyComputed:
     <h1>{{ author }}</h1>
     <p class="author-bio">{{ authorData.bio }}</p>
 		{% for link in authorData.links %}
-			<a class="author-link" href="{{ link.url }}">{{ link.name }}</a>
+			{% if link.rel_me %}
+				<a class="author-link" href="{{ link.url }}" rel="me">{{ link.name }}</a>
+			{% else %}
+				<a class="author-link" href="{{ link.url }}">{{ link.name }}</a>
+			{% endif %}
 		{% endfor %}
   </div>
 </div>
