@@ -11,6 +11,7 @@ links:
     url: https://github.com/davidvasandani
   - name: Mastodon
     url: https://social.coop/@davidvasandani
+    rel_me: true
 
 # this is a bug. Both author.njk and authors/first-last.md are trying to write
 # to the same output file (_site/authors/first-last/index.html).
