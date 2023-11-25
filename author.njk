@@ -11,7 +11,7 @@ eleventyComputed:
   metaDescription: "An archive of all posts by the author: {{ author }}."
 ---
 
-# TODO: this is how to access the data but do not merge until its styled properly
+{# # TODO: this is how to access the data but do not merge until its styled properly #}
 {% set authorData = collections.authorData[author] %}
 <img src="{{ authorData.image }}" alt="{{ author }}">
 bio: {{ authorData.bio }}
