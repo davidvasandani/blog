@@ -11,7 +11,21 @@ eleventyComputed:
   metaDescription: "An archive of all posts by the author: {{ author }}."
 ---
 
-<h1>{{ title }}</h1>
+{% set authorData = collections.authorData[author] %}
+<div class="author-profile">
+  <div class="author-image">
+    {% image authorData.image, author, [300, 500, 800], "10vw" %}
+  </div>
+  <div class="author-details">
+    <h1>{{ author }}</h1>
+    <p class="author-bio">{{ authorData.bio }}</p>
+		{% for link in authorData.links %}
+			<a class="author-link" href="{{ link.url }}">{{ link.name }}</a>
+		{% endfor %}
+  </div>
+</div>
+
+<h1>Posts by {{ authorData.first_name }}</h1>
 
 <section>
 	{% for post in collections.authors[author] | reverse %}
