@@ -5,6 +5,8 @@ author: David Vasandani
 summary: hello
 tags:
   - post
+  - hello
+  - new
 ---
 hello
 
