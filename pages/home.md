@@ -7,6 +7,5 @@ eleventyNavigation:
   key: Home
   order: 0
 ---
-<link href="https://social.coop/@davidvasandani" rel="me">
-
 # Welcome
+
