@@ -97,6 +97,8 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy("_includes/assets/css/inline.css");
   eleventyConfig.addPassthroughCopy("authors/*.jpg");
 
+  eleventyConfig.ignores.add('gemini/**');
+
   /* Markdown Plugins */
   // let markdownIt = require("markdown-it");
   const markdownItAnchor = require("markdown-it-anchor");
