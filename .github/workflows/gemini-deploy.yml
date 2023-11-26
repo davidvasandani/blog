@@ -21,6 +21,14 @@ jobs:
           npm install
           npm run gemini:build;
 
+      - name: Update known_hosts
+        run: |
+          mkdir -p ~/.ssh
+          if ! grep github.com ~/.ssh/known_hosts > /dev/null
+          then
+              echo "flounder.online ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQC/5eYglaQYzSjD+frh7Mf/yvroMS8t4wnDvRYM9Eh/AvaS5QwBtauNwON9jtTuTdyS87ME1np9lGlYmJwgX00GbmVqiH/sm+kwy1eQ7YaLB0bWU2eoEz/486Td+kW2L6cTQohg2+IEPXhE7bxOMlNg0j4Va9akZdgfsxepdOtFw3bY8ml4f7fEpvJaUlhkpTXseZCIk3ULewKw3s3j74uKosSonKSh5eELloIu8TBfJF8Vj1/rvHRQmVwMCIxPVZQcT4aP+EgAOy54LBEuaFKZ0D2D7SLjRKETeBZQ4ZM4aVt8HQU7ZuvIW88HWbTqwd7mD1+cMaNZs2CmQ/S0hVifG6oxHlTXSpJOW3RqkAWbkKLLmyzPhCgxGCeXXN8u/ZhU0QZ99xBHKfn12fEcVYJZx4Pxwq0aSxulDZnVMp43Z1j7E4FA8T9kWs9u3T4A6VOjvx+ln0E7xGpBCGu2wTqiv7asCk0TaScscNR6xj16pBVjWDDVJkuh13VqonvL6rc=" >> ~/.ssh/known_hosts
+          fi
+
       - name: Push to Flounder Online
         run: |
           find ./_gemini -type f \
