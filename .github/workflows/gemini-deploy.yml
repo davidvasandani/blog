@@ -3,7 +3,6 @@ on:
   push:
     branches:
       - 'main'
-      - '7/add-gemini-support' # for testing
   workflow_dispatch:
 
 jobs:
