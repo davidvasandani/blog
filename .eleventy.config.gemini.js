@@ -63,8 +63,8 @@ module.exports = function (eleventyConfig) {
     dir: {
       input: './',
       output: '_gemini',
-      layouts: 'gemini/layouts',
-      includes: 'gemini/includes',
+      layouts: 'gemini',
+      includes: 'gemini',
       data: '_data',
     },
   };
