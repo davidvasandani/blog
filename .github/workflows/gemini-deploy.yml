@@ -1,0 +1,30 @@
+name: gemini-deploy
+on:
+  push:
+    branches:
+      - 'main'
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+
+  start:
+    # example where instead of forming the default "cypress run ..."
+    # the user can specify their own command
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout 🛎
+        uses: actions/checkout@v4
+
+      - name: Gemini Build
+        run: |
+          npm install
+          npm run gemini:prebuild
+          npm run gemini:build;
+
+      - name: Push to Flounder Online
+        run: |
+          find ./_gemini -type f \
+            -exec sh -c \
+            'f="{}"; curl --silent --user david:"${{secrets.FLOUNDER_ONLINE_PASSWORD}}" \
+            --ftp-create-dirs -T "$f" sftp://flounder.online:2024/$(echo "$f" | sed "s|./_gemini/||")' \;
