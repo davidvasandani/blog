@@ -20,7 +20,6 @@ jobs:
       - name: Gemini Build
         run: |
           npm install
-          npm run gemini:prebuild
           npm run gemini:build;
 
       - name: Push to Flounder Online
