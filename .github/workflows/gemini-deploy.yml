@@ -24,9 +24,7 @@ jobs:
 
       - name: Push to Flounder Online
         run: |
-          echo "current working directory: $(pwd)"
-          echo "contents of directory: $(ls -la)"
           find ./_gemini -type f \
             -exec sh -c \
-            'f="{}"; curl --silent --user david:"${{secrets.FLOUNDER_ONLINE_PASSWORD}}" \
+            'f="{}"; curl --user david:"${{secrets.FLOUNDER_ONLINE_PASSWORD}}" \
             --ftp-create-dirs -T "$f" sftp://flounder.online:2024/$(echo "$f" | sed "s|./_gemini/||")' \;
