@@ -31,8 +31,9 @@ jobs:
           fi
 
       - name: Push to Flounder Online
+        # TODO: remove --insecure
         run: |
           find ./_gemini -type f \
             -exec sh -c \
-            'f="{}"; curl --user david:"${{secrets.FLOUNDER_ONLINE_PASSWORD}}" \
+            'f="{}"; curl --insecure --user david:"${{secrets.FLOUNDER_ONLINE_PASSWORD}}" \
             --ftp-create-dirs -T "$f" sftp://flounder.online:2024/$(echo "$f" | sed "s|./_gemini/||")' \;
