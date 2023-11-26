@@ -25,6 +25,8 @@ jobs:
 
       - name: Push to Flounder Online
         run: |
+          echo "current working directory: $(pwd)"
+          echo "contents of directory: $(ls -la)"
           find ./_gemini -type f \
             -exec sh -c \
             'f="{}"; curl --silent --user david:"${{secrets.FLOUNDER_ONLINE_PASSWORD}}" \
