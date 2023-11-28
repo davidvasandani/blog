@@ -15,3 +15,7 @@ $ git --exec-path
 
 $ ln -s /usr/local/bin/git-remote-keybase /opt/homebrew/Cellar/git/2.41.0_2/libexec/git-core/
 ```
+
+NOTE: look into additional paths
+
+![](cleanshot-2023-11-27-at-21.21.22-2x.png)
