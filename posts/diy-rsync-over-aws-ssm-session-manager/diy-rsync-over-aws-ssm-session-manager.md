@@ -1,7 +1,7 @@
 ---
 title: DIY Rsync over AWS SSM Session Manager
 date: 2023-12-07T04:27:10.361Z
-author: Anonymous
+author: David Vasandani
 summary: Without SSH access to an ECS task running on Fargate, we used SSM
   Session Manager to sync files from our local env to ECS via S3.
 tags:
