@@ -20,7 +20,7 @@ This does not sync file modes (chmod) as files modes are not synced by the AWS C
 DIRECTORY_TO_WATCH="${HOME}/dev/source_directory"
 S3_BUCKET="s3://private_s3_bucket/source_directory"
 CLUSTER="fargate-cluster-name"
-TASK_ID="##ecs-taskid-started-elsewhere##"
+TASK_ID="ecs-task-id"
 CONTAINER="app"
 DIRECTORY_IN_CONTAINER="/app"
 
