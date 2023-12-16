@@ -2,19 +2,26 @@
 
 config:
   - any:
-    - '.eleventy.config.images.js'
-    - '.eleventy.js'
-    - '.eleventyignore'
-    - '.gitignore'
+    - changed-files:
+      - any-glob-to-any-file: [
+          '.eleventy.config.images.js',
+          '.eleventy.js',
+          '.eleventyignore',
+          '.gitignore',
+        ]
 
 post:
   - any:
-    - 'posts/*'
+    - changed-files:
+      - any-glob-to-any-file: ['posts/*/*.md']
 
 image:
   - any:
-    - 'posts/*/*.jpg'
-    - 'posts/*/*.png'
+    - changed-files:
+      - any-glob-to-any-file: [
+          'posts/*/*.jpg',
+          'posts/*/*.png',
+        ]
 
 format:
   - any:
