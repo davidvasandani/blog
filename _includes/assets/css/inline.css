@@ -194,3 +194,34 @@ button {
 		font-size: 1.1rem;
 	}
 }
+
+.author-profile {
+  display: flex;
+  align-items: center;
+  margin-bottom: 2em;
+}
+
+.author-image img {
+  width: 150px;
+  height: auto;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 10em;
+}
+
+.author-details h1 {
+  margin: 0;
+  font-size: 1.5em;
+}
+
+.author-bio {
+	margin: 0.5em 0 1em; /* Adjust the 2em value as needed */
+  color: #666;
+}
+
+.author-link {
+  display: block;
+  margin-bottom: 10px;
+  color: #333;
+  text-decoration: none;
+}

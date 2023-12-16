@@ -1,0 +1,38 @@
+name: gemini-deploy
+on:
+  push:
+    branches:
+      - 'main'
+  workflow_dispatch:
+
+jobs:
+
+  start:
+    # example where instead of forming the default "cypress run ..."
+    # the user can specify their own command
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout 🛎
+        uses: actions/checkout@v4
+
+      - name: Gemini Build
+        run: |
+          npm install
+          npm run gemini:build;
+
+      - name: Update known_hosts
+        run: |
+          mkdir -p ~/.ssh
+          touch ~/.ssh/known_hosts
+          if ! grep flounder.online ~/.ssh/known_hosts > /dev/null
+          then
+              echo "flounder.online ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQC/5eYglaQYzSjD+frh7Mf/yvroMS8t4wnDvRYM9Eh/AvaS5QwBtauNwON9jtTuTdyS87ME1np9lGlYmJwgX00GbmVqiH/sm+kwy1eQ7YaLB0bWU2eoEz/486Td+kW2L6cTQohg2+IEPXhE7bxOMlNg0j4Va9akZdgfsxepdOtFw3bY8ml4f7fEpvJaUlhkpTXseZCIk3ULewKw3s3j74uKosSonKSh5eELloIu8TBfJF8Vj1/rvHRQmVwMCIxPVZQcT4aP+EgAOy54LBEuaFKZ0D2D7SLjRKETeBZQ4ZM4aVt8HQU7ZuvIW88HWbTqwd7mD1+cMaNZs2CmQ/S0hVifG6oxHlTXSpJOW3RqkAWbkKLLmyzPhCgxGCeXXN8u/ZhU0QZ99xBHKfn12fEcVYJZx4Pxwq0aSxulDZnVMp43Z1j7E4FA8T9kWs9u3T4A6VOjvx+ln0E7xGpBCGu2wTqiv7asCk0TaScscNR6xj16pBVjWDDVJkuh13VqonvL6rc=" >> ~/.ssh/known_hosts
+          fi
+
+      - name: Push to Flounder Online
+        # TODO: remove --insecure
+        run: |
+          find ./_gemini -type f \
+            -exec sh -c \
+            'f="{}"; curl --insecure --user david:"${{secrets.FLOUNDER_ONLINE_PASSWORD}}" \
+            --ftp-create-dirs -T "$f" sftp://flounder.online:2024/$(echo "$f" | sed "s|./_gemini/||")' \;
