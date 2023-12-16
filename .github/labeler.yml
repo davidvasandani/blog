@@ -1,22 +1,28 @@
-# Add  to any change to .txt files within the entire repository. Quotation marks are required for the leading asterisk
-format:
-- changed-files:
-  - any-glob-to-any-file: '**/*.njk'
+# # Add  to any change to .txt files within the entire repository. Quotation marks are required for the leading asterisk
+# format:
+# - changed-files:
+#   - any-glob-to-any-file: '**/*.njk'
 
-GitHub:
-- changed-files:
-  - any-glob-to-any-file: '.github/*'
+# GitHub:
+# - changed-files:
+#   - any-glob-to-any-file: '.github/*'
 
-config:
-- changed-files:
-  - any-glob-to-any-file: [
-      '.eleventy.config.images.js',
-      '.eleventy.js',
-      '.eleventyignore',
-      '.gitignore'
-    ]
+# config:
+# - changed-files:
+#   - any-glob-to-any-file: [
+#       '.eleventy.config.images.js',
+#       '.eleventy.js',
+#       '.eleventyignore',
+#       '.gitignore'
+#     ]
 
-# Add 'Documentation' label to any change to .md files within the entire repository 
-Documentation:
+# # Add 'Documentation' label to any change to .md files within the entire repository 
+# Documentation:
+# - changed-files:
+#   - any-glob-to-any-file: '**/*.md'
+
+# Add 'root' label to any root file changes
+# Quotation marks are required for the leading asterisk
+root:
 - changed-files:
-  - any-glob-to-any-file: '**/*.md'
+  - any-glob-to-any-file: '*'
