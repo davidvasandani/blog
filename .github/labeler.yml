@@ -1,28 +1,27 @@
-# # Add  to any change to .txt files within the entire repository. Quotation marks are required for the leading asterisk
-# format:
-# - changed-files:
-#   - any-glob-to-any-file: '**/*.njk'
+# https://github.com/actions/labeler/#match-object
 
-# GitHub:
-# - changed-files:
-#   - any-glob-to-any-file: '.github/*'
+config:
+  - any:
+    - '.eleventy.config.images.js'
+    - '.eleventy.js'
+    - '.eleventyignore'
+    - '.gitignore'
 
-# config:
-# - changed-files:
-#   - any-glob-to-any-file: [
-#       '.eleventy.config.images.js',
-#       '.eleventy.js',
-#       '.eleventyignore',
-#       '.gitignore'
-#     ]
+post:
+  - any:
+    - 'posts/*'
 
-# # Add 'Documentation' label to any change to .md files within the entire repository 
-# Documentation:
-# - changed-files:
-#   - any-glob-to-any-file: '**/*.md'
+image:
+  - any:
+    - 'posts/*/*.jpg'
+    - 'posts/*/*.png'
 
-# Add 'root' label to any root file changes
-# Quotation marks are required for the leading asterisk
-root:
-- changed-files:
-  - any-glob-to-any-file: '*'
+format:
+  - any:
+    - changed-files:
+      - any-glob-to-any-file: ['**/*.njk']
+
+GitHub:
+  - any:
+    - changed-files:
+      - any-glob-to-any-file: ['.github/*']
