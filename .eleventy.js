@@ -27,7 +27,7 @@ module.exports = function(eleventyConfig) {
   // Adds an authors collection using the author key in our post frontmatter
   // Thanks to @pdehaan: https://github.com/pdehaan
   eleventyConfig.addCollection("authors", collection => {
-    const blogs = collection.getFilteredByGlob("posts/*.md");
+    const blogs = collection.getFilteredByGlob("posts/*/*.md");
     return blogs.reduce((coll, post) => {
       const author = post.data.author;
       if (!author) {
@@ -39,6 +39,15 @@ module.exports = function(eleventyConfig) {
       coll[author].push(post.data);
       return coll;
     }, {});
+  });
+
+  eleventyConfig.addCollection("authorData", function(collection) {
+    let authorDataArray = collection.getFilteredByGlob("authors/*.md");
+    let authorDataMap = {};
+    for(let item of authorDataArray) {
+      authorDataMap[item.data.name] = item.data;
+    }
+    return authorDataMap;
   });
 
   // Date formatting (human readable)
@@ -86,6 +95,9 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy({ "static/root": "/" });
   // We additionally output a copy of our CSS for use in Decap CMS previews
   eleventyConfig.addPassthroughCopy("_includes/assets/css/inline.css");
+  eleventyConfig.addPassthroughCopy("authors/*.jpg");
+
+  eleventyConfig.ignores.add('gemini/**');
 
   /* Markdown Plugins */
   // let markdownIt = require("markdown-it");
@@ -122,5 +134,5 @@ module.exports = function(eleventyConfig) {
       data: "_data",
       output: "_site"
     }
-  };
+  };  
 };
