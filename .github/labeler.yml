@@ -1,11 +1,4 @@
-# # Add  to any change to .txt files within the entire repository. Quotation marks are required for the leading asterisk
-# format:
-# - changed-files:
-#   - any-glob-to-any-file: '**/*.njk'
-
-# GitHub:
-# - changed-files:
-#   - any-glob-to-any-file: '.github/*'
+# https://github.com/actions/labeler/#match-object
 
 config:
   - any:
@@ -13,5 +6,22 @@ config:
     - '.eleventy.js'
     - '.eleventyignore'
     - '.gitignore'
-  - all:
-    - '!charts/**/tests/*.yaml'
+
+post:
+  - any:
+    - 'posts/*'
+
+image:
+  - any:
+    - 'posts/*/*.jpg'
+    - 'posts/*/*.png'
+
+format:
+  - any:
+    - changed-files:
+      - any-glob-to-any-file: ['**/*.njk']
+
+GitHub:
+  - any:
+    - changed-files:
+      - any-glob-to-any-file: ['.github/*']
