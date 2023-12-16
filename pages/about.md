@@ -9,4 +9,4 @@ eleventyNavigation:
   key: About
   order: 1
 ---
-This is where I'll blog about things I've learned.
+This is where I'll blog about things I've learned..
