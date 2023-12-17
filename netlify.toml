@@ -2,6 +2,16 @@
   publish = "_site"
   command = "eleventy"
 
+[[headers]]
+  for = "/david"
+  [headers.values]
+    Content-Type = "application/activity+json"
+
+[[headers]]
+  for = "/.well-known/webfinger"
+  [headers.values]
+    Content-Type = "application/jrd+json"
+
 # REDIRECT and HEADERS examples
 
 # Redirect rule example

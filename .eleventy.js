@@ -3,13 +3,23 @@ const CleanCSS = require("clean-css");
 const UglifyJS = require("uglify-js");
 const htmlmin = require("html-minifier");
 const eleventyNavigationPlugin = require("@11ty/eleventy-navigation");
-
+const activityPubPlugin = require('eleventy-plugin-activity-pub');
 const pluginImages = require("./.eleventy.config.images.js");
 
 module.exports = function(eleventyConfig) {
 
   // Eleventy Navigation https://www.11ty.dev/docs/plugins/navigation/
   eleventyConfig.addPlugin(eleventyNavigationPlugin);
+
+	eleventyConfig.addPlugin(activityPubPlugin, {
+		domain: 'david.vasandani.me',
+		username: 'blog',
+		displayName: 'David Vasandani\'s blog',
+		summary: 'This is my Eleventy website, except now its also discoverable on the Fediverse!',
+		outbox: true,
+		outboxCollection: 'posts',
+    avatar: 'https://david.vasandani.me/img/GU4GnrvdF--500.avif',
+	});
   
   eleventyConfig.addPlugin(pluginImages);
 

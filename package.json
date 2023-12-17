@@ -40,6 +40,7 @@
     "@types/node": "^20.10.4",
     "clean-css": "^5.3.3",
     "concurrently": "^8.2.2",
+    "eleventy-plugin-activity-pub": "^0.1.1",
     "html-minifier": "^4.0.0",
     "luxon": "^3.4.4",
     "markdown-it-anchor": "^8.6.7",
