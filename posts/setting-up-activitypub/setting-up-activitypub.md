@@ -33,3 +33,11 @@ https://hachyderm.io/@jenniferplusplus/111406825202624566 -->
 1. open [https://mastodon.castle](mastodon.castle) and login.  
 username: `user@bitnami.org`  
 password: `bitnami1`
+
+### Test `eleventy-plugin-activity-pub`
+
+1. Run 11ty locally
+    ```
+    npm start
+    ```
+1. 
