@@ -28,11 +28,35 @@ https://hachyderm.io/@jenniferplusplus/111406825202624566 -->
     127.0.0.1   dashboard.castle
     127.0.0.1   host.castle
     127.0.0.1   mastodon.castle
-    127.0.0.1   letterbook.castle
+    127.0.0.1   blog.castle
     ```
 1. open [https://mastodon.castle](mastodon.castle) and login.  
 username: `user@bitnami.org`  
 password: `bitnami1`
+
+1. Add the following to `./volumes/proxy/traefik_dynamic.toml` to make the 11ty blog available via https:
+    ```
+    # add blog.castle to the list of SANs for the ACME certificate
+    # this is needed because the blog is hosted on a different server
+    # than the rest of the services
+    [http.routers]
+      [http.routers.blog]
+        rule = "Host(`blog.castle`)"
+        service = "blog"
+        entryPoints = ["websecure"]
+        [http.routers.blog.tls]
+          certResolver = "smallstep"
+          [[http.routers.blog.tls.domains]]
+            main = "blog.castle"
+            sans = ["blog.castle"]
+
+    # blog.castle service is running on the host computer but traefik
+    # is running in a container to access the host use host.docker.internal
+    [http.services]
+      [http.services.blog.loadBalancer]
+        [[http.services.blog.loadBalancer.servers]]
+          url = "http://host.docker.internal:8080"
+    ```
 
 ### Test `eleventy-plugin-activity-pub`
 
