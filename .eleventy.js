@@ -13,7 +13,9 @@ module.exports = function(eleventyConfig) {
 
 	eleventyConfig.addPlugin(activityPubPlugin, {
 		domain: 'david.vasandani.me',
-		username: 'blog',
+    // https://github.com/LewisDaleUK/eleventy-plugin-activity-pub/issues/12
+    // Username cannot have the same name as a directory 
+		username: 'website',
 		displayName: 'David Vasandani\'s blog',
 		summary: 'This is my Eleventy website, except now its also discoverable on the Fediverse!',
     avatar: 'https://david.vasandani.me/img/GU4GnrvdF--500.avif',
