@@ -16,4 +16,4 @@ tags:
    ```
 2. Add the path to the Obsidian Git plugin
 
-![Screenshot of the Obsidian Git plugin Additional PATHs config](obsidian-git-additional-path.jpg)
+    ![Screenshot of the Obsidian Git plugin Additional PATHs config](obsidian-git-additional-path.jpg)
