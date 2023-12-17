@@ -12,6 +12,6 @@ tags:
    $ which git-remote-keybase
    /usr/local/bin/git-remote-keybase
    ```
-2. Add the folder to Obsidian Git plugin
+2. Add the path to the Obsidian Git plugin
 
    ![Screenshot of the Obsidian Git plugin Additional PATHs config](obsidian-git-additional-path.jpg)
