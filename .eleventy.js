@@ -12,7 +12,7 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addPlugin(eleventyNavigationPlugin);
 
 	eleventyConfig.addPlugin(activityPubPlugin, {
-		domain: 'david.vasandani.me',
+		domain: 'deploy-preview-65--david-vasandani-blog.netlify.app',
     // https://github.com/LewisDaleUK/eleventy-plugin-activity-pub/issues/12
     // Username cannot have the same name as a directory 
 		username: 'website',
