@@ -5,6 +5,8 @@ author: David Vasandani
 summary: Using the obsidian-git plugin with a Keybase repo
 tags:
   - post
+  - git
+  - obsidian
 ---
 1. Locate the path to the `git-remote-keybase` executable
 
