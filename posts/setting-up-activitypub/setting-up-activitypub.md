@@ -64,4 +64,5 @@ password: `bitnami1`
     ```
     npm start
     ```
+1. Load the blog at [https://blog.castle](https://blog.castle)
 1. 
