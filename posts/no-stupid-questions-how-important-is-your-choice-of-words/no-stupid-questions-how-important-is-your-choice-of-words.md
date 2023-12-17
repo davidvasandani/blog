@@ -1,5 +1,5 @@
 ---
-title: No Stupid Questions - How Important Is Your Choice of Words??
+title: No Stupid Questions - How Important Is Your Choice of Words?
 date: 2023-12-03T04:24:09.190Z
 author: David Vasandai
 summary: What happens when three psychologists walk into a magic show? What’s
