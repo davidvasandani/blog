@@ -1,5 +1,6 @@
 _site/
 _gemini/
 node_modules/
-dist/                                                                                                                                                       
+dist/
 .DS_Store
+outbox

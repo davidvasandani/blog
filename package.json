@@ -50,8 +50,8 @@
     "uglify-js": "^3.17.4"
   },
   "dependencies": {
+    "eleventy-plugin-activity-pub": "github:davidvasandani/eleventy-plugin-activity-pub#55-feat-add-activitypub",
     "gemdown": "^0.7.0",
-    "gemini-server": "^2.1.1",
-    "eleventy-plugin-activity-pub": "file:./eleventy-plugin-activity-pub"
+    "gemini-server": "^2.1.1"
   }
 }
