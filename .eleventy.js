@@ -15,7 +15,7 @@ module.exports = function(eleventyConfig) {
 		domain: 'deploy-preview-65--david-vasandani-blog.netlify.app',
     // https://github.com/LewisDaleUK/eleventy-plugin-activity-pub/issues/12
     // Username cannot have the same name as a directory 
-		username: 'website',
+		username: 'web',
 		displayName: 'David Vasandani\'s blog',
 		summary: 'This is my Eleventy website, except now its also discoverable on the Fediverse!',
     avatar: 'https://david.vasandani.me/img/GU4GnrvdF--500.avif',
