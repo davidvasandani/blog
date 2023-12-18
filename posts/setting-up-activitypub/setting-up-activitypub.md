@@ -58,6 +58,14 @@ password: `bitnami1`
           url = "http://host.docker.internal:8080"
     ```
 
+### Local Testing with Ngrok
+429 To Many Requests
+
+### Local Testing with Tailscale
+```
+tailscale funnel 8080
+```
+
 ### Test `eleventy-plugin-activity-pub`
 
 1. Run 11ty locally
