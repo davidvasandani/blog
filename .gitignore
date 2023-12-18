@@ -3,4 +3,3 @@ _gemini/
 node_modules/
 dist/
 .DS_Store
-outbox

@@ -18,7 +18,7 @@ module.exports = function(eleventyConfig) {
 		username: 'web',
 		displayName: 'David Vasandani\'s blog',
 		summary: 'This is my Eleventy website, except now its also discoverable on the Fediverse!',
-    avatar: 'https://david.vasandani.me/img/GU4GnrvdF--500.avif',
+    avatar: 'https://david.vasandani.me/img/GU4GnrvdF--500.jpeg',
 		outbox: true,
 		outboxCollection: 'post',
 	});
