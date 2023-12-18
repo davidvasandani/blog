@@ -66,6 +66,9 @@ password: `bitnami1`
 tailscale funnel 8080
 ```
 
+### Testing with Mastodon
+https://activitypub.academy/
+
 ### Test `eleventy-plugin-activity-pub`
 
 1. Run 11ty locally
