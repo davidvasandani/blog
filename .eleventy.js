@@ -19,8 +19,8 @@ module.exports = function(eleventyConfig) {
 		displayName: 'David Vasandani\'s blog',
 		summary: 'This is my Eleventy website, except now its also discoverable on the Fediverse!',
     avatar: 'https://david.vasandani.me/img/GU4GnrvdF--500.avif',
-		// outbox: true,
-		// outboxCollection: 'posts',
+		outbox: true,
+		outboxCollection: 'post',
 	});
   
   eleventyConfig.addPlugin(pluginImages);
