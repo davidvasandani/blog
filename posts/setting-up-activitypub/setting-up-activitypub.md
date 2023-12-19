@@ -69,6 +69,9 @@ tailscale funnel 8080
 ### Testing with Mastodon
 https://activitypub.academy/
 
+
+
+
 ### Test `eleventy-plugin-activity-pub`
 
 1. Run 11ty locally
@@ -77,3 +80,7 @@ https://activitypub.academy/
     ```
 1. Load the blog at [https://blog.castle](https://blog.castle)
 1. 
+
+
+### Resources
+1. https://paul.kinlan.me/adding-activity-pub-to-your-static-site/
