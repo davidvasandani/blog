@@ -49,6 +49,7 @@
     "uglify-js": "^3.17.4"
   },
   "dependencies": {
+    "@netlify/functions": "^2.4.1",
     "gemdown": "^0.7.0",
     "gemini-server": "^2.1.1"
   }
