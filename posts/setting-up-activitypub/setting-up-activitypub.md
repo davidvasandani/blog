@@ -66,6 +66,11 @@ password: `bitnami1`
 tailscale funnel 8080
 ```
 
+### Local Testing with Netlify
+```
+netlify dev --live
+```
+
 ### Testing with Mastodon
 https://activitypub.academy/
 
