@@ -10,7 +10,12 @@ Instead of rehashing an existing how-to guide for how to setup Netlify, Prisma, 
 
 After creating the CockroachDB cluster and adding the `DATABASE_URL` to the `.env`, these are the commands I used to get up and running:
 ```
+# create the database schema
 npx prisma migrate dev --name init
+
+# seed the DB with data
 npx prisma db seed
+
+# start the Netlify frontend and functions
 netlify dev
 ```
