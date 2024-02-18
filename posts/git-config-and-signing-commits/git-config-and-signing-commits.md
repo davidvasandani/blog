@@ -1,7 +1,7 @@
 ---
 title: git config and signing commits
 date: 2023-12-17T00:42:04.785Z
-author: Anonymous
+author: David Vasandani
 summary: Configure git to sign commits with multiple personas
 tags:
   - post
