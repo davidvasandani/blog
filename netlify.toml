@@ -11,6 +11,25 @@
   for = "/.well-known/webfinger"
   [headers.values]
     Content-Type = "application/jrd+json"
+[[redirects]]
+  from = "/hello"
+  to = "/.netlify/functions/hello"
+  status = 200
+
+[functions]
+  external_node_modules = ["express"]
+  node_bundler = "esbuild"
+
+[[redirects]]
+  force = true
+  from = "/api/*"
+  status = 200
+  to = "/.netlify/functions/api/:splat"
+
+# Redirects and headers are GLOBAL for all builds – they do not get scoped to
+# contexts no matter where you define them in the file.
+# For context-specific rules, use _headers or _redirects files, which are
+# applied on a PER-DEPLOY basis.
 
 # REDIRECT and HEADERS examples
 
@@ -36,7 +55,3 @@
 #   X-XSS-Protection = "1; mode=block"
 #   Content-Security-Policy = "frame-ancestors https://www.facebook.com"
 
-# Redirects and headers are GLOBAL for all builds – they do not get scoped to
-# contexts no matter where you define them in the file.
-# For context-specific rules, use _headers or _redirects files, which are
-# applied on a PER-DEPLOY basis.
