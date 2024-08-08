@@ -6,7 +6,7 @@ summary: Docker Swarm on NixOS
 tags:
   - post
 ---
-1. Update `nixpkgs.url` in `flake.nix` to `nixos-24.05` where Docker Engine 2.7 is available
+1. Update `flake.nix` to `nixos-24.05` where Docker Engine 2.7 is available
 ```
   inputs = {
     # NixOS official package source, using the nixos-24.05 branch here
@@ -14,7 +14,7 @@ tags:
   };
 ```
 
-2. Update `networking.firewall` in `configuration.nix` to open the Docker ports
+2. Update `configuration.nix` to open the Docker ports
 ```
 # open ports in firewall
   # Open ports in the firewall.
@@ -31,7 +31,7 @@ tags:
   ];
 ```
 
-3. Add `virtualisation.docker` in `configuration.nix` to install and start Docker Engine 2.7
+3. Update `configuration.nix` to install and start Docker Engine 2.7
 ```
   virtualisation.docker = {
     enable = true;
