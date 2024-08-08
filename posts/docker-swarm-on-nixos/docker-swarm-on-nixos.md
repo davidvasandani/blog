@@ -32,11 +32,15 @@ tags:
 ```
   virtualisation.docker = {
     enable = true;
+    rootless = {
+      enable = true;
+      setSocketVariable = true;
+    };
     package = pkgs.docker_27;
     daemon.settings = {
       live-restore = false;
     };
-  }
+  };
 ```
 
 4. Rebuild
@@ -48,3 +52,37 @@ nixos-rebuild switch
 ```
 docker swarm init --advertise-addr ###.###.###.###
 ```
+
+---
+
+Continue if you want to expose the Docker API via TCP
+
+1. Add `listenOptions`. Only tcp should be set because `/run/docker.sock` is already exposed via `rootless.setSocketVariable`
+
+```
+  virtualisation.docker = {
+    enable = true;
+    listenOptions = [ "0.0.0.0:2375" ];
+    rootless = {
+      enable = true;
+      setSocketVariable = true;
+    };
+    package = pkgs.docker_27;
+    daemon.settings = {
+      live-restore = false;
+    };
+  };
+```
+
+2. Add new listener port to `networking.firewall.allowedTCPPorts`
+```
+  networking.firewall.allowedTCPPorts = [
+    22
+    53
+    2377
+    7946
+    3000
+  ];
+```
+
+3. 
