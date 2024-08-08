@@ -115,6 +115,7 @@ docker context use remote
 1. Join the Swarm from the worker device 
 ```
 docker swarm join --token XXX ###.###.###.###:2377
+```
 
 2. Create a Swarm Service
 ```
