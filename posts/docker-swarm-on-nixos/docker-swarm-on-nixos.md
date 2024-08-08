@@ -107,3 +107,31 @@ docker context create remote --docker "host=tcp://###.###.###.###:2375"
 docker --context remote ps
 docker context use remote
 ```
+
+---
+
+### Join a worker to the Swarm and scale a service
+
+1. Join the Swarm from the worker device 
+```
+docker swarm join --token XXX ###.###.###.###:2377
+
+2. Create a Swarm Service
+```
+docker service create --replicas 1 --name helloworld alpine ping docker.com
+```
+
+3. Inspect
+```
+docker service inspect --pretty helloworld
+```
+
+4. Scale the service. 
+```
+docker service scale helloworld=5
+```
+
+5. List the tasks
+```
+docker service ps helloworld
+```
