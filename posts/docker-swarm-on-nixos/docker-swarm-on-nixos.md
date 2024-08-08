@@ -6,6 +6,8 @@ summary: Docker Swarm on NixOS
 tags:
   - post
 ---
+### Install Docker
+
 1. Update `flake.nix` to `nixos-24.05` where Docker Engine 2.7 is available
 ```
   inputs = {
@@ -55,7 +57,7 @@ docker swarm init --advertise-addr ###.###.###.###
 
 ---
 
-Continue if you want to expose the Docker API via TCP
+### Expose the Docker API via TCP
 
 1. Add `listenOptions`. Only tcp should be set because `/run/docker.sock` is already exposed via `rootless.setSocketVariable`
 
@@ -85,4 +87,23 @@ Continue if you want to expose the Docker API via TCP
   ];
 ```
 
-3. 
+3. Rebuild
+```
+nixos-rebuild switch
+```
+
+4. Restart Docker Socket
+```
+systemctl restart docker.socket
+```
+
+5. Add the remote Docker context
+```
+docker context create remote --docker "host=tcp://###.###.###.###:2375"
+```
+
+6. Use the new context for a one-off command or switch to it 
+```
+docker --context remote ps
+docker context use remote
+```
