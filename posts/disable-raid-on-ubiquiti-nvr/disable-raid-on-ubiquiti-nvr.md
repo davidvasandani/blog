@@ -7,14 +7,19 @@ tags:
   - post
 ---
 ```
-umount /volume1
+# unmount the volume
+$ umount /volume1
+
+# stop the array
 mdadm --stop /dev/md3
+
+# zero the data
 mdadm --zero-superblock /dev/sda5 /dev/sdb5 /dev/sdc5 /dev/sdd5
+
+# create a new linear array
 mdadm --create /dev/md3 --level=linear --raid-devices=4 /dev/sda5 /dev/sdb5 /dev/sdc5 /dev/sdd5
-cat /proc/mdstat
-Personalities : [linear] [raid0] [raid1] [raid6] [raid5] [raid4] [raid10] 
-md3 : active linear sdd5[3] sdc5[2] sdb5[1] sda5[0]
-      78093217726 blocks super 1.2 0k rounding
+
+# check the array
 mdadm --detail /dev/md3
 /dev/md3:
            Version : 1.2
@@ -46,5 +51,7 @@ Consistency Policy : none
        2       8       37        2      active sync   /dev/sdc5
        3       8       53        3      active sync   /dev/sdd5
 
+# format and mount the new array
 mkfs.ext4 /dev/md3
 mount /dev/md3 /volume1
+```
