@@ -6,6 +6,8 @@ summary: Disable RAID on an UNVR using mdadm
 tags:
   - post
 ---
+I wanted to use my UNVR as a fileserver running MooseFS and it's recommended to disable RAID.
+
 ```
 # unmount the volume
 $ umount /volume1
