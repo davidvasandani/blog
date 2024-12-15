@@ -5,8 +5,10 @@ metaDescription: This is a sample meta description. If one is not present in
   instead.
 date: 2017-01-01T00:00:00.000Z
 permalink: /privacy-policy/index.html
+eleventyNavigation:
+  order: 5
+  key: privacy
 ---
-# Privacy Policy for Davids Blog - FreePrivacyPolicy.com
 Last updated: February 26, 2024
 
 This Privacy Policy describes Our policies and procedures on the collection, use and disclosure of Your information when You use the Service and tells You about Your privacy rights and how the law protects You.
