@@ -3,13 +3,25 @@ const CleanCSS = require("clean-css");
 const UglifyJS = require("uglify-js");
 const htmlmin = require("html-minifier");
 const eleventyNavigationPlugin = require("@11ty/eleventy-navigation");
-
+const activityPubPlugin = require('eleventy-plugin-activity-pub');
 const pluginImages = require("./.eleventy.config.images.js");
 
 module.exports = function(eleventyConfig) {
 
   // Eleventy Navigation https://www.11ty.dev/docs/plugins/navigation/
   eleventyConfig.addPlugin(eleventyNavigationPlugin);
+
+	eleventyConfig.addPlugin(activityPubPlugin, {
+		domain: 'deploy-preview-65--david-vasandani-blog.netlify.app',
+    // https://github.com/LewisDaleUK/eleventy-plugin-activity-pub/issues/12
+    // Username cannot have the same name as a directory 
+		username: 'web',
+		displayName: 'David Vasandani\'s blog',
+		summary: 'This is my Eleventy website, except now its also discoverable on the Fediverse!',
+    avatar: 'https://david.vasandani.me/img/GU4GnrvdF--500.jpeg',
+		outbox: true,
+		outboxCollection: 'post',
+	});
   
   eleventyConfig.addPlugin(pluginImages);
 
