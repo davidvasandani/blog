@@ -28,3 +28,5 @@ Netlify's dashboard-installed netlify-plugin-a11y 0.0.12 scans HTML files direct
 
 Excluding admin alone did not resolve the Netlify timeout. The legacy plugin is now declared locally with an explicit Pa11y 10 override, replacing its obsolete Pa11y 5/Puppeteer stack. npm test runs the actual public audit plus an inaccessible fixture to prove errors still block. Puppeteer normally downloads its browser on installation; NixOS can use PUPPETEER_SKIP_DOWNLOAD=true and PUPPETEER_EXECUTABLE_PATH pointing to system Chromium.
 GitHub's Ubuntu runner uses /usr/bin/google-chrome for this audit: its AppArmor profile supports the sandbox, whereas Puppeteer's downloaded binary was rejected. CI skips the redundant browser download rather than disabling Chromium's sandbox.
+
+The Blog main branch also requires verified commit signatures and linear history. Check these requirements before delivery. Where a local signing key is unavailable, GitHub createCommitOnBranch can recreate the task commits with verified platform signatures; compare tree hashes and preserve the baseline-before-upgrade ordering before updating the task branch with an explicit force-with-lease.

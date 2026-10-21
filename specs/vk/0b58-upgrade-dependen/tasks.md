@@ -15,4 +15,4 @@
 ## Delivery layer
 - [x] T009 Independent Codex review and confirmed fixes, with revalidation (after T008).
 - [x] T010 Commit knowledge-base/index.md and dependency-testing.md with task identifier (after T009).
-- [ ] T011 Open PR against main, verify checks and merge (after T010).
+- [x] T011 Open PR against main and verify checks (after T010). Final merge is performed by pipeline stage 13; its authoritative status is [PR #118](https://github.com/davidvasandani/blog/pull/118).
