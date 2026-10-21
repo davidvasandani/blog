@@ -3,7 +3,7 @@
 Scope: davidvasandani/blog only. Add executable local regression tests before upgrading existing dependencies. Preserve public URLs, content, author/tag navigation, contact form, CMS editing configuration/previews, Netlify API responses, and Gemini output.
 
 ## Current architecture
-Eleventy 2 builds Markdown/Nunjucks/Liquid into _site. Decap CMS is loaded by admin/index.html and configured by admin/config.yml, with custom previews. netlify/functions/api.ts exposes Express through serverless-http. A separate Gemini generator and TypeScript server share this repository. No local test suite is configured.
+Eleventy 2 builds Markdown/Nunjucks/Liquid into _site. Decap CMS is loaded by admin/index.html and configured by admin/config.yml, with custom previews. netlify/functions/api.ts exposes Express through serverless-http; netlify/functions/hello/hello.mts is a native web Response handler. A separate Gemini generator and TypeScript server share this repository. No local test suite is configured.
 
 ## Requirements
 - Establish deterministic frontend tests against rendered output and relevant filters/navigation/form behavior.

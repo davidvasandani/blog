@@ -15,7 +15,9 @@ Registry metadata (`npm outdated`, `npm view`, registry.npmjs.org) selected stab
 - Use official asynchronous image transform, with shortcode output marked eleventy:ignore to prevent double processing. Remove markdown-it-eleventy-img's obsolete image/sharp subtree. Declare markdown-it and the image plugin directly. https://www.11ty.dev/docs/plugins/image/
 - Replace abandoned html-minifier with html-minifier-terser and await its transform. https://github.com/terser/html-minifier-terser
 - Express 5 defaults to simple query parsing; explicitly retain extended parsing and test nested/repeated queries. https://expressjs.com/en/guide/migrating-5/
-- TypeScript requires explicit rootDir for the existing output layout. Remove unused @netlify/functions and obsolete TSLint; use compiler checks without auto-modifying sources.
+- TypeScript requires explicit rootDir for the existing output layout. Upgrade @netlify/functions for the nested native hello function and remove obsolete TSLint; use compiler checks without auto-modifying sources.
 - Pin htm/date-fns browser imports to the same versions used by local preview tests; pin the Decap browser bundle. Both new remote bundle URLs returned HTTP 200 during validation.
 - Pin decap-server rather than downloading netlify-cms-proxy-server implicitly at start. Test its real filesystem middleware against disposable fixtures; production content is never touched.
 - npm audit fix updated compatible transitive brace-expansion and path-to-regexp versions. Remaining three low-severity advisories originate in @hapi/joi via @decap/cli/decap-server; do not force-downgrade the current proxy to silence this. Runtime-only audit is clean. Revisit when Decap replaces/patches this dependency.
+
+Deployment follow-up: the first preview failed in the dashboard-installed netlify-plugin-a11y 0.0.12 (Pa11y 30-second timeout), after the site build. A deeper function scan found netlify/functions/hello/hello.mts; include .mts in compilation and test its native Response contract. This function requires @netlify/functions types, now upgraded to 6.0.3.

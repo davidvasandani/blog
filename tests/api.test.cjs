@@ -37,3 +37,10 @@ test('missing routes and unsupported mutations return 404', async () => {
     assert.equal((await request(url, { httpMethod: method })).statusCode, 404);
   }
 });
+
+test('native Netlify hello function returns a web Response', async () => {
+  const { default: hello } = await import('../.test-dist/hello/hello.mjs');
+  const result = await hello(new Request('http://localhost/hello'), {});
+  assert.equal(result.status, 200);
+  assert.equal(await result.text(), 'Hello, world!');
+});

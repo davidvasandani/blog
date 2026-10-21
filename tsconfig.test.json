@@ -12,6 +12,7 @@
     "rootDir": "netlify/functions"
   },
   "include": [
-    "netlify/functions/**/*.ts"
+    "netlify/functions/**/*.ts",
+    "netlify/functions/**/*.mts"
   ]
 }

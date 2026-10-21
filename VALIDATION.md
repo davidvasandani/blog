@@ -6,7 +6,7 @@
 Coverage: generated navigation/pages, post date/content/archives, contact form semantics, responsive image files, Gemini content, internal-document exclusion, CMS schema/previews/registration/Identity callbacks, actual serverless hello/HEAD/echo/query/missing-route behavior.
 
 ## Upgraded clean-install validation
-`npm ci`, `npm test`, `npm run typecheck`, and `npm run gemini:server:build` all passed on Node 24.15.0. The final suite has 14 tests, including a real Decap filesystem backend read/save/path-rejection test confined to disposable fixtures and browser-helper version alignment. Both builds start from clean output; Eleventy writes 21 public files and 6 Gemini files.
+`npm ci`, `npm test`, `npm run typecheck`, and `npm run gemini:server:build` all passed on Node 24.15.0. The final suite has 15 tests, including a real Decap filesystem backend read/save/path-rejection test confined to disposable fixtures and browser-helper version alignment. Both builds start from clean output; Eleventy writes 21 public files and 6 Gemini files.
 
 The tests exposed and verified fixes for removed layoutContent aliases, double image transformation, and TypeScript source-root changes. Nested Express query parsing is explicitly preserved. npm outdated lists only Node 26 types, deliberately kept on Node 24 to match the runtime.
 
@@ -14,3 +14,6 @@ Audit: original install had 37 findings (4 critical, 20 high, 9 moderate, 4 low)
 
 ## Independent review
 Codex CLI `codex review --base origin/main` completed with: “No actionable regressions were found in the diff.” It independently passed regression/type checks. Its sandbox blocked Gemini's listening port; a separate foreground local TLS request to /posts/hello/index.gmi returned Gemini status 20. The root Gemini page remains absent in the existing generator configuration (six post files); this task preserves that pre-existing output boundary.
+
+Deployment follow-up adds coverage for the native hello.mts handler and restores/upgrades its @netlify/functions type dependency. The first Netlify preview failed after build in the dashboard-installed accessibility plugin (Pa11y timeout); deployment gates remain enforced.
+The follow-up's 15 tests, both builds and compiler checks passed. A second independent Codex review reported no actionable regressions against the merge base.

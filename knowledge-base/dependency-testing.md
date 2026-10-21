@@ -7,7 +7,7 @@ Updated: 2026-10-21
 Use Node 24 and npm ci. Run npm test, npm run typecheck, and npm run gemini:server:build. npm test cleans generated output before building both formats and running Node's test runner. Preserve a passing baseline commit before upgrading application dependencies. CI uses these same commands.
 
 ## Admin boundary
-The admin backend is hosted Git Gateway/Identity plus the local Decap proxy. Tests evaluate shipped previews and Identity callbacks, parse CMS configuration, and invoke real Decap filesystem middleware against temporary post fixtures. The repository's /api/hello and /api/echo functions are tested through serverless-http. None of this verifies hosted authentication, Git Gateway writes, or the remote CMS UI in a browser.
+The admin backend is hosted Git Gateway/Identity plus the local Decap proxy. Tests evaluate shipped previews and Identity callbacks, parse CMS configuration, and invoke real Decap filesystem middleware against temporary post fixtures. The repository's /api/hello and /api/echo functions are tested through serverless-http. The nested netlify/functions/hello/hello.mts handler is also compiled and tested; include both .ts and .mts patterns when scanning functions. None of this verifies hosted authentication, Git Gateway writes, or the remote CMS UI in a browser.
 
 Browser htm/date-fns pins must match local test helpers; the suite checks alignment. The Decap CMS bundle is independently pinned in admin/index.html. npm start uses the installed decap-server; local editor saves modify the checkout.
 
