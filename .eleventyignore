@@ -1,2 +1,12 @@
 README.md
 .github/
+SPEC.md
+PRIOR_KNOWLEDGE.md
+IMPLEMENTATION_PLAN.md
+VALIDATION.md
+specs/
+.specify/
+.claude/
+knowledge-base/
+tests/
+.test-dist/

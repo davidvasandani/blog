@@ -18,7 +18,7 @@ Based on the [Eleventy Base Blog](https://github.com/11ty/eleventy-base-blog) re
 
 ## Features
 
-* Uses Eleventy v2.0.1
+* Uses Eleventy v3
 * Sample pages and a blog with tag support
 * Decap CMS with editor previews (thanks [@biilmann](https://github.com/biilmann)!)
 * Scores 100/100/100/100 in Lighthouse performance tests 🔥
@@ -103,7 +103,7 @@ Specifically have a look at `.eleventy.js` to see if you want to configure any E
 ### 3. Install dependencies locally
 
 ```
-npm install @11ty/eleventy
+npm ci
 ```
 
 ### 4. Edit _data/metadata.json
@@ -136,3 +136,44 @@ DEBUG=* npx @11ty/eleventy
 This is an ongoing project and I welcome contributions and suggestions! Feel free to submit a PR.
 
 If you need any help with setting up Decap CMS, you can reach out to the Netlify team in the [Decap CMS Gitter](https://gitter.im/netlify/netlifycms).
+
+
+## Local validation and dependency maintenance
+
+Use Node 24 (`nvm install && nvm use`) and install the committed lockfile:
+
+```sh
+npm ci
+npm test
+npm run typecheck
+npm run gemini:server:build
+```
+
+`npm test` removes generated output, builds the website and Gemini output,
+compiles the Netlify API, and runs frontend and admin/API regressions with
+Node's test runner. No production credentials or remote content writes are needed.
+After installation, these checks use local content and dependencies.
+
+For focused checks, run `npm run test:frontend` or `npm run test:admin`.
+The tests cover rendered pages/navigation, author/tag links, dates, responsive
+images, contact fields, CMS schema and preview components, Identity callbacks,
+the local CMS backend using disposable post fixtures, and serverless API responses. They do not exercise hosted Netlify Identity,
+Git Gateway publishing, or the third-party CMS UI in a real browser.
+
+Run `npm start` for the local site plus the pinned Decap proxy, or `npm run serve`
+for the public site alone. Local CMS edits write to this checkout. The optional
+Gemini server starts with `npm run gemini:server:start` after building its output.
+
+Before future upgrades, run the tests on the existing lockfile, then update
+packages and rerun the same checks. Keep browser import versions and their local
+test helpers aligned. See VALIDATION.md and the feature research notes for the
+upgrade evidence and limitations. Internal specs, tests, and knowledge pages
+are excluded from both published outputs.
+
+The test suite also runs the same blocking public-page accessibility audit as
+Netlify. Puppeteer downloads Chromium during `npm ci`; on NixOS or machines
+using a system Chromium, install with `PUPPETEER_SKIP_DOWNLOAD=true` and set
+`PUPPETEER_EXECUTABLE_PATH` to that browser when running tests. To rerun only the
+public audit after a build, use `npm run test:a11y`. The legacy Netlify plugin is
+pinned with a targeted Pa11y 10 override, verified with both accessible output
+and an intentionally inaccessible fixture.

@@ -1,17 +1,17 @@
 const { DateTime } = require("luxon");
 const CleanCSS = require("clean-css");
 const UglifyJS = require("uglify-js");
-const htmlmin = require("html-minifier");
+const htmlmin = require("html-minifier-terser");
 const eleventyNavigationPlugin = require("@11ty/eleventy-navigation");
 
 const pluginImages = require("./.eleventy.config.images.js");
 
-module.exports = function(eleventyConfig) {
+module.exports = async function(eleventyConfig) {
 
   // Eleventy Navigation https://www.11ty.dev/docs/plugins/navigation/
   eleventyConfig.addPlugin(eleventyNavigationPlugin);
   
-  eleventyConfig.addPlugin(pluginImages);
+  await pluginImages(eleventyConfig);
 
   // Configuration API: use eleventyConfig.addLayoutAlias(from, to) to add
   // layout aliases! Say you have a bunch of existing content using
@@ -76,9 +76,9 @@ module.exports = function(eleventyConfig) {
   });
 
   // Minify HTML output
-  eleventyConfig.addTransform("htmlmin", function(content, outputPath) {
-    if (outputPath.indexOf(".html") > -1) {
-      let minified = htmlmin.minify(content, {
+  eleventyConfig.addTransform("htmlmin", async function(content, outputPath) {
+    if (outputPath && outputPath.endsWith(".html")) {
+      let minified = await htmlmin.minify(content, {
         useShortDoctype: true,
         removeComments: true,
         collapseWhitespace: true

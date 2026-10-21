@@ -15,9 +15,14 @@ jobs:
       - name: Checkout 🛎
         uses: actions/checkout@v4
 
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
       - name: Gemini Build
         run: |
-          npm install
+          npm ci
           npm run gemini:build;
 
       - name: Update known_hosts
