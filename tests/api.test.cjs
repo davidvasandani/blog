@@ -16,7 +16,7 @@ test('serverless hello and HEAD contracts', async () => {
 
 test('serverless echo preserves request metadata and repeated query values', async () => {
   const result = await request('/api/echo', {
-    queryStringParameters: { message: 'hello world' },
+    queryStringParameters: { message: 'hello world', 'filter[status]': 'published' },
     multiValueQueryStringParameters: { tag: ['one', 'two'] }
   });
   assert.equal(result.statusCode, 200);
@@ -27,6 +27,7 @@ test('serverless echo preserves request metadata and repeated query values', asy
   assert.equal(body.hostname, 'localhost');
   assert.equal(body.headers['x-test'], 'local');
   assert.equal(body.query.message, 'hello world');
+  assert.deepEqual(body.query.filter, { status: 'published' });
   assert.deepEqual(body.query.tag, ['one', 'two']);
   assert.equal(typeof body.os.hostname, 'string');
 });

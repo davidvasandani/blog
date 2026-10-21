@@ -4,7 +4,7 @@ const fs = require('node:fs');
 const vm = require('node:vm');
 const yaml = require('js-yaml');
 const htm = require('htm');
-const format = require('date-fns/format');
+const { format } = require('date-fns');
 const { parseHTML } = require('linkedom');
 const read = file => fs.readFileSync(`_site/admin/${file}`, 'utf8');
 
@@ -80,4 +80,55 @@ test('admin identity callbacks redirect login and logout to the editor', () => {
     assert.equal(doc.location.href, '/admin/');
   }
   assert.doesNotThrow(() => vm.runInNewContext(source, { window: {} }));
+});
+
+test('browser preview helper pins match the versions exercised locally', () => {
+  const pkg = require('../package.json');
+  for (const name of ['post', 'page']) {
+    assert.ok(read(`preview-templates/${name}.js`).includes(`htm@${pkg.devDependencies.htm}/`));
+  }
+  assert.ok(read('preview-templates/post.js').includes(`date-fns@${pkg.devDependencies['date-fns']}/`));
+});
+
+test('local CMS backend reads and saves a temporary post and rejects path traversal', async () => {
+  const os = require('node:os');
+  const path = require('node:path');
+  const express = require('express');
+  const serverless = require('serverless-http');
+  const { registerLocalFs } = require('decap-server/dist/middlewares');
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'blog-cms-test-'));
+  const previous = process.env.GIT_REPO_DIRECTORY;
+  const app = express();
+  try {
+    process.env.GIT_REPO_DIRECTORY = dir;
+    await registerLocalFs(app, { logLevel: 'error' });
+  } finally {
+    if (previous === undefined) delete process.env.GIT_REPO_DIRECTORY;
+    else process.env.GIT_REPO_DIRECTORY = previous;
+  }
+  const handler = serverless(app);
+  const request = async (action, params) => handler({
+    httpMethod: 'POST', path: '/api/v1',
+    headers: { host: 'localhost', 'content-type': 'application/json' },
+    body: JSON.stringify({ action, params }), isBase64Encoded: false,
+  }, {});
+  try {
+    const info = await request('info');
+    assert.equal(info.statusCode, 200);
+    assert.equal(JSON.parse(info.body).type, 'local_fs');
+    const raw = '---\ntitle: Local test\n---\nTest body';
+    const saved = await request('persistEntry', {
+      branch: 'main', entry: { slug: 'test', path: 'posts/test/test.md', raw }, assets: [],
+      options: { commitMessage: 'test fixture only', useWorkflow: false, status: 'draft' },
+    });
+    assert.equal(saved.statusCode, 200, saved.body);
+    assert.equal(fs.readFileSync(path.join(dir, 'posts/test/test.md'), 'utf8'), raw);
+    const entry = await request('getEntry', { branch: 'main', path: 'posts/test/test.md' });
+    assert.equal(entry.statusCode, 200);
+    assert.ok(entry.body.includes('Test body'));
+    const invalid = await request('getEntry', { branch: 'main', path: '../outside.md' });
+    assert.equal(invalid.statusCode, 422);
+  } finally {
+    fs.rmSync(dir, { recursive: true, force: true });
+  }
 });
