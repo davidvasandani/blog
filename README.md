@@ -169,3 +169,11 @@ packages and rerun the same checks. Keep browser import versions and their local
 test helpers aligned. See VALIDATION.md and the feature research notes for the
 upgrade evidence and limitations. Internal specs, tests, and knowledge pages
 are excluded from both published outputs.
+
+The test suite also runs the same blocking public-page accessibility audit as
+Netlify. Puppeteer downloads Chromium during `npm ci`; on NixOS or machines
+using a system Chromium, install with `PUPPETEER_SKIP_DOWNLOAD=true` and set
+`PUPPETEER_EXECUTABLE_PATH` to that browser when running tests. To rerun only the
+public audit after a build, use `npm run test:a11y`. The legacy Netlify plugin is
+pinned with a targeted Pa11y 10 override, verified with both accessible output
+and an intentionally inaccessible fixture.

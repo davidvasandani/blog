@@ -6,7 +6,7 @@
 Coverage: generated navigation/pages, post date/content/archives, contact form semantics, responsive image files, Gemini content, internal-document exclusion, CMS schema/previews/registration/Identity callbacks, actual serverless hello/HEAD/echo/query/missing-route behavior.
 
 ## Upgraded clean-install validation
-`npm ci`, `npm test`, `npm run typecheck`, and `npm run gemini:server:build` all passed on Node 24.15.0. The final suite has 15 tests, including a real Decap filesystem backend read/save/path-rejection test confined to disposable fixtures and browser-helper version alignment. Both builds start from clean output; Eleventy writes 21 public files and 6 Gemini files.
+`npm ci`, `npm test`, `npm run typecheck`, and `npm run gemini:server:build` all passed on Node 24.15.0. The final suite has 16 tests, including a real Decap filesystem backend read/save/path-rejection test confined to disposable fixtures and browser-helper version alignment. Both builds start from clean output; Eleventy writes 21 public files and 6 Gemini files.
 
 The tests exposed and verified fixes for removed layoutContent aliases, double image transformation, and TypeScript source-root changes. Nested Express query parsing is explicitly preserved. npm outdated lists only Node 26 types, deliberately kept on Node 24 to match the runtime.
 
@@ -19,3 +19,5 @@ Deployment follow-up adds coverage for the native hello.mts handler and restores
 The follow-up's 15 tests, both builds and compiler checks passed. A second independent Codex review reported no actionable regressions against the merge base.
 Two previews timed out in Pa11y after successful website/function builds. Expanded Netlify logs showed default a11y inputs scanning every HTML file. The repository now scopes this static-file accessibility scan to public pages (excludes the remote CMS/unrendered Identity templates) and keeps accessibility failures blocking.
 Independent review of the accessibility configuration confirmed supported inputs, preserved recursive public-page coverage, and no actionable regressions.
+
+A third preview still timed out after scoping, so scope alone was not the cause. The old plugin is now a declared dependency with a targeted Pa11y 10 override (Puppeteer 25), replacing its obsolete browser stack. A fresh install using the documented NixOS system-Chromium setup passed all 16 tests, the full blocking public accessibility scan, type checks, and Gemini compilation. The negative accessibility fixture proves violations still fail. Independent review found no actionable defects; Chromium execution was unavailable in the review sandbox but verified in the workspace. The final install still reports only three low development findings.

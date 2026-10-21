@@ -25,3 +25,5 @@ After this upgrade, runtime-only npm audit reports zero findings. Three low find
 Evidence: VALIDATION.md and specs/vk/0b58-upgrade-dependen/research.md.
 
 Netlify's dashboard-installed netlify-plugin-a11y 0.0.12 scans HTML files directly, with a 30-second per-page timeout. Its default recursive scan includes admin/index.html and unrendered Identity email templates. netlify.toml scopes that audit to public pages while retaining error mode; admin contracts are covered separately by the local suite. Expand the Building section on public Netlify deploy pages to see full logs and resolved plugin inputs.
+
+Excluding admin alone did not resolve the Netlify timeout. The legacy plugin is now declared locally with an explicit Pa11y 10 override, replacing its obsolete Pa11y 5/Puppeteer stack. npm test runs the actual public audit plus an inaccessible fixture to prove errors still block. Puppeteer normally downloads its browser on installation; NixOS can use PUPPETEER_SKIP_DOWNLOAD=true and PUPPETEER_EXECUTABLE_PATH pointing to system Chromium.
