@@ -1,0 +1,32 @@
+# Dependency upgrades and local testing
+
+Task: 0b580ba2-71f3-4437-83a4-8ea5080e8fe4 (Upgrade Dependencies)
+Updated: 2026-10-21
+
+## Repeatable verification
+Use Node 24 and npm ci. Run npm test, npm run typecheck, and npm run gemini:server:build. npm test cleans generated output before building both formats and running Node's test runner. Preserve a passing baseline commit before upgrading application dependencies. CI uses these same commands.
+
+## Admin boundary
+The admin backend is hosted Git Gateway/Identity plus the local Decap proxy. Tests evaluate shipped previews and Identity callbacks, parse CMS configuration, and invoke real Decap filesystem middleware against temporary post fixtures. The repository's /api/hello and /api/echo functions are tested through serverless-http. The nested netlify/functions/hello/hello.mts handler is also compiled and tested; include both .ts and .mts patterns when scanning functions. None of this verifies hosted authentication, Git Gateway writes, or the remote CMS UI in a browser.
+
+Browser htm/date-fns pins must match local test helpers; the suite checks alignment. The Decap CMS bundle is independently pinned in admin/index.html. npm start uses the installed decap-server; local editor saves modify the checkout.
+
+## Migration pitfalls
+- Eleventy 3 removed layoutContent; use content in both HTML and Gemini layouts. Builds can succeed with empty page bodies, so assert rendered content.
+- The official image transform replaces markdown-it-eleventy-img. Mark already-generated shortcode images eleventy:ignore to avoid treating generated URLs as input files.
+- Express 5 changes the default query parser. Preserve extended parsing explicitly for nested query compatibility.
+- TypeScript needs explicit rootDir to preserve dist/index.js and .test-dist/api.js output paths.
+- Both generators scan repository Markdown. Exclude planning, tests, and knowledge pages in .eleventyignore.
+- The existing Gemini generator emits six posts, without a root index; use /posts/hello/index.gmi for its local TLS smoke check.
+
+## Dependency risk
+After this upgrade, runtime-only npm audit reports zero findings. Three low findings remain in @hapi/joi via the development-only Decap CLI/proxy. Recheck upstream releases before the next upgrade; avoid force-downgrading merely to silence audit. Node types intentionally follow Node 24 rather than the latest Node major.
+
+Evidence: VALIDATION.md and specs/vk/0b58-upgrade-dependen/research.md.
+
+Netlify's dashboard-installed netlify-plugin-a11y 0.0.12 scans HTML files directly, with a 30-second per-page timeout. Its default recursive scan includes admin/index.html and unrendered Identity email templates. netlify.toml scopes that audit to public pages while retaining error mode; admin contracts are covered separately by the local suite. Expand the Building section on public Netlify deploy pages to see full logs and resolved plugin inputs.
+
+Excluding admin alone did not resolve the Netlify timeout. The legacy plugin is now declared locally with an explicit Pa11y 10 override, replacing its obsolete Pa11y 5/Puppeteer stack. npm test runs the actual public audit plus an inaccessible fixture to prove errors still block. Puppeteer normally downloads its browser on installation; NixOS can use PUPPETEER_SKIP_DOWNLOAD=true and PUPPETEER_EXECUTABLE_PATH pointing to system Chromium.
+GitHub's Ubuntu runner uses /usr/bin/google-chrome for this audit: its AppArmor profile supports the sandbox, whereas Puppeteer's downloaded binary was rejected. CI skips the redundant browser download rather than disabling Chromium's sandbox.
+
+The Blog main branch also requires verified commit signatures and linear history. Check these requirements before delivery. Where a local signing key is unavailable, GitHub createCommitOnBranch can recreate the task commits with verified platform signatures; compare tree hashes and preserve the baseline-before-upgrade ordering before updating the task branch with an explicit force-with-lease.
