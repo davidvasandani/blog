@@ -1,60 +1,27 @@
-const path = require("path");
-const eleventyImage = require("@11ty/eleventy-img");
-
+const path = require('node:path');
 const markdownIt = require('markdown-it');
-const markdownItEleventyImg = require("markdown-it-eleventy-img");
 
-module.exports = eleventyConfig => {
-	function relativeToInputPath(inputPath, relativeFilePath) {
-		let split = inputPath.split("/");
-		split.pop();
+module.exports = async eleventyConfig => {
+  const { default: Image, eleventyImageTransformPlugin } = await import('@11ty/eleventy-img');
 
-		return path.resolve(split.join(path.sep), relativeFilePath);
-	}
+  eleventyConfig.addAsyncShortcode('image', async function(src, alt, widths, sizes) {
+    const file = path.resolve(path.dirname(this.page.inputPath), src);
+    const metadata = await Image(file, {
+      widths: widths || ['auto'],
+      formats: ['avif', 'webp', 'auto'],
+      outputDir: path.join(eleventyConfig.dir.output, 'img'),
+    });
+    return Image.generateHTML(metadata, { alt, sizes, loading: 'lazy', decoding: 'async', 'eleventy:ignore': '' });
+  });
 
-	// Eleventy Image shortcode
-	// https://www.11ty.dev/docs/plugins/image/
-	eleventyConfig.addAsyncShortcode("image", async function imageShortcode(src, alt, widths, sizes) {
-		// Full list of formats here: https://www.11ty.dev/docs/plugins/image/#output-formats
-		// Warning: Avif can be resource-intensive so take care!
-		let formats = ["avif", "webp", "auto"];
-		let file = relativeToInputPath(this.page.inputPath, src);
-		let metadata = await eleventyImage(file, {
-			widths: widths || ["auto"],
-			formats,
-			outputDir: path.join(eleventyConfig.dir.output, "img"), // Advanced usage note: `eleventyConfig.dir` works here because we’re using addPlugin.
-		});
-
-		// TODO loading=eager and fetchpriority=high
-		let imageAttributes = {
-			alt,
-			sizes,
-			loading: "lazy",
-			decoding: "async",
-		};
-		return eleventyImage.generateHTML(metadata, imageAttributes);
-	});
-
-	eleventyConfig.setLibrary("md", markdownIt({
-    html: true,
-    breaks: true,
-    linkify: true
-  })
-  .use(markdownItEleventyImg, {
-		resolvePath: (filepath, env) => path.join(path.dirname(env.page.inputPath), filepath),
-		imgOptions: {
-			widths: [800, 500, 300],
-			urlPath: "/images/",
-			outputDir: path.join("_site", "images"),
-			formats: ["avif", "webp", "jpeg"]
-		},
-		globalAttributes: {
-			class: "markdown-image",
-			decoding: "async",
-			// If you use multiple widths,
-			// don't forget to add a `sizes` attribute.
-			sizes: "100vw"
-		}
-	}));
-
+  eleventyConfig.setLibrary('md', markdownIt({ html: true, breaks: true, linkify: true }));
+  eleventyConfig.addPlugin(eleventyImageTransformPlugin, {
+    extensions: 'html',
+    widths: [800, 500, 300],
+    formats: ['avif', 'webp', 'jpeg'],
+    urlPath: '/images/',
+    htmlOptions: {
+      imgAttributes: { class: 'markdown-image', decoding: 'async', sizes: '100vw' },
+    },
+  });
 };
