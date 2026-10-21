@@ -46,3 +46,13 @@
 #   X-XSS-Protection = "1; mode=block"
 #   Content-Security-Policy = "frame-ancestors https://www.facebook.com"
 
+
+# Audit the rendered public blog. The CMS loads a remote application, and its
+# email templates require Netlify Identity substitutions before rendering;
+# neither is a standalone public page suitable for Pa11y's file:// scan.
+[[plugins]]
+  package = "netlify-plugin-a11y"
+  [plugins.inputs]
+    checkPaths = ["/"]
+    ignoreDirectories = ["admin"]
+    resultMode = "error"
