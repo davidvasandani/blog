@@ -14,5 +14,5 @@
 
 ## Delivery layer
 - [x] T009 Independent Codex review and confirmed fixes, with revalidation (after T008).
-- [ ] T010 Commit knowledge-base/index.md and dependency-testing.md with task identifier (after T009).
+- [x] T010 Commit knowledge-base/index.md and dependency-testing.md with task identifier (after T009).
 - [ ] T011 Open PR against main, verify checks and merge (after T010).
