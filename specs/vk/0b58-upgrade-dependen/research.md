@@ -21,3 +21,5 @@ Registry metadata (`npm outdated`, `npm view`, registry.npmjs.org) selected stab
 - npm audit fix updated compatible transitive brace-expansion and path-to-regexp versions. Remaining three low-severity advisories originate in @hapi/joi via @decap/cli/decap-server; do not force-downgrade the current proxy to silence this. Runtime-only audit is clean. Revisit when Decap replaces/patches this dependency.
 
 Deployment follow-up: the first preview failed in the dashboard-installed netlify-plugin-a11y 0.0.12 (Pa11y 30-second timeout), after the site build. A deeper function scan found netlify/functions/hello/hello.mts; include .mts in compilation and test its native Response contract. This function requires @netlify/functions types, now upgraded to 6.0.3.
+
+Netlify's expanded resolved configuration confirmed default a11y inputs (all HTML, including the remote CMS and unrendered Identity email templates). Scope its static-file scan to public output by excluding admin, retaining resultMode=error and all public page checks. This does not replace the dedicated local admin regression suite or claim a hosted CMS accessibility audit.

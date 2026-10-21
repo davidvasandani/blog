@@ -23,3 +23,5 @@ Browser htm/date-fns pins must match local test helpers; the suite checks alignm
 After this upgrade, runtime-only npm audit reports zero findings. Three low findings remain in @hapi/joi via the development-only Decap CLI/proxy. Recheck upstream releases before the next upgrade; avoid force-downgrading merely to silence audit. Node types intentionally follow Node 24 rather than the latest Node major.
 
 Evidence: VALIDATION.md and specs/vk/0b58-upgrade-dependen/research.md.
+
+Netlify's dashboard-installed netlify-plugin-a11y 0.0.12 scans HTML files directly, with a 30-second per-page timeout. Its default recursive scan includes admin/index.html and unrendered Identity email templates. netlify.toml scopes that audit to public pages while retaining error mode; admin contracts are covered separately by the local suite. Expand the Building section on public Netlify deploy pages to see full logs and resolved plugin inputs.

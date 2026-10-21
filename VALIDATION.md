@@ -17,3 +17,5 @@ Codex CLI `codex review --base origin/main` completed with: “No actionable reg
 
 Deployment follow-up adds coverage for the native hello.mts handler and restores/upgrades its @netlify/functions type dependency. The first Netlify preview failed after build in the dashboard-installed accessibility plugin (Pa11y timeout); deployment gates remain enforced.
 The follow-up's 15 tests, both builds and compiler checks passed. A second independent Codex review reported no actionable regressions against the merge base.
+Two previews timed out in Pa11y after successful website/function builds. Expanded Netlify logs showed default a11y inputs scanning every HTML file. The repository now scopes this static-file accessibility scan to public pages (excludes the remote CMS/unrendered Identity templates) and keeps accessibility failures blocking.
+Independent review of the accessibility configuration confirmed supported inputs, preserved recursive public-page coverage, and no actionable regressions.
