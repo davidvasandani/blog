@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "Node16",
+    "esModuleInterop": true,
+    "strict": true,
+    "outDir": ".test-dist",
+    "types": [
+      "node"
+    ],
+    "moduleResolution": "Node16",
+    "rootDir": "netlify/functions"
+  },
+  "include": [
+    "netlify/functions/**/*.ts",
+    "netlify/functions/**/*.mts"
+  ]
+}
