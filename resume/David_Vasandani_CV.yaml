@@ -4,29 +4,70 @@
 cv:
   name: David Vasandani
   headline: Solutions Engineer
-  location: TODO City, ST
+  location: Los Angeles, CA
   email: david@vasandani.me
   website: https://david.vasandani.me/
   social_networks:
+    - network: LinkedIn
+      username: davidvasandani
     - network: GitHub
       username: davidvasandani
     - network: Mastodon
       username: '@davidvasandani@social.coop'
   sections:
     summary:
-      - TODO A two- or three-sentence summary tailored to the target role.
+      - Infrastructure engineer with experience running servers and containers across multiple clouds. I break problems down, research them thoroughly, and build creative solutions that follow best practices. I'm passionate about automation, containers, and observability, and I thrive both individually and on teams thanks to clear, energetic communication.
     experience:
-      - company: TODO Company
-        position: TODO Position
-        start_date: 2020-01
-        end_date: present
-        location: TODO City, ST
+      - company: sweetgreen
+        position: Lead Infrastructure & Build Engineer
+        date: 2019 – Present
+        location: Los Angeles, CA
         highlights:
-          - TODO Outcome-focused accomplishment with a measurable result.
-          - TODO Another accomplishment.
+          - Broke a locally run Terraform monorepo into smaller repositories deployed by CircleCI, each with its own backend state, reducing blast radius and increasing developer velocity.
+          - Decoupled an Ember frontend from a Rails backend into a static single-page application to increase deployment frequency.
+          - Built blue-green infrastructure enabling canary deployments and fast rollbacks using weighted target groups on AWS ALBs.
+          - Initiated and documented a tech-wide on-call rotation in OpsGenie, leading the team to incrementally improve service runbooks.
+          - Improved developer experience by introducing LocalStack, enabling hot reloading for local development, and granting bastion access via IAM.
+          - Introduced Gruntwork's library of reusable, production-tested infrastructure modules to make the infrastructure codebase more sustainable.
+          - Evangelized and led the Datadog implementation, centralizing observability and reducing costs.
+          - Standardized infrastructure and deployment processes across 15+ services, shortening time to launch for new services and reducing onboarding overhead for new team members.
+      - company: LearnZillion
+        position: Senior Operations Engineer
+        date: 2016 – 2019
+        location: Remote
+        highlights:
+          - Migrated self-hosted EC2 instances of Elasticsearch, Redis, and Postgres to Amazon Elasticsearch Service, ElastiCache, and RDS, increasing reliability and decreasing overhead.
+          - Reduced infrastructure costs by moving testing environments to ECS on Spot Fleet and leveraging short-term Reserved Instance contracts.
+          - Improved developer experience with Docker for Mac and migrated CI from CircleCI 1.0 to 2.0.
+      - company: Humanitarian OpenStreetMap Team
+        position: Senior Systems Engineer
+        date: 2016 – 2018
+        location: Remote
+        highlights:
+          - Migrated applications from a hand-built cloud server on an outdated Docker version to a Docker Swarm cluster provisioned by Ansible and Terraform, with continuous deployment through CircleCI.
+          - Led weekly community meetings to communicate changes to stakeholders.
+      - company: Warby Parker
+        position: Automation Engineer
+        date: 2014 – 2016
+        location: New York, NY
+        highlights:
+          - Designed a security-first AWS VPC and migrated Rackspace Public Cloud instances into it.
+          - Moved to immutable infrastructure with auto scaling groups and blue-green and canary deployments using Packer, Ansible, Terraform, and Consul.
+          - Auto-scaled application servers on CloudWatch CPU and memory metrics and worker servers on queue depth.
+          - Monitored servers with collectd and services with Consul, alerting through Sensu.
+          - Increased deployments from once a week to over 400 a month over two years.
+          - Cut the infrastructure bill by over 40% by rightsizing servers and autoscaling.
     skills:
-      - label: TODO Category
-        details: TODO skill, TODO skill, TODO skill
+      - label: Infrastructure as Code
+        details: Terraform, Terragrunt, Packer, Ansible, Consul, Vault
+      - label: AWS
+        details: ECS, Elastic Beanstalk, CloudWatch, Auto Scaling, Spot Fleet, DMS, IAM, App Mesh, CodePipeline
+      - label: Containers
+        details: Docker, Kubernetes, Helm, ChartMuseum, Rancher, ALB and NGINX ingress controllers
+      - label: CI/CD & Observability
+        details: CircleCI, Datadog, OpsGenie, Sensu
+      - label: Collaboration
+        details: Documentation, workflow management, lecturing, mentoring
     education:
       - institution: TODO Institution
         area: TODO Field of Study
