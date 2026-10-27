@@ -54,3 +54,18 @@ jobs:
           name: resume
           path: resume/rendercv_output/
           if-no-files-found: error
+  diagrams:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+      # Clones diagram-design at the commit in diagrams/diagram-design.lock, then
+      # checks sources, extractor counts, the skill's self/geometry checks and
+      # that the published SVGs match a fresh export. Needs no npm install.
+      - run: node scripts/diagrams.cjs setup
+      - run: node scripts/diagrams.cjs check
