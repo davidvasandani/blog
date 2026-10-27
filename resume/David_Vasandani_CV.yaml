@@ -16,14 +16,46 @@ cv:
     summary:
       - TODO A two- or three-sentence summary tailored to the target role.
     experience:
-      - company: TODO Company
-        position: TODO Position
-        start_date: 2020-01
+      # Sweetgreen: one entry per role, newest first. Dates are the effective
+      # dates in ChartHop's job history (Personal History tab).
+      - company: Sweetgreen
+        position: Senior Manager, IT Infrastructure & Innovation
+        start_date: 2026-02
         end_date: present
-        location: TODO City, ST
+        location: Culver City, CA
+        summary: Promoted from Senior Lead Software Engineer. Runs IT Operations, reporting to the VP of Technology.
         highlights:
-          - TODO Outcome-focused accomplishment with a measurable result.
+          - Manage a team of three, a Senior Systems Engineer and two IT Operations Specialists.
+          - TODO Outcome-focused accomplishment since taking over IT Operations.
+      - company: Sweetgreen
+        position: Senior Lead Software Engineer
+        start_date: 2025-09
+        end_date: 2026-02
+        location: Culver City, CA
+        summary: Promoted from Lead Software Engineer.
+        highlights:
+          - Filled the Retail Technology leadership gap during an unplanned leave, giving the VP of Technology the technical guidance to limit revenue loss from POS issues.
+          - Led research into stabilizing restaurant POS by running it as virtual machines in AWS, including the security impact analysis and an evaluation of Incus for VM management.
+          - Built fleet-wide POS observability on AWS Lambda and Datadog, covering Meraki network loss and latency, Intune device telemetry and master terminal status.
+          - Wrote security impact analyses (virtualized POS, Incus, Debian Bookworm hardening) that let Retail Technology adopt new tooling within security standards.
+          - Prepared fleet-wide remediation scripts during the October 2025 Brink POS end-of-day outage, and trained the Retail Technology team on incident response.
+      - company: Sweetgreen
+        position: Lead Software Engineer
+        start_date: 2021-03
+        end_date: 2025-08
+        location: Culver City, CA
+        summary: Promoted from Senior Software Engineer.
+        highlights:
+          - TODO Outcome-focused accomplishment as Lead Software Engineer.
           - TODO Another accomplishment.
+      - company: Sweetgreen
+        position: Senior Software Engineer, Infrastructure
+        start_date: 2019-08
+        end_date: 2021-02
+        location: Culver City, CA
+        summary: Joined as Senior Engineer, Infrastructure, retitled Senior Software Engineer in March 2020.
+        highlights:
+          - TODO Outcome-focused accomplishment from the infrastructure team.
     skills:
       - label: TODO Category
         details: TODO skill, TODO skill, TODO skill
