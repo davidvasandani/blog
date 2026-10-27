@@ -33,6 +33,7 @@ cv:
           - Found why checkout registers froze after loyalty scans at 32 of 272 restaurants (46 forced restarts in a week) and gave the POS vendor the evidence.
           - Enabled repeatable configuration audits across 343 locations by directing AI-assisted delivery of documented vendor integration tools with read-only safeguards.
           - Replaced emailed vendor requests for sales-date corrections with an AI-run fix gated by a preview and a named approver.
+          - Enabled AI-driven POS troubleshooting through AI-assisted development of remote-support tools with read-only defaults, approval controls and audit logs.
       - company: Sweetgreen
         position: Senior Lead Software Engineer
         start_date: 2025-09
