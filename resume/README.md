@@ -9,6 +9,8 @@ Every Netlify deploy renders the resume (see the build command in `netlify.toml`
 - https://david.vasandani.me/resume/: the HTML version, built from RenderCV's Markdown output in the blog's own layout (`pages/resume.njk`, `scripts/resume-page.cjs`), with a **Resume** nav link
 - https://david.vasandani.me/resume/David_Vasandani_CV.pdf: the PDF
 
+Netlify keeps RenderCV's virtualenv between builds: `RESUME_VENV` in `netlify.toml` puts it in `node_modules/.cache/resume-venv`, inside the dependency cache Netlify restores. On a cache hit, `resume:setup` only confirms the pinned version is installed (about 1s instead of about 16s). If the cached environment's Python has gone away (for example, after a Netlify image update), it is rebuilt automatically. To force a clean install, use **Clear cache and deploy site** in Netlify.
+
 So publishing a change means editing the YAML and merging to `main`. A render failure fails the deploy, so a broken resume never goes live. Locally, `npm run build` includes the page only after `npm run resume` has rendered it, and skips it (and the nav link) otherwise. The source files themselves stay out of template processing (`resume/` is in `.eleventyignore`) and out of the Gemini capsule.
 
 ## Setup
