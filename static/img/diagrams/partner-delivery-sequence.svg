@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 960 600" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="partner-delivery-sequence-title partner-delivery-sequence-desc" id="partner-delivery-sequence-root">
+      <title id="partner-delivery-sequence-title">Delivery API: schema mismatch or accepted</title>
+      <desc id="partner-delivery-sequence-desc">Sequence: a partner posts a JSON manifest to the delivery API, which asks a validator to check it; on a schema mismatch the validator returns errors and the API answers 422 Unprocessable Entity, otherwise the validator returns ok and the API answers 202 Accepted.</desc>
+      <defs>
+      <style>#partner-delivery-sequence-root { --color-paper:   #fff0eb;
+      --color-ink:     #2d3142;
+      --color-muted:   #4f5d75;
+      --color-accent:  #b23a17;
+      --font-sans:     'Geist', system-ui, sans-serif;
+      --font-serif:    'Instrument Serif', serif;
+      --font-mono:     'Geist Mono', ui-monospace, monospace; }
+      #partner-delivery-sequence-root { font-family: var(--font-sans); color: var(--color-ink); }
+      #partner-delivery-sequence-root .diagram-container { width: 100%; overflow-x: auto; }
+      @media print {
+#partner-delivery-sequence-root .diagram-container { overflow-x: visible; }
+}</style>
+        <marker id="partner-delivery-sequence-arrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#4f5d75"/></marker>
+        <marker id="partner-delivery-sequence-arrow-accent" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#b23a17"/></marker>
+        <marker id="partner-delivery-sequence-arrow-link" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#0000ff"/></marker>
+      </defs>
+
+      <rect width="100%" height="100%" fill="#fff0eb"/>
+
+      <!-- Lifelines: Partner 200 · Delivery API 480 · Validator 760 -->
+      <line x1="200" y1="96" x2="200" y2="480" stroke="#2d3142" stroke-width="1" stroke-dasharray="3,3" stroke-opacity="0.22"/>
+      <line x1="480" y1="96" x2="480" y2="480" stroke="#2d3142" stroke-width="1" stroke-dasharray="3,3" stroke-opacity="0.22"/>
+      <line x1="760" y1="96" x2="760" y2="480" stroke="#2d3142" stroke-width="1" stroke-dasharray="3,3" stroke-opacity="0.22"/>
+
+      <!-- ALT fragment spanning all three lifelines -->
+      <rect x="136" y="208" width="688" height="248" rx="4" fill="#2d3142" stroke="#2d3142" stroke-width="1" fill-opacity="0.02" stroke-opacity="0.22"/>
+      <rect x="136" y="208" width="40" height="16" rx="2" fill="#fff0eb" stroke="#2d3142" stroke-width="1" stroke-opacity="0.22"/>
+      <text x="156" y="220" fill="#4f5d75" font-size="8" font-family="'Geist Mono', ui-monospace, monospace" text-anchor="middle" letter-spacing="0.12em">ALT</text>
+      <text x="148" y="244" fill="#4f5d75" font-size="8" font-family="'Geist Mono', ui-monospace, monospace" letter-spacing="0.04em">[schema mismatch]</text>
+      <line x1="144" y1="344" x2="816" y2="344" stroke="#2d3142" stroke-width="1" stroke-dasharray="4,3" stroke-opacity="0.20"/>
+      <text x="148" y="364" fill="#4f5d75" font-size="8" font-family="'Geist Mono', ui-monospace, monospace" letter-spacing="0.04em">[valid]</text>
+
+      <!-- Activation bars -->
+      <rect x="476" y="136" width="8" height="304" fill="#2d3142" stroke="#4f5d75" stroke-width="0.8" fill-opacity="0.06"/>
+      <rect x="756" y="184" width="8" height="208" fill="#2d3142" stroke="#4f5d75" stroke-width="0.8" fill-opacity="0.06"/>
+
+      <!-- 1 Partner → API (HTTP call) -->
+      <line x1="200" y1="144" x2="476" y2="144" stroke="#0000ff" stroke-width="1.2" marker-end="url(#partner-delivery-sequence-arrow-link)"/>
+      <rect x="272" y="124" width="136" height="12" rx="2" fill="#fff0eb"/>
+      <text x="340" y="133" fill="#0000ff" font-size="8" font-family="'Geist Mono', ui-monospace, monospace" text-anchor="middle" letter-spacing="0.06em">1 · POST /DELIVERIES</text>
+      <!-- 2 API → Validator -->
+      <line x1="484" y1="192" x2="756" y2="192" stroke="#4f5d75" stroke-width="1.2" marker-end="url(#partner-delivery-sequence-arrow)"/>
+      <rect x="564" y="172" width="112" height="12" rx="2" fill="#fff0eb"/>
+      <text x="620" y="181" fill="#4f5d75" font-size="8" font-family="'Geist Mono', ui-monospace, monospace" text-anchor="middle" letter-spacing="0.06em">2 · VALIDATE</text>
+      <!-- 3 Validator → API (return) -->
+      <line x1="756" y1="280" x2="484" y2="280" stroke="#4f5d75" stroke-width="1.2" stroke-dasharray="5,4" marker-end="url(#partner-delivery-sequence-arrow)"/>
+      <rect x="576" y="260" width="88" height="12" rx="2" fill="#fbece8"/>
+      <text x="620" y="269" fill="#4f5d75" font-size="8" font-family="'Geist Mono', ui-monospace, monospace" text-anchor="middle" letter-spacing="0.06em">3 · ERRORS[]</text>
+      <!-- 4 API → Partner (return) -->
+      <line x1="476" y1="328" x2="200" y2="328" stroke="#4f5d75" stroke-width="1.2" stroke-dasharray="5,4" marker-end="url(#partner-delivery-sequence-arrow)"/>
+      <rect x="276" y="308" width="128" height="12" rx="2" fill="#fbece8"/>
+      <text x="340" y="317" fill="#4f5d75" font-size="8" font-family="'Geist Mono', ui-monospace, monospace" text-anchor="middle" letter-spacing="0.06em">4 · 422 UNPROCESSABLE</text>
+      <!-- 5 Validator → API (return) -->
+      <line x1="756" y1="384" x2="484" y2="384" stroke="#4f5d75" stroke-width="1.2" stroke-dasharray="5,4" marker-end="url(#partner-delivery-sequence-arrow)"/>
+      <rect x="592" y="364" width="56" height="12" rx="2" fill="#fbece8"/>
+      <text x="620" y="373" fill="#4f5d75" font-size="8" font-family="'Geist Mono', ui-monospace, monospace" text-anchor="middle" letter-spacing="0.06em">5 · OK</text>
+      <!-- 6 API → Partner: headline success -->
+      <line x1="476" y1="432" x2="200" y2="432" stroke="#b23a17" stroke-width="1.4" marker-end="url(#partner-delivery-sequence-arrow-accent)"/>
+      <rect x="288" y="412" width="104" height="12" rx="2" fill="#fbece8"/>
+      <text x="340" y="421" fill="#b23a17" font-size="8" font-family="'Geist Mono', ui-monospace, monospace" text-anchor="middle" letter-spacing="0.06em">6 · 202 ACCEPTED</text>
+
+      <!-- Actors, drawn after messages -->
+      <rect x="128" y="40" width="144" height="56" rx="6" fill="#fff0eb"/>
+      <rect x="128" y="40" width="144" height="56" rx="6" fill="#4f5d75" stroke="#5a6580" stroke-width="1" fill-opacity="0.10"/>
+      <rect x="136" y="48" width="32" height="12" rx="2" fill="none" stroke="#5a6580" stroke-width="0.8" stroke-opacity="0.40"/>
+      <text x="152" y="57" fill="#5a6580" font-size="7" font-family="'Geist Mono', ui-monospace, monospace" text-anchor="middle" letter-spacing="0.08em">EXT</text>
+      <text x="200" y="72" fill="#2d3142" font-size="12" font-weight="600" font-family="'Geist', system-ui, sans-serif" text-anchor="middle">Partner</text>
+      <text x="200" y="87" fill="#4f5d75" font-size="9" font-family="'Geist Mono', ui-monospace, monospace" text-anchor="middle">REST client</text>
+      <rect x="408" y="40" width="144" height="56" rx="6" fill="#fff0eb"/>
+      <rect x="408" y="40" width="144" height="56" rx="6" fill="#ffffff" stroke="#2d3142" stroke-width="1"/>
+      <rect x="416" y="48" width="32" height="12" rx="2" fill="none" stroke="#2d3142" stroke-width="0.8" stroke-opacity="0.30"/>
+      <text x="432" y="57" fill="#4f5d75" font-size="7" font-family="'Geist Mono', ui-monospace, monospace" text-anchor="middle" letter-spacing="0.08em">API</text>
+      <text x="480" y="72" fill="#2d3142" font-size="12" font-weight="600" font-family="'Geist', system-ui, sans-serif" text-anchor="middle">Delivery API</text>
+      <text x="480" y="87" fill="#4f5d75" font-size="9" font-family="'Geist Mono', ui-monospace, monospace" text-anchor="middle">/deliveries</text>
+      <rect x="688" y="40" width="144" height="56" rx="6" fill="#fff0eb"/>
+      <rect x="688" y="40" width="144" height="56" rx="6" fill="#b23a17" stroke="#b23a17" stroke-width="1" fill-opacity="0.08"/>
+      <rect x="696" y="48" width="48" height="12" rx="2" fill="none" stroke="#b23a17" stroke-width="0.8" stroke-opacity="0.50"/>
+      <text x="720" y="57" fill="#b23a17" font-size="7" font-family="'Geist Mono', ui-monospace, monospace" text-anchor="middle" letter-spacing="0.08em">CHECK</text>
+      <text x="760" y="72" fill="#2d3142" font-size="12" font-weight="600" font-family="'Geist', system-ui, sans-serif" text-anchor="middle">Validator</text>
+      <text x="760" y="87" fill="#4f5d75" font-size="9" font-family="'Geist Mono', ui-monospace, monospace" text-anchor="middle">manifest schema</text>
+
+      <!-- Legend -->
+      <line x1="40" y1="504" x2="920" y2="504" stroke="#2d3142" stroke-width="0.8" stroke-opacity="0.10"/>
+      <text x="40" y="524" fill="#4f5d75" font-size="8" font-family="'Geist Mono', ui-monospace, monospace" letter-spacing="0.18em">LEGEND</text>
+      <line x1="40" y1="546" x2="68" y2="546" stroke="#0000ff" stroke-width="1.2" marker-end="url(#partner-delivery-sequence-arrow-link)"/>
+      <text x="76" y="549" fill="#4f5d75" font-size="8.5" font-family="'Geist', system-ui, sans-serif">HTTP call</text>
+      <line x1="176" y1="546" x2="204" y2="546" stroke="#4f5d75" stroke-width="1.2" marker-end="url(#partner-delivery-sequence-arrow)"/>
+      <text x="212" y="549" fill="#4f5d75" font-size="8.5" font-family="'Geist', system-ui, sans-serif">Internal call</text>
+      <line x1="320" y1="546" x2="348" y2="546" stroke="#4f5d75" stroke-width="1.2" stroke-dasharray="5,4" marker-end="url(#partner-delivery-sequence-arrow)"/>
+      <text x="356" y="549" fill="#4f5d75" font-size="8.5" font-family="'Geist', system-ui, sans-serif">Return</text>
+      <line x1="440" y1="546" x2="468" y2="546" stroke="#b23a17" stroke-width="1.4" marker-end="url(#partner-delivery-sequence-arrow-accent)"/>
+      <text x="476" y="549" fill="#4f5d75" font-size="8.5" font-family="'Geist', system-ui, sans-serif">Headline success</text>
+      <rect x="600" y="540" width="24" height="12" rx="2" fill="#b23a17" stroke="#b23a17" stroke-width="1" fill-opacity="0.08"/>
+      <text x="632" y="549" fill="#4f5d75" font-size="8.5" font-family="'Geist', system-ui, sans-serif">Focal actor</text>
+      <rect x="728" y="538" width="28" height="16" rx="2" fill="#2d3142" stroke="#2d3142" stroke-width="1" fill-opacity="0.02" stroke-opacity="0.22"/>
+      <text x="734" y="549" fill="#4f5d75" font-size="7" font-family="'Geist Mono', ui-monospace, monospace">ALT</text>
+      <text x="764" y="549" fill="#4f5d75" font-size="8.5" font-family="'Geist', system-ui, sans-serif">Branch, one region runs</text>
+    </svg>
