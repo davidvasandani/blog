@@ -24,7 +24,10 @@
     "test:admin": "npm run build && npm run test:compile && node --test tests/admin.test.cjs tests/api.test.cjs",
     "typecheck": "tsc --noEmit && tsc -p tsconfig.test.json --noEmit",
     "test:clean": "node -e \"for(const p of ['_site','_gemini','.test-dist']) require('node:fs').rmSync(p,{recursive:true,force:true})\"",
-    "test:a11y": "node scripts/test-a11y.cjs"
+    "test:a11y": "node scripts/test-a11y.cjs",
+    "resume:setup": "node scripts/resume.cjs setup",
+    "resume": "node scripts/resume.cjs render",
+    "resume:watch": "node scripts/resume.cjs render --watch"
   },
   "repository": {
     "type": "git",
@@ -75,5 +78,8 @@
     "netlify-plugin-a11y": {
       "pa11y": "10.0.0"
     }
+  },
+  "allowScripts": {
+    "puppeteer@25.15.0": true
   }
 }
