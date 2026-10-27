@@ -14,5 +14,11 @@ jobs:
     steps:
       - uses: docker://chinthakagodawita/autoupdate-action:v1
         env:
-          GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
+          # Pushes made with the default GITHUB_TOKEN don't trigger other
+          # workflows, so merges pushed with it never run CI on the PR.
+          # AUTOUPDATE_TOKEN is a fine-grained personal access token for this
+          # repository with Contents, Workflows (needed to merge in workflow
+          # changes) and Pull requests access, all read and write.
+          # Until that secret exists, this falls back to GITHUB_TOKEN.
+          GITHUB_TOKEN: '${{ secrets.AUTOUPDATE_TOKEN || secrets.GITHUB_TOKEN }}'
           EXCLUDED_LABELS: "decap-cms/*"
