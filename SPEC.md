@@ -1,20 +1,21 @@
-# Technical specification: dependency upgrades
+# Technical specification: RenderCV resume source
 
-Scope: davidvasandani/blog only. Add executable local regression tests before upgrading existing dependencies. Preserve public URLs, content, author/tag navigation, contact form, CMS editing configuration/previews, Netlify API responses, and Gemini output.
+Scope: davidvasandani/blog only. Add [RenderCV](https://github.com/rendercv/rendercv) so David's resume is kept as YAML in the blog repository and rendered to PDF (plus Markdown/HTML/PNG) with one command. The immediate use is a tailored resume for the Netflix Solutions Engineer 5 - Content Promotion & Distribution application.
 
 ## Current architecture
-Eleventy 2 builds Markdown/Nunjucks/Liquid into _site. Decap CMS is loaded by admin/index.html and configured by admin/config.yml, with custom previews. netlify/functions/api.ts exposes Express through serverless-http; netlify/functions/hello/hello.mts is a native web Response handler. A separate Gemini generator and TypeScript server share this repository. No local test suite is configured.
+Eleventy 3 (Node 24) builds the site into `_site` and the Gemini capsule into `_gemini`. `npm test` builds both and runs Node test suites plus a Pa11y audit. CI (`.github/workflows/test.yml`) runs `npm ci`, `npm test`, typecheck and the Gemini server build. Netlify runs `eleventy` only. There is no Python tooling in the repository.
 
 ## Requirements
-- Establish deterministic frontend tests against rendered output and relevant filters/navigation/form behavior.
-- Test admin configuration, preview rendering, and actual serverless API requests, including missing routes and query handling. Tests must not require production credentials, hosted authentication, or write real content.
-- Demonstrate passing tests against existing dependencies before changing their versions. Adding test tooling is allowed during that baseline phase.
-- Upgrade supported dependencies using registry/release evidence; adapt code to compatibility changes. Record deferred upgrades and remaining advisories honestly.
-- Provide a reproducible npm ci / npm test workflow, type checks and website/Gemini builds. Keep build-time documentation out of generated site output.
-- Follow the supplied SpecKit stages, independent review, project knowledge update, and PR merge in order.
+- RenderCV is a Python CLI (`rendercv[full]`, requires Python >= 3.12). Pin it exactly in `resume/requirements.txt` so renders are reproducible.
+- Keep the resume source in `resume/David_Vasandani_CV.yaml`, generated from `rendercv new` and filled in with the public contact details already on the blog (name, email, website, GitHub, Mastodon). Experience content the repository does not know is marked as a TODO, not invented.
+- `npm run resume:setup` creates a local virtualenv (`resume/.venv`) and installs the pinned requirements; `npm run resume` renders into `resume/rendercv_output/`; `npm run resume:watch` re-renders on save. The venv and output are gitignored.
+- Resume files must not enter the Eleventy or Gemini outputs (`resume/` in `.eleventyignore`).
+- CI gets a separate job that installs Python, renders the resume, checks a non-empty PDF exists, and uploads the output as a workflow artifact. Existing Node jobs are unchanged.
+- A Node test validates the repository contract (pinned version, YAML file present, ignore rules), so `npm test` does not need Python.
+- Document the workflow in `resume/README.md`.
 
 ## Acceptance
-A clean local install can run the complete test suite, build both outputs, and compile TypeScript. Tests verify user-facing contracts rather than dependency implementation details. Review has no significant unresolved findings. The PR targets the existing base branch and is merged only after required checks pass.
+On a clean checkout with Python 3.12+, `npm run resume:setup && npm run resume` produces `resume/rendercv_output/David_Vasandani_CV.pdf`. `npm test` still passes, and the site and Gemini outputs contain no resume files. The CI resume job passes and uploads the PDF. Independent review reports no significant findings. The PR merges into `main`.
 
 ## Boundaries
-No changes to other services, production authentication settings, or unrelated infrastructure. Hosted Git Gateway/Identity cannot be fully exercised offline; document that boundary instead of claiming end-to-end hosted coverage.
+Publishing the PDF on the live site is out of scope: the content is still a skeleton. The Netlify build command and other services stay as they are.
