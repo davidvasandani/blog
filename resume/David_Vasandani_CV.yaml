@@ -60,6 +60,13 @@ cv:
         summary: Joined as Senior Engineer, Infrastructure, retitled Senior Software Engineer in March 2020.
         highlights:
           - TODO Outcome-focused accomplishment from the infrastructure team.
+    projects:
+      - name: Household content and workflow platform
+        summary: Personal project developed with AI coding agents.
+        highlights:
+          - Implemented media and metadata ingestion with resumable imports, attachment validation, and recovery controls for a household archive.
+          - Restored content ingestion, importing 62 new items and requeuing 63 failed downloads through recovery triggers and credential remediation.
+          - Automated email triage using Jev classification and Johnny.Decimal-based labels, with independent action verification and human feedback.
     skills:
       - label: TODO Category
         details: TODO skill, TODO skill, TODO skill
