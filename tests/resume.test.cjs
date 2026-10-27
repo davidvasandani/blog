@@ -72,3 +72,18 @@ test('render explains setup when RenderCV is not installed', t => {
   assert.equal(result.status, 1);
   assert.match(result.stderr, /npm run resume:setup/);
 });
+
+test('render uses the virtualenv named by RESUME_VENV (Netlify cache location)', { skip: process.platform === 'win32' }, t => {
+  const root = fs.mkdtempSync(path.join(require('node:os').tmpdir(), 'resume-venv-'));
+  t.after(() => fs.rmSync(root, { recursive: true, force: true }));
+  const bin = path.join(root, 'cached-venv', 'bin');
+  fs.mkdirSync(bin, { recursive: true });
+  // Stand-in rendercv that records its arguments instead of rendering.
+  fs.writeFileSync(path.join(bin, 'rendercv'), '#!/bin/sh\necho "$@" > "${0%/*}/args"\n', { mode: 0o755 });
+  const result = spawnSync(process.execPath, ['scripts/resume.cjs', 'render', '--dont-generate-png'], {
+    encoding: 'utf8',
+    env: { PATH: '', RESUME_VENV: path.join(root, 'cached-venv') },
+  });
+  assert.equal(result.status, 0, result.stderr);
+  assert.equal(read(path.join(bin, 'args')).trim(), 'render David_Vasandani_CV.yaml --dont-generate-png');
+});
