@@ -13,3 +13,6 @@ specs/**/.speckit-owner
 # RenderCV local environment and rendered resume
 resume/.venv/
 resume/rendercv_output/
+
+# Pinned diagram-design checkout (npm run diagrams:setup)
+diagrams/.diagram-design/

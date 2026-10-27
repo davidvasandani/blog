@@ -1,0 +1,28 @@
+{
+  "diagrams": [
+    {
+      "source": "diagrams/partner-delivery.md",
+      "index": 0,
+      "kind": "flowchart",
+      "sha256": "e0f37421e5d79ecc479349a59d8f6a0785d7b9673a868266c3aae9383d8bcc85",
+      "nodes": 8,
+      "edges": 8,
+      "html": "diagrams/partner-delivery-flow.html",
+      "svg": "static/img/diagrams/partner-delivery-flow.svg",
+      "mermaidSvg": {
+        "path": "static/img/diagrams/partner-delivery-flow.mermaid.svg",
+        "sha256": "e0f37421e5d79ecc479349a59d8f6a0785d7b9673a868266c3aae9383d8bcc85"
+      }
+    },
+    {
+      "source": "diagrams/partner-delivery.md",
+      "index": 1,
+      "kind": "sequenceDiagram",
+      "sha256": "006cca7140f854469b1d6b3487d3c5acea53614a01c0420743396045b25669e1",
+      "nodes": 3,
+      "edges": 6,
+      "html": "diagrams/partner-delivery-sequence.html",
+      "svg": "static/img/diagrams/partner-delivery-sequence.svg"
+    }
+  ]
+}
