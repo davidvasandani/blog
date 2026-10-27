@@ -27,7 +27,11 @@
     "test:a11y": "node scripts/test-a11y.cjs",
     "resume:setup": "node scripts/resume.cjs setup",
     "resume": "node scripts/resume.cjs render",
-    "resume:watch": "node scripts/resume.cjs render --watch"
+    "resume:watch": "node scripts/resume.cjs render --watch",
+    "diagrams:setup": "node scripts/diagrams.cjs setup",
+    "diagrams:extract": "node scripts/diagrams.cjs extract",
+    "diagrams:export": "node scripts/diagrams.cjs export",
+    "diagrams:check": "node scripts/diagrams.cjs check"
   },
   "repository": {
     "type": "git",
