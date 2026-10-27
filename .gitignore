@@ -9,3 +9,7 @@ dist/
 .test-dist/
 .specify/feature-dir
 specs/**/.speckit-owner
+
+# RenderCV local environment and rendered resume
+resume/.venv/
+resume/rendercv_output/

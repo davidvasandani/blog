@@ -1,6 +1,8 @@
 [build]
   publish = "_site"
-  command = "eleventy"
+  # Ensure the Pa11y audit has its browser even when node_modules is restored
+  # from cache without running install scripts (no-op once downloaded).
+  command = "npx puppeteer browsers install chrome && eleventy"
 
 [[redirects]]
   from = "/hello"
