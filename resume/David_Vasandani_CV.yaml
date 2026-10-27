@@ -16,12 +16,50 @@ cv:
       username: '@davidvasandani@social.coop'
   sections:
     summary:
-      - Infrastructure engineer with experience running servers and containers across multiple clouds. I break problems down, research them thoroughly, and build creative solutions that follow best practices. I'm passionate about automation, containers, and observability, and I thrive both individually and on teams thanks to clear, energetic communication.
+      - "Hands-on engineer at the boundary between a company and its vendors. Seven years at Sweetgreen, promoted three times, owning POS, loyalty, network and device-management integrations. Uses AI to get to root cause, even inside vendor software with no source code or logs. Prototypes fast to unblock people, then turns what works into sustainable platforms so fixes don't stay one-offs. Brings vendors evidence and a clear ask."
     experience:
-      - company: sweetgreen
-        position: Lead Infrastructure & Build Engineer
-        date: 2019 – Present
-        location: Los Angeles, CA
+      # Sweetgreen: one entry per role, newest first. Dates are the effective
+      # dates in ChartHop's job history (Personal History tab).
+      - company: Sweetgreen
+        position: Senior Manager, IT Infrastructure & Innovation
+        start_date: 2026-02
+        end_date: present
+        location: Culver City, CA
+        summary: Promoted from Senior Lead Software Engineer. Runs IT Operations, reporting to the VP of Technology.
+        highlights:
+          - Manage a team of three, a Senior Systems Engineer and two IT Operations Specialists.
+          # TODO: add the crash reduction once 2 weeks of post-rollout data exist (re-run ~2026-11-08).
+          - Traced 314 POS crashes at the busiest stores to a 32-bit memory limit in vendor software using AI-assisted diagnostics; shipped a workaround to 18 registers in 2 weeks.
+          - Found why checkout registers froze after loyalty scans at 32 of 272 restaurants (46 forced restarts in a week) and gave the POS vendor the evidence.
+          - Turned a POS vendor's undocumented settings API into a documented, read-only contract and AI tools that audit 343 locations in 6 minutes.
+          - Replaced emailed vendor requests for sales-date corrections with an AI-run fix gated by a preview and a named approver.
+      - company: Sweetgreen
+        position: Senior Lead Software Engineer
+        start_date: 2025-09
+        end_date: 2026-02
+        location: Culver City, CA
+        summary: Promoted from Lead Software Engineer.
+        highlights:
+          - Filled the Retail Technology leadership gap during an unplanned leave, giving the VP of Technology the technical guidance to limit revenue loss from POS issues.
+          - Led research into stabilizing restaurant POS by running it as virtual machines in AWS, including the security impact analysis and an evaluation of Incus for VM management.
+          - Built fleet-wide POS observability on AWS Lambda and Datadog, covering Meraki network loss and latency, Intune device telemetry and master terminal status.
+          - Wrote security impact analyses (virtualized POS, Incus, Debian Bookworm hardening) that let Retail Technology adopt new tooling within security standards.
+          - Prepared fleet-wide remediation scripts during the October 2025 Brink POS end-of-day outage, and trained the Retail Technology team on incident response.
+      - company: Sweetgreen
+        position: Lead Software Engineer
+        start_date: 2021-03
+        end_date: 2025-08
+        location: Culver City, CA
+        summary: Promoted from Senior Software Engineer.
+        highlights:
+          - TODO Outcome-focused accomplishment as Lead Software Engineer.
+          - TODO Another accomplishment.
+      - company: Sweetgreen
+        position: Senior Software Engineer, Infrastructure
+        start_date: 2019-08
+        end_date: 2021-02
+        location: Culver City, CA
+        summary: Joined as Senior Engineer, Infrastructure, retitled Senior Software Engineer in March 2020.
         highlights:
           - Broke a locally run Terraform monorepo into smaller repositories deployed by CircleCI, each with its own backend state, reducing blast radius and increasing developer velocity.
           - Decoupled an Ember frontend from a Rails backend into a static single-page application to increase deployment frequency.
