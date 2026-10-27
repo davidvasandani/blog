@@ -14,7 +14,7 @@ cv:
       username: '@davidvasandani@social.coop'
   sections:
     summary:
-      - TODO A two- or three-sentence summary tailored to the target role.
+      - "Hands-on engineer at the boundary between a company and its vendors. Seven years at Sweetgreen, promoted three times, owning POS, loyalty, network and device-management integrations. Uses AI to get to root cause, even inside vendor software with no source code or logs. Prototypes fast to unblock people, then turns what works into sustainable platforms so fixes don't stay one-offs. Brings vendors evidence and a clear ask."
     experience:
       # Sweetgreen: one entry per role, newest first. Dates are the effective
       # dates in ChartHop's job history (Personal History tab).
