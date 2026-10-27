@@ -63,12 +63,6 @@ cv:
     skills:
       - label: TODO Category
         details: TODO skill, TODO skill, TODO skill
-    education:
-      - institution: TODO Institution
-        area: TODO Field of Study
-        degree: BS  # TODO: degree abbreviation
-        start_date: 2010-09
-        end_date: 2014-05
 design:
   theme: classic
 locale:
