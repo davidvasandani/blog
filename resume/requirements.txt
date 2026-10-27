@@ -1,0 +1,3 @@
+# Pinned RenderCV release (Python >= 3.12). The [full] extra bundles the CLI,
+# Typst compiler and fonts. Bump deliberately; see resume/README.md.
+rendercv[full]==2.8
