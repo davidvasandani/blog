@@ -2,12 +2,15 @@
 // Wrapper around the RenderCV CLI (Python). Usage:
 //   node scripts/resume.cjs setup            create resume/.venv and install resume/requirements.txt
 //   node scripts/resume.cjs render [--watch] render resume/David_Vasandani_CV.yaml
+// RESUME_VENV relocates the virtualenv (relative to the repository root). Netlify
+// sets it inside node_modules/.cache, which Netlify keeps between builds.
 const { spawnSync } = require('node:child_process');
 const fs = require('node:fs');
 const path = require('node:path');
 
-const resumeDir = path.join(__dirname, '..', 'resume');
-const venvDir = path.join(resumeDir, '.venv');
+const repoDir = path.join(__dirname, '..');
+const resumeDir = path.join(repoDir, 'resume');
+const venvDir = path.resolve(repoDir, process.env.RESUME_VENV || path.join('resume', '.venv'));
 const binDir = path.join(venvDir, process.platform === 'win32' ? 'Scripts' : 'bin');
 const exe = name => path.join(binDir, process.platform === 'win32' ? `${name}.exe` : name);
 const input = 'David_Vasandani_CV.yaml';
@@ -18,17 +21,22 @@ const run = (cmd, args) => {
   return { missing: false, status: result.status ?? 1 };
 };
 
+// A cached virtualenv breaks if the Python it links to has gone (e.g. a newer
+// build image); spawnSync then fails or the interpreter exits non-zero.
+const usable = () => fs.existsSync(exe('python')) && spawnSync(exe('python'), ['-c', '']).status === 0;
+
 function setup() {
-  if (!fs.existsSync(exe('python'))) {
+  if (!usable()) {
     const python = process.env.PYTHON || (process.platform === 'win32' ? 'python' : 'python3');
-    const created = run(python, ['-m', 'venv', venvDir]);
+    const created = run(python, ['-m', 'venv', '--clear', venvDir]);
     if (created.missing) {
       console.error(`Python not found (${python}). Install Python 3.12+ or set PYTHON.`);
       return 1;
     }
     if (created.status !== 0) return created.status;
   }
-  return run(exe('python'), ['-m', 'pip', 'install', '-r', 'requirements.txt']).status;
+  // Reconciles a reused virtualenv with requirements.txt; a no-op when already satisfied.
+  return run(exe('python'), ['-m', 'pip', 'install', '--disable-pip-version-check', '-r', 'requirements.txt']).status;
 }
 
 function render(extraArgs) {
