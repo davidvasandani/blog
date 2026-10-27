@@ -177,3 +177,61 @@ using a system Chromium, install with `PUPPETEER_SKIP_DOWNLOAD=true` and set
 public audit after a build, use `npm run test:a11y`. The legacy Netlify plugin is
 pinned with a targeted Pa11y 10 override, verified with both accessible output
 and an intentionally inaccessible fixture.
+
+## Netlify build and caching
+
+The build command in `netlify.toml` runs three steps before Eleventy:
+
+```sh
+npx puppeteer browsers install chrome                # browser for the Pa11y audit
+npm run resume:setup                                 # RenderCV (Python) virtualenv
+npm run resume -- --dont-generate-png && eleventy    # render the resume, build the site
+```
+
+Eleventy then publishes the resume at `/resume/` (HTML) and
+`/resume/David_Vasandani_CV.pdf` (see `resume/README.md`). A failure in any step
+fails the deploy, so the live site keeps its last good version.
+
+### What is cached, and where
+
+Netlify restores a dependency cache before each build and saves it afterwards.
+That cache includes `node_modules/`, so both heavy tools are kept inside it:
+
+| Tool | Location | Configured by | Cold | Cached |
+|---|---|---|---|---|
+| Chrome for Pa11y (~415MB on disk) | `node_modules/.cache/puppeteer` | `.puppeteerrc.cjs` | download | ~1s |
+| RenderCV virtualenv (~470MB on disk) | `node_modules/.cache/resume-venv` | `RESUME_VENV` in `netlify.toml` | ~16s | ~1s |
+
+Netlify also keeps pip's wheel cache, so even a cold virtualenv reuses
+downloaded packages; the cold cost is installing them. Measured on deploy
+previews, the build took about 62s before the virtualenv was cached and about
+52s with it.
+
+### How the cached steps stay correct
+
+- `npx puppeteer browsers install chrome` installs the Chrome build that the
+  pinned Puppeteer expects. It is a no-op when that build is already cached and
+  downloads the new one after a Puppeteer upgrade. (`package.json` `allowScripts`
+  also approves Puppeteer's own postinstall, which npm 11.19+ otherwise skips;
+  re-approve it with `npm install-scripts approve puppeteer` after upgrading.)
+- `npm run resume:setup` (`scripts/resume.cjs`) first checks that the cached
+  virtualenv's Python still runs. The virtualenv links to the build image's
+  Python, so an image update can break it; setup then recreates it with
+  `python -m venv --clear`. It always runs `pip install -r resume/requirements.txt`,
+  which is a ~1s no-op when nothing changed and installs the new pin after a
+  RenderCV version bump.
+
+### Clearing the cache
+
+In the Netlify UI, choose **Deploys → Trigger deploy → Clear cache and deploy
+site**. The next build is cold (Chrome download plus a full RenderCV install)
+and saves a fresh cache. Clear it if a cached tool misbehaves in a way the
+checks above don't catch.
+
+### Local and CI builds
+
+Locally, the virtualenv defaults to `resume/.venv`; set `RESUME_VENV` (a path
+relative to the repository root) to put it elsewhere. GitHub Actions does not
+use either cache: the `test` job uses the runner's Chrome
+(`PUPPETEER_EXECUTABLE_PATH`), and the `resume` job installs RenderCV with
+`actions/setup-python`'s pip cache.
