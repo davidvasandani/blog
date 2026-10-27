@@ -2,7 +2,9 @@
   publish = "_site"
   # Ensure the Pa11y audit has its browser even when node_modules is restored
   # from cache without running install scripts (no-op once downloaded).
-  command = "npx puppeteer browsers install chrome && eleventy"
+  # Then render the resume (RenderCV, Python) so eleventy publishes /resume/
+  # and its PDF; a resume render failure fails the deploy.
+  command = "npx puppeteer browsers install chrome && npm run resume:setup && npm run resume -- --dont-generate-png && eleventy"
 
 [[redirects]]
   from = "/hello"

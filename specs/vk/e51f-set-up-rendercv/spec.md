@@ -19,14 +19,13 @@ David is applying for the Netflix Solutions Engineer 5 - Content Promotion & Dis
 - FR-3: A render command produces a PDF (plus RenderCV's companion formats) in an ignored output folder.
 - FR-4: A watch command re-renders on save.
 - FR-5: If RenderCV is not installed, the commands give clear setup instructions and do not fail with a confusing error.
-- FR-6: The resume source, its docs, and rendered output never appear in the built website or Gemini capsule.
+- FR-6: The resume source and docs are never processed as site pages, and nothing resume-related reaches the Gemini capsule. (Amended 2026-10-27: the rendered resume is published as `/resume/`, the HTML page, and `/resume/David_Vasandani_CV.pdf`; see Clarifications.)
 - FR-7: CI renders the resume on each pull request and on pushes to main, fails if the PDF is missing or empty, and makes the PDF downloadable.
 - FR-8: The existing Node test suite keeps passing without Python installed and checks the resume setup contract.
 - FR-9: Usage is documented next to the resume source.
 
 ## Out of Scope
 - Writing David's actual career content.
-- Publishing the resume on david.vasandani.me (see Clarifications).
 - Custom RenderCV themes beyond selecting a built-in one.
 
 ## Acceptance Criteria
@@ -40,6 +39,8 @@ No answers were supplied, so these are default decisions recorded as assumptions
 - Q: Should the rendered PDF be published on the site now? A: No. The source is a skeleton with TODO content, and publishing it would put an unfinished resume on the public site. Publishing can be a later change once the content is real. CI artifacts provide the PDF in the meantime.
 - Q: Which built-in theme should be the default? A: `classic`, RenderCV's default single-column ATS-friendly layout. Changing it is a one-line `design.theme` edit, documented in the README.
 - Q: Should rendered output be committed to git? A: No. The output is reproducible from the pinned version and source, and it includes the render date, so committing it would create churn. Output is gitignored.
+
+- Follow-up (David, 2026-10-27): publish it, built on Netlify, including an HTML version. Resolution: Netlify renders the resume on every deploy. `/resume/` shows RenderCV's Markdown in the site layout with a nav link and a PDF download, and `/resume/David_Vasandani_CV.pdf` serves the PDF. RenderCV's standalone HTML is not published because its `<title>` is empty (it would fail the Pa11y audit) and it loads CDN CSS and scripts. The page is built only when the resume is rendered, so `npm test` still needs no Python.
 
 ## Open Questions
 None remaining.
