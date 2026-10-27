@@ -6,6 +6,11 @@
   # and its PDF; a resume render failure fails the deploy.
   command = "npx puppeteer browsers install chrome && npm run resume:setup && npm run resume -- --dont-generate-png && eleventy"
 
+[build.environment]
+  # Keep RenderCV's virtualenv in node_modules/.cache so Netlify's dependency
+  # cache restores it; resume:setup then only verifies it (~16s saved).
+  RESUME_VENV = "node_modules/.cache/resume-venv"
+
 [[redirects]]
   from = "/hello"
   to = "/.netlify/functions/hello"
