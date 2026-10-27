@@ -78,5 +78,8 @@
     "netlify-plugin-a11y": {
       "pa11y": "10.0.0"
     }
+  },
+  "allowScripts": {
+    "puppeteer@25.15.0": true
   }
 }
