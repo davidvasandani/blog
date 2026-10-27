@@ -3,6 +3,7 @@ const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
 const { spawnSync } = require('node:child_process');
+const { toPageMarkdown, pdfFile, pdfUrl } = require('../scripts/resume-page.cjs');
 
 const read = file => fs.readFileSync(file, 'utf8');
 const lines = file => read(file).split(/\r?\n/).map(line => line.trim());
@@ -19,17 +20,42 @@ test('resume source targets the pinned schema and names David', () => {
   assert.match(source, /^ {2}theme: classic$/m);
 });
 
-test('local environment and rendered output stay out of git and site builds', () => {
+test('local environment and rendered output stay out of git and template processing', () => {
   const gitignore = lines('.gitignore');
   assert.ok(gitignore.includes('resume/.venv/'));
   assert.ok(gitignore.includes('resume/rendercv_output/'));
   assert.ok(lines('.eleventyignore').includes('resume/'));
-  for (const output of ['_site', '_gemini']) {
-    assert.ok(fs.existsSync(output), `${output} was built`);
-    assert.ok(!fs.existsSync(path.join(output, 'resume')), `${output}/resume`);
-    const files = fs.readdirSync(output, { recursive: true }).map(String);
-    assert.deepEqual(files.filter(file => /David_Vasandani_CV/.test(file)), [], output);
+});
+
+test('resume page markdown keeps one h1 and an unbroken outline', () => {
+  const markdown = "# David Vasandani's CV\n\n- Email: x\n\n# Summary\nText\n\n# Experience\n## **Co**, Role\n";
+  assert.equal(toPageMarkdown(markdown), '- Email: x\n\n## Summary\nText\n\n## Experience\n### **Co**, Role');
+});
+
+test('the Gemini capsule never contains the resume', () => {
+  assert.ok(fs.existsSync('_gemini'), '_gemini was built');
+  const files = fs.readdirSync('_gemini', { recursive: true }).map(String);
+  assert.deepEqual(files.filter(file => /resume|David_Vasandani_CV/i.test(file)), []);
+});
+
+test('the site publishes the resume page and PDF only when the resume is rendered', () => {
+  assert.ok(fs.existsSync('_site'), '_site was built');
+  const site = fs.readdirSync('_site', { recursive: true }).map(String).map(file => file.split(path.sep).join('/'));
+  const published = site.filter(file => /David_Vasandani_CV|^resume\//.test(file)).sort();
+  const nav = read('_site/index.html').includes('href="/resume/"');
+  if (!fs.existsSync(pdfFile)) {
+    assert.deepEqual(published, []);
+    assert.equal(nav, false, 'no nav link to a missing page');
+    return;
   }
+  assert.deepEqual(published, ['resume/David_Vasandani_CV.pdf', 'resume/index.html']);
+  assert.ok(nav, 'nav links to /resume/');
+  assert.ok(fs.statSync(path.join('_site', 'resume', 'David_Vasandani_CV.pdf')).size > 0);
+  const page = read('_site/resume/index.html');
+  assert.equal(page.match(/<h1[\s>]/g).length, 1);
+  assert.match(page, /<title>Resume<\/title>/);
+  assert.ok(page.includes(`href="${pdfUrl}"`));
+  assert.match(page, /<h2[^>]*>Experience<\/h2>/);
 });
 
 test('render explains setup when RenderCV is not installed', t => {
