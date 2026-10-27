@@ -35,6 +35,20 @@ jobs:
       - run: rendercv render David_Vasandani_CV.yaml
         working-directory: resume
       - run: test -s resume/rendercv_output/David_Vasandani_CV.pdf
+      # Build the site with the rendered resume, as Netlify does, and check
+      # the published /resume/ page, its PDF and their accessibility.
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - run: npm ci
+        env:
+          PUPPETEER_SKIP_DOWNLOAD: "true"
+      - run: npm run build && npm run gemini:build
+      - run: node --test tests/resume.test.cjs
+      - run: npm run test:a11y
+        env:
+          PUPPETEER_EXECUTABLE_PATH: /usr/bin/google-chrome
       - uses: actions/upload-artifact@v4
         with:
           name: resume
