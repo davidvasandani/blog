@@ -26,7 +26,8 @@ cv:
         summary: Promoted from Senior Lead Software Engineer. Runs IT Operations, reporting to the VP of Technology.
         highlights:
           - Manage a team of three, a Senior Systems Engineer and two IT Operations Specialists.
-          - TODO Outcome-focused accomplishment since taking over IT Operations.
+          # TODO: add the crash reduction once 2 weeks of post-rollout data exist (re-run ~2026-11-08).
+          - Traced 314 POS crashes at the busiest stores to a 32-bit memory limit in vendor software using AI-assisted diagnostics; shipped a workaround to 18 registers in 2 weeks.
       - company: Sweetgreen
         position: Senior Lead Software Engineer
         start_date: 2025-09
