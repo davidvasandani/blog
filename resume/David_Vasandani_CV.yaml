@@ -108,6 +108,13 @@ cv:
         date: 2026
         highlights:
           - Expanded an open-source website feedback tool to phones by directing AI-assisted implementation and 48 regression tests; upstream shipped the work in v0.11.0.
+    projects:
+      - name: Household content and workflow platform
+        summary: Personal project developed with AI coding agents.
+        highlights:
+          - Implemented media and metadata ingestion with resumable imports, attachment validation, and recovery controls for a household archive.
+          - Restored content ingestion, importing 62 new items and requeuing 63 failed downloads through recovery triggers and credential remediation.
+          - Automated email triage using Jev classification and Johnny.Decimal-based labels, with independent action verification and human feedback.
     skills:
       - label: Infrastructure as Code
         details: Terraform, Terragrunt, Packer, Ansible, Consul, Vault
