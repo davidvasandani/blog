@@ -1,6 +1,15 @@
 # Resume (RenderCV)
 
-The resume lives in `David_Vasandani_CV.yaml` and is rendered by [RenderCV](https://github.com/rendercv/rendercv) ([docs](https://docs.rendercv.com)). It is not part of the Eleventy or Gemini site build (`resume/` is in `.eleventyignore`).
+The resume lives in `David_Vasandani_CV.yaml` and is rendered by [RenderCV](https://github.com/rendercv/rendercv) ([docs](https://docs.rendercv.com)).
+
+## Published on the site
+
+Every Netlify deploy renders the resume (see the build command in `netlify.toml`) and publishes:
+
+- https://david.vasandani.me/resume/: the HTML version, built from RenderCV's Markdown output in the blog's own layout (`pages/resume.njk`, `scripts/resume-page.cjs`), with a **Resume** nav link
+- https://david.vasandani.me/resume/David_Vasandani_CV.pdf: the PDF
+
+So publishing a change means editing the YAML and merging to `main`. A render failure fails the deploy, so a broken resume never goes live. Locally, `npm run build` includes the page only after `npm run resume` has rendered it, and skips it (and the nav link) otherwise. The source files themselves stay out of template processing (`resume/` is in `.eleventyignore`) and out of the Gemini capsule.
 
 ## Setup
 
