@@ -31,7 +31,7 @@ cv:
           # TODO: add the crash reduction once 2 weeks of post-rollout data exist (re-run ~2026-11-08).
           - Traced 314 POS crashes at the busiest stores to a 32-bit memory limit in vendor software using AI-assisted diagnostics; shipped a workaround to 18 registers in 2 weeks.
           - Found why checkout registers froze after loyalty scans at 32 of 272 restaurants (46 forced restarts in a week) and gave the POS vendor the evidence.
-          - Turned a POS vendor's undocumented settings API into a documented, read-only contract and AI tools that audit 343 locations in 6 minutes.
+          - Enabled repeatable configuration audits across 343 locations by directing AI-assisted delivery of documented vendor integration tools with read-only safeguards.
           - Replaced emailed vendor requests for sales-date corrections with an AI-run fix gated by a preview and a named approver.
       - company: Sweetgreen
         position: Senior Lead Software Engineer
