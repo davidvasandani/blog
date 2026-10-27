@@ -98,6 +98,12 @@ cv:
           - Increased deployments from once a week to over 400 a month over two years.
           - Cut the infrastructure bill by over 40% by rightsizing servers and autoscaling.
     open_source:
+      - name: Self-hosted AI coding platform (fork of Vibe Kanban)
+        date: 2026
+        summary: Built for my own use and adopted at work; now onboarding my team.
+        highlights:
+          - Connected my AI coding platform to Jira, Slack, GitHub, AWS and ChatGPT, so agents finish work without manual logins or copying tickets by hand.
+          - Grew a single-machine AI coding tool into a 6-server cluster that keeps agent work safe through restarts and opens its own repair tickets.
       - name: SitePing web feedback platform
         date: 2026
         highlights:
