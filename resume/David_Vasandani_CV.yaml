@@ -1,0 +1,44 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/rendercv/rendercv/refs/tags/v2.8/schema.json
+# Resume source for RenderCV. Render with `npm run resume`; see README.md.
+# Entries marked TODO are placeholders to replace with real content.
+cv:
+  name: David Vasandani
+  headline: Solutions Engineer
+  location: TODO City, ST
+  email: david@vasandani.me
+  website: https://david.vasandani.me/
+  social_networks:
+    - network: GitHub
+      username: davidvasandani
+    - network: Mastodon
+      username: '@davidvasandani@social.coop'
+  sections:
+    summary:
+      - TODO A two- or three-sentence summary tailored to the target role.
+    experience:
+      - company: TODO Company
+        position: TODO Position
+        start_date: 2020-01
+        end_date: present
+        location: TODO City, ST
+        highlights:
+          - TODO Outcome-focused accomplishment with a measurable result.
+          - TODO Another accomplishment.
+    skills:
+      - label: TODO Category
+        details: TODO skill, TODO skill, TODO skill
+    education:
+      - institution: TODO Institution
+        area: TODO Field of Study
+        degree: BS  # TODO: degree abbreviation
+        start_date: 2010-09
+        end_date: 2014-05
+design:
+  theme: classic
+locale:
+  language: english
+settings:
+  current_date: today
+  render_command:
+    output_folder: rendercv_output
+  pdf_title: David Vasandani - Resume
