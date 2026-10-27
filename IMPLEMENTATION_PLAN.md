@@ -1,11 +1,21 @@
-# Implementation plan: RenderCV resume source
+# Implementation plan: test diagram-design with Mermaid
 
-1. Add `resume/requirements.txt` pinning `rendercv[full]==2.8`, the current PyPI release (needs Python >= 3.12).
-2. Generate `resume/David_Vasandani_CV.yaml` with `rendercv new "David Vasandani"`. Replace the sample content with the public contact details and a skeleton of sections (summary, experience, skills, education) marked TODO. Keep the schema comment for editor validation. Set the output folder to `rendercv_output` and the PDF title to `David Vasandani - Resume`.
-3. Add `scripts/resume.cjs`, a small Node wrapper that finds `resume/.venv`, falls back to a `rendercv` on PATH, and prints setup instructions if neither exists. Add npm scripts: `resume:setup` (create the venv and install), `resume` (render) and `resume:watch`.
-4. Ignore `resume/.venv/` and `resume/rendercv_output/` in `.gitignore`. Add `resume/` to `.eleventyignore`.
-5. Add `tests/resume.test.cjs`: exact pin, the YAML names David and has the schema line, ignore rules exist, and `_site`/`_gemini` contain no resume output after the build. Add it to the `npm test` glob, which already picks up `tests/*.test.cjs`.
-6. Add a `resume` job to `.github/workflows/test.yml`: setup-python 3.13 with pip cache, `pip install -r resume/requirements.txt`, `rendercv render`, assert the PDF is non-empty, then upload the artifact.
-7. Write `resume/README.md` covering setup, render, watch, themes, and where the output goes.
-8. Verify locally: `npm run resume:setup`, `npm run resume`, `npm test`, `npm run typecheck`.
-9. Run the Codex review, fix its findings, update the knowledge base, then open and merge the PR.
+1. Add `diagrams/` to `.eleventyignore` and `diagrams/.diagram-design/` to `.gitignore`.
+2. Write `diagrams/partner-delivery.md` with the flowchart and sequence Mermaid blocks. Check that GitHub's Markdown API treats them as `mermaid` code (the iframe render happens client-side on github.com).
+3. Add `scripts/diagrams.cjs` with these commands:
+   - `setup` clones `cathrynlavery/diagram-design` at the pinned commit (`97d795138448f6a739a0cebc3d9beb37a42077f1`) into `diagrams/.diagram-design/`, or re-checks out the pin if the folder exists.
+   - `extract` prints the digests.
+   - `export` regenerates the committed SVGs.
+   - `check` runs extract with count assertions, `self_check.py --offline`, `verify-geometry.py`, and the export drift comparison.
+
+   Wire `diagrams:setup`, `diagrams:export` and `diagrams:check` in `package.json`. Python 3 stdlib only, with a clear message when `python3` or `git` is missing.
+4. Run the extractor. From the digests, set the dials: `format=svg` (the HTML is the source), `size=doc-inline` (960×600), `detail=balanced` and `audience=mixed`. Pick the types: flowchart and sequence.
+5. Skin: map the blog's CSS (`--background #FFF0EB`, `--primary blue`, Avenir/system sans) to the skill's roles. Keep warm paper, dark ink, and blue `link`. Choose one accent that clears 4.5:1 on the paper. Font source `system`. Record this as a profile body in `diagrams/blog-profile.md` and note that the skill only reads profiles from `~/.diagram-design/profiles/`.
+6. Hand-author both HTML redraws from `assets/template.html`, following the type references, connector rules and complexity budget. Iterate until `self_check.py` and `verify-geometry.py` pass, then review screenshots in Chromium.
+7. Export the SVGs with `export_svg.py --system-fonts` into `static/img/diagrams/`.
+8. Render Mermaid's default flowchart with `npx -y @mermaid-js/mermaid-cli@12.0.0` (bundles Mermaid 12.2.0), using system Chromium. Commit it as `partner-delivery-flow.mermaid.svg` and document the exact command in `diagrams/README.md`.
+9. Write the post `posts/mermaid-and-diagram-design/mermaid-and-diagram-design.md` with the findings, side-by-side images, fidelity ledgers and recommendation.
+10. Add `tests/diagrams.test.cjs` covering the source blocks, the SVG contract, the post and image links in `_site`, the Gemini output, and no `diagrams/` leakage.
+11. Add a `diagrams` job to `.github/workflows/test.yml`: checkout, setup-python 3.13, `npm run diagrams:check`.
+12. Write `diagrams/README.md`. Verify with `npm test` (with Chromium), `npm run typecheck` and `npm run diagrams:check`.
+13. Run the Codex review, then update the knowledge base, then open and merge the PR.
