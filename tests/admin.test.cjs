@@ -10,7 +10,10 @@ const read = file => fs.readFileSync(`_site/admin/${file}`, 'utf8');
 
 test('CMS backend and content schemas preserve local editing and publishing paths', () => {
   const config = yaml.load(read('config.yml'));
-  assert.deepEqual(config.backend, { name: 'git-gateway', branch: 'main' });
+  assert.deepEqual(config.backend, {
+    name: 'github', repo: 'davidvasandani/blog', branch: 'main',
+    base_url: 'https://david.vasandani.me', auth_endpoint: 'api/auth', auth_scope: 'public_repo'
+  });
   assert.equal(config.local_backend, true);
   assert.equal(config.publish_mode, 'editorial_workflow');
   const blog = config.collections.find(c => c.name === 'blog');
@@ -66,20 +69,11 @@ test('preview registration matches configured collections and styles', async () 
   assert.ok(fs.existsSync('_site/_includes/assets/css/inline.css'));
 });
 
-test('admin identity callbacks redirect login and logout to the editor', () => {
+test('admin loads Decap and the previews without Netlify Identity', () => {
   const { document } = parseHTML(read('index.html'));
   assert.ok(document.querySelector('script[src*="decap-cms"]'));
   assert.ok(document.querySelector('script[type="module"][src="/admin/preview-templates/index.js"]'));
-  const source = [...document.querySelectorAll('script')].filter(s => !s.src).map(s => s.textContent).join('\n');
-  for (const user of [null, { id: 'local-test' }]) {
-    const callbacks = {};
-    const doc = { location: { href: '/initial' } };
-    vm.runInNewContext(source, { window: { netlifyIdentity: { on: (event, fn) => { callbacks[event] = fn; } } }, document: doc });
-    callbacks.init(user);
-    callbacks[user ? 'logout' : 'login']();
-    assert.equal(doc.location.href, '/admin/');
-  }
-  assert.doesNotThrow(() => vm.runInNewContext(source, { window: {} }));
+  assert.doesNotMatch(read('index.html'), /identity/i);
 });
 
 test('browser preview helper pins match the versions exercised locally', () => {
