@@ -27,10 +27,13 @@ test('post content, dates, author and tag archives remain linked', () => {
   assert.ok(page('blog/index.html').querySelector('a[href="/posts/hello/"]'));
 });
 
-test('contact form preserves Netlify integration and required fields', () => {
+test('contact form posts to the Slack endpoint with required fields and a hidden honeypot', () => {
   const form = page('contact/index.html').querySelector('form[name="contact"]');
   assert.equal(form.getAttribute('method').toLowerCase(), 'post');
-  assert.equal(form.getAttribute('data-netlify'), 'true');
+  assert.equal(form.getAttribute('action'), '/api/contact');
+  assert.equal(form.hasAttribute('data-netlify'), false);
+  assert.ok(form.querySelector('[hidden] input[name="company"]:not([required])'));
+  assert.ok(page('contact/thanks/index.html').querySelector('main'));
   for (const field of ['name', 'email', 'message']) {
     assert.ok(form.querySelector(`[name="${field}"][required]`));
     assert.ok(form.querySelector(`label[for="${field}"]`));

@@ -1,0 +1,10 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": "eleventy",
+  "buildCommand": "export RESUME_VENV=node_modules/.cache/resume-venv && npm run resume:setup && npm run resume -- --dont-generate-png && npm run build",
+  "outputDirectory": "_site",
+  "rewrites": [
+    { "source": "/hello", "destination": "/api/functions/hello" },
+    { "source": "/api/(.*)", "destination": "/api/functions/api" }
+  ]
+}

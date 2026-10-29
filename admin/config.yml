@@ -2,8 +2,14 @@
 
 # The backend option specifies how to access the content for your site
 backend:
-  name: git-gateway
+  name: github
+  repo: davidvasandani/blog
   branch: main # The branch to update (optional; defaults to master)
+  # Sign-in runs through this site's /api/auth and /api/callback, which need a
+  # GitHub OAuth App; see README "CMS sign-in".
+  base_url: https://david.vasandani.me
+  auth_endpoint: api/auth
+  auth_scope: public_repo
 
 # Uncomment below to enable drafts https://www.decapcms.org/docs/add-to-your-site/#editorial-workflow
 publish_mode: editorial_workflow
