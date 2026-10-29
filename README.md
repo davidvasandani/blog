@@ -2,6 +2,53 @@
 
 # Eleventy Netlify Boilerplate
 
+## Cloudflare Workers deployment
+
+The migration uses `wrangler.jsonc` and `workers/index.ts`. Static files come
+from `_site`; `/api/*` runs the existing Express app through Cloudflare's Node
+HTTP adapter, and `/hello` keeps its existing response. Netlify and Vercel
+configuration remain available during the migration.
+
+Use Node 24 and Python 3.12+:
+
+```sh
+npm ci
+npm run workers:build
+npm run typecheck
+npm run test:admin
+# test:admin rebuilds _site, so prepare the Worker assets again:
+node scripts/workers-assets.cjs
+npm run test:workers
+npx wrangler deploy
+```
+
+`workers:build` renders the resume PDF before building Eleventy and removes
+Netlify's forced `_redirects` rules from the Worker output only. The apex
+`vasandani.me` stays on Netlify (`75.2.60.5`, DNS-only) to preserve its existing
+301 redirect, including the path and query string. Do not remove that Netlify
+domain or site during the migration.
+
+Set `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID` in the deployment
+environment. Add the runtime secrets through Cloudflare's dashboard or the
+interactive commands below; never commit their values:
+
+```sh
+npx wrangler secret put GITHUB_CLIENT_ID
+npx wrangler secret put GITHUB_CLIENT_SECRET
+npx wrangler secret put SLACK_WEBHOOK_URL
+```
+
+The GitHub OAuth App callback stays
+`https://david.vasandani.me/api/callback`. The workers.dev preview can verify the
+authorization redirect, but completing CMS sign-in requires the production
+hostname and its registered callback. Do not submit a real contact message
+during smoke tests: it sends to Slack. `test:workers` uses a dummy client ID,
+rejects an invalid callback and tests contact validation without sending a message.
+
+Regenerate runtime types with `npm run workers:types` after changing Wrangler
+configuration. The custom domain and zone nameservers require separate approval;
+`wrangler.jsonc` intentionally declares neither during preview validation.
+
 ### Click the button below to try it out!
 
 [![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/danurbanowicz/eleventy-netlify-boilerplate&stack=cms)

@@ -1,0 +1,64 @@
+{
+  "task": "VAS-925",
+  "date": "2026-10-29",
+  "branch": "vk/56a3-migrate-to-cloud",
+  "restored_record": {
+    "name": "david.vasandani.me",
+    "type": "CNAME",
+    "value": "david-vasandani-blog.netlify.app",
+    "ttl": 300
+  },
+  "route53_change_id": "C0606306IMNPNUQEIGZB",
+  "route53_change_status": "INSYNC",
+  "production_checks": {
+    "https_david": "200; TLS verification enabled; server Netlify",
+    "https_apex": "301 to https://david.vasandani.me/test-path?migration=check; TLS verification enabled"
+  },
+  "dnssec": {
+    "route53": "NOT_SIGNING; no signing keys",
+    "registrar": "DnssecKeys empty"
+  },
+  "worker_name": "david-vasandani-blog",
+  "worker_deployed": false,
+  "deployment_error": "Cloudflare: No access to the specified resource at /accounts/6b127c5bc7ab59f22b2ecbcf657a67d6/workers/scripts/david-vasandani-blog/deployments",
+  "checks_passed": [
+    "AWS STS identity",
+    "wrangler whoami",
+    "npm run typecheck",
+    "npm run test:admin (19 tests)",
+    "Workers runtime static pages and PDF, hello, nested query, OAuth redirect with dummy client, invalid callback, contact honeypot and validation, 404",
+    "wrangler deploy --dry-run",
+    "git diff --check"
+  ],
+  "missing_runtime_secrets": [
+    "GITHUB_CLIENT_ID",
+    "GITHUB_CLIENT_SECRET",
+    "SLACK_WEBHOOK_URL"
+  ],
+  "pending": [
+    "Cloudflare token authorized to deploy Workers",
+    "Deploy preview and verify remote paths",
+    "User sets runtime secrets; verify real OAuth redirect",
+    "User approves DNS table before zone creation/import",
+    "Verify imported DNS against both authoritative nameservers",
+    "User approves nameserver change",
+    "After zone active, user approves Worker custom domain",
+    "Ask before opening PR"
+  ],
+  "unchanged": [
+    "Route 53 nameservers",
+    "Cloudflare DNS zone (not created)",
+    "Netlify deployment",
+    "Vercel configuration"
+  ],
+  "dns_proposal": {
+    "source_record_sets": 28,
+    "individual_records": 37,
+    "aliases_to_cname": [
+      "airbnb.vasandani.me",
+      "mexico.vasandani.me"
+    ],
+    "special_label": "@.vasandani.me is a literal subdomain; never interpret as apex",
+    "apex": "Keep DNS-only A 75.2.60.5 for existing Netlify redirect"
+  }
+}
