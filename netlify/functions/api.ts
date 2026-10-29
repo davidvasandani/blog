@@ -35,7 +35,6 @@ router.get("/echo", (req: Request, res: Response) => {
 // auth_endpoint). Needs a GitHub OAuth App whose callback URL is
 // <site>/api/callback, and its GITHUB_CLIENT_ID and GITHUB_CLIENT_SECRET.
 const STATE_COOKIE = "cms_oauth_state";
-const STATE_COOKIE_OPTIONS = { httpOnly: true, secure: true, sameSite: "lax", path: "/api/callback" } as const;
 
 const callbackUrl = (req: Request) =>
   `${req.get("x-forwarded-proto")?.split(",")[0] ?? req.protocol}://${req.get("host")}/api/callback`;
@@ -70,7 +69,7 @@ router.get("/auth", (req: Request, res: Response) => {
     return;
   }
   const state = randomBytes(16).toString("hex");
-  res.cookie(STATE_COOKIE, state, { ...STATE_COOKIE_OPTIONS, maxAge: 10 * 60 * 1000 });
+  res.cookie(STATE_COOKIE, state, { httpOnly: true, secure: true, sameSite: "lax", path: "/api/callback", maxAge: 10 * 60 * 1000 });
   const params = new URLSearchParams({ client_id: clientId, redirect_uri: callbackUrl(req), scope: "public_repo", state });
   res.redirect(`https://github.com/login/oauth/authorize?${params}`);
 });
@@ -78,7 +77,7 @@ router.get("/auth", (req: Request, res: Response) => {
 router.get("/callback", async (req: Request, res: Response) => {
   const { code, state } = req.query;
   const expected = readCookie(req, STATE_COOKIE);
-  res.clearCookie(STATE_COOKIE, STATE_COOKIE_OPTIONS);
+  res.clearCookie(STATE_COOKIE, { httpOnly: true, secure: true, sameSite: "lax", path: "/api/callback" });
   if (typeof code !== "string" || typeof state !== "string" || !expected || !sameSecret(state, expected)) {
     sendCmsResult(res, "error", { message: "Sign-in expired or was not started from this site. Please try again." });
     return;
