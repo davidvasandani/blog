@@ -156,9 +156,10 @@ After installation, these checks use local content and dependencies.
 
 For focused checks, run `npm run test:frontend` or `npm run test:admin`.
 The tests cover rendered pages/navigation, author/tag links, dates, responsive
-images, contact fields, CMS schema and preview components, Identity callbacks,
-the local CMS backend using disposable post fixtures, and serverless API responses. They do not exercise hosted Netlify Identity,
-Git Gateway publishing, or the third-party CMS UI in a real browser.
+images, contact fields, CMS schema and preview components, the local CMS
+backend using disposable post fixtures, and serverless API responses, including
+CMS sign-in and the contact form with GitHub and Slack mocked. They do not call
+the real GitHub or Slack, or run the third-party CMS UI in a real browser.
 
 Run `npm start` for the local site plus the pinned Decap proxy, or `npm run serve`
 for the public site alone. Local CMS edits write to this checkout. The optional
@@ -235,3 +236,47 @@ relative to the repository root) to put it elsewhere. GitHub Actions does not
 use either cache: the `test` job uses the runner's Chrome
 (`PUPPETEER_EXECUTABLE_PATH`), and the `resume` job installs RenderCV with
 `actions/setup-python`'s pip cache.
+
+## Vercel build (migration in progress)
+
+`vercel.json` builds the same site on Vercel while Netlify still serves
+`david.vasandani.me`. Its build command renders the resume and runs Eleventy,
+like Netlify's, keeping the RenderCV virtualenv in
+`node_modules/.cache/resume-venv`. Vercel builds skip Puppeteer's Chrome
+download (`.puppeteerrc.cjs`) because they run no Pa11y audit; GitHub Actions
+still runs it.
+
+The serverless endpoints are Vercel Functions in `api/functions/`, reached
+through the same public paths via rewrites:
+
+| Path | Netlify | Vercel |
+|---|---|---|
+| `/api/*` | `netlify/functions/api.ts` | `api/functions/api.ts` (same Express app) |
+| `/hello` | `netlify/functions/hello/hello.mts` | `api/functions/hello.ts` |
+
+`npm run typecheck` also checks `api/` (`api/tsconfig.json`). Vercel wraps
+each request with helpers that add their own flat `req.query`;
+`api/functions/api.ts` removes it so Express keeps parsing nested query keys.
+
+### CMS sign-in
+
+`/admin/` uses Decap's GitHub backend. Sign-in runs through `/api/auth` and
+`/api/callback` on `david.vasandani.me` (`base_url` in `admin/config.yml`),
+which asks GitHub for the `public_repo` scope. Create a GitHub OAuth App with:
+
+- Homepage URL: `https://david.vasandani.me`
+- Authorization callback URL: `https://david.vasandani.me/api/callback`
+
+Then set its `GITHUB_CLIENT_ID` and `GITHUB_CLIENT_SECRET` as environment
+variables on whichever host serves the domain (Netlify until the cutover,
+Vercel after it; setting both avoids a gap). Editors need write access to the
+repository. Locally, `npm start` keeps using the Decap proxy instead.
+
+### Contact form
+
+The contact form posts to `/api/contact`, which sends each message to Slack
+through an incoming webhook and then shows `/contact/thanks/`. A hidden
+`company` field catches bots; those submissions are dropped. Create an incoming
+webhook for the channel that should receive messages and set it as
+`SLACK_WEBHOOK_URL`, on the same hosts as above. Without it the form answers
+with an error rather than losing messages silently.
