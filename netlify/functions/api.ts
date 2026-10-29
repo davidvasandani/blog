@@ -2,7 +2,7 @@ import express, { Router, Request, Response } from "express";
 import serverless from "serverless-http";
 import os from "os";
 
-const api = express();
+export const api = express();
 // Preserve Express 4 nested query semantics after upgrading Express.
 api.set("query parser", "extended");
 

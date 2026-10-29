@@ -16,3 +16,6 @@ resume/rendercv_output/
 
 # Pinned diagram-design checkout (npm run diagrams:setup)
 diagrams/.diagram-design/
+
+# Local Vercel folder
+.vercel

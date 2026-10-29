@@ -235,3 +235,24 @@ relative to the repository root) to put it elsewhere. GitHub Actions does not
 use either cache: the `test` job uses the runner's Chrome
 (`PUPPETEER_EXECUTABLE_PATH`), and the `resume` job installs RenderCV with
 `actions/setup-python`'s pip cache.
+
+## Vercel build (migration in progress)
+
+`vercel.json` builds the same site on Vercel while Netlify still serves
+`david.vasandani.me`. Its build command renders the resume and runs Eleventy,
+like Netlify's, keeping the RenderCV virtualenv in
+`node_modules/.cache/resume-venv`. Vercel builds skip Puppeteer's Chrome
+download (`.puppeteerrc.cjs`) because they run no Pa11y audit; GitHub Actions
+still runs it.
+
+The serverless endpoints are Vercel Functions in `api/functions/`, reached
+through the same public paths via rewrites:
+
+| Path | Netlify | Vercel |
+|---|---|---|
+| `/api/*` | `netlify/functions/api.ts` | `api/functions/api.ts` (same Express app) |
+| `/hello` | `netlify/functions/hello/hello.mts` | `api/functions/hello.ts` |
+
+`npm run typecheck` also checks `api/` (`api/tsconfig.json`). Netlify Identity
+(the CMS's `git-gateway` login) and Netlify Forms (the contact form) have no
+Vercel equivalent yet, so those keep working only on Netlify for now.
