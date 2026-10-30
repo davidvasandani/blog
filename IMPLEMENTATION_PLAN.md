@@ -19,3 +19,12 @@
 11. Add a `diagrams` job to `.github/workflows/test.yml`: checkout, setup-python 3.13, `npm run diagrams:check`.
 12. Write `diagrams/README.md`. Verify with `npm test` (with Chromium), `npm run typecheck` and `npm run diagrams:check`.
 13. Run the Codex review, then update the knowledge base, then open and merge the PR.
+
+## Dependency advisory follow-up (2026-10-30)
+1. Refresh the existing constitution/spec/clarifications/plan/tasks and check scope against current main.
+2. Clean-install the existing lockfile; run current frontend/admin/API and full tests before upgrades.
+3. Inspect current advisories and actual Decap/Joi/Zod usage. Add meaningful security/compatibility regression tests.
+4. Apply minimum compatible patched dependencies and narrowly scoped overrides; regenerate the lockfile.
+5. Reinstall cleanly, run full tests/typechecks/Gemini build and full/runtime audits.
+6. Obtain independent Codex diff review; fix confirmed findings and revalidate.
+7. Record reusable findings and verification evidence; commit, open a follow-up PR, satisfy checks and merge.
