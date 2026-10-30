@@ -1,6 +1,6 @@
 {
   "task": "VAS-925",
-  "date": "2026-10-29",
+  "date": "2026-10-30",
   "branch": "vk/56a3-migrate-to-cloud",
   "restored_record": {
     "name": "david.vasandani.me",
@@ -19,8 +19,8 @@
     "registrar": "DnssecKeys empty"
   },
   "worker_name": "david-vasandani-blog",
-  "worker_deployed": false,
-  "deployment_error": "Cloudflare: No access to the specified resource at /accounts/6b127c5bc7ab59f22b2ecbcf657a67d6/workers/scripts/david-vasandani-blog/deployments",
+  "worker_deployed": true,
+  "deployment_error": null,
   "checks_passed": [
     "AWS STS identity",
     "wrangler whoami",
@@ -36,8 +36,6 @@
     "SLACK_WEBHOOK_URL"
   ],
   "pending": [
-    "Cloudflare token authorized to deploy Workers",
-    "Deploy preview and verify remote paths",
     "User sets runtime secrets; verify real OAuth redirect",
     "User approves DNS table before zone creation/import",
     "Verify imported DNS against both authoritative nameservers",
@@ -60,5 +58,24 @@
     ],
     "special_label": "@.vasandani.me is a literal subdomain; never interpret as apex",
     "apex": "Keep DNS-only A 75.2.60.5 for existing Netlify redirect"
+  },
+  "worker_url": "https://david-vasandani-blog.vasandani.workers.dev",
+  "worker_version_id": "f3d05966-a42a-48cc-8073-2065cb973a07",
+  "preview_checks": {
+    "tls": "Verified with curl; no insecure option",
+    "200": [
+      "/",
+      "/resume/",
+      "/resume/David_Vasandani_CV.pdf",
+      "/contact/",
+      "/contact/thanks/",
+      "/hello",
+      "/admin/",
+      "/api/hello"
+    ],
+    "pdf_signature": "%PDF-",
+    "/api/auth": "503 CMS sign-in is not configured; wrangler secret list is empty",
+    "contact_submission": "No real message sent",
+    "python_urllib": "Cloudflare 1010 for default Python client; curl checks succeeded"
   }
 }
