@@ -36,14 +36,12 @@
     "SLACK_WEBHOOK_URL"
   ],
   "pending": [
-    "User approves omission of unsupported literal @.vasandani.me subdomain",
+    "Wait for Cloudflare zone active and public resolvers returning Cloudflare nameservers",
     "User sets runtime secrets; verify real OAuth redirect",
-    "User approves nameserver change",
     "After zone active, user approves Worker custom domain",
     "Ask before opening PR"
   ],
   "unchanged": [
-    "Route 53 nameservers",
     "Netlify deployment",
     "Vercel configuration"
   ],
@@ -95,8 +93,19 @@
       "type": "A",
       "value": "75.2.60.5",
       "cloudflare_error": "400 code 9000: DNS name is invalid.",
-      "omission_approved": false
+      "omission_approved": true
     },
-    "nameserver_change_submitted": false
-  }
+    "nameserver_change_submitted": true
+  },
+  "registrar_nameserver_change": {
+    "operation_id": "b20a465b-ee06-4054-b853-10340dce4660",
+    "status": "SUCCESSFUL",
+    "nameservers": [
+      "kai.ns.cloudflare.com",
+      "kami.ns.cloudflare.com"
+    ],
+    "public_resolvers": "Google and Cloudflare DoH still return Route 53 NS immediately after change",
+    "cloudflare_status": "pending"
+  },
+  "route53_hosted_zone_retained": true
 }
