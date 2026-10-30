@@ -1,6 +1,6 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/rendercv/rendercv/refs/tags/v2.8/schema.json
 # Resume source for RenderCV. Render with `npm run resume`; see README.md.
-# Entries marked TODO are placeholders to replace with real content.
+# Role attribution notes: specs/vk/018c-senior-vs-lead-v/research.md.
 cv:
   name: David Vasandani
   headline: Solutions Engineer
@@ -43,10 +43,9 @@ cv:
         summary: Promoted from Lead Software Engineer.
         highlights:
           - Filled the Retail Technology leadership gap during an unplanned leave, giving the VP of Technology the technical guidance to limit revenue loss from POS issues.
-          - Led research into stabilizing restaurant POS by running it as virtual machines in AWS, including the security impact analysis and an evaluation of Incus for VM management.
-          - Built fleet-wide POS observability on AWS Lambda and Datadog, covering Meraki network loss and latency, Intune device telemetry and master terminal status.
-          - Wrote security impact analyses (virtualized POS, Incus, Debian Bookworm hardening) that let Retail Technology adopt new tooling within security standards.
-          - Prepared fleet-wide remediation scripts during the October 2025 Brink POS end-of-day outage, and trained the Retail Technology team on incident response.
+          - Advanced a virtual POS proof of concept through cutover planning with Security; the planned cutover was postponed to add telemetry.
+          - Upgraded Alteryx Server using a replacement host and a business-approved cutover, retaining the previous server for rollback.
+          - Wrote and ran staged Ansible remediation to remove scheduled reboots across the managed POS inventory after the October 2025 end-of-day outage, preventing those reboots from interrupting end-of-day processing.
       - company: Sweetgreen
         position: Lead Software Engineer
         start_date: 2021-03
@@ -54,8 +53,11 @@ cv:
         location: Culver City, CA
         summary: Promoted from Senior Software Engineer.
         highlights:
-          - TODO Outcome-focused accomplishment as Lead Software Engineer.
-          - TODO Another accomplishment.
+          - Built an Ansible and Fluent Bit pipeline for POS logs in Datadog, reaching 222 of 252 restaurants by May 2025.
+          - Built AWS Lambda and Datadog monitoring for Meraki network loss and latency and Intune time-clock device health, giving teams visibility into restaurant connectivity and device status.
+          - Implemented Cognito token caching for marketplace partners, reducing reported authentication costs from roughly $3,500 to $1,000 per month.
+          - Codified AWS accounts in Terraform, rolled out Atlantis and view-only SSO access, and deployed AWS Config with ServiceNow integration across all accounts.
+          - Built and managed a Terraform-based AWS Transfer SFTP service with isolated vendor folders, supporting Paytronix and PAR data exchange and coordinating onboarding with Security.
       - company: Sweetgreen
         position: Senior Software Engineer, Infrastructure
         start_date: 2019-08

@@ -8,3 +8,13 @@
 6. Update the résumé knowledge page and index with this task's ID, commit, create a PR against the base branch, wait for required checks, and merge.
 
 No new dependencies, API contracts, or permanent tests are needed for this content-only edit. Rendered artifacts remain ignored, as recorded in PRIOR_KNOWLEDGE.md.
+
+# Resume role timeline correction (2026-10-30)
+
+1. Use workspace `PRIOR_KNOWLEDGE.md` and existing resume publishing guidance to preserve the source/output boundaries.
+2. Execute the configured SpecKit commands in order and document the feature under `.specify/feature-dir`.
+3. Read the committed hiring timeline, its qualifications and role milestones, plus Blog resume history. Separate activity dates from later review/merge dates.
+4. Document public-safe evidence references and assign accomplishments to Senior, Lead and Senior Lead date windows. Preserve verified promotion dates.
+5. Update the canonical resume YAML with distinct, supported Lead accomplishments and any supported attribution corrections.
+6. Render with pinned RenderCV, build HTML and Gemini, run existing resume tests and inspect rendered role sections and PDF.
+7. Run independent Codex review, fix confirmed findings and revalidate. Record validation and reusable knowledge, commit Blog changes, then open and merge a PR after checks.

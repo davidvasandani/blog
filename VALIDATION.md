@@ -13,3 +13,7 @@
 - `git diff --check`: passed.
 
 SpecKit analysis found no errors, coverage gaps, or constitution violations. Generated outputs remain ignored. Independent `codex review --uncommitted` completed with no actionable defects. Its test invocation failed in its environment and its YAML probe used the unavailable `yaml` package instead of this repository's `js-yaml`. The main workspace reran the résumé suite afterward: all 8 tests passed.
+
+## Base branch update
+
+Integrated main commit `5a09669` before merging PR #152, preserving the role timeline correction from PR #153. Resolved documentation conflicts by retaining this task's documents and appending the upstream role timeline spec, plan, and constitution review. Parsed YAML comparison against updated main confirms that the only content difference is the category grouping. RenderCV, Eleventy, all eight résumé tests and the public accessibility audit passed again. A second independent Codex review found no actionable regressions; its runtime checks were blocked by subprocess restrictions.
