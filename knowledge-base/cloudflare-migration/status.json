@@ -65,17 +65,4 @@
     "tls": "Verified with curl; no insecure option",
     "200": [
       "/",
-      "/resume/",
-      "/resume/David_Vasandani_CV.pdf",
-      "/contact/",
-      "/contact/thanks/",
-      "/hello",
-      "/admin/",
-      "/api/hello"
-    ],
-    "pdf_signature": "%PDF-",
-    "/api/auth": "503 CMS sign-in is not configured; wrangler secret list is empty",
-    "contact_submission": "No real message sent",
-    "python_urllib": "Cloudflare 1010 for default Python client; curl checks succeeded"
-  }
-}
+      "/r
