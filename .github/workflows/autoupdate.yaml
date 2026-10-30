@@ -12,6 +12,19 @@ jobs:
     name: autoupdate
     runs-on: ubuntu-22.04
     steps:
+      - name: Prepare PR updates
+        id: prepare
+        env:
+          GH_TOKEN: ${{ secrets.AUTOUPDATE_TOKEN }}
+        run: |
+          if [[ -z "$GH_TOKEN" ]]; then
+            echo "::error::Set AUTOUPDATE_TOKEN with Contents, Workflows, and Pull requests read/write access so branch updates trigger CI."
+            exit 1
+          fi
+          # The action matches exact labels, not globs. Expand the CMS prefix.
+          labels=$(gh api --paginate "repos/${GITHUB_REPOSITORY}/labels" \
+            --jq '.[].name | select(startswith("decap-cms/"))')
+          echo "excluded_labels=$(printf '%s\n' "$labels" | paste -sd, -)" >> "$GITHUB_OUTPUT"
       - uses: docker://chinthakagodawita/autoupdate-action:v1
         env:
           # Pushes made with the default GITHUB_TOKEN don't trigger other
@@ -19,6 +32,7 @@ jobs:
           # AUTOUPDATE_TOKEN is a fine-grained personal access token for this
           # repository with Contents, Workflows (needed to merge in workflow
           # changes) and Pull requests access, all read and write.
-          # Until that secret exists, this falls back to GITHUB_TOKEN.
-          GITHUB_TOKEN: '${{ secrets.AUTOUPDATE_TOKEN || secrets.GITHUB_TOKEN }}'
-          EXCLUDED_LABELS: "decap-cms/*"
+          GITHUB_TOKEN: '${{ secrets.AUTOUPDATE_TOKEN }}'
+          EXCLUDED_LABELS: ${{ steps.prepare.outputs.excluded_labels }}
+          # Conflicted PRs need manual resolution; keep updating other PRs.
+          MERGE_CONFLICT_ACTION: "ignore"
