@@ -48,3 +48,30 @@ This establishes that authentication and CI triggering worked for that run.
 
 Main branch protection was inspected and left unchanged. Production hosting,
 DNS, deployment workflows, and application dependencies are outside this fix.
+
+## GitHub Actions validation
+
+Validation used temporary draft PRs targeting the fix branch, so main and existing
+PR branches were not changed. `actionlint` passed for the edited workflow.
+
+- [Initial no-op run](https://github.com/davidvasandani/blog/actions/runs/41113151710)
+  succeeded with zero PRs to update.
+- [Base-advance run, attempt 1](https://github.com/davidvasandani/blog/actions/runs/41113235447/attempts/1)
+  succeeded. Its log skipped the conflict on #150, excluded #149 for its
+  `decap-cms/draft` label, and then updated eligible PR #148. Processing the
+  eligible PR after the conflict proves a conflict does not block other updates.
+- PR #148 advanced from `e50a4631c01e50345db7f263fd7949c8371313ba` to
+  `be9555198b3e25e54ec0dbad8326c53d2e69b424`. The CMS and conflicted PR heads
+  were unchanged.
+- The update triggered [Blog tests](https://github.com/davidvasandani/blog/actions/runs/41113284661)
+  through a `pull_request` event on the new head. Its test, resume, and diagrams
+  jobs all passed. The update also triggered a push-triggered
+  [autoupdate no-op](https://github.com/davidvasandani/blog/actions/runs/41113274001).
+- [Rerun, attempt 2](https://github.com/davidvasandani/blog/actions/runs/41113235447/attempts/2)
+  succeeded without changing any of the three heads. The eligible PR logged
+  `Branch update not required, branch is already up-to-date.` The upstream
+  summary counts this HTTP 204 response as an update, so the unchanged head SHA
+  is the evidence for the no-op. CMS exclusion and conflict skipping still worked.
+
+Temporary PRs #148, #149, and #150 were closed without merging and their branches
+were deleted after validation.
