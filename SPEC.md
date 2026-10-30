@@ -23,3 +23,8 @@ So the integration runs one way. Mermaid stays the editable source, and diagram-
 
 ## Boundaries
 No client-side Mermaid.js on the blog. The site stays free of JavaScript frameworks, and Pa11y scans static HTML. The skill is not vendored into the repository. Existing pages, CMS, resume and Gemini behaviour are unchanged.
+
+# Follow-up: dependency advisory remediation (2026-10-30)
+
+Task: 0b580ba2-71f3-4437-83a4-8ea5080e8fe4. Scope remains the Blog repository.
+Remove the remaining Joi advisory and newly reported body-parser/Zod findings with the smallest compatible dependency changes. Preserve frontend output, local CMS validation/read/write behavior, API contracts, and existing deployment configuration. Establish the current main branch test baseline before changing dependencies. Prefer supported compatible releases; any targeted override needs documented rationale and behavioral regression coverage. Verify clean installation, full tests, typechecking, both builds, and full/runtime audits. Complete independent review, knowledge recording, and a follow-up PR with required checks before merging. Do not update other services.
