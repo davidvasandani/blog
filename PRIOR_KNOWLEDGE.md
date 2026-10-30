@@ -14,3 +14,6 @@ From `resume-rendercv.md`:
 - Third-party HTML output can fail Pa11y (an empty `<title>`, CDN assets). Embed only checked SVGs.
 
 Implications: keep Mermaid sources and skill HTML in an ignored `diagrams/` folder, publish exported SVGs through `static/img/diagrams/`, put Python checks in their own CI job, and cover the published contract with a Node test.
+
+## Dependency advisory follow-up (2026-10-30)
+Searched the Blog's knowledge-base/index.md and dependency-testing.md. Existing guidance requires Node 24, a passing baseline before upgrades, real Decap filesystem tests, full HTML/Gemini output checks, and system Chromium for NixOS accessibility checks. The recorded three low findings are historical, not a current security guarantee. Main now also contains resume, diagram and Worker tests; retain these and avoid changing deployment settings. Specifications and knowledge files are already excluded from site generation. No unrelated knowledge service was queried.
