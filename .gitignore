@@ -19,3 +19,6 @@ diagrams/.diagram-design/
 
 # Local Vercel folder
 .vercel
+.wrangler/
+.dev.vars*
+.env*

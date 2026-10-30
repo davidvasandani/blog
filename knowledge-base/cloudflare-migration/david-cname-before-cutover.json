@@ -1,0 +1,17 @@
+{
+  "id": "2b15f4dadcdb4f99fe53574d00605a05",
+  "name": "david.vasandani.me",
+  "type": "CNAME",
+  "content": "david-vasandani-blog.netlify.app",
+  "proxiable": true,
+  "proxied": false,
+  "ttl": 300,
+  "settings": {
+    "flatten_cname": false
+  },
+  "meta": {},
+  "comment": null,
+  "tags": [],
+  "created_on": "2026-10-30T13:12:25.496745Z",
+  "modified_on": "2026-10-30T13:12:25.496745Z"
+}
