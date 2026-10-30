@@ -36,16 +36,14 @@
     "SLACK_WEBHOOK_URL"
   ],
   "pending": [
-    "Token permission to create vasandani.me zone, then import approved DNS-only records",
+    "User approves omission of unsupported literal @.vasandani.me subdomain",
     "User sets runtime secrets; verify real OAuth redirect",
-    "Verify imported DNS against both authoritative nameservers",
     "User approves nameserver change",
     "After zone active, user approves Worker custom domain",
     "Ask before opening PR"
   ],
   "unchanged": [
     "Route 53 nameservers",
-    "Cloudflare DNS zone (not created)",
     "Netlify deployment",
     "Vercel configuration"
   ],
@@ -80,5 +78,25 @@
   },
   "dns_import_approved": true,
   "dns_preflight_rechecked": "2026-10-30: all 28 Route 53 record sets unchanged; DNSSEC NOT_SIGNING and registrar DnssecKeys empty",
-  "dns_creation_error": "HTTP 403: Requires permission com.cloudflare.api.account.zone.create to create zones for the selected account"
+  "dns_creation_error": null,
+  "cloudflare_zone_id": "d85b15eaf2f81a84a50299a8db5d2371",
+  "cloudflare_nameservers": [
+    "kai.ns.cloudflare.com",
+    "kami.ns.cloudflare.com"
+  ],
+  "cloudflare_zone_status": "pending",
+  "cloudflare_plan": "Free",
+  "dns_import": {
+    "records_created": 36,
+    "dns_only": true,
+    "verification": "All 25 supported record sets checked with dig against kai and kami Cloudflare nameservers and Route 53; two aliases verified as approved CNAME conversions; API names, contents, TTLs, priorities and proxy settings match proposal",
+    "exception": {
+      "name": "@.vasandani.me",
+      "type": "A",
+      "value": "75.2.60.5",
+      "cloudflare_error": "400 code 9000: DNS name is invalid.",
+      "omission_approved": false
+    },
+    "nameserver_change_submitted": false
+  }
 }
