@@ -38,8 +38,8 @@
   "pending": [
     "Wait for Cloudflare zone active and public resolvers returning Cloudflare nameservers",
     "User sets runtime secrets; verify real OAuth redirect",
-    "After zone active, user approves Worker custom domain",
-    "Ask before opening PR"
+    "Ask before opening PR",
+    "Attach approved Worker custom domain after zone activation; verify TLS within 15 minutes or restore Netlify CNAME"
   ],
   "unchanged": [
     "Netlify deployment",
@@ -107,5 +107,6 @@
     "public_resolvers": "Google and Cloudflare DoH still return Route 53 NS immediately after change",
     "cloudflare_status": "pending"
   },
-  "route53_hosted_zone_retained": true
+  "route53_hosted_zone_retained": true,
+  "worker_custom_domain_approved": true
 }
