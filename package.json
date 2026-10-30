@@ -22,7 +22,7 @@
     "test:compile": "tsc -p tsconfig.test.json",
     "test:frontend": "npm run build && npm run gemini:build && node --test tests/frontend.test.cjs",
     "test:admin": "npm run build && npm run test:compile && node --test tests/admin.test.cjs tests/api.test.cjs",
-    "typecheck": "tsc --noEmit && tsc -p tsconfig.test.json --noEmit && tsc -p api",
+    "typecheck": "tsc --noEmit && tsc -p tsconfig.test.json --noEmit && tsc -p api && tsc -p workers",
     "test:clean": "node -e \"for(const p of ['_site','_gemini','.test-dist']) require('node:fs').rmSync(p,{recursive:true,force:true})\"",
     "test:a11y": "node scripts/test-a11y.cjs",
     "resume:setup": "node scripts/resume.cjs setup",
@@ -31,7 +31,11 @@
     "diagrams:setup": "node scripts/diagrams.cjs setup",
     "diagrams:extract": "node scripts/diagrams.cjs extract",
     "diagrams:export": "node scripts/diagrams.cjs export",
-    "diagrams:check": "node scripts/diagrams.cjs check"
+    "diagrams:check": "node scripts/diagrams.cjs check",
+    "workers:build": "export RESUME_VENV=node_modules/.cache/resume-venv && npm run resume:setup && npm run resume -- --dont-generate-png && npm run build && node scripts/workers-assets.cjs",
+    "workers:deploy": "npm run workers:build && npx wrangler deploy",
+    "workers:types": "npx wrangler types workers/worker-configuration.d.ts",
+    "test:workers": "node scripts/test-workers.cjs"
   },
   "repository": {
     "type": "git",
@@ -64,9 +68,10 @@
     "luxon": "3.7.2",
     "markdown-it": "15.0.3",
     "markdown-it-anchor": "10.0.0",
+    "netlify-plugin-a11y": "0.0.12",
     "typescript": "7.0.2",
     "uglify-js": "3.19.3",
-    "netlify-plugin-a11y": "0.0.12"
+    "wrangler": "4.155.0"
   },
   "dependencies": {
     "@netlify/functions": "6.0.3",

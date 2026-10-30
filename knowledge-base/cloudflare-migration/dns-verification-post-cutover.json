@@ -1,0 +1,745 @@
+[
+  {
+    "name": "vasandani.me",
+    "type": "A",
+    "alias_conversion": false,
+    "passed": true,
+    "answers": {
+      "ns-799.awsdns-35.net": {
+        "status": "NOERROR",
+        "values": [
+          "75.2.60.5"
+        ],
+        "raw": ";; Got answer:\n;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 50592\n;; flags: qr aa; QUERY: 1, ANSWER: 1, AUTHORITY: 4, ADDITIONAL: 1\n\n;; OPT PSEUDOSECTION:\n; EDNS: version: 0, flags:; udp: 4096\n;; ANSWER SECTION:\nvasandani.me.\t\t300\tIN\tA\t75.2.60.5\n\n;; AUTHORITY SECTION:\nvasandani.me.\t\t172800\tIN\tNS\tns-1079.awsdns-06.org.\nvasandani.me.\t\t172800\tIN\tNS\tns-1719.awsdns-22.co.uk.\nvasandani.me.\t\t172800\tIN\tNS\tns-428.awsdns-53.com.\nvasandani.me.\t\t172800\tIN\tNS\tns-799.awsdns-35.net.\n\n"
+      },
+      "kai.ns.cloudflare.com": {
+        "status": "NOERROR",
+        "values": [
+          "75.2.60.5"
+        ],
+        "raw": ";; Got answer:\n;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 35917\n;; flags: qr aa; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1\n\n;; OPT PSEUDOSECTION:\n; EDNS: version: 0, flags:; udp: 1232\n;; ANSWER SECTION:\nvasandani.me.\t\t300\tIN\tA\t75.2.60.5\n\n"
+      },
+      "kami.ns.cloudflare.com": {
+        "status": "NOERROR",
+        "values": [
+          "75.2.60.5"
+        ],
+        "raw": ";; Got answer:\n;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 34055\n;; flags: qr aa; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1\n\n;; OPT PSEUDOSECTION:\n; EDNS: version: 0, flags:; udp: 1232\n;; ANSWER SECTION:\nvasandani.me.\t\t300\tIN\tA\t75.2.60.5\n\n"
+      }
+    }
+  },
+  {
+    "name": "vasandani.me",
+    "type": "MX",
+    "alias_conversion": false,
+    "passed": true,
+    "answers": {
+      "ns-799.awsdns-35.net": {
+        "status": "NOERROR",
+        "values": [
+          "10 alt1.aspmx.l.google.com.",
+          "10 alt2.aspmx.l.google.com.",
+          "10 aspmx.l.google.com.",
+          "10 aspmx2.googlemail.com.",
+          "10 aspmx3.googlemail.com."
+        ],
+        "raw": ";; Got answer:\n;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 7871\n;; flags: qr aa; QUERY: 1, ANSWER: 5, AUTHORITY: 4, ADDITIONAL: 1\n\n;; OPT PSEUDOSECTION:\n; EDNS: version: 0, flags:; udp: 4096\n;; ANSWER SECTION:\nvasandani.me.\t\t300\tIN\tMX\t10 alt1.aspmx.l.google.com.\nvasandani.me.\t\t300\tIN\tMX\t10 alt2.aspmx.l.google.com.\nvasandani.me.\t\t300\tIN\tMX\t10 aspmx.l.google.com.\nvasandani.me.\t\t300\tIN\tMX\t10 aspmx2.googlemail.com.\nvasandani.me.\t\t300\tIN\tMX\t10 aspmx3.googlemail.com.\n\n;; AUTHORITY SECTION:\nvasandani.me.\t\t172800\tIN\tNS\tns-1079.awsdns-06.org.\nvasandani.me.\t\t172800\tIN\tNS\tns-1719.awsdns-22.co.uk.\nvasandani.me.\t\t172800\tIN\tNS\tns-428.awsdns-53.com.\nvasandani.me.\t\t172800\tIN\tNS\tns-799.awsdns-35.net.\n\n"
+      },
+      "kai.ns.cloudflare.com": {
+        "status": "NOERROR",
+        "values": [
+          "10 alt1.aspmx.l.google.com.",
+          "10 alt2.aspmx.l.google.com.",
+          "10 aspmx.l.google.com.",
+          "10 aspmx2.googlemail.com.",
+          "10 aspmx3.googlemail.com."
+        ],
+        "raw": ";; Got answer:\n;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 54370\n;; flags: qr aa; QUERY: 1, ANSWER: 5, AUTHORITY: 0, ADDITIONAL: 1\n\n;; OPT PSEUDOSECTION:\n; EDNS: version: 0, flags:; udp: 1232\n;; ANSWER SECTION:\nvasandani.me.\t\t300\tIN\tMX\t10 alt1.aspmx.l.google.com.\nvasandani.me.\t\t300\tIN\tMX\t10 alt2.aspmx.l.google.com.\nvasandani.me.\t\t300\tIN\tMX\t10 aspmx.l.google.com.\nvasandani.me.\t\t300\tIN\tMX\t10 aspmx2.googlemail.com.\nvasandani.me.\t\t300\tIN\tMX\t10 aspmx3.googlemail.com.\n\n"
+      },
+      "kami.ns.cloudflare.com": {
+        "status": "NOERROR",
+        "values": [
+          "10 alt1.aspmx.l.google.com.",
+          "10 alt2.aspmx.l.google.com.",
+          "10 aspmx.l.google.com.",
+          "10 aspmx2.googlemail.com.",
+          "10 aspmx3.googlemail.com."
+        ],
+        "raw": ";; Got answer:\n;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 22407\n;; flags: qr aa; QUERY: 1, ANSWER: 5, AUTHORITY: 0, ADDITIONAL: 1\n\n;; OPT PSEUDOSECTION:\n; EDNS: version: 0, flags:; udp: 1232\n;; ANSWER SECTION:\nvasandani.me.\t\t300\tIN\tMX\t10 alt1.aspmx.l.google.com.\nvasandani.me.\t\t300\tIN\tMX\t10 alt2.aspmx.l.google.com.\nvasandani.me.\t\t300\tIN\tMX\t10 aspmx.l.google.com.\nvasandani.me.\t\t300\tIN\tMX\t10 aspmx2.googlemail.com.\nvasandani.me.\t\t300\tIN\tMX\t10 aspmx3.googlemail.com.\n\n"
+      }
+    }
+  },
+  {
+    "name": "vasandani.me",
+    "type": "TXT",
+    "alias_conversion": false,
+    "passed": true,
+    "answers": {
+      "ns-799.awsdns-35.net": {
+        "status": "NOERROR",
+        "values": [
+          "google-site-verification=2_pP0H7aW2UUhJTWXC7qGibsJaRQsF_dElmvkWKvoLM",
+          "v=spf1 include:_spf.google.com include:amazonses.com ~all"
+        ],
+        "raw": ";; Got answer:\n;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 7189\n;; flags: qr aa; QUERY: 1, ANSWER: 2, AUTHORITY: 4, ADDITIONAL: 1\n\n;; OPT PSEUDOSECTION:\n; EDNS: version: 0, flags:; udp: 4096\n;; ANSWER SECTION:\nvasandani.me.\t\t300\tIN\tTXT\t\"google-site-verification=2_pP0H7aW2UUhJTWXC7qGibsJaRQsF_dElmvkWKvoLM\"\nvasandani.me.\t\t300\tIN\tTXT\t\"v=spf1 include:_spf.google.com include:amazonses.com ~all\"\n\n;; AUTHORITY SECTION:\nvasandani.me.\t\t172800\tIN\tNS\tns-1079.awsdns-06.org.\nvasandani.me.\t\t172800\tIN\tNS\tns-1719.awsdns-22.co.uk.\nvasandani.me.\t\t172800\tIN\tNS\tns-428.awsdns-53.com.\nvasandani.me.\t\t172800\tIN\tNS\tns-799.awsdns-35.net.\n\n"
+      },
+      "kai.ns.cloudflare.com": {
+        "status": "NOERROR",
+        "values": [
+          "google-site-verification=2_pP0H7aW2UUhJTWXC7qGibsJaRQsF_dElmvkWKvoLM",
+          "v=spf1 include:_spf.google.com include:amazonses.com ~all"
+        ],
+        "raw": ";; Got answer:\n;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 14073\n;; flags: qr aa; QUERY: 1, ANSWER: 2, AUTHORITY: 0, ADDITIONAL: 1\n\n;; OPT PSEUDOSECTION:\n; EDNS: version: 0, flags:; udp: 1232\n;; ANSWER SECTION:\nvasandani.me.\t\t300\tIN\tTXT\t\"google-site-verification=2_pP0H7aW2UUhJTWXC7qGibsJaRQsF_dElmvkWKvoLM\"\nvasandani.me.\t\t300\tIN\tTXT\t\"v=spf1 include:_spf.google.com include:amazonses.com ~all\"\n\n"
+      },
+      "kami.ns.cloudflare.com": {
+        "status": "NOERROR",
+        "values": [
+          "google-site-verification=2_pP0H7aW2UUhJTWXC7qGibsJaRQsF_dElmvkWKvoLM",
+          "v=spf1 include:_spf.google.com include:amazonses.com ~all"
+        ],
+        "raw": ";; Got answer:\n;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 12436\n;; flags: qr aa; QUERY: 1, ANSWER: 2, AUTHORITY: 0, ADDITIONAL: 1\n\n;; OPT PSEUDOSECTION:\n; EDNS: version: 0, flags:; udp: 1232\n;; ANSWER SECTION:\nvasandani.me.\t\t300\tIN\tTXT\t\"google-site-verification=2_pP0H7aW2UUhJTWXC7qGibsJaRQsF_dElmvkWKvoLM\"\nvasandani.me.\t\t300\tIN\tTXT\t\"v=spf1 include:_spf.google.com include:amazonses.com ~all\"\n\n"
+      }
+    }
+  },
+  {
+    "name": "2215scott.vasandani.me",
+    "type": "A",
+    "alias_conversion": false,
+    "passed": true,
+    "answers": {
+      "ns-799.awsdns-35.net": {
+        "status": "NOERROR",
+        "values": [
+          "192.168.1.1"
+        ],
+        "raw": ";; Got answer:\n;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 20294\n;; flags: qr aa; QUERY: 1, ANSWER: 1, AUTHORITY: 4, ADDITIONAL: 1\n\n;; OPT PSEUDOSECTION:\n; EDNS: version: 0, flags:; udp: 4096\n;; ANSWER SECTION:\n2215scott.vasandani.me.\t300\tIN\tA\t192.168.1.1\n\n;; AUTHORITY SECTION:\nvasandani.me.\t\t172800\tIN\tNS\tns-1079.awsdns-06.org.\nvasandani.me.\t\t172800\tIN\tNS\tns-1719.awsdns-22.co.uk.\nvasandani.me.\t\t172800\tIN\tNS\tns-428.awsdns-53.com.\nvasandani.me.\t\t172800\tIN\tNS\tns-799.awsdns-35.net.\n\n"
+      },
+      "kai.ns.cloudflare.com": {
+        "status": "NOERROR",
+        "values": [
+          "192.168.1.1"
+        ],
+        "raw": ";; Got answer:\n;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 8010\n;; flags: qr aa; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1\n\n;; OPT PSEUDOSECTION:\n; EDNS: version: 0, flags:; udp: 1232\n;; ANSWER SECTION:\n2215scott.vasandani.me.\t300\tIN\tA\t192.168.1.1\n\n"
+      },
+      "kami.ns.cloudflare.com": {
+        "status": "NOERROR",
+        "values": [
+          "192.168.1.1"
+        ],
+        "raw": ";; Got answer:\n;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 57836\n;; flags: qr aa; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1\n\n;; OPT PSEUDOSECTION:\n; EDNS: version: 0, flags:; udp: 1232\n;; ANSWER SECTION:\n2215scott.vasandani.me.\t300\tIN\tA\t192.168.1.1\n\n"
+      }
+    }
+  },
+  {
+    "name": "google._domainkey.vasandani.me",
+    "type": "TXT",
+    "alias_conversion": false,
+    "passed": true,
+    "answers": {
+      "ns-799.awsdns-35.net": {
+        "status": "NOERROR",
+        "values": [
+          "v=DKIM1; k=rsa; p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAyOJZhYjuqCCjrlZGftofTk51TpDZ70WREDzRhGrzJfJqlFrpxXneJvMY/vhIE6Jm16Ru1wAKiDzjYy/ZRGr4AZ2sxusQVUBHSfkUxz2sEZZOKfkdXQBG3sNXyEq2N725suWbGq3mKRSz5aOChlzMtdjfci89G49Zl25jWfpiKjdLztVNa5Zl4bwwSFi4B4Ghq1mRNv1OnGuedB3wLqFjGLwNnc2eoB9BdReWprXwznvBlqO1B5PYNXoDJLJ/E7prOiXOxn2IyM5sxKAyzFL2OenVOHF63EAOk91+TkPiTWyGG63jHq2jws+yPmGh8QW4MflBybD5LBGRqu9alEodKwIDAQAB"
+        ],
+        "raw": ";; Got answer:\n;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 20024\n;; flags: qr aa; QUERY: 1, ANSWER: 1, AUTHORITY: 4, ADDITIONAL: 1\n\n;; OPT PSEUDOSECTION:\n; EDNS: version: 0, flags:; udp: 4096\n;; ANSWER SECTION:\ngoogle._domainkey.vasandani.me.\t300 IN\tTXT\t\"v=DKIM1; k=rsa; p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAyOJZhYjuqCCjrlZGftofTk51TpDZ70WREDzRhGrzJfJqlFrpxXneJvMY/vhIE6Jm16Ru1wAKiDzjYy/ZRGr4AZ2sxusQVUBHSfkUxz2sEZZOKfkdXQBG3sNXyEq2N725suWbGq3mKRSz5aOChlzMtdjfci89G49Zl2\" \"5jWfpiKjdLztVNa5Zl4bwwSFi4B4Ghq1mRNv1OnGuedB3wLqFjGLwNnc2eoB9BdReWprXwznvBlqO1B5PYNXoDJLJ/E7prOiXOxn2IyM5sxKAyzFL2OenVOHF63EAOk91+TkPiTWyGG63jHq2jws+yPmGh8QW4MflBybD5LBGRqu9alEodKwIDAQAB\"\n\n;; AUTHORITY SECTION:\nvasandani.me.\t\t172800\tIN\tNS\tns-1079.awsdns-06.org.\nvasandani.me.\t\t172800\tIN\tNS\tns-1719.awsdns-22.co.uk.\nvasandani.me.\t\t172800\tIN\tNS\tns-428.awsdns-53.com.\nvasandani.me.\t\t172800\tIN\tNS\tns-799.awsdns-35.net.\n\n"
+      },
+      "kai.ns.cloudflare.com": {
+        "status": "NOERROR",
+        "values": [
+          "v=DKIM1; k=rsa; p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAyOJZhYjuqCCjrlZGftofTk51TpDZ70WREDzRhGrzJfJqlFrpxXneJvMY/vhIE6Jm16Ru1wAKiDzjYy/ZRGr4AZ2sxusQVUBHSfkUxz2sEZZOKfkdXQBG3sNXyEq2N725suWbGq3mKRSz5aOChlzMtdjfci89G49Zl25jWfpiKjdLztVNa5Zl4bwwSFi4B4Ghq1mRNv1OnGuedB3wLqFjGLwNnc2eoB9BdReWprXwznvBlqO1B5PYNXoDJLJ/E7prOiXOxn2IyM5sxKAyzFL2OenVOHF63EAOk91+TkPiTWyGG63jHq2jws+yPmGh8QW4MflBybD5LBGRqu9alEodKwIDAQAB"
+        ],
+        "raw": ";; Got answer:\n;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 10970\n;; flags: qr aa; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1\n\n;; OPT PSEUDOSECTION:\n; EDNS: version: 0, flags:; udp: 1232\n;; ANSWER SECTION:\ngoogle._domainkey.vasandani.me.\t300 IN\tTXT\t\"v=DKIM1; k=rsa; p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAyOJZhYjuqCCjrlZGftofTk51TpDZ70WREDzRhGrzJfJqlFrpxXneJvMY/vhIE6Jm16Ru1wAKiDzjYy/ZRGr4AZ2sxusQVUBHSfkUxz2sEZZOKfkdXQBG3sNXyEq2N725suWbGq3mKRSz5aOChlzMtdjfci89G49Zl25jWfpiKjdLztVNa5Zl4bwwSFi4B4Ghq\" \"1mRNv1OnGuedB3wLqFjGLwNnc2eoB9BdReWprXwznvBlqO1B5PYNXoDJLJ/E7prOiXOxn2IyM5sxKAyzFL2OenVOHF63EAOk91+TkPiTWyGG63jHq2jws+yPmGh8QW4MflBybD5LBGRqu9alEodKwIDAQAB\"\n\n"
+      },
+      "kami.ns.cloudflare.com": {
+        "status": "NOERROR",
+        "values": [
+          "v=DKIM1; k=rsa; p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAyOJZhYjuqCCjrlZGftofTk51TpDZ70WREDzRhGrzJfJqlFrpxXneJvMY/vhIE6Jm16Ru1wAKiDzjYy/ZRGr4AZ2sxusQVUBHSfkUxz2sEZZOKfkdXQBG3sNXyEq2N725suWbGq3mKRSz5aOChlzMtdjfci89G49Zl25jWfpiKjdLztVNa5Zl4bwwSFi4B4Ghq1mRNv1OnGuedB3wLqFjGLwNnc2eoB9BdReWprXwznvBlqO1B5PYNXoDJLJ/E7prOiXOxn2IyM5sxKAyzFL2OenVOHF63EAOk91+TkPiTWyGG63jHq2jws+yPmGh8QW4MflBybD5LBGRqu9alEodKwIDAQAB"
+        ],
+        "raw": ";; Got answer:\n;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 52115\n;; flags: qr aa; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1\n\n;; OPT PSEUDOSECTION:\n; EDNS: version: 0, flags:; udp: 1232\n;; ANSWER SECTION:\ngoogle._domainkey.vasandani.me.\t300 IN\tTXT\t\"v=DKIM1; k=rsa; p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAyOJZhYjuqCCjrlZGftofTk51TpDZ70WREDzRhGrzJfJqlFrpxXneJvMY/vhIE6Jm16Ru1wAKiDzjYy/ZRGr4AZ2sxusQVUBHSfkUxz2sEZZOKfkdXQBG3sNXyEq2N725suWbGq3mKRSz5aOChlzMtdjfci89G49Zl25jWfpiKjdLztVNa5Zl4bwwSFi4B4Ghq\" \"1mRNv1OnGuedB3wLqFjGLwNnc2eoB9BdReWprXwznvBlqO1B5PYNXoDJLJ/E7prOiXOxn2IyM5sxKAyzFL2OenVOHF63EAOk91+TkPiTWyGG63jHq2jws+yPmGh8QW4MflBybD5LBGRqu9alEodKwIDAQAB\"\n\n"
+      }
+    }
+  },
+  {
+    "name": "joey._domainkey.vasandani.me",
+    "type": "TXT",
+    "alias_conversion": false,
+    "passed": true,
+    "answers": {
+      "ns-799.awsdns-35.net": {
+        "status": "NOERROR",
+        "values": [
+          "p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDpl0TSwq5TVlZS+tYHOMtHLG5a4epU+kgJ4PxLN+HF512z3BtXEpvoc7W0BBb4oFS/vcgNvOcnBFXM/7Q9N00EFmKtcL9kUrgF8GOEGxKgMIGk1Yk72c1p9UO3QOKQGMC2CXBQGpmGTD73tPsKv3ALiLZkYN+WnW/aixgEG++g1QIDAQAB"
+        ],
+        "raw": ";; Got answer:\n;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 46741\n;; flags: qr aa; QUERY: 1, ANSWER: 1, AUTHORITY: 4, ADDITIONAL: 1\n\n;; OPT PSEUDOSECTION:\n; EDNS: version: 0, flags:; udp: 4096\n;; ANSWER SECTION:\njoey._domainkey.vasandani.me. 300 IN\tTXT\t\"p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDpl0TSwq5TVlZS+tYHOMtHLG5a4epU+kgJ4PxLN+HF512z3BtXEpvoc7W0BBb4oFS/vcgNvOcnBFXM/7Q9N00EFmKtcL9kUrgF8GOEGxKgMIGk1Yk72c1p9UO3QOKQGMC2CXBQGpmGTD73tPsKv3ALiLZkYN+WnW/aixgEG++g1QIDAQAB\"\n\n;; AUTHORITY SECTION:\nvasandani.me.\t\t172800\tIN\tNS\tns-1079.awsdns-06.org.\nvasandani.me.\t\t172800\tIN\tNS\tns-1719.awsdns-22.co.uk.\nvasandani.me.\t\t172800\tIN\tNS\tns-428.awsdns-53.com.\nvasandani.me.\t\t172800\tIN\tNS\tns-799.awsdns-35.net.\n\n"
+      },
+      "kai.ns.cloudflare.com": {
+        "status": "NOERROR",
+        "values": [
+          "p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDpl0TSwq5TVlZS+tYHOMtHLG5a4epU+kgJ4PxLN+HF512z3BtXEpvoc7W0BBb4oFS/vcgNvOcnBFXM/7Q9N00EFmKtcL9kUrgF8GOEGxKgMIGk1Yk72c1p9UO3QOKQGMC2CXBQGpmGTD73tPsKv3ALiLZkYN+WnW/aixgEG++g1QIDAQAB"
+        ],
+        "raw": ";; Got answer:\n;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 24150\n;; flags: qr aa; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1\n\n;; OPT PSEUDOSECTION:\n; EDNS: version: 0, flags:; udp: 1232\n;; ANSWER SECTION:\njoey._domainkey.vasandani.me. 300 IN\tTXT\t\"p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDpl0TSwq5TVlZS+tYHOMtHLG5a4epU+kgJ4PxLN+HF512z3BtXEpvoc7W0BBb4oFS/vcgNvOcnBFXM/7Q9N00EFmKtcL9kUrgF8GOEGxKgMIGk1Yk72c1p9UO3QOKQGMC2CXBQGpmGTD73tPsKv3ALiLZkYN+WnW/aixgEG++g1QIDAQAB\"\n\n"
+      },
+      "kami.ns.cloudflare.com": {
+        "status": "NOERROR",
+        "values": [
+          "p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDpl0TSwq5TVlZS+tYHOMtHLG5a4epU+kgJ4PxLN+HF512z3BtXEpvoc7W0BBb4oFS/vcgNvOcnBFXM/7Q9N00EFmKtcL9kUrgF8GOEGxKgMIGk1Yk72c1p9UO3QOKQGMC2CXBQGpmGTD73tPsKv3ALiLZkYN+WnW/aixgEG++g1QIDAQAB"
+        ],
+        "raw": ";; Got answer:\n;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 8036\n;; flags: qr aa; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1\n\n;; OPT PSEUDOSECTION:\n; EDNS: version: 0, flags:; udp: 1232\n;; ANSWER SECTION:\njoey._domainkey.vasandani.me. 300 IN\tTXT\t\"p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDpl0TSwq5TVlZS+tYHOMtHLG5a4epU+kgJ4PxLN+HF512z3BtXEpvoc7W0BBb4oFS/vcgNvOcnBFXM/7Q9N00EFmKtcL9kUrgF8GOEGxKgMIGk1Yk72c1p9UO3QOKQGMC2CXBQGpmGTD73tPsKv3ALiLZkYN+WnW/aixgEG++g1QIDAQAB\"\n\n"
+      }
+    }
+  },
+  {
+    "name": "airbnb.vasandani.me",
+    "type": "CNAME",
+    "alias_conversion": true,
+    "passed": true,
+    "answers": {
+      "ns-799.awsdns-35.net": {
+        "status": "NOERROR",
+        "values": [
+          "16.15.0.113",
+          "16.15.0.211",
+          "16.15.1.165",
+          "16.15.4.123",
+          "16.15.4.125",
+          "16.15.4.138",
+          "16.15.4.247",
+          "52.219.194.187"
+        ],
+        "raw": ";; Got answer:\n;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 11594\n;; flags: qr aa; QUERY: 1, ANSWER: 8, AUTHORITY: 4, ADDITIONAL: 1\n\n;; OPT PSEUDOSECTION:\n; EDNS: version: 0, flags:; udp: 4096\n;; ANSWER SECTION:\nairbnb.vasandani.me.\t5\tIN\tA\t16.15.4.123\nairbnb.vasandani.me.\t5\tIN\tA\t16.15.0.211\nairbnb.vasandani.me.\t5\tIN\tA\t52.219.194.187\nairbnb.vasandani.me.\t5\tIN\tA\t16.15.1.165\nairbnb.vasandani.me.\t5\tIN\tA\t16.15.4.247\nairbnb.vasandani.me.\t5\tIN\tA\t16.15.4.125\nairbnb.vasandani.me.\t5\tIN\tA\t16.15.4.138\nairbnb.vasandani.me.\t5\tIN\tA\t16.15.0.113\n\n;; AUTHORITY SECTION:\nvasandani.me.\t\t172800\tIN\tNS\tns-1079.awsdns-06.org.\nvasandani.me.\t\t172800\tIN\tNS\tns-1719.awsdns-22.co.uk.\nvasandani.me.\t\t172800\tIN\tNS\tns-428.awsdns-53.com.\nvasandani.me.\t\t172800\tIN\tNS\tns-799.awsdns-35.net.\n\n"
+      },
+      "kai.ns.cloudflare.com": {
+        "status": "NOERROR",
+        "values": [
+          "s3-website-us-west-1.amazonaws.com."
+        ],
+        "raw": ";; Got answer:\n;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 6435\n;; flags: qr aa; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1\n\n;; OPT PSEUDOSECTION:\n; EDNS: version: 0, flags:; udp: 1232\n;; ANSWER SECTION:\nairbnb.vasandani.me.\t300\tIN\tCNAME\ts3-website-us-west-1.amazonaws.com.\n\n"
+      },
+      "kami.ns.cloudflare.com": {
+        "status": "NOERROR",
+        "values": [
+          "s3-website-us-west-1.amazonaws.com."
+        ],
+        "raw": ";; Got answer:\n;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 22836\n;; flags: qr aa; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1\n\n;; OPT PSEUDOSECTION:\n; EDNS: version: 0, flags:; udp: 1232\n;; ANSWER SECTION:\nairbnb.vasandani.me.\t300\tIN\tCNAME\ts3-website-us-west-1.amazonaws.com.\n\n"
+      }
+    }
+  },
+  {
+    "name": "colima.vasandani.me",
+    "type": "A",
+    "alias_conversion": false,
+    "passed": true,
+    "answers": {
+      "ns-799.awsdns-35.net": {
+        "status": "NOERROR",
+        "values": [
+          "159.203.89.70"
+        ],
+        "raw": ";; Got answer:\n;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 28706\n;; flags: qr aa; QUERY: 1, ANSWER: 1, AUTHORITY: 4, ADDITIONAL: 1\n\n;; OPT PSEUDOSECTION:\n; EDNS: version: 0, flags:; udp: 4096\n;; ANSWER SECTION:\ncolima.vasandani.me.\t300\tIN\tA\t159.203.89.70\n\n;; AUTHORITY SECTION:\nvasandani.me.\t\t172800\tIN\tNS\tns-1079.awsdns-06.org.\nvasandani.me.\t\t172800\tIN\tNS\tns-1719.awsdns-22.co.uk.\nvasandani.me.\t\t172800\tIN\tNS\tns-428.awsdns-53.com.\nvasandani.me.\t\t172800\tIN\tNS\tns-799.awsdns-35.net.\n\n"
+      },
+      "kai.ns.cloudflare.com": {
+        "status": "NOERROR",
+        "values": [
+          "159.203.89.70"
+        ],
+        "raw": ";; Got answer:\n;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 25014\n;; flags: qr aa; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1\n\n;; OPT PSEUDOSECTION:\n; EDNS: version: 0, flags:; udp: 1232\n;; ANSWER SECTION:\ncolima.vasandani.me.\t300\tIN\tA\t159.203.89.70\n\n"
+      },
+      "kami.ns.cloudflare.com": {
+        "status": "NOERROR",
+        "values": [
+          "159.203.89.70"
+        ],
+        "raw": ";; Got answer:\n;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 57205\n;; flags: qr aa; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1\n\n;; OPT PSEUDOSECTION:\n; EDNS: version: 0, flags:; udp: 1232\n;; ANSWER SECTION:\ncolima.vasandani.me.\t300\tIN\tA\t159.203.89.70\n\n"
+      }
+    }
+  },
+  {
+    "name": "dev.vasandani.me",
+    "type": "A",
+    "alias_conversion": false,
+    "passed": true,
+    "answers": {
+      "ns-799.awsdns-35.net": {
+        "status": "NOERROR",
+        "values": [
+          "127.0.0.1"
+        ],
+        "raw": ";; Got answer:\n;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 33216\n;; flags: qr aa; QUERY: 1, ANSWER: 1, AUTHORITY: 4, ADDITIONAL: 1\n\n;; OPT PSEUDOSECTION:\n; EDNS: version: 0, flags:; udp: 4096\n;; ANSWER SECTION:\ndev.vasandani.me.\t3600\tIN\tA\t127.0.0.1\n\n;; AUTHORITY SECTION:\nvasandani.me.\t\t172800\tIN\tNS\tns-1079.awsdns-06.org.\nvasandani.me.\t\t172800\tIN\tNS\tns-1719.awsdns-22.co.uk.\nvasandani.me.\t\t172800\tIN\tNS\tns-428.awsdns-53.com.\nvasandani.me.\t\t172800\tIN\tNS\tns-799.awsdns-35.net.\n\n"
+      },
+      "kai.ns.cloudflare.com": {
+        "status": "NOERROR",
+        "values": [
+          "127.0.0.1"
+        ],
+        "raw": ";; Got answer:\n;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 24339\n;; flags: qr aa; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1\n\n;; OPT PSEUDOSECTION:\n; EDNS: version: 0, flags:; udp: 1232\n;; ANSWER SECTION:\ndev.vasandani.me.\t3600\tIN\tA\t127.0.0.1\n\n"
+      },
+      "kami.ns.cloudflare.com": {
+        "status": "NOERROR",
+        "values": [
+          "127.0.0.1"
+        ],
+        "raw": ";; Got answer:\n;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 55470\n;; flags: qr aa; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1\n\n;; OPT PSEUDOSECTION:\n; EDNS: version: 0, flags:; udp: 1232\n;; ANSWER SECTION:\ndev.vasandani.me.\t3600\tIN\tA\t127.0.0.1\n\n"
+      }
+    }
+  },
+  {
+    "name": "*.dev.vasandani.me",
+    "type": "A",
+    "alias_conversion": false,
+    "passed": true,
+    "answers": {
+      "ns-799.awsdns-35.net": {
+        "status": "NOERROR",
+        "values": [
+          "127.0.0.1"
+        ],
+        "raw": ";; Got answer:\n;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 44352\n;; flags: qr aa; QUERY: 1, ANSWER: 1, AUTHORITY: 4, ADDITIONAL: 1\n\n;; OPT PSEUDOSECTION:\n; EDNS: version: 0, flags:; udp: 4096\n;; ANSWER SECTION:\n*.dev.vasandani.me.\t300\tIN\tA\t127.0.0.1\n\n;; AUTHORITY SECTION:\nvasandani.me.\t\t172800\tIN\tNS\tns-1079.awsdns-06.org.\nvasandani.me.\t\t172800\tIN\tNS\tns-1719.awsdns-22.co.uk.\nvasandani.me.\t\t172800\tIN\tNS\tns-428.awsdns-53.com.\nvasandani.me.\t\t172800\tIN\tNS\tns-799.awsdns-35.net.\n\n"
+      },
+      "kai.ns.cloudflare.com": {
+        "status": "NOERROR",
+        "values": [
+          "127.0.0.1"
+        ],
+        "raw": ";; Got answer:\n;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 5435\n;; flags: qr aa; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1\n\n;; OPT PSEUDOSECTION:\n; EDNS: version: 0, flags:; udp: 1232\n;; ANSWER SECTION:\n*.dev.vasandani.me.\t300\tIN\tA\t127.0.0.1\n\n"
+      },
+      "kami.ns.cloudflare.com": {
+        "status": "NOERROR",
+        "values": [
+          "127.0.0.1"
+        ],
+        "raw": ";; Got answer:\n;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 20552\n;; flags: qr aa; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1\n\n;; OPT PSEUDOSECTION:\n; EDNS: version: 0, flags:; udp: 1232\n;; ANSWER SECTION:\n*.dev.vasandani.me.\t300\tIN\tA\t127.0.0.1\n\n"
+      }
+    }
+  },
+  {
+    "name": "n8n.dev.vasandani.me",
+    "type": "A",
+    "alias_conversion": false,
+    "passed": true,
+    "answers": {
+      "ns-799.awsdns-35.net": {
+        "status": "NOERROR",
+        "values": [
+          "192.168.1.110"
+        ],
+        "raw": ";; Got answer:\n;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 18682\n;; flags: qr aa; QUERY: 1, ANSWER: 1, AUTHORITY: 4, ADDITIONAL: 1\n\n;; OPT PSEUDOSECTION:\n; EDNS: version: 0, flags:; udp: 4096\n;; ANSWER SECTION:\nn8n.dev.vasandani.me.\t300\tIN\tA\t192.168.1.110\n\n;; AUTHORITY SECTION:\nvasandani.me.\t\t172800\tIN\tNS\tns-1079.awsdns-06.org.\nvasandani.me.\t\t172800\tIN\tNS\tns-1719.awsdns-22.co.uk.\nvasandani.me.\t\t172800\tIN\tNS\tns-428.awsdns-53.com.\nvasandani.me.\t\t172800\tIN\tNS\tns-799.awsdns-35.net.\n\n"
+      },
+      "kai.ns.cloudflare.com": {
+        "status": "NOERROR",
+        "values": [
+          "192.168.1.110"
+        ],
+        "raw": ";; Got answer:\n;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 1353\n;; flags: qr aa; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1\n\n;; OPT PSEUDOSECTION:\n; EDNS: version: 0, flags:; udp: 1232\n;; ANSWER SECTION:\nn8n.dev.vasandani.me.\t300\tIN\tA\t192.168.1.110\n\n"
+      },
+      "kami.ns.cloudflare.com": {
+        "status": "NOERROR",
+        "values": [
+          "192.168.1.110"
+        ],
+        "raw": ";; Got answer:\n;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 33434\n;; flags: qr aa; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1\n\n;; OPT PSEUDOSECTION:\n; EDNS: version: 0, flags:; udp: 1232\n;; ANSWER SECTION:\nn8n.dev.vasandani.me.\t300\tIN\tA\t192.168.1.110\n\n"
+      }
+    }
+  },
+  {
+    "name": "do.vasandani.me",
+    "type": "A",
+    "alias_conversion": false,
+    "passed": true,
+    "answers": {
+      "ns-799.awsdns-35.net": {
+        "status": "NOERROR",
+        "values": [
+          "146.190.1.192"
+        ],
+        "raw": ";; Got answer:\n;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 16622\n;; flags: qr aa; QUERY: 1, ANSWER: 1, AUTHORITY: 4, ADDITIONAL: 1\n\n;; OPT PSEUDOSECTION:\n; EDNS: version: 0, flags:; udp: 4096\n;; ANSWER SECTION:\ndo.vasandani.me.\t300\tIN\tA\t146.190.1.192\n\n;; AUTHORITY SECTION:\nvasandani.me.\t\t172800\tIN\tNS\tns-1079.awsdns-06.org.\nvasandani.me.\t\t172800\tIN\tNS\tns-1719.awsdns-22.co.uk.\nvasandani.me.\t\t172800\tIN\tNS\tns-428.awsdns-53.com.\nvasandani.me.\t\t172800\tIN\tNS\tns-799.awsdns-35.net.\n\n"
+      },
+      "kai.ns.cloudflare.com": {
+        "status": "NOERROR",
+        "values": [
+          "146.190.1.192"
+        ],
+        "raw": ";; Got answer:\n;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 39579\n;; flags: qr aa; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1\n\n;; OPT PSEUDOSECTION:\n; EDNS: version: 0, flags:; udp: 1232\n;; ANSWER SECTION:\ndo.vasandani.me.\t300\tIN\tA\t146.190.1.192\n\n"
+      },
+      "kami.ns.cloudflare.com": {
+        "status": "NOERROR",
+        "values": [
+          "146.190.1.192"
+        ],
+        "raw": ";; Got answer:\n;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 64001\n;; flags: qr aa; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1\n\n;; OPT PSEUDOSECTION:\n; EDNS: version: 0, flags:; udp: 1232\n;; ANSWER SECTION:\ndo.vasandani.me.\t300\tIN\tA\t146.190.1.192\n\n"
+      }
+    }
+  },
+  {
+    "name": "*.do.vasandani.me",
+    "type": "A",
+    "alias_conversion": false,
+    "passed": true,
+    "answers": {
+      "ns-799.awsdns-35.net": {
+        "status": "NOERROR",
+        "values": [
+          "146.190.1.192"
+        ],
+        "raw": ";; Got answer:\n;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 61116\n;; flags: qr aa; QUERY: 1, ANSWER: 1, AUTHORITY: 4, ADDITIONAL: 1\n\n;; OPT PSEUDOSECTION:\n; EDNS: version: 0, flags:; udp: 4096\n;; ANSWER SECTION:\n*.do.vasandani.me.\t300\tIN\tA\t146.190.1.192\n\n;; AUTHORITY SECTION:\nvasandani.me.\t\t172800\tIN\tNS\tns-1079.awsdns-06.org.\nvasandani.me.\t\t172800\tIN\tNS\tns-1719.awsdns-22.co.uk.\nvasandani.me.\t\t172800\tIN\tNS\tns-428.awsdns-53.com.\nvasandani.me.\t\t172800\tIN\tNS\tns-799.awsdns-35.net.\n\n"
+      },
+      "kai.ns.cloudflare.com": {
+        "status": "NOERROR",
+        "values": [
+          "146.190.1.192"
+        ],
+        "raw": ";; Got answer:\n;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 390\n;; flags: qr aa; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1\n\n;; OPT PSEUDOSECTION:\n; EDNS: version: 0, flags:; udp: 1232\n;; ANSWER SECTION:\n*.do.vasandani.me.\t300\tIN\tA\t146.190.1.192\n\n"
+      },
+      "kami.ns.cloudflare.com": {
+        "status": "NOERROR",
+        "values": [
+          "146.190.1.192"
+        ],
+        "raw": ";; Got answer:\n;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 46259\n;; flags: qr aa; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1\n\n;; OPT PSEUDOSECTION:\n; EDNS: version: 0, flags:; udp: 1232\n;; ANSWER SECTION:\n*.do.vasandani.me.\t300\tIN\tA\t146.190.1.192\n\n"
+      }
+    }
+  },
+  {
+    "name": "gemini.vasandani.me",
+    "type": "CNAME",
+    "alias_conversion": false,
+    "passed": true,
+    "answers": {
+      "ns-799.awsdns-35.net": {
+        "status": "NOERROR",
+        "values": [
+          "david.flounder.online."
+        ],
+        "raw": ";; Got answer:\n;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 7508\n;; flags: qr aa; QUERY: 1, ANSWER: 1, AUTHORITY: 4, ADDITIONAL: 1\n\n;; OPT PSEUDOSECTION:\n; EDNS: version: 0, flags:; udp: 4096\n;; ANSWER SECTION:\ngemini.vasandani.me.\t300\tIN\tCNAME\tdavid.flounder.online.\n\n;; AUTHORITY SECTION:\nvasandani.me.\t\t172800\tIN\tNS\tns-1079.awsdns-06.org.\nvasandani.me.\t\t172800\tIN\tNS\tns-1719.awsdns-22.co.uk.\nvasandani.me.\t\t172800\tIN\tNS\tns-428.awsdns-53.com.\nvasandani.me.\t\t172800\tIN\tNS\tns-799.awsdns-35.net.\n\n"
+      },
+      "kai.ns.cloudflare.com": {
+        "status": "NOERROR",
+        "values": [
+          "david.flounder.online."
+        ],
+        "raw": ";; Got answer:\n;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 61521\n;; flags: qr aa; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1\n\n;; OPT PSEUDOSECTION:\n; EDNS: version: 0, flags:; udp: 1232\n;; ANSWER SECTION:\ngemini.vasandani.me.\t300\tIN\tCNAME\tdavid.flounder.online.\n\n"
+      },
+      "kami.ns.cloudflare.com": {
+        "status": "NOERROR",
+        "values": [
+          "david.flounder.online."
+        ],
+        "raw": ";; Got answer:\n;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 64329\n;; flags: qr aa; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1\n\n;; OPT PSEUDOSECTION:\n; EDNS: version: 0, flags:; udp: 1232\n;; ANSWER SECTION:\ngemini.vasandani.me.\t300\tIN\tCNAME\tdavid.flounder.online.\n\n"
+      }
+    }
+  },
+  {
+    "name": "hcloud.vasandani.me",
+    "type": "A",
+    "alias_conversion": false,
+    "passed": true,
+    "answers": {
+      "ns-799.awsdns-35.net": {
+        "status": "NOERROR",
+        "values": [
+          "5.78.16.8"
+        ],
+        "raw": ";; Got answer:\n;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 350\n;; flags: qr aa; QUERY: 1, ANSWER: 1, AUTHORITY: 4, ADDITIONAL: 1\n\n;; OPT PSEUDOSECTION:\n; EDNS: version: 0, flags:; udp: 4096\n;; ANSWER SECTION:\nhcloud.vasandani.me.\t300\tIN\tA\t5.78.16.8\n\n;; AUTHORITY SECTION:\nvasandani.me.\t\t172800\tIN\tNS\tns-1079.awsdns-06.org.\nvasandani.me.\t\t172800\tIN\tNS\tns-1719.awsdns-22.co.uk.\nvasandani.me.\t\t172800\tIN\tNS\tns-428.awsdns-53.com.\nvasandani.me.\t\t172800\tIN\tNS\tns-799.awsdns-35.net.\n\n"
+      },
+      "kai.ns.cloudflare.com": {
+        "status": "NOERROR",
+        "values": [
+          "5.78.16.8"
+        ],
+        "raw": ";; Got answer:\n;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 6631\n;; flags: qr aa; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1\n\n;; OPT PSEUDOSECTION:\n; EDNS: version: 0, flags:; udp: 1232\n;; ANSWER SECTION:\nhcloud.vasandani.me.\t300\tIN\tA\t5.78.16.8\n\n"
+      },
+      "kami.ns.cloudflare.com": {
+        "status": "NOERROR",
+        "values": [
+          "5.78.16.8"
+        ],
+        "raw": ";; Got answer:\n;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 54455\n;; flags: qr aa; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1\n\n;; OPT PSEUDOSECTION:\n; EDNS: version: 0, flags:; udp: 1232\n;; ANSWER SECTION:\nhcloud.vasandani.me.\t300\tIN\tA\t5.78.16.8\n\n"
+      }
+    }
+  },
+  {
+    "name": "*.hcloud.vasandani.me",
+    "type": "A",
+    "alias_conversion": false,
+    "passed": true,
+    "answers": {
+      "ns-799.awsdns-35.net": {
+        "status": "NOERROR",
+        "values": [
+          "5.78.16.8"
+        ],
+        "raw": ";; Got answer:\n;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 22342\n;; flags: qr aa; QUERY: 1, ANSWER: 1, AUTHORITY: 4, ADDITIONAL: 1\n\n;; OPT PSEUDOSECTION:\n; EDNS: version: 0, flags:; udp: 4096\n;; ANSWER SECTION:\n*.hcloud.vasandani.me.\t300\tIN\tA\t5.78.16.8\n\n;; AUTHORITY SECTION:\nvasandani.me.\t\t172800\tIN\tNS\tns-1079.awsdns-06.org.\nvasandani.me.\t\t172800\tIN\tNS\tns-1719.awsdns-22.co.uk.\nvasandani.me.\t\t172800\tIN\tNS\tns-428.awsdns-53.com.\nvasandani.me.\t\t172800\tIN\tNS\tns-799.awsdns-35.net.\n\n"
+      },
+      "kai.ns.cloudflare.com": {
+        "status": "NOERROR",
+        "values": [
+          "5.78.16.8"
+        ],
+        "raw": ";; Got answer:\n;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 13394\n;; flags: qr aa; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1\n\n;; OPT PSEUDOSECTION:\n; EDNS: version: 0, flags:; udp: 1232\n;; ANSWER SECTION:\n*.hcloud.vasandani.me.\t300\tIN\tA\t5.78.16.8\n\n"
+      },
+      "kami.ns.cloudflare.com": {
+        "status": "NOERROR",
+        "values": [
+          "5.78.16.8"
+        ],
+        "raw": ";; Got answer:\n;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 54143\n;; flags: qr aa; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1\n\n;; OPT PSEUDOSECTION:\n; EDNS: version: 0, flags:; udp: 1232\n;; ANSWER SECTION:\n*.hcloud.vasandani.me.\t300\tIN\tA\t5.78.16.8\n\n"
+      }
+    }
+  },
+  {
+    "name": "home.vasandani.me",
+    "type": "NS",
+    "alias_conversion": false,
+    "passed": true,
+    "answers": {
+      "ns-799.awsdns-35.net": {
+        "status": "NOERROR",
+        "values": [
+          "ns-1448.awsdns-53.org.",
+          "ns-1557.awsdns-02.co.uk.",
+          "ns-358.awsdns-44.com.",
+          "ns-846.awsdns-41.net."
+        ],
+        "raw": ";; Got answer:\n;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 55448\n;; flags: qr; QUERY: 1, ANSWER: 0, AUTHORITY: 4, ADDITIONAL: 1\n\n;; OPT PSEUDOSECTION:\n; EDNS: version: 0, flags:; udp: 4096\n;; AUTHORITY SECTION:\nhome.vasandani.me.\t300\tIN\tNS\tns-1448.awsdns-53.org.\nhome.vasandani.me.\t300\tIN\tNS\tns-1557.awsdns-02.co.uk.\nhome.vasandani.me.\t300\tIN\tNS\tns-358.awsdns-44.com.\nhome.vasandani.me.\t300\tIN\tNS\tns-846.awsdns-41.net.\n\n"
+      },
+      "kai.ns.cloudflare.com": {
+        "status": "NOERROR",
+        "values": [
+          "ns-1448.awsdns-53.org.",
+          "ns-1557.awsdns-02.co.uk.",
+          "ns-358.awsdns-44.com.",
+          "ns-846.awsdns-41.net."
+        ],
+        "raw": ";; Got answer:\n;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 30332\n;; flags: qr; QUERY: 1, ANSWER: 0, AUTHORITY: 4, ADDITIONAL: 1\n\n;; OPT PSEUDOSECTION:\n; EDNS: version: 0, flags:; udp: 1232\n;; AUTHORITY SECTION:\nhome.vasandani.me.\t300\tIN\tNS\tns-1448.awsdns-53.org.\nhome.vasandani.me.\t300\tIN\tNS\tns-1557.awsdns-02.co.uk.\nhome.vasandani.me.\t300\tIN\tNS\tns-358.awsdns-44.com.\nhome.vasandani.me.\t300\tIN\tNS\tns-846.awsdns-41.net.\n\n"
+      },
+      "kami.ns.cloudflare.com": {
+        "status": "NOERROR",
+        "values": [
+          "ns-1448.awsdns-53.org.",
+          "ns-1557.awsdns-02.co.uk.",
+          "ns-358.awsdns-44.com.",
+          "ns-846.awsdns-41.net."
+        ],
+        "raw": ";; Got answer:\n;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 14379\n;; flags: qr; QUERY: 1, ANSWER: 0, AUTHORITY: 4, ADDITIONAL: 1\n\n;; OPT PSEUDOSECTION:\n; EDNS: version: 0, flags:; udp: 1232\n;; AUTHORITY SECTION:\nhome.vasandani.me.\t300\tIN\tNS\tns-1448.awsdns-53.org.\nhome.vasandani.me.\t300\tIN\tNS\tns-1557.awsdns-02.co.uk.\nhome.vasandani.me.\t300\tIN\tNS\tns-358.awsdns-44.com.\nhome.vasandani.me.\t300\tIN\tNS\tns-846.awsdns-41.net.\n\n"
+      }
+    }
+  },
+  {
+    "name": "jekylltest.vasandani.me",
+    "type": "CNAME",
+    "alias_conversion": false,
+    "passed": true,
+    "answers": {
+      "ns-799.awsdns-35.net": {
+        "status": "NOERROR",
+        "values": [
+          "davidneudorfer.github.io."
+        ],
+        "raw": ";; Got answer:\n;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 43877\n;; flags: qr aa; QUERY: 1, ANSWER: 1, AUTHORITY: 4, ADDITIONAL: 1\n\n;; OPT PSEUDOSECTION:\n; EDNS: version: 0, flags:; udp: 4096\n;; ANSWER SECTION:\njekylltest.vasandani.me. 300\tIN\tCNAME\tdavidneudorfer.github.io.\n\n;; AUTHORITY SECTION:\nvasandani.me.\t\t172800\tIN\tNS\tns-1079.awsdns-06.org.\nvasandani.me.\t\t172800\tIN\tNS\tns-1719.awsdns-22.co.uk.\nvasandani.me.\t\t172800\tIN\tNS\tns-428.awsdns-53.com.\nvasandani.me.\t\t172800\tIN\tNS\tns-799.awsdns-35.net.\n\n"
+      },
+      "kai.ns.cloudflare.com": {
+        "status": "NOERROR",
+        "values": [
+          "davidneudorfer.github.io."
+        ],
+        "raw": ";; Got answer:\n;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 51881\n;; flags: qr aa; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1\n\n;; OPT PSEUDOSECTION:\n; EDNS: version: 0, flags:; udp: 1232\n;; ANSWER SECTION:\njekylltest.vasandani.me. 300\tIN\tCNAME\tdavidneudorfer.github.io.\n\n"
+      },
+      "kami.ns.cloudflare.com": {
+        "status": "NOERROR",
+        "values": [
+          "davidneudorfer.github.io."
+        ],
+        "raw": ";; Got answer:\n;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 59711\n;; flags: qr aa; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1\n\n;; OPT PSEUDOSECTION:\n; EDNS: version: 0, flags:; udp: 1232\n;; ANSWER SECTION:\njekylltest.vasandani.me. 300\tIN\tCNAME\tdavidneudorfer.github.io.\n\n"
+      }
+    }
+  },
+  {
+    "name": "mexico.vasandani.me",
+    "type": "CNAME",
+    "alias_conversion": true,
+    "passed": true,
+    "answers": {
+      "ns-799.awsdns-35.net": {
+        "status": "NOERROR",
+        "values": [
+          "16.15.191.147",
+          "16.15.213.185",
+          "16.15.215.230",
+          "52.216.37.237",
+          "52.216.38.69",
+          "52.216.51.165",
+          "52.217.164.53",
+          "52.217.167.245"
+        ],
+        "raw": ";; Got answer:\n;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 64104\n;; flags: qr aa; QUERY: 1, ANSWER: 8, AUTHORITY: 4, ADDITIONAL: 1\n\n;; OPT PSEUDOSECTION:\n; EDNS: version: 0, flags:; udp: 4096\n;; ANSWER SECTION:\nmexico.vasandani.me.\t5\tIN\tA\t16.15.191.147\nmexico.vasandani.me.\t5\tIN\tA\t52.217.164.53\nmexico.vasandani.me.\t5\tIN\tA\t16.15.215.230\nmexico.vasandani.me.\t5\tIN\tA\t52.216.38.69\nmexico.vasandani.me.\t5\tIN\tA\t16.15.213.185\nmexico.vasandani.me.\t5\tIN\tA\t52.216.51.165\nmexico.vasandani.me.\t5\tIN\tA\t52.217.167.245\nmexico.vasandani.me.\t5\tIN\tA\t52.216.37.237\n\n;; AUTHORITY SECTION:\nvasandani.me.\t\t172800\tIN\tNS\tns-1079.awsdns-06.org.\nvasandani.me.\t\t172800\tIN\tNS\tns-1719.awsdns-22.co.uk.\nvasandani.me.\t\t172800\tIN\tNS\tns-428.awsdns-53.com.\nvasandani.me.\t\t172800\tIN\tNS\tns-799.awsdns-35.net.\n\n"
+      },
+      "kai.ns.cloudflare.com": {
+        "status": "NOERROR",
+        "values": [
+          "s3-website-us-east-1.amazonaws.com."
+        ],
+        "raw": ";; Got answer:\n;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 19124\n;; flags: qr aa; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1\n\n;; OPT PSEUDOSECTION:\n; EDNS: version: 0, flags:; udp: 1232\n;; ANSWER SECTION:\nmexico.vasandani.me.\t300\tIN\tCNAME\ts3-website-us-east-1.amazonaws.com.\n\n"
+      },
+      "kami.ns.cloudflare.com": {
+        "status": "NOERROR",
+        "values": [
+          "s3-website-us-east-1.amazonaws.com."
+        ],
+        "raw": ";; Got answer:\n;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 11904\n;; flags: qr aa; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1\n\n;; OPT PSEUDOSECTION:\n; EDNS: version: 0, flags:; udp: 1232\n;; ANSWER SECTION:\nmexico.vasandani.me.\t300\tIN\tCNAME\ts3-website-us-east-1.amazonaws.com.\n\n"
+      }
+    }
+  },
+  {
+    "name": "remote.vasandani.me",
+    "type": "CNAME",
+    "alias_conversion": false,
+    "passed": true,
+    "answers": {
+      "ns-799.awsdns-35.net": {
+        "status": "NOERROR",
+        "values": [
+          "phitmym7.cname.us.ngrok.io."
+        ],
+        "raw": ";; Got answer:\n;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 20153\n;; flags: qr aa; QUERY: 1, ANSWER: 1, AUTHORITY: 4, ADDITIONAL: 1\n\n;; OPT PSEUDOSECTION:\n; EDNS: version: 0, flags:; udp: 4096\n;; ANSWER SECTION:\nremote.vasandani.me.\t300\tIN\tCNAME\tphitmym7.cname.us.ngrok.io.\n\n;; AUTHORITY SECTION:\nvasandani.me.\t\t172800\tIN\tNS\tns-1079.awsdns-06.org.\nvasandani.me.\t\t172800\tIN\tNS\tns-1719.awsdns-22.co.uk.\nvasandani.me.\t\t172800\tIN\tNS\tns-428.awsdns-53.com.\nvasandani.me.\t\t172800\tIN\tNS\tns-799.awsdns-35.net.\n\n"
+      },
+      "kai.ns.cloudflare.com": {
+        "status": "NOERROR",
+        "values": [
+          "phitmym7.cname.us.ngrok.io."
+        ],
+        "raw": ";; Got answer:\n;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 32830\n;; flags: qr aa; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1\n\n;; OPT PSEUDOSECTION:\n; EDNS: version: 0, flags:; udp: 1232\n;; ANSWER SECTION:\nremote.vasandani.me.\t300\tIN\tCNAME\tphitmym7.cname.us.ngrok.io.\n\n"
+      },
+      "kami.ns.cloudflare.com": {
+        "status": "NOERROR",
+        "values": [
+          "phitmym7.cname.us.ngrok.io."
+        ],
+        "raw": ";; Got answer:\n;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 52978\n;; flags: qr aa; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1\n\n;; OPT PSEUDOSECTION:\n; EDNS: version: 0, flags:; udp: 1232\n;; ANSWER SECTION:\nremote.vasandani.me.\t300\tIN\tCNAME\tphitmym7.cname.us.ngrok.io.\n\n"
+      }
+    }
+  },
+  {
+    "name": "*.remote.vasandani.me",
+    "type": "CNAME",
+    "alias_conversion": false,
+    "passed": true,
+    "answers": {
+      "ns-799.awsdns-35.net": {
+        "status": "NOERROR",
+        "values": [
+          "phitmym7.cname.us.ngrok.io."
+        ],
+        "raw": ";; Got answer:\n;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 49784\n;; flags: qr aa; QUERY: 1, ANSWER: 1, AUTHORITY: 4, ADDITIONAL: 1\n\n;; OPT PSEUDOSECTION:\n; EDNS: version: 0, flags:; udp: 4096\n;; ANSWER SECTION:\n*.remote.vasandani.me.\t300\tIN\tCNAME\tphitmym7.cname.us.ngrok.io.\n\n;; AUTHORITY SECTION:\nvasandani.me.\t\t172800\tIN\tNS\tns-1079.awsdns-06.org.\nvasandani.me.\t\t172800\tIN\tNS\tns-1719.awsdns-22.co.uk.\nvasandani.me.\t\t172800\tIN\tNS\tns-428.awsdns-53.com.\nvasandani.me.\t\t172800\tIN\tNS\tns-799.awsdns-35.net.\n\n"
+      },
+      "kai.ns.cloudflare.com": {
+        "status": "NOERROR",
+        "values": [
+          "phitmym7.cname.us.ngrok.io."
+        ],
+        "raw": ";; Got answer:\n;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 26587\n;; flags: qr aa; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1\n\n;; OPT PSEUDOSECTION:\n; EDNS: version: 0, flags:; udp: 1232\n;; ANSWER SECTION:\n*.remote.vasandani.me.\t300\tIN\tCNAME\tphitmym7.cname.us.ngrok.io.\n\n"
+      },
+      "kami.ns.cloudflare.com": {
+        "status": "NOERROR",
+        "values": [
+          "phitmym7.cname.us.ngrok.io."
+        ],
+        "raw": ";; Got answer:\n;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 56981\n;; flags: qr aa; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1\n\n;; OPT PSEUDOSECTION:\n; EDNS: version: 0, flags:; udp: 1232\n;; ANSWER SECTION:\n*.remote.vasandani.me.\t300\tIN\tCNAME\tphitmym7.cname.us.ngrok.io.\n\n"
+      }
+    }
+  },
+  {
+    "name": "tbc.vasandani.me",
+    "type": "NS",
+    "alias_conversion": false,
+    "passed": true,
+    "answers": {
+      "ns-799.awsdns-35.net": {
+        "status": "NOERROR",
+        "values": [
+          "ns-1196.awsdns-21.org.",
+          "ns-160.awsdns-20.com.",
+          "ns-1957.awsdns-52.co.uk.",
+          "ns-646.awsdns-16.net."
+        ],
+        "raw": ";; Got answer:\n;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 52008\n;; flags: qr; QUERY: 1, ANSWER: 0, AUTHORITY: 4, ADDITIONAL: 1\n\n;; OPT PSEUDOSECTION:\n; EDNS: version: 0, flags:; udp: 4096\n;; AUTHORITY SECTION:\ntbc.vasandani.me.\t300\tIN\tNS\tns-1196.awsdns-21.org.\ntbc.vasandani.me.\t300\tIN\tNS\tns-160.awsdns-20.com.\ntbc.vasandani.me.\t300\tIN\tNS\tns-1957.awsdns-52.co.uk.\ntbc.vasandani.me.\t300\tIN\tNS\tns-646.awsdns-16.net.\n\n"
+      },
+      "kai.ns.cloudflare.com": {
+        "status": "NOERROR",
+        "values": [
+          "ns-1196.awsdns-21.org.",
+          "ns-160.awsdns-20.com.",
+          "ns-1957.awsdns-52.co.uk.",
+          "ns-646.awsdns-16.net."
+        ],
+        "raw": ";; Got answer:\n;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 35221\n;; flags: qr; QUERY: 1, ANSWER: 0, AUTHORITY: 4, ADDITIONAL: 1\n\n;; OPT PSEUDOSECTION:\n; EDNS: version: 0, flags:; udp: 1232\n;; AUTHORITY SECTION:\ntbc.vasandani.me.\t300\tIN\tNS\tns-1196.awsdns-21.org.\ntbc.vasandani.me.\t300\tIN\tNS\tns-160.awsdns-20.com.\ntbc.vasandani.me.\t300\tIN\tNS\tns-1957.awsdns-52.co.uk.\ntbc.vasandani.me.\t300\tIN\tNS\tns-646.awsdns-16.net.\n\n"
+      },
+      "kami.ns.cloudflare.com": {
+        "status": "NOERROR",
+        "values": [
+          "ns-1196.awsdns-21.org.",
+          "ns-160.awsdns-20.com.",
+          "ns-1957.awsdns-52.co.uk.",
+          "ns-646.awsdns-16.net."
+        ],
+        "raw": ";; Got answer:\n;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 60725\n;; flags: qr; QUERY: 1, ANSWER: 0, AUTHORITY: 4, ADDITIONAL: 1\n\n;; OPT PSEUDOSECTION:\n; EDNS: version: 0, flags:; udp: 1232\n;; AUTHORITY SECTION:\ntbc.vasandani.me.\t300\tIN\tNS\tns-1196.awsdns-21.org.\ntbc.vasandani.me.\t300\tIN\tNS\tns-160.awsdns-20.com.\ntbc.vasandani.me.\t300\tIN\tNS\tns-1957.awsdns-52.co.uk.\ntbc.vasandani.me.\t300\tIN\tNS\tns-646.awsdns-16.net.\n\n"
+      }
+    }
+  },
+  {
+    "name": "wiki.vasandani.me",
+    "type": "CNAME",
+    "alias_conversion": false,
+    "passed": true,
+    "answers": {
+      "ns-799.awsdns-35.net": {
+        "status": "NOERROR",
+        "values": [
+          "2aztxhp5y.cname.us.ngrok.io."
+        ],
+        "raw": ";; Got answer:\n;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 39335\n;; flags: qr aa; QUERY: 1, ANSWER: 1, AUTHORITY: 4, ADDITIONAL: 1\n\n;; OPT PSEUDOSECTION:\n; EDNS: version: 0, flags:; udp: 4096\n;; ANSWER SECTION:\nwiki.vasandani.me.\t300\tIN\tCNAME\t2aztxhp5y.cname.us.ngrok.io.\n\n;; AUTHORITY SECTION:\nvasandani.me.\t\t172800\tIN\tNS\tns-1079.awsdns-06.org.\nvasandani.me.\t\t172800\tIN\tNS\tns-1719.awsdns-22.co.uk.\nvasandani.me.\t\t172800\tIN\tNS\tns-428.awsdns-53.com.\nvasandani.me.\t\t172800\tIN\tNS\tns-799.awsdns-35.net.\n\n"
+      },
+      "kai.ns.cloudflare.com": {
+        "status": "NOERROR",
+        "values": [
+          "2aztxhp5y.cname.us.ngrok.io."
+        ],
+        "raw": ";; Got answer:\n;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 64364\n;; flags: qr aa; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1\n\n;; OPT PSEUDOSECTION:\n; EDNS: version: 0, flags:; udp: 1232\n;; ANSWER SECTION:\nwiki.vasandani.me.\t300\tIN\tCNAME\t2aztxhp5y.cname.us.ngrok.io.\n\n"
+      },
+      "kami.ns.cloudflare.com": {
+        "status": "NOERROR",
+        "values": [
+          "2aztxhp5y.cname.us.ngrok.io."
+        ],
+        "raw": ";; Got answer:\n;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 41592\n;; flags: qr aa; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1\n\n;; OPT PSEUDOSECTION:\n; EDNS: version: 0, flags:; udp: 1232\n;; ANSWER SECTION:\nwiki.vasandani.me.\t300\tIN\tCNAME\t2aztxhp5y.cname.us.ngrok.io.\n\n"
+      }
+    }
+  },
+  {
+    "name": "www.vasandani.me",
+    "type": "A",
+    "alias_conversion": false,
+    "passed": true,
+    "answers": {
+      "ns-799.awsdns-35.net": {
+        "status": "NOERROR",
+        "values": [
+          "104.198.14.52"
+        ],
+        "raw": ";; Got answer:\n;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 55382\n;; flags: qr aa; QUERY: 1, ANSWER: 1, AUTHORITY: 4, ADDITIONAL: 1\n\n;; OPT PSEUDOSECTION:\n; EDNS: version: 0, flags:; udp: 4096\n;; ANSWER SECTION:\nwww.vasandani.me.\t300\tIN\tA\t104.198.14.52\n\n;; AUTHORITY SECTION:\nvasandani.me.\t\t172800\tIN\tNS\tns-1079.awsdns-06.org.\nvasandani.me.\t\t172800\tIN\tNS\tns-1719.awsdns-22.co.uk.\nvasandani.me.\t\t172800\tIN\tNS\tns-428.awsdns-53.com.\nvasandani.me.\t\t172800\tIN\tNS\tns-799.awsdns-35.net.\n\n"
+      },
+      "kai.ns.cloudflare.com": {
+        "status": "NOERROR",
+        "values": [
+          "104.198.14.52"
+        ],
+        "raw": ";; Got answer:\n;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 34172\n;; flags: qr aa; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1\n\n;; OPT PSEUDOSECTION:\n; EDNS: version: 0, flags:; udp: 1232\n;; ANSWER SECTION:\nwww.vasandani.me.\t300\tIN\tA\t104.198.14.52\n\n"
+      },
+      "kami.ns.cloudflare.com": {
+        "status": "NOERROR",
+        "values": [
+          "104.198.14.52"
+        ],
+        "raw": ";; Got answer:\n;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 30371\n;; flags: qr aa; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1\n\n;; OPT PSEUDOSECTION:\n; EDNS: version: 0, flags:; udp: 1232\n;; ANSWER SECTION:\nwww.vasandani.me.\t300\tIN\tA\t104.198.14.52\n\n"
+      }
+    }
+  }
+]

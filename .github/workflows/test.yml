@@ -46,6 +46,7 @@ jobs:
           PUPPETEER_SKIP_DOWNLOAD: "true"
       - run: npm run build && npm run gemini:build
       - run: node --test tests/resume.test.cjs
+      - run: node scripts/workers-assets.cjs && npm run test:workers && npx wrangler deploy --dry-run
       - run: npm run test:a11y
         env:
           PUPPETEER_EXECUTABLE_PATH: /usr/bin/google-chrome
