@@ -64,6 +64,7 @@ Use these settings:
 | Root directory | Repository root |
 | Build command | `npm run workers:build` |
 | Deploy command | `npx wrangler deploy` |
+| Preview deploy command | `npx wrangler preview` |
 | Node version | `24` |
 | Python version | `3.13` |
 
@@ -71,6 +72,10 @@ Set `NODE_VERSION=24` and `PYTHON_VERSION=3.13` in build variables. Keep the
 three application secrets in the Worker's runtime settings. The build renders
 the resume PDF, builds Eleventy, and prepares the static assets before deploying.
 The Git connection must target the same Worker name as `wrangler.jsonc`.
+The empty `previews` block enables branch previews. Preview secrets are configured
+separately in Cloudflare's Previews Base settings; production secrets are not
+automatically inherited. CMS sign-in and contact delivery require appropriate
+preview credentials to work there.
 
 ### Click the button below to try it out!
 
