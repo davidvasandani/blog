@@ -1,0 +1,66 @@
+{
+  "connection": "curl --resolve to authoritative Cloudflare IP; TLS and hostname verification enabled",
+  "results": [
+    {
+      "path": "/",
+      "curl_exit": 0,
+      "status": "HTTP/2 200",
+      "server": "cloudflare",
+      "content_type": "text/html"
+    },
+    {
+      "path": "/resume/",
+      "curl_exit": 0,
+      "status": "HTTP/2 200",
+      "server": "cloudflare",
+      "content_type": "text/html"
+    },
+    {
+      "path": "/resume/David_Vasandani_CV.pdf",
+      "curl_exit": 0,
+      "status": "HTTP/2 200",
+      "server": "cloudflare",
+      "content_type": "application/pdf",
+      "pdf_signature": "%PDF-"
+    },
+    {
+      "path": "/contact/",
+      "curl_exit": 0,
+      "status": "HTTP/2 200",
+      "server": "cloudflare",
+      "content_type": "text/html"
+    },
+    {
+      "path": "/contact/thanks/",
+      "curl_exit": 0,
+      "status": "HTTP/2 200",
+      "server": "cloudflare",
+      "content_type": "text/html"
+    },
+    {
+      "path": "/hello",
+      "curl_exit": 0,
+      "status": "HTTP/2 200",
+      "server": "cloudflare",
+      "content_type": "text/plain;charset=UTF-8"
+    },
+    {
+      "path": "/admin/",
+      "curl_exit": 0,
+      "status": "HTTP/2 200",
+      "server": "cloudflare",
+      "content_type": "text/html"
+    },
+    {
+      "path": "/api/auth",
+      "curl_exit": 0,
+      "status": "HTTP/2 302",
+      "server": "cloudflare",
+      "content_type": "text/plain; charset=utf-8",
+      "redirect_host": "github.com",
+      "callback": [
+        "https://david.vasandani.me/api/callback"
+      ]
+    }
+  ]
+}

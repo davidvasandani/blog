@@ -1,0 +1,12 @@
+{
+  "id": "15f40699d63c75b2439d50346677f1279dfbf16f",
+  "zone_id": "d85b15eaf2f81a84a50299a8db5d2371",
+  "zone_name": "vasandani.me",
+  "hostname": "david.vasandani.me",
+  "service": "david-vasandani-blog",
+  "environment": "production",
+  "cert_id": "29c72d48-b4a7-4cf2-99f4-f3cab78cd35b",
+  "previews_enabled": false,
+  "enabled": true,
+  "attached_at": "2026-10-30T13:52:04.475709+00:00"
+}
