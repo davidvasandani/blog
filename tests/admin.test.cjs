@@ -110,6 +110,14 @@ test('local CMS backend reads and saves a temporary post and rejects path traver
     const info = await request('info');
     assert.equal(info.statusCode, 200);
     assert.equal(JSON.parse(info.body).type, 'local_fs');
+    for (const [action, params] of [
+      ['unknownAction', {}],
+      ['getEntry', { branch: 'main' }],
+      ['persistEntry', { branch: 'main', entry: { path: 'posts/invalid.md' } }],
+    ]) {
+      const rejected = await request(action, params);
+      assert.equal(rejected.statusCode, 422, rejected.body);
+    }
     const raw = '---\ntitle: Local test\n---\nTest body';
     const saved = await request('persistEntry', {
       branch: 'main', entry: { slug: 'test', path: 'posts/test/test.md', raw }, assets: [],
