@@ -36,8 +36,8 @@
     "SLACK_WEBHOOK_URL"
   ],
   "pending": [
+    "Token permission to create vasandani.me zone, then import approved DNS-only records",
     "User sets runtime secrets; verify real OAuth redirect",
-    "User approves DNS table before zone creation/import",
     "Verify imported DNS against both authoritative nameservers",
     "User approves nameserver change",
     "After zone active, user approves Worker custom domain",
@@ -65,4 +65,20 @@
     "tls": "Verified with curl; no insecure option",
     "200": [
       "/",
-      "/r
+      "/resume/",
+      "/resume/David_Vasandani_CV.pdf",
+      "/contact/",
+      "/contact/thanks/",
+      "/hello",
+      "/admin/",
+      "/api/hello"
+    ],
+    "pdf_signature": "%PDF-",
+    "/api/auth": "503 CMS sign-in is not configured; wrangler secret list is empty",
+    "contact_submission": "No real message sent",
+    "python_urllib": "Cloudflare 1010 for default Python client; curl checks succeeded"
+  },
+  "dns_import_approved": true,
+  "dns_preflight_rechecked": "2026-10-30: all 28 Route 53 record sets unchanged; DNSSEC NOT_SIGNING and registrar DnssecKeys empty",
+  "dns_creation_error": "HTTP 403: Requires permission com.cloudflare.api.account.zone.create to create zones for the selected account"
+}
