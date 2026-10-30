@@ -97,7 +97,7 @@ cv:
           - Monitored servers with collectd and services with Consul, alerting through Sensu.
           - Increased deployments from once a week to over 400 a month over two years.
           - Cut the infrastructure bill by over 40% by rightsizing servers and autoscaling.
-    open_source:
+    projects:
       - name: Self-hosted AI coding platform (fork of Vibe Kanban)
         date: 2026
         summary: Built for my own use and adopted at work; now onboarding my team.
@@ -108,7 +108,6 @@ cv:
         date: 2026
         highlights:
           - Expanded an open-source website feedback tool to phones by directing AI-assisted implementation and 48 regression tests; upstream shipped the work in v0.11.0.
-    projects:
       - name: Household content and workflow platform
         summary: Personal project developed with AI coding agents.
         highlights:

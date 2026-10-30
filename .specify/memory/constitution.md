@@ -14,4 +14,4 @@ Version: 1.2.0
 
 Governance: these Blog-specific principles replace unrelated scaffold principles. Changes must preserve the user's project boundary and test-before-upgrade requirement. Version 1.2.0 adds principle 8 (generated artifacts) and widens 6 and 7.
 
-Review: 2026-10-30 dependency advisory follow-up. Version 1.0.0 remains applicable without amendment; all seven principles are retained.
+Review: 2026-10-30 category merge. Version 1.2.0 and all nine principles remain applicable without amendment. Résumé grouping changes preserve entry content and published URLs.

@@ -20,3 +20,9 @@ The resume source is `resume/David_Vasandani_CV.yaml` (RenderCV 2.8 schema). `re
 - Mastodon handles use `username: '@user@instance'`.
 - Upgrading means bumping both the pin and the schema tag on the YAML's first line. The test asserts both.
 - Local `npm test` needs Chrome for the Pa11y audit. On this NixOS host, use `PUPPETEER_EXECUTABLE_PATH=$(nix build --no-link --print-out-paths nixpkgs#chromium)/bin/chromium`.
+
+## Project categories
+
+Task: VAS-931 / df1c3a90-2839-43df-8cac-960631834dfd (Merge Open Source and Projects categories), 2026-10-30.
+
+`cv.sections.projects` is the single Projects section for open-source contributions and personal projects. The former Open Source entries precede the household platform entry. Section keys supply rendered headings, so join the YAML lists rather than renaming headings in templates. The same source produces both `/resume/` and its PDF; regenerate before validating either output. Compare parsed entry objects when regrouping to catch lost details without relying on date-sensitive PDF bytes.
