@@ -1,0 +1,74 @@
+{
+  "id": "d85b15eaf2f81a84a50299a8db5d2371",
+  "name": "vasandani.me",
+  "status": "pending",
+  "paused": false,
+  "type": "full",
+  "development_mode": 0,
+  "name_servers": [
+    "kai.ns.cloudflare.com",
+    "kami.ns.cloudflare.com"
+  ],
+  "original_name_servers": [
+    "ns-1079.awsdns-06.org",
+    "ns-1719.awsdns-22.co.uk",
+    "ns-428.awsdns-53.com",
+    "ns-799.awsdns-35.net"
+  ],
+  "original_registrar": null,
+  "original_dnshost": null,
+  "activation_failure_reason": "ns_delegated_from_provider",
+  "observed_name_servers": [
+    "ns-1079.awsdns-06.org.",
+    "ns-1719.awsdns-22.co.uk.",
+    "ns-428.awsdns-53.com.",
+    "ns-799.awsdns-35.net."
+  ],
+  "modified_on": "2026-10-30T13:11:35.738639Z",
+  "created_on": "2026-10-30T13:11:35.738639Z",
+  "activated_on": null,
+  "vanity_name_servers": [],
+  "vanity_name_servers_ips": null,
+  "meta": {
+    "step": 4,
+    "custom_certificate_quota": 0,
+    "page_rule_quota": 3,
+    "phishing_detected": false
+  },
+  "owner": {
+    "id": null,
+    "type": "user",
+    "email": null
+  },
+  "account": {
+    "id": "6b127c5bc7ab59f22b2ecbcf657a67d6",
+    "name": "Vasandani"
+  },
+  "tenant": {
+    "id": null,
+    "name": null
+  },
+  "tenant_unit": {
+    "id": null
+  },
+  "permissions": [
+    "#dns_records:edit",
+    "#dns_records:read",
+    "#zone:edit",
+    "#zone:read",
+    "#zone_settings:edit",
+    "#zone_settings:read"
+  ],
+  "plan": {
+    "id": "0feeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+    "name": "Free Website",
+    "price": 0,
+    "currency": "USD",
+    "frequency": "",
+    "is_subscribed": false,
+    "can_subscribe": false,
+    "legacy_id": "free",
+    "legacy_discount": false,
+    "externally_managed": false
+  }
+}
