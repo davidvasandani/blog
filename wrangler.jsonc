@@ -5,6 +5,9 @@
   "compatibility_date": "2026-10-29",
   "compatibility_flags": ["nodejs_compat"],
   "workers_dev": true,
+  "routes": [
+    { "pattern": "david.vasandani.me", "custom_domain": true }
+  ],
   "assets": {
     "directory": "./_site",
     "binding": "ASSETS",

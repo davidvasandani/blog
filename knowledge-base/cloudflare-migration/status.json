@@ -11,8 +11,13 @@
   "route53_change_id": "C0606306IMNPNUQEIGZB",
   "route53_change_status": "INSYNC",
   "production_checks": {
-    "https_david": "200; TLS verification enabled; server Netlify",
-    "https_apex": "301 to https://david.vasandani.me/test-path?migration=check; TLS verification enabled"
+    "tls": "Verified against authoritative Cloudflare IP with curl --resolve, no insecure flags, within one minute of attachment",
+    "pages": "All seven required paths HTTP 200 from Cloudflare; PDF signature verified",
+    "auth": "HTTP 302 to GitHub; redirect_uri=https://david.vasandani.me/api/callback",
+    "apex": "Netlify 301 preserving path and query",
+    "dns": "Google and Cloudflare DoH return Cloudflare NS and david A addresses; all other 24 supported sets match Route53 with approved alias CNAME conversions",
+    "contact": "Secrets installed; no live Slack message sent",
+    "cms": "User must complete sign-in in browser"
   },
   "dnssec": {
     "route53": "NOT_SIGNING; no signing keys",
@@ -30,15 +35,10 @@
     "wrangler deploy --dry-run",
     "git diff --check"
   ],
-  "missing_runtime_secrets": [
-    "GITHUB_CLIENT_ID",
-    "GITHUB_CLIENT_SECRET",
-    "SLACK_WEBHOOK_URL"
-  ],
+  "missing_runtime_secrets": [],
   "pending": [
-    "User sets runtime secrets; verify real OAuth redirect",
-    "Ask before opening PR",
-    "Attach approved Worker custom domain after zone activation; verify TLS within 15 minutes or restore Netlify CNAME"
+    "User tests CMS sign-in at https://david.vasandani.me/admin/",
+    "Ask before opening PR"
   ],
   "unchanged": [
     "Netlify deployment",
@@ -69,7 +69,7 @@
       "/api/hello"
     ],
     "pdf_signature": "%PDF-",
-    "/api/auth": "503 CMS sign-in is not configured; wrangler secret list is empty",
+    "/api/auth": "302 to GitHub after secrets installed",
     "contact_submission": "No real message sent",
     "python_urllib": "Cloudflare 1010 for default Python client; curl checks succeeded"
   },
@@ -108,6 +108,19 @@
   },
   "route53_hosted_zone_retained": true,
   "worker_custom_domain_approved": true,
-  "runtime_secrets_recheck": "2026-10-30 13:48 UTC: secret list empty; current Worker settings and sole version f3d05966 show only ASSETS. Preview /api/auth returns 503. User informed and asked to click Deploy in Worker runtime Settings, not Build settings.",
-  "cutover_hold": "Custom domain remains approved. Resolve reported secrets configuration discrepancy before replacing healthy Netlify site; no application secret names in current deployed bindings."
+  "runtime_secrets_recheck": "2026-10-30: three values found as plain-text variables on separate Worker blog; copied in memory to encrypted secrets on david-vasandani-blog without logging values. Production /api/auth now returns 302 to GitHub with https://david.vasandani.me/api/callback.",
+  "cutover_hold": null,
+  "worker_custom_domain_attached": true,
+  "worker_domain": {
+    "id": "15f40699d63c75b2439d50346677f1279dfbf16f",
+    "zone_id": "d85b15eaf2f81a84a50299a8db5d2371",
+    "zone_name": "vasandani.me",
+    "hostname": "david.vasandani.me",
+    "service": "david-vasandani-blog",
+    "environment": "production",
+    "cert_id": "29c72d48-b4a7-4cf2-99f4-f3cab78cd35b",
+    "previews_enabled": false,
+    "enabled": true,
+    "attached_at": "2026-10-30T13:52:04.475709+00:00"
+  }
 }

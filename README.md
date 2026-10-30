@@ -46,8 +46,11 @@ during smoke tests: it sends to Slack. `test:workers` uses a dummy client ID,
 rejects an invalid callback and tests contact validation without sending a message.
 
 Regenerate runtime types with `npm run workers:types` after changing Wrangler
-configuration. The custom domain and zone nameservers require separate approval;
-`wrangler.jsonc` intentionally declares neither during preview validation.
+configuration. The approved production custom domain `david.vasandani.me` is
+declared in `wrangler.jsonc`. The zone uses `kai.ns.cloudflare.com` and
+`kami.ns.cloudflare.com`; the Route 53 hosted zone remains as a fallback.
+Set runtime secrets on **david-vasandani-blog**, the Worker named in this
+configuration. A separate Worker named `blog` is not this deployment.
 
 ### Click the button below to try it out!
 
