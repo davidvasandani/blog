@@ -30,7 +30,7 @@ cv:
           - Manage a team of three, a Senior Systems Engineer and two IT Operations Specialists.
           # TODO: add the crash reduction once 2 weeks of post-rollout data exist (re-run ~2026-11-08).
           - Traced 314 POS crashes at the busiest stores to a 32-bit memory limit in vendor software using AI-assisted diagnostics; shipped a workaround to 18 registers in 2 weeks.
-          - Found why checkout registers froze after loyalty scans at 32 of 272 restaurants (46 forced restarts in a week) and gave the POS vendor the evidence.
+          - Used AI-assisted analysis of decompiled vendor DLLs and fleet logs to identify a hidden reward dialog blocking the UI thread as the likely cause of loyalty-scan freezes at 32 of 272 restaurants. Documented 46 forced restarts in a week and gave the POS vendor the evidence for confirmation.
           - Enabled repeatable configuration audits across 343 locations by directing AI-assisted delivery of documented vendor integration tools with read-only safeguards.
           - Built an AI-assisted browser platform with human takeover and persistent sessions, unblocking automation while preserving manual intervention.
           - Replaced emailed vendor requests for sales-date corrections with an AI-run fix gated by a preview and a named approver.
