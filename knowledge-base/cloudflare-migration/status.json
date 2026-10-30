@@ -38,7 +38,7 @@
   "missing_runtime_secrets": [],
   "pending": [
     "User tests CMS sign-in at https://david.vasandani.me/admin/",
-    "Ask before opening PR"
+    "Merge PR #145 and verify the first Git-triggered production deployment"
   ],
   "unchanged": [
     "Netlify deployment",
@@ -122,5 +122,19 @@
     "previews_enabled": false,
     "enabled": true,
     "attached_at": "2026-10-30T13:52:04.475709+00:00"
+  },
+  "pull_request": {
+    "number": 145,
+    "url": "https://github.com/davidvasandani/blog/pull/145",
+    "creation_approved": true
+  },
+  "github_build_connection": {
+    "repository": "davidvasandani/blog",
+    "evidence": "User screenshot shows connected Git repository and first-build prompt on 2026-10-30",
+    "production_deployment_verified": false
+  },
+  "duplicate_blog_worker": {
+    "removed_by_user": true,
+    "removal_verified_via_api": true
   }
 }
