@@ -36,7 +36,6 @@
     "SLACK_WEBHOOK_URL"
   ],
   "pending": [
-    "Wait for Cloudflare zone active and public resolvers returning Cloudflare nameservers",
     "User sets runtime secrets; verify real OAuth redirect",
     "Ask before opening PR",
     "Attach approved Worker custom domain after zone activation; verify TLS within 15 minutes or restore Netlify CNAME"
@@ -82,7 +81,7 @@
     "kai.ns.cloudflare.com",
     "kami.ns.cloudflare.com"
   ],
-  "cloudflare_zone_status": "pending",
+  "cloudflare_zone_status": "active",
   "cloudflare_plan": "Free",
   "dns_import": {
     "records_created": 36,
@@ -104,9 +103,11 @@
       "kai.ns.cloudflare.com",
       "kami.ns.cloudflare.com"
     ],
-    "public_resolvers": "Google and Cloudflare DoH still return Route 53 NS immediately after change",
-    "cloudflare_status": "pending"
+    "public_resolvers": "Google and Cloudflare DoH return kai/kami. Cloudflare initially appeared stale through HTTPS cache; fresh cache-busted request confirms Cloudflare NS.",
+    "cloudflare_status": "active"
   },
   "route53_hosted_zone_retained": true,
-  "worker_custom_domain_approved": true
+  "worker_custom_domain_approved": true,
+  "runtime_secrets_recheck": "2026-10-30 13:48 UTC: secret list empty; current Worker settings and sole version f3d05966 show only ASSETS. Preview /api/auth returns 503. User informed and asked to click Deploy in Worker runtime Settings, not Build settings.",
+  "cutover_hold": "Custom domain remains approved. Resolve reported secrets configuration discrepancy before replacing healthy Netlify site; no application secret names in current deployed bindings."
 }
