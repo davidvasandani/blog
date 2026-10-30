@@ -25,3 +25,19 @@ GitHub's Ubuntu runner rejected Puppeteer's downloaded Chrome under AppArmor. CI
 With the upgraded Pa11y stack, Netlify's accessibility plugin and Lighthouse both passed. Lighthouse reported Performance 100, Accessibility 100, Best Practices 100, and SEO 96. The GitHub runner browser-path adjustment passed independent review; its final CI run is the remaining delivery check.
 
 All GitHub tests, CodeQL, Netlify preview and required redirect checks passed. Merge additionally required verified signatures. The seven task commits were recreated with GitHub signatures in the same order, and their final tree hash matched the reviewed/tested source exactly. Final merge status is recorded on PR #118.
+
+## Dependency advisory follow-up — 2026-10-30
+
+Base: origin/main 6b0567c. Node 24.15.0 / npm 11.12.1.
+- Baseline clean install and npm test: 39 tests plus public accessibility audit passed before dependency changes.
+- New Joi prototype-pollution regression failed against @hapi/joi 17.1.1, then passed with scoped joi 17.13.8 alias.
+- Expanded CMS tests reject unknown actions and missing required fields while retaining successful read/write and traversal checks.
+- Compressed-body rejection/recovery is exercised through both installed Express majors in isolated HTTP subprocesses; these tests passed on the baseline too and are compatibility coverage, not a reproduction of the timing-dependent crash.
+- Zod 4.6.7 is scoped to @decap/cli. In-memory MCP tests verify tool listing, valid calls and invalid-input rejection using both Zod v3 compatibility and v4 schemas, plus zod-to-json-schema conversion.
+- PUPPETEER_SKIP_DOWNLOAD=true npm ci: passed, 0 vulnerabilities.
+- npm test: 43 tests passed; public-page accessibility audit passed. NixOS used PUPPETEER_EXECUTABLE_PATH=/nix/store/j8hc3kdypr2gaa2w3dq0a370lwfzbasf-chromium-151.0.7922.137/bin/chromium.
+- npm run typecheck and npm run gemini:server:build: passed.
+- npm audit and npm audit --omit=dev: both 0 vulnerabilities.
+- Final resolved versions: Joi 17.13.8, Zod 4.6.7, body-parser 1.20.9 (Decap Express 4) and 2.4.0 (production Express 5).
+- Hosted sign-in/publishing is outside this local verification; no production credentials or external message delivery are used.
+- Independent codex review --uncommitted: no actionable regressions. Reviewer separately passed Joi/MCP checks; its sandbox blocked subprocess-based compressed-request tests. Those tests passed in the primary workspace's clean full run. No significant findings remain.
