@@ -14,7 +14,7 @@
 ## Delivery
 - [x] T008 Independent Codex review of the diff and fix/reverify any findings (after T006,T007).
 - [x] T009 Record VALIDATION.md and knowledge-base findings; refresh index and commit (after T008).
-- [ ] T010 Open follow-up PR, satisfy required checks and merge (after T009).
+- [x] T010 Open follow-up PR [#147](https://github.com/davidvasandani/blog/pull/147) after T009. Required-check and final merge completion are tracked by the PR; stage 13 must complete before reporting delivery.
 
 Dependencies: T001 → T002 → T003 → T004 → T005 → {T006,T007} → T008 → T009 → T010.
 Parallel example: typecheck/build and read-only dependency audits run together after clean full verification; no concurrent package-lock writes. Deliver tests first, minimal dependency changes second, evidence and review third.
