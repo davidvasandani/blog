@@ -28,3 +28,9 @@ No client-side Mermaid.js on the blog. The site stays free of JavaScript framewo
 
 Task: 0b580ba2-71f3-4437-83a4-8ea5080e8fe4. Scope remains the Blog repository.
 Remove the remaining Joi advisory and newly reported body-parser/Zod findings with the smallest compatible dependency changes. Preserve frontend output, local CMS validation/read/write behavior, API contracts, and existing deployment configuration. Establish the current main branch test baseline before changing dependencies. Prefer supported compatible releases; any targeted override needs documented rationale and behavioral regression coverage. Verify clean installation, full tests, typechecking, both builds, and full/runtime audits. Complete independent review, knowledge recording, and a follow-up PR with required checks before merging. Do not update other services.
+
+# Resume role timeline correction (2026-10-30)
+
+Update the Blog resume to distinguish Sweetgreen Senior, Lead, and Senior Lead roles using committed timeline evidence from the Blog and attached hiring repository. The Lead entry currently contains placeholders. Preserve verified promotion dates, attribute accomplishments to the period supported by evidence, and avoid invented outcomes or metrics. Read hiring only; change Blog files only, apart from the required workspace prior-knowledge note.
+
+The canonical source is `resume/David_Vasandani_CV.yaml`. Review its history and committed timeline material, record source/date support, replace Lead placeholders, and correct misplaced accomplishments when evidence supports it. Keep HTML, Gemini and downloadable resume outputs consistent through their existing build pipeline. Acceptance requires substantive Lead content, supported role attribution, relevant resume tests and builds, independent Codex review, updated project knowledge, and a merged PR against the base branch.
