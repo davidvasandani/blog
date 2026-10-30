@@ -1,4 +1,4 @@
-# PR branch updates
+# Automatic PR branch updates
 
 The autoupdate workflow runs on pushes and merges each advanced base branch into
 eligible open PR branches. PRs with any `decap-cms/` label are excluded. Conflicts
