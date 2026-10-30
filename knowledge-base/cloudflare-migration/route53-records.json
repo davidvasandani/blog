@@ -1,0 +1,324 @@
+{
+  "ResourceRecordSets": [
+    {
+      "Name": "vasandani.me.",
+      "Type": "A",
+      "TTL": 300,
+      "ResourceRecords": [
+        {
+          "Value": "75.2.60.5"
+        }
+      ]
+    },
+    {
+      "Name": "vasandani.me.",
+      "Type": "MX",
+      "TTL": 300,
+      "ResourceRecords": [
+        {
+          "Value": "10 \tASPMX.L.GOOGLE.COM."
+        },
+        {
+          "Value": "10 \tALT1.ASPMX.L.GOOGLE.COM."
+        },
+        {
+          "Value": "10 \tALT2.ASPMX.L.GOOGLE.COM."
+        },
+        {
+          "Value": "10 \tASPMX2.GOOGLEMAIL.COM."
+        },
+        {
+          "Value": "10 \tASPMX3.GOOGLEMAIL.COM."
+        }
+      ]
+    },
+    {
+      "Name": "vasandani.me.",
+      "Type": "NS",
+      "TTL": 172800,
+      "ResourceRecords": [
+        {
+          "Value": "ns-799.awsdns-35.net"
+        },
+        {
+          "Value": "ns-1719.awsdns-22.co.uk"
+        },
+        {
+          "Value": "ns-428.awsdns-53.com"
+        },
+        {
+          "Value": "ns-1079.awsdns-06.org"
+        }
+      ]
+    },
+    {
+      "Name": "vasandani.me.",
+      "Type": "SOA",
+      "TTL": 900,
+      "ResourceRecords": [
+        {
+          "Value": "ns-799.awsdns-35.net. awsdns-hostmaster.amazon.com. 1 7200 900 1209600 86400"
+        }
+      ]
+    },
+    {
+      "Name": "vasandani.me.",
+      "Type": "TXT",
+      "TTL": 300,
+      "ResourceRecords": [
+        {
+          "Value": "\"google-site-verification=2_pP0H7aW2UUhJTWXC7qGibsJaRQsF_dElmvkWKvoLM\""
+        },
+        {
+          "Value": "\"v=spf1 include:_spf.google.com include:amazonses.com ~all\""
+        }
+      ]
+    },
+    {
+      "Name": "2215scott.vasandani.me.",
+      "Type": "A",
+      "TTL": 300,
+      "ResourceRecords": [
+        {
+          "Value": "192.168.1.1"
+        }
+      ]
+    },
+    {
+      "Name": "\\100.vasandani.me.",
+      "Type": "A",
+      "TTL": 300,
+      "ResourceRecords": [
+        {
+          "Value": "75.2.60.5"
+        }
+      ]
+    },
+    {
+      "Name": "google._domainkey.vasandani.me.",
+      "Type": "TXT",
+      "TTL": 300,
+      "ResourceRecords": [
+        {
+          "Value": "\"v=DKIM1; k=rsa; p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAyOJZhYjuqCCjrlZGftofTk51TpDZ70WREDzRhGrzJfJqlFrpxXneJvMY/vhIE6Jm16Ru1wAKiDzjYy/ZRGr4AZ2sxusQVUBHSfkUxz2sEZZOKfkdXQBG3sNXyEq2N725suWbGq3mKRSz5aOChlzMtdjfci89G49Zl2\"\"5jWfpiKjdLztVNa5Zl4bwwSFi4B4Ghq1mRNv1OnGuedB3wLqFjGLwNnc2eoB9BdReWprXwznvBlqO1B5PYNXoDJLJ/E7prOiXOxn2IyM5sxKAyzFL2OenVOHF63EAOk91+TkPiTWyGG63jHq2jws+yPmGh8QW4MflBybD5LBGRqu9alEodKwIDAQAB\""
+        }
+      ]
+    },
+    {
+      "Name": "joey._domainkey.vasandani.me.",
+      "Type": "TXT",
+      "TTL": 300,
+      "ResourceRecords": [
+        {
+          "Value": "\"p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDpl0TSwq5TVlZS+tYHOMtHLG5a4epU+kgJ4PxLN+HF512z3BtXEpvoc7W0BBb4oFS/vcgNvOcnBFXM/7Q9N00EFmKtcL9kUrgF8GOEGxKgMIGk1Yk72c1p9UO3QOKQGMC2CXBQGpmGTD73tPsKv3ALiLZkYN+WnW/aixgEG++g1QIDAQAB\""
+        }
+      ]
+    },
+    {
+      "Name": "airbnb.vasandani.me.",
+      "Type": "A",
+      "AliasTarget": {
+        "HostedZoneId": "Z2F56UZL2M1ACD",
+        "DNSName": "s3-website-us-west-1.amazonaws.com.",
+        "EvaluateTargetHealth": false
+      }
+    },
+    {
+      "Name": "colima.vasandani.me.",
+      "Type": "A",
+      "TTL": 300,
+      "ResourceRecords": [
+        {
+          "Value": "159.203.89.70"
+        }
+      ]
+    },
+    {
+      "Name": "david.vasandani.me.",
+      "Type": "CNAME",
+      "TTL": 300,
+      "ResourceRecords": [
+        {
+          "Value": "david-vasandani-blog.netlify.app"
+        }
+      ]
+    },
+    {
+      "Name": "dev.vasandani.me.",
+      "Type": "A",
+      "TTL": 3600,
+      "ResourceRecords": [
+        {
+          "Value": "127.0.0.1"
+        }
+      ]
+    },
+    {
+      "Name": "\\052.dev.vasandani.me.",
+      "Type": "A",
+      "TTL": 300,
+      "ResourceRecords": [
+        {
+          "Value": "127.0.0.1"
+        }
+      ]
+    },
+    {
+      "Name": "n8n.dev.vasandani.me.",
+      "Type": "A",
+      "TTL": 300,
+      "ResourceRecords": [
+        {
+          "Value": "192.168.1.110"
+        }
+      ]
+    },
+    {
+      "Name": "do.vasandani.me.",
+      "Type": "A",
+      "TTL": 300,
+      "ResourceRecords": [
+        {
+          "Value": "146.190.1.192"
+        }
+      ]
+    },
+    {
+      "Name": "\\052.do.vasandani.me.",
+      "Type": "A",
+      "TTL": 300,
+      "ResourceRecords": [
+        {
+          "Value": "146.190.1.192"
+        }
+      ]
+    },
+    {
+      "Name": "gemini.vasandani.me.",
+      "Type": "CNAME",
+      "TTL": 300,
+      "ResourceRecords": [
+        {
+          "Value": "david.flounder.online"
+        }
+      ]
+    },
+    {
+      "Name": "hcloud.vasandani.me.",
+      "Type": "A",
+      "TTL": 300,
+      "ResourceRecords": [
+        {
+          "Value": "5.78.16.8"
+        }
+      ]
+    },
+    {
+      "Name": "\\052.hcloud.vasandani.me.",
+      "Type": "A",
+      "TTL": 300,
+      "ResourceRecords": [
+        {
+          "Value": "5.78.16.8"
+        }
+      ]
+    },
+    {
+      "Name": "home.vasandani.me.",
+      "Type": "NS",
+      "TTL": 300,
+      "ResourceRecords": [
+        {
+          "Value": "ns-1557.awsdns-02.co.uk."
+        },
+        {
+          "Value": "ns-846.awsdns-41.net."
+        },
+        {
+          "Value": "ns-358.awsdns-44.com."
+        },
+        {
+          "Value": "ns-1448.awsdns-53.org."
+        }
+      ]
+    },
+    {
+      "Name": "jekylltest.vasandani.me.",
+      "Type": "CNAME",
+      "TTL": 300,
+      "ResourceRecords": [
+        {
+          "Value": "davidneudorfer.github.io"
+        }
+      ]
+    },
+    {
+      "Name": "mexico.vasandani.me.",
+      "Type": "A",
+      "AliasTarget": {
+        "HostedZoneId": "Z3AQBSTGFYJSTF",
+        "DNSName": "s3-website-us-east-1.amazonaws.com.",
+        "EvaluateTargetHealth": false
+      }
+    },
+    {
+      "Name": "remote.vasandani.me.",
+      "Type": "CNAME",
+      "TTL": 300,
+      "ResourceRecords": [
+        {
+          "Value": "phitmym7.cname.us.ngrok.io"
+        }
+      ]
+    },
+    {
+      "Name": "\\052.remote.vasandani.me.",
+      "Type": "CNAME",
+      "TTL": 300,
+      "ResourceRecords": [
+        {
+          "Value": "phitmym7.cname.us.ngrok.io"
+        }
+      ]
+    },
+    {
+      "Name": "tbc.vasandani.me.",
+      "Type": "NS",
+      "TTL": 300,
+      "ResourceRecords": [
+        {
+          "Value": "ns-1957.awsdns-52.co.uk."
+        },
+        {
+          "Value": "ns-160.awsdns-20.com."
+        },
+        {
+          "Value": "ns-1196.awsdns-21.org."
+        },
+        {
+          "Value": "ns-646.awsdns-16.net."
+        }
+      ]
+    },
+    {
+      "Name": "wiki.vasandani.me.",
+      "Type": "CNAME",
+      "TTL": 300,
+      "ResourceRecords": [
+        {
+          "Value": "2aztxhp5y.cname.us.ngrok.io"
+        }
+      ]
+    },
+    {
+      "Name": "www.vasandani.me.",
+      "Type": "A",
+      "TTL": 300,
+      "ResourceRecords": [
+        {
+          "Value": "104.198.14.52"
+        }
+      ]
+    }
+  ]
+}
