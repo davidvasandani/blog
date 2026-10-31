@@ -1,3 +1,0 @@
-# redirect apex record
-http://vasandani.me/* https://david.vasandani.me/:splat 301!
-https://vasandani.me/* https://david.vasandani.me/:splat 301!

@@ -73,7 +73,7 @@ test('render explains setup when RenderCV is not installed', t => {
   assert.match(result.stderr, /npm run resume:setup/);
 });
 
-test('render uses the virtualenv named by RESUME_VENV (Netlify cache location)', { skip: process.platform === 'win32' }, t => {
+test('render uses the virtualenv named by RESUME_VENV (Cloudflare cache location)', { skip: process.platform === 'win32' }, t => {
   const root = fs.mkdtempSync(path.join(require('node:os').tmpdir(), 'resume-venv-'));
   t.after(() => fs.rmSync(root, { recursive: true, force: true }));
   const bin = path.join(root, 'cached-venv', 'bin');

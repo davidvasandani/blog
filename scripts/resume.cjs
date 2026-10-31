@@ -2,8 +2,8 @@
 // Wrapper around the RenderCV CLI (Python). Usage:
 //   node scripts/resume.cjs setup            create resume/.venv and install resume/requirements.txt
 //   node scripts/resume.cjs render [--watch] render resume/David_Vasandani_CV.yaml
-// RESUME_VENV relocates the virtualenv (relative to the repository root). Netlify
-// sets it inside node_modules/.cache, which Netlify keeps between builds.
+// RESUME_VENV relocates the virtualenv (relative to the repository root). Cloudflare
+// sets it inside node_modules/.cache, which can be cached between builds.
 const { spawnSync } = require('node:child_process');
 const fs = require('node:fs');
 const path = require('node:path');

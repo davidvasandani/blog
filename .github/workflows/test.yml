@@ -35,7 +35,7 @@ jobs:
       - run: rendercv render David_Vasandani_CV.yaml
         working-directory: resume
       - run: test -s resume/rendercv_output/David_Vasandani_CV.pdf
-      # Build the site with the rendered resume, as Netlify does, and check
+      # Build the site with the rendered resume, as Cloudflare does, and check
       # the published /resume/ page, its PDF and their accessibility.
       - uses: actions/setup-node@v4
         with:

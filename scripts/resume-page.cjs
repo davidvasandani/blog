@@ -1,5 +1,5 @@
 // Turns RenderCV's Markdown output into the /resume/ page body. The page is
-// built only when `npm run resume` has rendered the resume (always on Netlify).
+// built only when `npm run resume` has rendered the resume (always on Cloudflare).
 const fs = require('node:fs');
 const path = require('node:path');
 const markdownIt = require('markdown-it');

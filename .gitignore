@@ -4,8 +4,6 @@ node_modules/
 dist/
 .DS_Store
 
-# Local Netlify folder
-.netlify
 .test-dist/
 .specify/feature-dir
 specs/**/.speckit-owner
@@ -17,8 +15,6 @@ resume/rendercv_output/
 # Pinned diagram-design checkout (npm run diagrams:setup)
 diagrams/.diagram-design/
 
-# Local Vercel folder
-.vercel
 .wrangler/
 .dev.vars*
 .env*
