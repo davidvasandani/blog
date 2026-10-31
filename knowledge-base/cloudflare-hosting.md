@@ -11,3 +11,5 @@ Accessibility uses directly pinned Pa11y 10 and Puppeteer. `scripts/test-a11y.cj
 For current deployment, secrets and local development instructions use README.md. Old provider-specific notes in dependency-testing.md and resume-rendercv.md describe earlier configurations and are superseded here. Preserve the pinned RenderCV environment and build-output exclusions.
 
 Hosted integration follow-up: PR #156 still received Vercel preview checks. Removing config files does not disconnect a dashboard-managed Git integration. The available Vercel connection could not access the blog team (403; consent recovery 404), so hosted disconnection remains outstanding.
+
+Branch protection follow-up (same task, 2026-10-31): replaced the two required Netlify contexts with `Workers Builds: david-vasandani-blog` (Cloudflare app 85455), `test`, `resume`, and `diagrams` (GitHub Actions app 15368). Retained CodeQL, pr-label, strict up-to-date checks and existing review settings. All current checks passed on PR #156. Vibe Kanban also gates on non-required failing checks, so old Netlify preview failures can still block its merge tool after branch protection is corrected.
