@@ -40,7 +40,13 @@ function setup() {
 }
 
 function render(extraArgs) {
-  const args = ['render', input, ...extraArgs];
+  const revision = spawnSync('git', ['rev-parse', '--short=8', 'HEAD'], {
+    cwd: repoDir, encoding: 'utf8',
+  });
+  const hash = revision.status === 0 ? revision.stdout.trim() : 'unavailable';
+  if (hash === 'unavailable') console.warn('Git revision unavailable; the PDF footer will say so.');
+  const args = ['render', input, ...extraArgs,
+    '--design.templates.footer', `*NAME -- PAGE_NUMBER/TOTAL_PAGES -- Git: ${hash}*`];
   const local = exe('rendercv');
   if (fs.existsSync(local)) return run(local, args).status;
   const global = run('rendercv', args);

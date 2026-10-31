@@ -32,15 +32,14 @@ jobs:
           cache: pip
           cache-dependency-path: resume/requirements.txt
       - run: pip install -r resume/requirements.txt
-      - run: rendercv render David_Vasandani_CV.yaml
-        working-directory: resume
-      - run: test -s resume/rendercv_output/David_Vasandani_CV.pdf
       # Build the site with the rendered resume, as Netlify does, and check
       # the published /resume/ page, its PDF and their accessibility.
       - uses: actions/setup-node@v4
         with:
           node-version-file: .nvmrc
           cache: npm
+      - run: npm run resume
+      - run: test -s resume/rendercv_output/David_Vasandani_CV.pdf
       - run: npm ci
         env:
           PUPPETEER_SKIP_DOWNLOAD: "true"
