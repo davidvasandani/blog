@@ -1,5 +1,4 @@
 import express, { Router, Request, Response } from "express";
-import serverless from "serverless-http";
 import { randomBytes, timingSafeEqual } from "crypto";
 import os from "os";
 
@@ -136,5 +135,3 @@ router.post("/contact", express.urlencoded({ extended: false }), async (req: Req
 });
 
 api.use("/api/", router);
-
-export const handler = serverless(api);

@@ -1,5 +1,5 @@
 import { httpServerHandler } from "cloudflare:node";
-import { api } from "../netlify/functions/api";
+import { api } from "../api/app";
 
 // Keep the same Express routes and secrets as the existing deployment.
 api.listen(3000);
