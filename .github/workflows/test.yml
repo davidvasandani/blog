@@ -32,7 +32,7 @@ jobs:
           cache: pip
           cache-dependency-path: resume/requirements.txt
       - run: pip install -r resume/requirements.txt
-      # Build the site with the rendered resume, as Netlify does, and check
+      # Build the site with the rendered resume, as Cloudflare does, and check
       # the published /resume/ page, its PDF and their accessibility.
       - uses: actions/setup-node@v4
         with:

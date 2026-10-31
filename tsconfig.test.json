@@ -9,10 +9,9 @@
       "node"
     ],
     "moduleResolution": "Node16",
-    "rootDir": "netlify/functions"
+    "rootDir": "api"
   },
   "include": [
-    "netlify/functions/**/*.ts",
-    "netlify/functions/**/*.mts"
+    "api/**/*.ts"
   ]
 }
