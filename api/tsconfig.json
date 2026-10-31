@@ -1,6 +1,5 @@
 {
-  // Vercel Functions. Vercel compiles them from a temporary config that
-  // extends this one, so type roots are anchored to this directory.
+  // Shared Express application used by the Worker.
   "compilerOptions": {
     "target": "ES2022",
     "module": "Node16",

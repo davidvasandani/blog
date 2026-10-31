@@ -4,12 +4,12 @@ The resume lives in `David_Vasandani_CV.yaml` and is rendered by [RenderCV](http
 
 ## Published on the site
 
-Every Netlify deploy renders the resume (see the build command in `netlify.toml`) and publishes:
+Every Cloudflare deploy renders the resume (see `npm run workers:build`) and publishes:
 
 - https://david.vasandani.me/resume/: the HTML version, built from RenderCV's Markdown output in the blog's own layout (`pages/resume.njk`, `scripts/resume-page.cjs`), with a **Resume** nav link
 - https://david.vasandani.me/resume/David_Vasandani_CV.pdf: the PDF
 
-Netlify keeps RenderCV installed between builds (about 1s instead of about 16s). See [Netlify build and caching](../README.md#netlify-build-and-caching) for how that works and how to clear it.
+The Worker build stores RenderCV in `node_modules/.cache/resume-venv`. See [build tooling](../README.md#build-tooling) for the local cache locations.
 
 So publishing a change means editing the YAML and merging to `main`. A render failure fails the deploy, so a broken resume never goes live. Locally, `npm run build` includes the page only after `npm run resume` has rendered it, and skips it (and the nav link) otherwise. The source files themselves stay out of template processing (`resume/` is in `.eleventyignore`) and out of the Gemini capsule.
 

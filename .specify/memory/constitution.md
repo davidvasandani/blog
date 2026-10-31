@@ -17,3 +17,5 @@ Governance: these Blog-specific principles replace unrelated scaffold principles
 Review: 2026-10-30 category merge. Version 1.2.0 and all nine principles remain applicable without amendment. Résumé grouping changes preserve entry content and published URLs.
 
 Review: 2026-10-30 resume role timeline correction (`/speckit.constitution`). Version 1.2.0 applies without amendment. Resume claims must follow committed evidence; the attached hiring repository is read-only.
+
+Review: 2026-10-31 retired-host cleanup (`/speckit.constitution`). Version 1.2.0 remains applicable. Cloudflare is the blog's deployment target; retain API, editor, resume, Gemini and accessibility behavior while removing obsolete adapters. Hosted account and DNS changes are outside this repository cleanup.

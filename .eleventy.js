@@ -96,7 +96,7 @@ module.exports = async function(eleventyConfig) {
   // We additionally output a copy of our CSS for use in Decap CMS previews
   eleventyConfig.addPassthroughCopy("_includes/assets/css/inline.css");
   eleventyConfig.addPassthroughCopy("authors/*.jpg");
-  // Rendered by `npm run resume` (Netlify runs it before eleventy); skipped if absent.
+  // Rendered by `npm run resume` (Cloudflare runs it before eleventy); skipped if absent.
   eleventyConfig.addPassthroughCopy({ "resume/rendercv_output/David_Vasandani_CV.pdf": "resume/David_Vasandani_CV.pdf" });
 
   eleventyConfig.ignores.add('gemini/**');

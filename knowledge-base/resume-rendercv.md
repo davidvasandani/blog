@@ -1,5 +1,7 @@
 # Resume with RenderCV
 
+Current hosting update (task bd3547c1-520f-493b-a49e-18f32927121c): see [Cloudflare hosting](cloudflare-hosting.md). Provider-specific instructions below are historical.
+
 Task: e51fe535-6eff-4934-a141-6f1fb612dbda (Set up RenderCV in the blog)
 Updated: 2026-10-27 (publishing follow-up)
 

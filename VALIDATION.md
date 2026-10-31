@@ -17,3 +17,7 @@ SpecKit analysis found no errors, coverage gaps, or constitution violations. Gen
 ## Base branch update
 
 Integrated main commit `5a09669` before merging PR #152, preserving the role timeline correction from PR #153. Resolved documentation conflicts by retaining this task's documents and appending the upstream role timeline spec, plan, and constitution review. Parsed YAML comparison against updated main confirms that the only content difference is the category grouping. RenderCV, Eleventy, all eight résumé tests and the public accessibility audit passed again. A second independent Codex review found no actionable regressions; its runtime checks were blocked by subprocess restrictions.
+
+## Latest main integration, 2026-10-31
+
+Integrated `fc1b008`, preserving newer role descriptions, PDF footer and retired-host cleanup. Documentation conflicts retain both task records and the current hosting index. Parsed YAML comparison to current main confirms only the Projects grouping differs. Clean installation, résumé rendering, web and Gemini builds, all eight résumé tests, and accessibility across 25 public pages passed. The old Chromium path was absent; the audit passed with installed Chromium 149. Independent Codex review against current main found no actionable regressions and also passed typechecking and API tests.

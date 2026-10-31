@@ -1,6 +1,7 @@
 const { test } = require('node:test');
 const assert = require('node:assert/strict');
-const { handler } = require('../.test-dist/api.js');
+const { api } = require('../.test-dist/app.js');
+const handler = require('serverless-http')(api);
 const request = (path, extra = {}) => handler({
   httpMethod: 'GET', path, headers: { host: 'localhost', 'x-test': 'local' },
   queryStringParameters: {}, body: null, isBase64Encoded: false, ...extra
@@ -171,11 +172,4 @@ test('missing routes and unsupported mutations return 404', async () => {
   for (const [url, method] of [['/api/missing', 'GET'], ['/hello', 'GET'], ['/api/hello', 'POST']]) {
     assert.equal((await request(url, { httpMethod: method })).statusCode, 404);
   }
-});
-
-test('native Netlify hello function returns a web Response', async () => {
-  const { default: hello } = await import('../.test-dist/hello/hello.mjs');
-  const result = await hello(new Request('http://localhost/hello'), {});
-  assert.equal(result.status, 200);
-  assert.equal(await result.text(), 'Hello, world!');
 });

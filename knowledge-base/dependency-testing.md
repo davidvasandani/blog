@@ -1,5 +1,7 @@
 # Dependency upgrades and local testing
 
+Current hosting update (task bd3547c1-520f-493b-a49e-18f32927121c): see [Cloudflare hosting](cloudflare-hosting.md). Provider-specific instructions below are historical.
+
 Task: 0b580ba2-71f3-4437-83a4-8ea5080e8fe4 (Upgrade Dependencies)
 Updated: 2026-10-30
 

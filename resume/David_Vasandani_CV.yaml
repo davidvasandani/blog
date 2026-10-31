@@ -25,7 +25,10 @@ cv:
         start_date: 2026-02
         end_date: present
         location: Culver City, CA
-        summary: Promoted from Senior Lead Software Engineer. Runs IT Operations, reporting to the VP of Technology.
+        summary: |-
+          **Theme: Leading IT operations with AI-assisted diagnosis and automation.**
+
+          Promoted from Senior Lead Software Engineer. Runs IT Operations, reporting to the VP of Technology.
         highlights:
           - Manage a team of three, a Senior Systems Engineer and two IT Operations Specialists.
           # TODO: add the crash reduction once 2 weeks of post-rollout data exist (re-run ~2026-11-08).
@@ -40,7 +43,10 @@ cv:
         start_date: 2025-09
         end_date: 2026-02
         location: Culver City, CA
-        summary: Promoted from Lead Software Engineer.
+        summary: |-
+          **Theme: Guiding retail technology through incidents and change.**
+
+          Promoted from Lead Software Engineer.
         highlights:
           - Filled the Retail Technology leadership gap during an unplanned leave, giving the VP of Technology the technical guidance to limit revenue loss from POS issues.
           - Advanced a virtual POS proof of concept through cutover planning with Security; the planned cutover was postponed to add telemetry.
@@ -51,7 +57,10 @@ cv:
         start_date: 2021-03
         end_date: 2025-08
         location: Culver City, CA
-        summary: Promoted from Senior Software Engineer.
+        summary: |-
+          **Theme: Connecting restaurant systems and making their health visible.**
+
+          Promoted from Senior Software Engineer.
         highlights:
           - Built an Ansible and Fluent Bit pipeline for POS logs in Datadog, reaching 222 of 252 restaurants by May 2025.
           - Built AWS Lambda and Datadog monitoring for Meraki network loss and latency and Intune time-clock device health, giving teams visibility into restaurant connectivity and device status.
@@ -63,7 +72,10 @@ cv:
         start_date: 2019-08
         end_date: 2021-02
         location: Culver City, CA
-        summary: Joined as Senior Engineer, Infrastructure, retitled Senior Software Engineer in March 2020.
+        summary: |-
+          **Theme: Making software delivery faster and safer.**
+
+          Joined as Senior Engineer, Infrastructure, retitled Senior Software Engineer in March 2020.
         highlights:
           - Broke a locally run Terraform monorepo into smaller repositories deployed by CircleCI, each with its own backend state, reducing blast radius and increasing developer velocity.
           - Decoupled an Ember frontend from a Rails backend into a static single-page application to increase deployment frequency.

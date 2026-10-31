@@ -15,7 +15,6 @@ backend:
 publish_mode: editorial_workflow
 
 # Uncomment below to enable a link to your published site in the header bar of Decap CMS
-# site_url: https://eleventy-netlify-boilerplate.netlify.app/
 
 media_folder: "static/img" # Media files will be stored in the repo under images/uploads
 

@@ -18,3 +18,14 @@ No new dependencies, API contracts, or permanent tests are needed for this conte
 5. Update the canonical resume YAML with distinct, supported Lead accomplishments and any supported attribution corrections.
 6. Render with pinned RenderCV, build HTML and Gemini, run existing resume tests and inspect rendered role sections and PDF.
 7. Run independent Codex review, fix confirmed findings and revalidate. Record validation and reusable knowledge, commit Blog changes, then open and merge a PR after checks.
+
+## Concurrent retired-host cleanup record
+
+# Implementation plan
+
+1. Move the shared Express application to api/app.ts; update Worker import and compile targets. Keep test-only serverless adaptation outside production code.
+2. Remove retired deployment configs, adapters, Identity email templates and forced redirect assets; preserve Cloudflare resume validation.
+3. Replace the accessibility plugin with pinned direct Pa11y and Puppeteer dependencies and a recursive blocking audit; retain the inaccessible fixture regression.
+4. Refresh current documentation, package metadata and provider-specific comments. Preserve historical knowledge snapshots.
+5. Regenerate the lockfile, run typecheck, full tests and Worker smoke tests. Review the complete diff independently with Codex and fix confirmed findings.
+6. Record hosting knowledge, commit, open the task PR, verify checks and merge.
