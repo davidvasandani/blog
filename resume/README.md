@@ -32,6 +32,8 @@ npm run resume:watch   # re-renders on every save
 
 Extra RenderCV options pass through after `--`, for example `npm run resume -- --dont-generate-png`. If `resume/.venv` doesn't exist, the scripts fall back to a `rendercv` on your `PATH`.
 
+The PDF footer includes the short Git commit hash of the blog checkout, alongside the name and page count. Use `npm run resume` to include it; calling RenderCV directly bypasses the footer override. The hash identifies `HEAD`, so uncommitted edits are not represented. Watch mode captures the hash when it starts; restart it after committing. If Git or the repository metadata is unavailable, the footer reads `Git: unavailable` and the script prints a warning.
+
 `rendercv_output/` and `.venv/` are gitignored. CI (`.github/workflows/test.yml`, job `resume`) renders the resume on every pull request and push to `main` and uploads `rendercv_output/` as the `resume` artifact.
 
 ## Editing

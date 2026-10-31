@@ -82,8 +82,18 @@ test('render uses the virtualenv named by RESUME_VENV (Cloudflare cache location
   fs.writeFileSync(path.join(bin, 'rendercv'), '#!/bin/sh\necho "$@" > "${0%/*}/args"\n', { mode: 0o755 });
   const result = spawnSync(process.execPath, ['scripts/resume.cjs', 'render', '--dont-generate-png'], {
     encoding: 'utf8',
-    env: { PATH: '', RESUME_VENV: path.join(root, 'cached-venv') },
+    env: { ...process.env, RESUME_VENV: path.join(root, 'cached-venv') },
   });
   assert.equal(result.status, 0, result.stderr);
-  assert.equal(read(path.join(bin, 'args')).trim(), 'render David_Vasandani_CV.yaml --dont-generate-png');
+  const hash = spawnSync('git', ['rev-parse', '--short=8', 'HEAD'], { encoding: 'utf8' }).stdout.trim();
+  assert.equal(read(path.join(bin, 'args')).trim(),
+    `render David_Vasandani_CV.yaml --dont-generate-png --design.templates.footer *NAME -- PAGE_NUMBER/TOTAL_PAGES -- Git: ${hash}*`);
+
+  const withoutGit = spawnSync(process.execPath, ['scripts/resume.cjs', 'render'], {
+    encoding: 'utf8',
+    env: { PATH: '', RESUME_VENV: path.join(root, 'cached-venv') },
+  });
+  assert.equal(withoutGit.status, 0, withoutGit.stderr);
+  assert.match(withoutGit.stderr, /Git revision unavailable/);
+  assert.match(read(path.join(bin, 'args')), /Git: unavailable/);
 });
