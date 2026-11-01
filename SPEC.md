@@ -22,7 +22,7 @@ The attached skill is already installed as `voice` in the user skills directory 
 
 1. Keep every fact: numbers, dates, titles, counts, scope qualifiers ("likely cause", "planned cutover was postponed", "as reported"). No new claims. Where a bullet is vague, the plainer version may name what the existing evidence says the thing does (for example the remote-support tool runs PowerShell on store POS devices). It must not add outcomes or numbers that aren't already there.
 2. Keep the role attribution from `knowledge-base/resume-role-timeline.md`: no bullet moves between roles, no recovery or rollout claims the evidence doesn't support.
-3. Keep confidential details off the page (vendor security findings, store names, people, tickets). Vendor names already on the page (Paytronix, PAR, Datadog and so on) can stay.
+3. Keep confidential details off the page (vendor security findings, store names, people, tickets). Vendor names already on the page (Paytronix, Datadog and so on) can stay, except the POS vendor, which David asked to leave unnamed.
 4. Say "AI" once per bullet at most, and only where it matters (the role's theme is AI-assisted work, so it should still be visible).
 5. Follow the skill: active voice, plain words, no em dashes, no "-ing" tails, no puffery, no rule-of-three padding, sentence case.
 6. Resume conventions still apply: implied first person (no "I" in Sweetgreen bullets), past tense for finished work, one or two short sentences per bullet. The open-source section already uses "my"; that can stay.

@@ -24,7 +24,7 @@ Two mistakes the review caught, both easy to repeat:
 - Don't cite hiring files whose names contain a product name. Use a neutral alias and describe the file instead.
 - If a name slips into a local commit, amend it before the first push. The PR keeps every pushed commit, even after a squash merge.
 
-Vendor names that were already on the published resume before this task (Paytronix, PAR) were left alone, because removing them was out of scope. Ask David before adding more.
+Don't name the POS vendor anywhere in this repo, not even by its short company name. David asked for that on 2026-11-01, and the resume now says "our POS vendor". Other vendors already on the resume (Paytronix, Datadog, Meraki) are fine. Ask David before adding new vendor names.
 
 ## Checks
 A whole-file rewrite is safe to verify mechanically. Parse the old and new YAML with ruamel from `resume/.venv` (system Python has no PyYAML), compare the shapes, and confirm only summary and highlight strings changed. Then scan for dashes, curly quotes, "AI" counts and the skill's word list. Render both versions to compare page counts (3 pages here).

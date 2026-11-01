@@ -20,3 +20,6 @@ Three passes of `codex exec` (read-only) on the diff against `origin/main`, with
 - Pass 3: no significant findings.
 
 The local commit was amended before the first push, so the public branch history never contained either product name. After the fixes, `npm run resume`, the build, the 8 resume tests and the 25-page accessibility audit all pass again, and the PDF is still 3 pages.
+
+## Follow-up: POS vendor left unnamed
+After review, David asked for the POS vendor not to be named. The SFTP bullet now says "our POS vendor". The name is also gone from this task's docs, the knowledge page and the earlier role-attribution notes (`specs/vk/018c-senior-vs-lead-v/research.md`). `git grep -w` finds no mention left in the tree. The name stays in older commits, which were already public. The resume still renders at 3 pages, the 8 resume tests and the 25-page accessibility audit pass, and `/resume/` doesn't contain the name. David chose an admin merge to get past the signed-commit rule. GitHub signs the squash commit, as it did for #158.

@@ -11,4 +11,4 @@ T002 and T003 edit different files and both depend only on T001, so they're mark
 - [x] T005 Render, build and run the resume tests. Compare page counts and record them in `specs/vk/76c7-my-voice/validation.md`.
 - [x] T006 Run the Codex review, fix confirmed findings in `resume/David_Vasandani_CV.yaml` and `research.md`, and record it in `validation.md`.
 - [x] T007 Record knowledge in `knowledge-base/resume-voice.md` and `knowledge-base/index.md`.
-- [ ] T008 Commit, open the PR against main, wait for checks and merge.
+- [x] T008 Commit, open the PR against main, wait for checks and merge.

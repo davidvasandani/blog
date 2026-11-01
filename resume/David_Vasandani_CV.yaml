@@ -66,7 +66,7 @@ cv:
           - Built AWS Lambda and Datadog monitoring for Meraki network loss and latency and for Intune-managed time clocks, so teams could see which restaurants had network or device problems.
           - Added Cognito token caching for marketplace partners. Reported authentication costs fell from about $3,500 to $1,000 a month.
           - Defined AWS accounts in Terraform, rolled out Atlantis and view-only SSO, and turned on AWS Config with ServiceNow integration in every account.
-          - Built and ran an AWS Transfer SFTP service in Terraform, with a separate folder for each vendor, for Paytronix and PAR file exchange. Worked with Security to onboard vendors.
+          - Built and ran an AWS Transfer SFTP service in Terraform for file exchange with Paytronix and our POS vendor, with a separate folder for each vendor. Worked with Security to onboard vendors.
       - company: Sweetgreen
         position: Senior Software Engineer, Infrastructure
         start_date: 2019-08
