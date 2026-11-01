@@ -18,7 +18,7 @@ Blog commit `c96d301266df36211975d8c032b1d2ab9d64c9cb` imported Senior highlight
 | work:E012 and work:E041 | Meraki Lambda merged February 28, 2025; time-clock dashboard live May 28, 2025 | Move network and time-clock observability out of Senior Lead. Describe specific network and device metrics rather than retaining the unsupported aggregate master-terminal claim. Later telemetry extensions are not claimed here. |
 | work:E034 | May–August 2025 token caching; August 20 status report credits David's implementation | Credit marketplace authentication caching to Lead. Describe the roughly $3,500 to $1,000 monthly cost change as reported, not audited finance results. |
 | work:E020 | ServiceNow and AWS Config applied to all AWS accounts June 18, 2025 | Credit Terraform AWS account governance, Atlantis and view-only SSO to Lead; do not move later September work wholesale into this role. |
-| work:E007 | Vendor SFTP setup from September 2024; first encrypted PAR file received/decrypted February 27, 2025 | Credit Terraform-managed AWS Transfer service and vendor onboarding. Do not claim David personally implemented every user or decryption workflow, or include later 2026 onboarding. |
+| work:E007 | Vendor SFTP setup from September 2024; first encrypted POS vendor file received/decrypted February 27, 2025 | Credit Terraform-managed AWS Transfer service and vendor onboarding. Do not claim David personally implemented every user or decryption workflow, or include later 2026 onboarding. |
 
 ## Senior Lead corrections
 
@@ -26,6 +26,6 @@ Blog commit `c96d301266df36211975d8c032b1d2ab9d64c9cb` imported Senior highlight
 | --- | --- | --- |
 | work:E036 | POC began May 2025; hardware installed August 18; cutover plan approved October 24; November cutover postponed and never ran | Describe the Senior Lead phase as cutover planning with telemetry prerequisites. Do not imply a production VM rollout. Remove the broad research/security bullet pair, whose chronology was not established. |
 | work:E056 | October 2025 attempted upgrade rolled back; replacement Alteryx server cut over October 31 with business approval | Add the completed upgrade with rollback readiness as a distinct Senior Lead outcome. |
-| work:E059 | October 21–22, 2025 scripts removed scheduled reboots from devices in the Ansible inventory | Describe David's own remediation and its purpose. PAR and field technicians restored stores; do not claim David led the incident or personally restored all stores. Remove the training claim, which this event does not verify. |
+| work:E059 | October 21–22, 2025 scripts removed scheduled reboots from devices in the Ansible inventory | Describe David's own remediation and its purpose. The POS vendor and field technicians restored stores; do not claim David led the incident or personally restored all stores. Remove the training claim, which this event does not verify. |
 
 The Lead selection covers substantive, well-dated outcomes rather than filling every year of the role with conjecture. Rejected alternatives include abandoned WAF operation-name controls, conflicting AppSec selection, unmerged Dependabot automation, and cost savings with disputed ownership.
