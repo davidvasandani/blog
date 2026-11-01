@@ -1,7 +1,10 @@
 # Resume voice and public-repo confidentiality
 
 Task: 76c7f44d-6efd-4fda-abfc-9f3b31eeb12f (My Voice)
-Updated: 2026-11-01
+Updated: 2026-11-01 (follow-up: /voice required for every resume change)
+
+## The rule
+David asked that every resume update go through `/voice`. Three places enforce it. `AGENTS.md`, which `CLAUDE.md` imports, gives agents the steps. Constitution principle 10 makes it part of every SpecKit task. `scripts/resume-voice.cjs` (`npm run resume:voice`, and also run by `npm test`) fails CI on dashes, curly quotes, "AI" said more than once in a line and the skill's word lists. The script can't tell whether a line was actually rewritten with the skill, so running `/voice` is still required. Run against the resume from before #160, the script flags David's original example bullet (two "AI"s) and a "leveraging".
 
 ## Voice
 David wants the resume to sound like him, not like AI. His example of what not to write: "Enabled AI-driven POS troubleshooting through AI-assisted development of remote-support tools with read-only defaults, approval controls and audit logs." Write every resume line with the `/voice` skill (installed for agents as `~/.claude/skills/voice`, the same skill as the attachment named `unslopify`).

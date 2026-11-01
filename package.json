@@ -28,6 +28,7 @@
     "resume:setup": "node scripts/resume.cjs setup",
     "resume": "node scripts/resume.cjs render",
     "resume:watch": "node scripts/resume.cjs render --watch",
+    "resume:voice": "node scripts/resume-voice.cjs",
     "diagrams:setup": "node scripts/diagrams.cjs setup",
     "diagrams:extract": "node scripts/diagrams.cjs extract",
     "diagrams:export": "node scripts/diagrams.cjs export",
