@@ -1,8 +1,9 @@
-# Implementation plan: resume voice rewrite
+# Projects implementation plan
 
-1. Confirm the `voice` skill is installed and matches the attachment. Done: `~/.claude/skills/voice/SKILL.md` matches the attachment exactly once the name is changed from unslopify to voice.
-2. Walk the YAML top to bottom and apply the skill to every line a reader sees: the summary, each role's theme and summary line, every highlight, the open-source and project entries, and the skill labels.
-3. For each changed bullet, check its facts against the original and against the evidence listed in `PRIOR_KNOWLEDGE.md`. Record the before and after text in `specs/vk/76c7-my-voice/research.md`.
-4. Self-audit with the skill's last step ("what makes this obviously AI generated?"). Check for em dashes, "AI" said more than once per bullet, "-ing" tails, passive voice and the banned word list.
-5. Run `node --test tests/resume.test.cjs` and `npm run resume`. Read the rendered Markdown to check the line wrapping and page count.
-6. Commit on `vk/76c7-my-voice`, get a Codex review, fix what it confirms, then record knowledge, open the PR and merge it.
+1. Refresh the constitution and execute the repository's SpecKit command instructions in order, using `specs/vk/1d64-projects`.
+2. Resolve catalog scope using existing personal/open-source evidence and any user clarification. Record sources and avoid unsupported links or claims.
+3. Add `pages/projects.md` with `/projects/index.html`, the existing page layout, and top-level navigation after Contact. List every in-scope project with a concise description and available public references.
+4. Document catalog maintenance in README. Keep all internal artifacts excluded through existing rules.
+5. Install pinned dependencies; build both formats, inspect rendered navigation/content/internal links and narrow/wide layouts, and run existing regression/accessibility checks.
+6. Run independent Codex diff review and address significant findings. Record validation in the feature directory.
+7. Update the project knowledge base and index with the task ID, commit, create a PR, wait for required checks and merge.
