@@ -8,3 +8,5 @@
 - [Resume role attribution](resume-role-timeline.md): promotion dates, phase-specific timeline evidence, Lead/Senior Lead corrections, and limits of earlier-role evidence. Task: a48e7b92-06d7-40eb-99c1-ed2266c43637 (VAS-932)
 - [Projects catalog and top-level pages](projects.md): catalog scope, navigation ordering, CMS fields and the optional-resume/Gemini boundaries. Task: 5d213750-2219-4125-beee-f85e3a0367b4 (VAS-943).
 - [Resume voice and public-repo confidentiality](resume-voice.md): every resume change goes through the `/voice` skill (AGENTS.md, constitution 10, `npm run resume:voice` in CI), keeping qualifiers and ownership, and keeping the hiring repo's confidential names out of this public repo (specs and commits too). Task: 76c7f44d-6efd-4fda-abfc-9f3b31eeb12f (My Voice)
+
+- [SitePing and CMS sign-in](siteping.md): one GitHub editor login, shared Durable Object feedback, deployment binding, and regression checks. Task: 2edab207-fbe6-4baa-96e7-37ba3e0ed70a, VAS-945.

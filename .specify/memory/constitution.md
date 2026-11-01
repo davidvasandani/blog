@@ -24,4 +24,6 @@ Review: 2026-10-31 retired-host cleanup (`/speckit.constitution`). Version 1.2.0
 Review: 2026-11-01 Projects (`/speckit.constitution`). Version 1.2.0 remains applicable. The project catalog uses committed public-facing evidence, existing navigation and page layout; it does not update other services or publish internal planning documents.
 Review: 2026-11-01 resume voice rewrite (`/speckit.constitution`). Version 1.2.0 applies without amendment. Resume wording changes must keep every fact and role attribution backed by committed evidence, and follow the `/voice` skill. The hiring repository stays read-only.
 
+Review: 2026-11-01 SitePing integration (`/speckit.constitution`). Version 1.2.0 remains applicable. Keep changes within the Blog repository, preserve Decap OAuth and public reading, verify authentication before exposing protected feedback, and mock external requests in tests. Resolve the intended signed-in audience and storage requirements before implementation.
+
 Amendment: 2026-11-01, version 1.3.0 adds principle 10 at David's request: all resume updates go through the `/voice` skill.

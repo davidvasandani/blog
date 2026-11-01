@@ -152,6 +152,36 @@ webhook for the channel that should receive messages and set it as
 `SLACK_WEBHOOK_URL`, on the same Worker. Without it the form answers
 with an error rather than losing messages silently.
 
+### SitePing feedback
+
+Sign in to the CMS at `/admin/` with your existing GitHub account, then open the
+Blog in the same browser. SitePing appears for accounts with push permission on
+`davidvasandani/blog`. There is no separate SitePing login. Open its feedback
+panel and select all pages to review shared feedback, reply, or change status.
+Signing out of Decap removes the widget from other open tabs. Focus and a
+60-second check revalidate access; every feedback API request independently
+checks GitHub permissions. GitHub outages disable feedback without blocking reading.
+
+Feedback belongs to the Blog's `BlogFeedback` SQLite Durable Object, bound as
+`BLOG_FEEDBACK`. The `siteping-v1` Wrangler migration creates its namespace on
+deployment. Production and branch previews have separate storage. No additional
+secrets or external SitePing service are needed. Do not remove the binding or
+migration when updating the Worker. Back up/export feedback from the panel
+before any deliberate storage reset. The collection adapter scans feedback and
+rewrites the collection on mutation; it is intended for this small editor-only
+Blog, not a public high-volume feedback service.
+
+The browser reuses the `decap-cms-user` token format of pinned Decap 3.17.1;
+recheck that contract when upgrading Decap. Tokens go only to the same-origin
+API and GitHub verification, never to feedback storage. Screenshots and console
+or network capture are disabled. Public readers load the small bootstrap only;
+the widget is imported after successful verification. Plain Eleventy preview
+has no feedback API; use Wrangler for local feedback integration.
+
+`node --test tests/siteping.test.cjs` covers authentication, browser lifecycle,
+and the actual Worker with mocked GitHub plus durable feedback across runtime
+restarts. It never uses real GitHub credentials or writes production feedback.
+
 ### Projects catalog
 
 `pages/projects.md` is the top-level `/projects/` catalog of personal projects and open-source contributions documented on this site. Edit its Markdown directly or use the existing **Page** collection in Decap. Add an h2 heading, a factual summary and any known public reference for each project; distinguish contributions from projects you own. Keep entries aligned with the resume's personal/open-source sections and published blog work. Professional role accomplishments remain in the resume.

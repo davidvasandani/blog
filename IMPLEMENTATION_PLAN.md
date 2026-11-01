@@ -1,9 +1,14 @@
-# Projects implementation plan
+# SitePing implementation plan
 
-1. Refresh the constitution and execute the repository's SpecKit command instructions in order, using `specs/vk/1d64-projects`.
-2. Resolve catalog scope using existing personal/open-source evidence and any user clarification. Record sources and avoid unsupported links or claims.
-3. Add `pages/projects.md` with `/projects/index.html`, the existing page layout, and top-level navigation after Contact. List every in-scope project with a concise description and available public references.
-4. Document catalog maintenance in README. Keep all internal artifacts excluded through existing rules.
-5. Install pinned dependencies; build both formats, inspect rendered navigation/content/internal links and narrow/wide layouts, and run existing regression/accessibility checks.
-6. Run independent Codex diff review and address significant findings. Record validation in the feature directory.
-7. Update the project knowledge base and index with the task ID, commit, create a PR, wait for required checks and merge.
+1. Resolve audience (CMS editors or reader accounts) and persistence (shared or browser-local), then refine SPEC.md using PRIOR_KNOWLEDGE.md.
+2. Execute the supplied SpecKit commands in order: constitution, specify, clarify, plan, tasks, analyze. Keep task artifacts in `specs/vk/4620-add-siteping-for/`.
+3. Inspect and pin the chosen SitePing package APIs; establish the existing test baseline before changing dependencies.
+4. Implement the verified authentication boundary in `api/` and/or `workers/`, preserving Decap OAuth. Add persistence only as selected by the clarified requirements.
+5. Bundle and integrate the widget with the public HTML layout; mount only for the authorized audience, remove on sign-out/expiry, and fail closed without breaking reading.
+6. Add meaningful tests for anonymous denial, valid identity, invalid/expired identity, persistence, and sign-out. Keep all third-party network requests mocked.
+7. Run typechecking, site/Gemini regression tests, accessibility, and applicable Worker integration checks. Document outcomes and operational configuration.
+8. Run an independent Codex CLI review; fix confirmed findings and rerun affected checks until no significant findings remain.
+9. Record reusable shipped knowledge, tagged with the task issue id, and update the knowledge index; commit it with the implementation.
+10. Open the Blog PR against its base branch, satisfy required checks and review requirements, then merge.
+
+Resolved: reuse CMS GitHub sign-in and editor permissions with shared Blog Durable Object storage. Detailed plan: specs/vk/4620-add-siteping-for/plan.md.

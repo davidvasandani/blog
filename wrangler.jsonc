@@ -5,6 +5,8 @@
   "compatibility_date": "2026-10-29",
   "compatibility_flags": ["nodejs_compat"],
   "workers_dev": true,
+  "durable_objects": { "bindings": [{ "name": "BLOG_FEEDBACK", "class_name": "BlogFeedback" }] },
+  "migrations": [{ "tag": "siteping-v1", "new_sqlite_classes": ["BlogFeedback"] }],
   "previews": {},
   "routes": [
     { "pattern": "david.vasandani.me", "custom_domain": true }
