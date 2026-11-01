@@ -118,6 +118,7 @@ cv:
         highlights:
           - Connected my AI coding platform to Jira, Slack, GitHub, AWS and ChatGPT, so agents finish work without manual logins or copying tickets by hand.
           - Grew a single-machine AI coding tool into a 6-server cluster that keeps agent work safe through restarts and opens its own repair tickets.
+          - Designed the platform and directed Claude and Codex agents to build it, with every change written up as a spec, reviewed and passed through automated tests before release.
       - name: SitePing web feedback platform
         date: 2026
         highlights:
