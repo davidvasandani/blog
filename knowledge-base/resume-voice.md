@@ -1,7 +1,7 @@
 # Resume voice and public-repo confidentiality
 
 Task: 76c7f44d-6efd-4fda-abfc-9f3b31eeb12f (My Voice)
-Updated: 2026-11-01 (follow-up: /voice required for every resume change)
+Updated: 2026-11-01 (follow-up: /voice required for every resume change; task a29016bd-821a-4444-a8ae-2402820da029, Clarify volume)
 
 ## The rule
 David asked that every resume update go through `/voice`. Three places enforce it. `AGENTS.md`, which `CLAUDE.md` imports, gives agents the steps. Constitution principle 10 makes it part of every SpecKit task. `scripts/resume-voice.cjs` (`npm run resume:voice`, and also run by `npm test`) fails CI on dashes, curly quotes, "AI" said more than once in a line and the skill's word lists. The script can't tell whether a line was actually rewritten with the skill, so running `/voice` is still required. Run against the resume from before #160, the script flags David's original example bullet (two "AI"s) and a "leveraging".
@@ -20,6 +20,13 @@ What worked:
 Two mistakes the review caught, both easy to repeat:
 - An outcome slipped in while simplifying a vague benefit ("more sustainable" became "less code to maintain"). When the original is vague, keep its purpose instead of inventing a result.
 - A causal rewrite dropped ownership ("leading the team to improve" became "It led the team"). Keep the subject.
+
+## Claims David supplies himself
+Task a29016bd-821a-4444-a8ae-2402820da029 (Clarify volume, 2026-11-01). Sometimes David gives the exact wording of a claim the notes don't contain. He changed "32 of 272 restaurants" to "32 of our highest volume restaurants". The hiring notes give 32 stores out of 272 and don't rank them by volume.
+- Use his wording as given, including style choices (he wrote "highest volume" without a hyphen). Mention a possible tweak in the PR rather than making it.
+- Write down in the task's spec that the claim came from David's instruction, not the notes. Later reviewers checking against the hiring evidence will otherwise flag it.
+- The edit still goes through `/voice`, but the pass is about the rest of the bullet. Don't rewrite his phrase.
+- Leave the hiring repo's copies alone ("32 of 272 stores" there is the investigation record). It's read-only for blog tasks.
 
 ## Confidentiality in this public repo
 `davidvasandani/blog` is public, so the "Confidential" lists in the hiring repo's resume material apply to everything committed here, including specs, knowledge pages and commit messages, not just the resume. Before committing:

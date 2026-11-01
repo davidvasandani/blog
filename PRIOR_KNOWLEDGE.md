@@ -1,12 +1,11 @@
-# Prior knowledge: SitePing for signed-in users
+# Prior knowledge: Clarify volume (a290)
 
-Searched the Blog's existing `blog/knowledge-base/` for SitePing, feedback, auth, CMS, and Cloudflare. Read its index, `cloudflare-hosting.md`, and `dependency-testing.md`. No prior SitePing integration was found. Knowledge base was read-only during recall.
+Pages searched in `knowledge-base/`: index, resume-voice, resume-rendercv, resume-role-timeline. Nothing in the knowledge base mentions the loyalty-scan bullet, the 272-store fleet or store volume.
 
-- Current deployment is Cloudflare Worker `david-vasandani-blog`, with static assets and Express `/api/*`. Use `workers/index.ts`, `api/app.ts`, and `wrangler.jsonc`; historical Netlify and Vercel notes are superseded.
-- README and API source confirm current authentication is Decap GitHub OAuth, not the historical Identity/Git Gateway described in older knowledge. Preserve its callback and editor workflow.
-- Node 24 and the committed npm lockfile are required. Validate with npm test, npm run typecheck, relevant Worker tests, and Gemini checks. Tests must mock external services and never publish content or submit real contact messages.
-- Keep internal specifications and knowledge pages excluded from both Eleventy outputs.
-- Pa11y audits public HTML; system Chromium is supported through PUPPETEER_EXECUTABLE_PATH. Do not disable the accessibility gate.
-- Delivery uses a PR with required checks; knowledge records verified signatures and linear history requirements. Recheck live protection before merging.
-
-The initial SPEC.md was written before recall as explicitly ordered by this pipeline. This recall informs subsequent specification refinement and planning. Audience and feedback storage remain user clarification questions.
+## What applies
+- **Every resume change goes through `/voice`** (resume-voice.md, AGENTS.md, constitution 10), even a one-phrase edit. Keep qualifiers word for word ("likely cause"), keep the implied subject, and add no outcomes. `npm run resume:voice` (also run by `npm test`) catches dashes, curly quotes, "AI" twice in a line and the skill's word lists. It doesn't check hyphens, so "highest volume" passes either way.
+- **Confidentiality** (resume-voice.md): the repo is public. Don't name the POS vendor, even by its short name, in the resume, specs, knowledge pages or commit messages. Check `git diff origin/main` before pushing. The resume already says "the vendor" in this bullet.
+- **Claims follow evidence** (resume-role-timeline.md, constitution reviews). The hiring repo is read-only. Its loyalty-scan notes say 32 stores of 272 over 7 days; they don't rank the 32 by volume. The new wording comes from David's instruction in this task, so the spec records it as the source.
+- **Rendering** (resume-rendercv.md): `npm run resume:setup` then `npm run resume` writes ignored output to `resume/rendercv_output/`. The voice rewrite checked a 3-page result. Use ruamel from `resume/.venv` to compare YAML shapes; system Python has no PyYAML.
+- **Local `npm test`** needs Chrome for Pa11y. On this NixOS host set `PUPPETEER_EXECUTABLE_PATH` to a nix-built chromium.
+- **Before-and-after table with a facts column** is the quickest way for a reviewer to catch a changed claim (resume-voice.md).
