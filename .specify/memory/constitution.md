@@ -27,3 +27,5 @@ Review: 2026-11-01 resume voice rewrite (`/speckit.constitution`). Version 1.2.0
 Review: 2026-11-01 SitePing integration (`/speckit.constitution`). Version 1.2.0 remains applicable. Keep changes within the Blog repository, preserve Decap OAuth and public reading, verify authentication before exposing protected feedback, and mock external requests in tests. Resolve the intended signed-in audience and storage requirements before implementation.
 
 Amendment: 2026-11-01, version 1.3.0 adds principle 10 at David's request: all resume updates go through the `/voice` skill.
+
+Review: 2026-11-01 Clarify volume, task a290 (`/speckit.constitution`). Version 1.3.0 applies without amendment. Principle 1: the change stays in this repository and the hiring repository is read-only. Principle 10: the one-phrase resume edit still goes through `/voice`. A claim that comes from David's own instruction rather than committed evidence is recorded with its source in the spec. Principle 9: validate locally, get an independent review, record knowledge and merge through a PR.

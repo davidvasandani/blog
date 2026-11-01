@@ -1,22 +1,29 @@
-# SitePing for signed-in Blog users
+# Clarify volume in the loyalty-scan bullet
 
-## Scope and objective
-Add SitePing to https://david.vasandani.me/ in davidvasandani/blog only, using the integration exposed by https://github.com/davidvasandani/siteping. Signed-in users can annotate the Blog and leave contextual feedback. Anonymous readers retain the existing public reading experience.
+Task: a290 (Claify Volume)
+
+## Objective
+David asked that the loyalty-scan bullet stop citing the fleet size. The phrase "loyalty-scan freezes at 32 of 272 restaurants" should read "loyalty-scan freezes at 32 of our highest volume restaurants".
+
+## Scope
+- One highlight in `resume/David_Vasandani_CV.yaml`, under Sweetgreen, Senior Manager, IT Infrastructure & Innovation.
+- Only the phrase "32 of 272 restaurants" changes. The rest of the bullet stays as it is: "likely cause", the hidden reward dialog, decompiling the vendor's DLLs, fleet logs, 46 forced restarts in a week, and sending the vendor the evidence to confirm.
+- No other resume entries, templates, pages or tooling change.
+- The hiring repository stays read-only (constitution principle 1). Its resume material still says "32 of 272 stores"; that's a record of the investigation, not the published resume.
+
+## Source of the new claim
+The hiring notes give 32 stores out of 272 in the fleet over 7 days. They don't say the 32 were the highest-volume stores, though they do say freezes rose at lunch and the test store was high-volume. "Our highest volume restaurants" comes from David's own instruction in this task (2026-11-01). It's his description of his own work, so it's used as given, and the spec records where it came from.
 
 ## Requirements
-- Initialize the widget only after verifying the applicable signed-in identity; do not treat a client-controlled flag as authorization.
-- Keep feedback access authenticated if feedback is shared through an API. Deny anonymous reads and writes, and prevent cross-site mutations.
-- Preserve existing Decap GitHub OAuth, publishing, contact, static pages, and Gemini output.
-- Handle sign-out and expired credentials by removing feedback access. Fail closed on authentication errors without disrupting reading.
-- Avoid screenshots, console capture, or network capture unless explicitly required; do not transmit credentials in feedback.
-- Pin integration dependencies and build browser assets reproducibly.
-- Add regression coverage for authenticated access, anonymous denial, sign-out, and integration failures; run relevant existing checks.
-
-## Existing architecture
-The Blog is an Eleventy static site served by a Cloudflare Worker, with an Express API. The only existing login is Decap CMS GitHub OAuth; its callback returns a token to the CMS popup. There is no general reader session in the inspected API. SitePing supports a framework-independent widget and either server persistence or a localStorage store.
-
-## Resolved scope
-Reuse the existing Decap GitHub credential. Verify Blog repository push permission for every feedback request. Persist feedback in a Blog-owned Cloudflare Durable Object, shared across editors and browsers. No new reader accounts, login provider, or external service deployment.
+1. The bullet contains "loyalty-scan freezes at 32 of our highest volume restaurants".
+2. The bullet no longer contains "272".
+3. Every other fact, number, qualifier ("likely") and ownership claim in the bullet is unchanged, and nothing is added.
+4. The line goes through the `/voice` skill (AGENTS.md, constitution principle 10). David's wording is kept word for word, including "highest volume" without a hyphen, because he gave the exact text.
+5. `npm run resume:voice` passes.
+6. The resume still renders (RenderCV) with the same page count, if the local tooling is available.
+7. Nothing committed names the POS vendor or any confidential product.
 
 ## Acceptance
-The intended signed-in audience can create and revisit annotations on Blog pages. Anonymous and signed-out visitors cannot access protected feedback. Existing public-site and CMS tests pass. Independent Codex review has no significant findings. Knowledge is recorded and a Blog PR is opened and merged after verification.
+- `git diff` shows a one-line change in the resume YAML (plus the task's planning and knowledge files).
+- `npm run resume:voice` reports no problems.
+- `npm test` passes, or any failure is shown to predate this change.
