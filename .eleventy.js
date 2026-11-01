@@ -8,6 +8,8 @@ const pluginImages = require("./.eleventy.config.images.js");
 
 module.exports = async function(eleventyConfig) {
 
+  eleventyConfig.on("eleventy.after", require("./scripts/build-siteping.cjs"));
+
   // Eleventy Navigation https://www.11ty.dev/docs/plugins/navigation/
   eleventyConfig.addPlugin(eleventyNavigationPlugin);
   
