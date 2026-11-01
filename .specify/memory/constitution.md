@@ -1,6 +1,6 @@
 # Blog Constitution
 
-Version: 1.2.0
+Version: 1.3.0
 
 1. Scope is davidvasandani/blog. Changes to other services require clarification.
 2. Preserve published URLs, content, editor workflows, API contracts, and Gemini output unless a deliberate change is specified.
@@ -11,6 +11,7 @@ Version: 1.2.0
 7. Non-Node tooling (such as Python for RenderCV, or a third-party agent skill's scripts) must be pinned exactly (a release or a git commit), installed into an ignored local path, kept out of the Node `npm test` path and existing CI jobs (give it a separate job), and documented beside its sources.
 8. Generated artifacts that are committed and published (such as SVG diagrams) must come from committed sources with a documented command. A separate check must regenerate them and fail on drift. They must make no external network requests, contain no scripts, and pass the site's accessibility audit (titled, described `role="img"` figures with alt text where embedded).
 9. Ship only after local validation and independent review. Record reusable project knowledge and merge through a pull request with required checks satisfied.
+10. Every change to resume wording goes through the `/voice` skill and keeps every fact, qualifier and ownership claim. `npm test` enforces the skill's mechanical rules through `scripts/resume-voice.cjs`. Agent instructions live in `AGENTS.md` (`CLAUDE.md` imports it).
 
 Governance: these Blog-specific principles replace unrelated scaffold principles. Changes must preserve the user's project boundary and test-before-upgrade requirement. Version 1.2.0 adds principle 8 (generated artifacts) and widens 6 and 7.
 
@@ -22,3 +23,5 @@ Review: 2026-10-31 retired-host cleanup (`/speckit.constitution`). Version 1.2.0
 
 Review: 2026-11-01 Projects (`/speckit.constitution`). Version 1.2.0 remains applicable. The project catalog uses committed public-facing evidence, existing navigation and page layout; it does not update other services or publish internal planning documents.
 Review: 2026-11-01 resume voice rewrite (`/speckit.constitution`). Version 1.2.0 applies without amendment. Resume wording changes must keep every fact and role attribution backed by committed evidence, and follow the `/voice` skill. The hiring repository stays read-only.
+
+Amendment: 2026-11-01, version 1.3.0 adds principle 10 at David's request: all resume updates go through the `/voice` skill.

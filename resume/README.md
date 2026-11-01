@@ -38,6 +38,7 @@ The PDF footer includes the short Git commit hash of the blog checkout, alongsid
 
 ## Editing
 
+- Run every wording change through the `/voice` skill first, then check that it kept every fact, number, qualifier and ownership claim. `AGENTS.md` at the repository root has the steps. `npm run resume:voice` flags dashes, curly quotes, "AI" said more than once in a line and the skill's word lists. `npm test` runs the same check, so CI fails on them too. The script only finds the tells it can match, so a clean run doesn't mean the line went through `/voice`.
 - Lines marked `TODO` are placeholders to replace with real content.
 - Section titles under `cv.sections` are free-form. Each section holds one entry type (text, experience, education, bullet, one-line `label`/`details`, and so on). See the [entry types](https://docs.rendercv.com/user_guide/structure_of_the_yaml_input_file/).
 - Change the look with `design.theme`. The built-ins are `classic`, `ember`, `engineeringclassic`, `engineeringresumes`, `harvard`, `ink`, `moderncv`, `opal` and `sb2nov`.
