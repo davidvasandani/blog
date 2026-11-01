@@ -1,8 +1,8 @@
-# Implementation plan
+# Implementation plan: resume voice rewrite
 
-1. Move the shared Express application to api/app.ts; update Worker import and compile targets. Keep test-only serverless adaptation outside production code.
-2. Remove retired deployment configs, adapters, Identity email templates and forced redirect assets; preserve Cloudflare resume validation.
-3. Replace the accessibility plugin with pinned direct Pa11y and Puppeteer dependencies and a recursive blocking audit; retain the inaccessible fixture regression.
-4. Refresh current documentation, package metadata and provider-specific comments. Preserve historical knowledge snapshots.
-5. Regenerate the lockfile, run typecheck, full tests and Worker smoke tests. Review the complete diff independently with Codex and fix confirmed findings.
-6. Record hosting knowledge, commit, open the task PR, verify checks and merge.
+1. Confirm the `voice` skill is installed and matches the attachment. Done: `~/.claude/skills/voice/SKILL.md` matches the attachment exactly once the name is changed from unslopify to voice.
+2. Walk the YAML top to bottom and apply the skill to every line a reader sees: the summary, each role's theme and summary line, every highlight, the open-source and project entries, and the skill labels.
+3. For each changed bullet, check its facts against the original and against the evidence listed in `PRIOR_KNOWLEDGE.md`. Record the before and after text in `specs/vk/76c7-my-voice/research.md`.
+4. Self-audit with the skill's last step ("what makes this obviously AI generated?"). Check for em dashes, "AI" said more than once per bullet, "-ing" tails, passive voice and the banned word list.
+5. Run `node --test tests/resume.test.cjs` and `npm run resume`. Read the rendered Markdown to check the line wrapping and page count.
+6. Commit on `vk/76c7-my-voice`, get a Codex review, fix what it confirms, then record knowledge, open the PR and merge it.

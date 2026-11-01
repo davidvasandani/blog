@@ -16,7 +16,7 @@ cv:
       username: '@davidvasandani@social.coop'
   sections:
     summary:
-      - "Hands-on engineer at the boundary between a company and its vendors. Seven years at Sweetgreen, promoted three times, owning POS, loyalty, network and device-management integrations. Uses AI to get to root cause, even inside vendor software with no source code or logs. Prototypes fast to unblock people, then turns what works into sustainable platforms so fixes don't stay one-offs. Brings vendors evidence and a clear ask."
+      - "Hands-on engineer who works on the customer side of vendor software. Seven years at Sweetgreen, promoted three times, owning the POS, loyalty, network and device-management integrations. Uses AI to get to root cause, even inside vendor software with no source code or logs. Prototypes fast to unblock people, then builds the version that lasts so the fix isn't a one-off. Brings vendors evidence and a clear ask."
     experience:
       # Sweetgreen: one entry per role, newest first. Dates are the effective
       # dates in ChartHop's job history (Personal History tab).
@@ -26,32 +26,32 @@ cv:
         end_date: present
         location: Culver City, CA
         summary: |-
-          **Theme: Leading IT operations with AI-assisted diagnosis and automation.**
+          **Theme: Running IT operations, using AI to find problems and automate fixes.**
 
           Promoted from Senior Lead Software Engineer. Runs IT Operations, reporting to the VP of Technology.
         highlights:
-          - Manage a team of three, a Senior Systems Engineer and two IT Operations Specialists.
+          - "Manage a team of three: a Senior Systems Engineer and two IT Operations Specialists."
           # TODO: add the crash reduction once 2 weeks of post-rollout data exist (re-run ~2026-11-08).
-          - Traced 314 POS crashes at the busiest stores to a 32-bit memory limit in vendor software using AI-assisted diagnostics; shipped a workaround to 18 registers in 2 weeks.
-          - Used AI-assisted analysis of decompiled vendor DLLs and fleet logs to identify a hidden reward dialog blocking the UI thread as the likely cause of loyalty-scan freezes at 32 of 272 restaurants. Documented 46 forced restarts in a week and gave the POS vendor the evidence for confirmation.
-          - Enabled repeatable configuration audits across 343 locations by directing AI-assisted delivery of documented vendor integration tools with read-only safeguards.
-          - Built an AI-assisted browser platform with human takeover and persistent sessions, unblocking automation while preserving manual intervention.
-          - Replaced emailed vendor requests for sales-date corrections with an AI-run fix gated by a preview and a named approver.
-          - Enabled AI-driven POS troubleshooting through AI-assisted development of remote-support tools with read-only defaults, approval controls and audit logs.
+          - Used AI to trace 314 POS crashes at the busiest stores to a 32-bit memory limit in the vendor's app, which reserves memory for every CPU core. Shipped a workaround that starts the app on fewer cores to 18 registers in 2 weeks.
+          - Found the likely cause of loyalty-scan freezes at 32 of 272 restaurants, a hidden reward dialog that blocked the register's screen. Used AI to decompile the vendor's DLLs and read fleet logs, documented 46 forced restarts in a week, and sent the vendor the evidence to confirm.
+          - Directed AI agents to build documented, read-only tools that audit the POS vendor's settings across 343 locations, as often as needed.
+          - Built a browser service for AI agents that stays logged in between runs. When a step needs a person, they take over the live session.
+          - Replaced emailing the POS vendor to fix sales stuck on the wrong business date with an AI agent that makes the fix after a preview and a named approver's sign-off.
+          - Built a tool that lets AI agents run PowerShell on store POS devices through our remote-access software. Commands are read-only by default, changes need approval, and every command is logged.
       - company: Sweetgreen
         position: Senior Lead Software Engineer
         start_date: 2025-09
         end_date: 2026-02
         location: Culver City, CA
         summary: |-
-          **Theme: Guiding retail technology through incidents and change.**
+          **Theme: Covering for retail technology leadership through POS incidents and upgrades.**
 
           Promoted from Lead Software Engineer.
         highlights:
-          - Filled the Retail Technology leadership gap during an unplanned leave, giving the VP of Technology the technical guidance to limit revenue loss from POS issues.
-          - Advanced a virtual POS proof of concept through cutover planning with Security; the planned cutover was postponed to add telemetry.
-          - Upgraded Alteryx Server using a replacement host and a business-approved cutover, retaining the previous server for rollback.
-          - Wrote and ran staged Ansible remediation to remove scheduled reboots across the managed POS inventory after the October 2025 end-of-day outage, preventing those reboots from interrupting end-of-day processing.
+          - Filled the Retail Technology leadership gap during an unplanned leave. Gave the VP of Technology the technical guidance to limit revenue loss from POS issues.
+          - Took a virtual POS proof of concept through cutover planning with Security. The cutover was postponed to add telemetry first.
+          - Upgraded Alteryx Server by building a replacement host and cutting over with the business's approval. Kept the old server ready for rollback.
+          - After the October 2025 end-of-day outage, wrote and ran staged Ansible changes that removed scheduled reboots from the POS devices Ansible manages, so those reboots no longer interrupt end-of-day processing.
       - company: Sweetgreen
         position: Lead Software Engineer
         start_date: 2021-03
@@ -62,11 +62,11 @@ cv:
 
           Promoted from Senior Software Engineer.
         highlights:
-          - Built an Ansible and Fluent Bit pipeline for POS logs in Datadog, reaching 222 of 252 restaurants by May 2025.
-          - Built AWS Lambda and Datadog monitoring for Meraki network loss and latency and Intune time-clock device health, giving teams visibility into restaurant connectivity and device status.
-          - Implemented Cognito token caching for marketplace partners, reducing reported authentication costs from roughly $3,500 to $1,000 per month.
-          - Codified AWS accounts in Terraform, rolled out Atlantis and view-only SSO access, and deployed AWS Config with ServiceNow integration across all accounts.
-          - Built and managed a Terraform-based AWS Transfer SFTP service with isolated vendor folders, supporting Paytronix and PAR data exchange and coordinating onboarding with Security.
+          - Built an Ansible and Fluent Bit pipeline that ships POS logs to Datadog. It covered 222 of 252 restaurants by May 2025.
+          - Built AWS Lambda and Datadog monitoring for Meraki network loss and latency and for Intune-managed time clocks, so teams could see which restaurants had network or device problems.
+          - Added Cognito token caching for marketplace partners. Reported authentication costs fell from about $3,500 to $1,000 a month.
+          - Defined AWS accounts in Terraform, rolled out Atlantis and view-only SSO, and turned on AWS Config with ServiceNow integration in every account.
+          - Built and ran an AWS Transfer SFTP service in Terraform, with a separate folder for each vendor, for Paytronix and PAR file exchange. Worked with Security to onboard vendors.
       - company: Sweetgreen
         position: Senior Software Engineer, Infrastructure
         start_date: 2019-08
@@ -75,38 +75,38 @@ cv:
         summary: |-
           **Theme: Making software delivery faster and safer.**
 
-          Joined as Senior Engineer, Infrastructure, retitled Senior Software Engineer in March 2020.
+          Joined as Senior Engineer, Infrastructure. Retitled Senior Software Engineer in March 2020.
         highlights:
-          - Broke a locally run Terraform monorepo into smaller repositories deployed by CircleCI, each with its own backend state, reducing blast radius and increasing developer velocity.
-          - Decoupled an Ember frontend from a Rails backend into a static single-page application to increase deployment frequency.
-          - Built blue-green infrastructure enabling canary deployments and fast rollbacks using weighted target groups on AWS ALBs.
-          - Initiated and documented a tech-wide on-call rotation in OpsGenie, leading the team to incrementally improve service runbooks.
-          - Improved developer experience by introducing LocalStack, enabling hot reloading for local development, and granting bastion access via IAM.
-          - Introduced Gruntwork's library of reusable, production-tested infrastructure modules to make the infrastructure codebase more sustainable.
-          - Evangelized and led the Datadog implementation, centralizing observability and reducing costs.
-          - Standardized infrastructure and deployment processes across 15+ services, shortening time to launch for new services and reducing onboarding overhead for new team members.
+          - Split a Terraform monorepo that people ran from their own machines into smaller repositories, each with its own state and deployed by CircleCI. A bad change could break less, and developers shipped faster.
+          - Split an Ember frontend out of a Rails backend into a static single-page app so it could deploy more often.
+          - Built blue-green infrastructure on weighted AWS ALB target groups, so teams could run canary deploys and roll back fast.
+          - Started and documented a tech-wide on-call rotation in OpsGenie, then led the team in improving service runbooks a little at a time.
+          - Made local development easier by adding LocalStack and hot reloading, and set up bastion access through IAM.
+          - Brought in Gruntwork's reusable, production-tested infrastructure modules to make our infrastructure code easier to maintain.
+          - Pushed for Datadog and led its rollout. Monitoring moved into one place, and costs went down.
+          - Standardized infrastructure and deploys across 15+ services, so new services launched sooner and new engineers got up to speed faster.
       - company: LearnZillion
         position: Senior Operations Engineer
         date: 2016 – 2019
         location: Remote
         highlights:
-          - Migrated self-hosted EC2 instances of Elasticsearch, Redis, and Postgres to Amazon Elasticsearch Service, ElastiCache, and RDS, increasing reliability and decreasing overhead.
-          - Reduced infrastructure costs by moving testing environments to ECS on Spot Fleet and leveraging short-term Reserved Instance contracts.
-          - Improved developer experience with Docker for Mac and migrated CI from CircleCI 1.0 to 2.0.
+          - Moved Elasticsearch, Redis and Postgres off self-managed EC2 instances onto Amazon Elasticsearch Service, ElastiCache and RDS, which were more reliable and less work to run.
+          - Cut infrastructure costs by moving test environments to ECS on Spot Fleet and buying short-term Reserved Instances.
+          - Set developers up with Docker for Mac and upgraded CI from CircleCI 1.0 to 2.0.
       - company: Humanitarian OpenStreetMap Team
         position: Senior Systems Engineer
         date: 2016 – 2018
         location: Remote
         highlights:
-          - Migrated applications from a hand-built cloud server on an outdated Docker version to a Docker Swarm cluster provisioned by Ansible and Terraform, with continuous deployment through CircleCI.
-          - Led weekly community meetings to communicate changes to stakeholders.
+          - Moved apps off a hand-built cloud server running an old Docker version onto a Docker Swarm cluster built with Ansible and Terraform, deployed continuously from CircleCI.
+          - Ran weekly community meetings to tell stakeholders what was changing.
       - company: Warby Parker
         position: Automation Engineer
         date: 2014 – 2016
         location: New York, NY
         highlights:
-          - Designed a security-first AWS VPC and migrated Rackspace Public Cloud instances into it.
-          - Moved to immutable infrastructure with auto scaling groups and blue-green and canary deployments using Packer, Ansible, Terraform, and Consul.
+          - Designed an AWS VPC with security as the first requirement and moved our Rackspace Public Cloud instances into it.
+          - Moved to immutable infrastructure built with Packer, Ansible, Terraform and Consul, with auto scaling groups and blue-green and canary deploys.
           - Auto-scaled application servers on CloudWatch CPU and memory metrics and worker servers on queue depth.
           - Monitored servers with collectd and services with Consul, alerting through Sensu.
           - Increased deployments from once a week to over 400 a month over two years.
@@ -114,22 +114,22 @@ cv:
     open_source:
       - name: Self-hosted AI coding platform (fork of Vibe Kanban)
         date: 2026
-        summary: Built for my own use and adopted at work; now onboarding my team.
+        summary: Built for my own use. Work adopted it, and I'm now onboarding my team.
         highlights:
-          - Connected my AI coding platform to Jira, Slack, GitHub, AWS and ChatGPT, so agents finish work without manual logins or copying tickets by hand.
-          - Grew a single-machine AI coding tool into a 6-server cluster that keeps agent work safe through restarts and opens its own repair tickets.
-          - Designed the platform and directed Claude and Codex agents to build it, with every change written up as a spec, reviewed and passed through automated tests before release.
+          - Connected it to Jira, Slack, GitHub, AWS and ChatGPT, so agents can finish work without someone logging in for them or copying tickets over by hand.
+          - Grew it from one machine into a 6-server cluster. Agent work survives restarts, and the cluster opens its own repair tickets.
+          - Designed it and directed Claude and Codex agents to build it. Every change starts as a written spec, then gets a review and automated tests before release.
       - name: SitePing web feedback platform
         date: 2026
         highlights:
-          - Expanded an open-source website feedback tool to phones by directing AI-assisted implementation and 48 regression tests; upstream shipped the work in v0.11.0.
+          - Made an open-source website feedback tool work on phones, directing AI agents to write the change and 48 regression tests. Upstream shipped it in v0.11.0.
     projects:
       - name: Household content and workflow platform
-        summary: Personal project developed with AI coding agents.
+        summary: Personal project, built with AI coding agents.
         highlights:
-          - Implemented media and metadata ingestion with resumable imports, attachment validation, and recovery controls for a household archive.
-          - Restored content ingestion, importing 62 new items and requeuing 63 failed downloads through recovery triggers and credential remediation.
-          - Automated email triage using Jev classification and Johnny.Decimal-based labels, with independent action verification and human feedback.
+          - Built media and metadata imports for a household archive. Imports pick up where they stopped, check attachments, and have controls to recover failed runs.
+          - Got stalled imports running again by fixing credentials and using the recovery triggers. That brought in 62 new items and requeued 63 failed downloads.
+          - Automated email triage. Jev sorts each message into Johnny.Decimal labels, a separate check confirms each action, and my corrections tune it.
     skills:
       - label: Infrastructure as Code
         details: Terraform, Terragrunt, Packer, Ansible, Consul, Vault
