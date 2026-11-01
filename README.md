@@ -151,3 +151,9 @@ through an incoming webhook and then shows `/contact/thanks/`. A hidden
 webhook for the channel that should receive messages and set it as
 `SLACK_WEBHOOK_URL`, on the same Worker. Without it the form answers
 with an error rather than losing messages silently.
+
+### Projects catalog
+
+`pages/projects.md` is the top-level `/projects/` catalog of personal projects and open-source contributions documented on this site. Edit its Markdown directly or use the existing **Page** collection in Decap. Add an h2 heading, a factual summary and any known public reference for each project; distinguish contributions from projects you own. Keep entries aligned with the resume's personal/open-source sections and published blog work. Professional role accomplishments remain in the resume.
+
+Keep the permalink and navigation key stable. Navigation order 5 places Projects after Contact; no new template or data file is needed. Like other `pages/` content, this catalog is HTML-only; the Gemini build continues to publish posts.

@@ -20,4 +20,5 @@ Review: 2026-10-30 resume role timeline correction (`/speckit.constitution`). Ve
 
 Review: 2026-10-31 retired-host cleanup (`/speckit.constitution`). Version 1.2.0 remains applicable. Cloudflare is the blog's deployment target; retain API, editor, resume, Gemini and accessibility behavior while removing obsolete adapters. Hosted account and DNS changes are outside this repository cleanup.
 
+Review: 2026-11-01 Projects (`/speckit.constitution`). Version 1.2.0 remains applicable. The project catalog uses committed public-facing evidence, existing navigation and page layout; it does not update other services or publish internal planning documents.
 Review: 2026-11-01 resume voice rewrite (`/speckit.constitution`). Version 1.2.0 applies without amendment. Resume wording changes must keep every fact and role attribution backed by committed evidence, and follow the `/voice` skill. The hiring repository stays read-only.
