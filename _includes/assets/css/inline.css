@@ -283,6 +283,48 @@ form button {
 	color: #9a3412;
 }
 
+/* Several roles at one company: a company heading, then the roles on a timeline */
+.resume-company h3 {
+	margin-bottom: 0.15em;
+}
+
+.resume h2 + .resume-company h3 {
+	margin-top: 1.25em;
+}
+
+.resume-roles ul {
+	padding-left: 1.25em;
+}
+
+.resume-roles {
+	margin-left: 5px;
+	padding-left: 20px;
+	border-left: 2px solid #e8cfc6;
+}
+
+.resume-roles h4 {
+	position: relative;
+	margin: 1.75em 0 0.25em;
+	font-size: 1.05em;
+	line-height: 1.3;
+}
+
+.resume-roles h4:first-child {
+	margin-top: 1em;
+}
+
+.resume-roles h4::before {
+	content: "";
+	position: absolute;
+	top: 0.35em;
+	left: -27px;
+	width: 10px;
+	height: 10px;
+	border-radius: 50%;
+	background-color: #9a3412;
+	box-shadow: 0 0 0 3px var(--background);
+}
+
 .visually-hidden {
 	position: absolute;
 	width: 1px;
