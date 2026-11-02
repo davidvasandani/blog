@@ -1,0 +1,5 @@
+# Research decisions
+Prior knowledge: ../../../../PRIOR_KNOWLEDGE.md (repository-root file).
+The preview endpoints return authorization shells, so HTTP 200 is not proof of content retrieval. Preserve source identity and access limitations. Prefer original committed source over guessed preview content. A relevance score cannot certify a claim. Dates must reflect the phase described, not project envelope dates or ticket closure timestamps. Direct media ingestion examples are useful but personal projects do not demonstrate commercial partner launch experience. No resume wording changes are required for an audit.
+
+Preview lease metadata confirms the first URL is the career timeline and the second the incident timeline. The committed sources contain 275 and 74 records. The attached canonical resume supplies 42 bullets and 12 supplemental statements; seven project reviews are supplemental. Exact preview equivalence is not verified. No score is derived from the earlier relevance fields retained in original records.

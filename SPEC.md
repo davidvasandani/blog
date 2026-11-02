@@ -1,51 +1,11 @@
-# Fix the SitePing toolbar on phones
+# Technical specification: Netflix timeline and resume relevance audit
 
-Task: 91b3 (Fix SitePing UI)
+Evaluate every bullet in the supplied resume preview and every item in the supplied timeline preview against Netflix job 790318930709 (Solutions Engineer 5, Content Promotion & Distribution). Deliver a traceable audit in `netflix/timeline-audit/` with source inventories, a defined scoring rubric, individual scores and explanations, resume-to-timeline mappings, chronology discrepancies, and prioritized recommendations.
 
-## Problem
-On a phone, SitePing's annotate toolbar is broken. The instruction "Tap an
-element or drag to select an area" wraps one word per line down the left
-edge, and a full-width Cancel pill sits over it (David's iPhone screenshot,
-2026-11-02, on /resume/).
+Use the hiring repository for implementation and its existing project knowledge for context. Capture source URLs, retrieval status and dates; use repository snapshots only with explicit provenance when a preview is unavailable. Score relevance on an anchored 0–5 scale derived from the actual role requirements; distinguish direct evidence from transferable experience, and relevance from verification. Preserve original claims and qualifications. Do not rewrite the published resume, infer ownership from commits, invent dates or inflate media-domain experience. Respect confidentiality restrictions.
 
-## Cause
-SitePing puts its annotate toolbar, comment popup, markers and tooltip in
-the page's own DOM (`document.body`), not in its shadow root. The Blog's
-contact-form rule in `_includes/assets/css/inline.css` styles every
-`input`, `textarea` and `button` on the page:
+Acceptance: every source bullet/item has a stable ID and exactly one assessment; scores have role criteria and rationale; mappings distinguish missing evidence from contradictions; source limitations are visible; machine-readable results and a readable report agree; coverage checks pass; independent Codex review has no significant outstanding findings. Complete the requested SpecKit stages, record reusable project knowledge, then create and merge a PR against the repository base branch.
 
-```css
-input, textarea, button { width: 100%; padding: 1em; margin-bottom: 1em; ... }
-button { border: 1px solid var(--primary); background-color: var(--primary); ... }
-```
+Prior-knowledge refinement: role attribution uses effective promotion dates and event phases; planned work and user-supplied claims retain their qualifications. The independent resume and timeline inventories will be frozen from the linked previews before scoring.
 
-The toolbar's Cancel button has inline height, padding, border and
-background but no width or margin, and `flex-shrink: 0`. It takes the
-global `width: 100%`, fills the flex row, and leaves the instruction
-`<span>` with no width. Reproduced in Chromium at 393px: Cancel 365px wide,
-instruction 0px wide, toolbar 187px tall. The comment popup's `textarea`
-and buttons sit in the same DOM and get the same rule.
-
-## Change
-Scope the contact-form control rules to `form` (`form input`,
-`form textarea`, `form button`). The only `input`, `textarea` and `button`
-elements in the Blog's own templates are in the contact form
-(`_includes/components/form.njk`), so it looks the same. SitePing's
-body-level controls are not inside a `<form>`, so they keep the widget's
-own styles. Don't patch or fork `@siteping/widget`.
-
-## Requirements
-1. On a 393px-wide touch viewport, the annotate toolbar's instruction text
-   is readable on at most two lines, and Cancel keeps its intrinsic width
-   (well under the viewport width), not the full row.
-2. The contact form's inputs, textarea and submit button keep the same
-   computed width, padding, margin, font, border and colors.
-3. Public readers still don't load the widget; sign-in, cross-tab logout
-   and the API are unchanged.
-4. A browser regression test covers requirement 1 and runs in
-   `scripts/test-siteping-browser.cjs`.
-5. `npm test` passes.
-
-## Out of scope
-Upstream SitePing changes, theming the widget to match the Blog, and any
-other service.
+Source clarification: both supplied previews are timelines (canonical career and incident). Use the current canonical blog resume. The complete audit has 42 bullets, 12 supplemental statements, 275 career events, 74 incidents and seven project reviews; all 410 are assessed. Preview identity was confirmed through lease metadata, but rendered equivalence remains unverified.

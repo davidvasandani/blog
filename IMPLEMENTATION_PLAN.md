@@ -1,22 +1,10 @@
-# Implementation plan: Fix SitePing UI (task 91b3)
-
-1. Reproduce. Build the site, open `/` at an iPhone viewport with a mocked
-   editor session, open annotate mode, and measure the toolbar. Before the
-   fix: Cancel 365px of a 393px viewport, instruction text 0px wide.
-2. Record the contact form's computed styles (input, textarea, button:
-   width, padding, margin, font, border, background, color) at desktop and
-   phone widths as a baseline.
-3. In `_includes/assets/css/inline.css`, change the selectors
-   `input, textarea, button` to `form input, form textarea, form button`,
-   and `input, textarea` / `button` the same way. No property values change.
-4. Extend `scripts/test-siteping-browser.cjs`: in a touch, 393px-wide page,
-   open annotate mode through the widget's menu and assert that Cancel is
-   narrower than half the toolbar and that the instruction text is at
-   least 200px wide. Also assert that the contact form button still fills
-   its form. The widget's shadow root is closed, so the test opens it in
-   `evaluateOnNewDocument` (test only).
-5. Add an npm script `test:siteping` and run it from `npm test` after the
-   build, so CI catches a regression.
-6. Check the fix: rerun step 1 (screenshot) and diff step 2's styles.
-   Run `npm test`, `npm run typecheck`.
-7. Codex review, knowledge page update, PR, merge.
+# Implementation plan
+1. Execute the workspace SpecKit command instructions in their prescribed blog feature directory; keep public planning free of confidential source detail.
+2. Retrieve both supplied previews and the exact Netflix posting; identify their actual inventories. Save source status, hashes and fallback provenance.
+3. Freeze every resume bullet and timeline item with stable IDs. Extract the role's explicit requirements and define anchored 0–5 relevance scores.
+4. Assess each item against those requirements, with rationale, limitations and recommended use. Preserve evidence confidence independently.
+5. Map resume claims to timeline records and effective role dates; distinguish unsupported claims, legitimate omissions, planned work and contradictions.
+6. Generate readable and machine-readable audit outputs in hiring/netflix/timeline-audit; validate complete coverage, ID uniqueness, scores, mappings and artifact agreement.
+7. Run independent Codex review, fix significant findings, and record verification.
+8. Update the project knowledge base with reusable conclusions tagged with this task ID; commit it.
+9. Create and merge PRs for the hiring audit and any required blog SpecKit/knowledge changes, respecting required checks.
