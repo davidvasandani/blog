@@ -55,6 +55,13 @@ test('generated responsive images reference existing nonempty assets', () => {
   assert.ok(images > 0);
 });
 
+test('the Gemini home page links every post', () => {
+  const home = fs.readFileSync('_gemini/index.gmi', 'utf8');
+  const posts = fs.readdirSync('_gemini/posts');
+  assert.ok(posts.length > 0);
+  for (const post of posts) assert.match(home, new RegExp(`^=> /posts/${post}/index\\.gmi \\d{4}-\\d{2}-\\d{2} `, 'm'), post);
+});
+
 test('Gemini preserves post content and internal documents are not published', () => {
   assert.match(fs.readFileSync('_gemini/posts/hello/index.gmi', 'utf8'), /hello/);
   for (const output of ['_site', '_gemini']) {
