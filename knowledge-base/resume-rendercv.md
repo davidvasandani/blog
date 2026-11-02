@@ -65,3 +65,11 @@ watch after a version bump. Metadata is ignored and never published.
 Regression tests use isolated fake renderer fixtures, including PATH without Git,
 partial renders, failures, and watch initialization. Validate the real PDF footer
 separately from JavaScript tests; the footer text comes from RenderCV, not HTML.
+
+## Project categories
+
+Task: VAS-931 / df1c3a90-2839-43df-8cac-960631834dfd (Merge Open Source and Projects categories), 2026-10-30.
+
+`cv.sections.projects` is the single Projects section for open-source contributions and personal projects. The former Open Source entries precede the household platform entry. Section keys supply rendered headings, so join the YAML lists rather than renaming headings in templates. The same source produces both `/resume/` and its PDF; regenerate before validating either output. Compare parsed entry objects when regrouping to catch lost details without relying on date-sensitive PDF bytes.
+
+The category merge ships as résumé version 1.1.1, a patch for grouping/formatting. Preserve newer source wording when integrating this change; only the section keys need changing.
