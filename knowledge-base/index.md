@@ -15,3 +15,5 @@
 
 - [Link previews (Open Graph)](link-previews.md): og:title/og:image tags in the shared head, the home-title exception, absolute image URLs, the `ogImage` front matter override (not `image`), and preview caching. Task: 13f2dbd4-b8af-4925-aa6a-55f7ef3f57a7 (iMessage image)
 - [Resume release versions](resume-rendercv.md#resume-release-versions): independent resume/VERSION, matching PDF and HTML labels, bump rules, and stale/partial render protection. Task: 71064bcc-75ae-43dc-ba7e-4959fc3b9599 (VAS-968).
+
+- [Python provisioning delay](cloudflare-hosting.md#python-provisioning-delay): Python 3.14.8 build pin, separate resume CI coverage and the outstanding hosted timing check. Task: VAS-961, dbaa2d7b-811b-4f84-ac60-d327b8c758eb.
