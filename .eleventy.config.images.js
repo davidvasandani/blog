@@ -14,6 +14,17 @@ module.exports = async eleventyConfig => {
     return Image.generateHTML(metadata, { alt, sizes, loading: 'lazy', decoding: 'async', 'eleventy:ignore': '' });
   });
 
+  // Small link-preview copy of the headshot: Slack showed no thumbnail for the 700 KB original, and WhatsApp caps previews near 300 KB.
+  eleventyConfig.on('eleventy.before', async ({ directories }) => {
+    await Image('authors/david-vasandani.jpg', {
+      widths: [600],
+      formats: ['jpeg'],
+      outputDir: path.join(directories.output, 'img', 'og'),
+      filenameFormat: () => 'david-vasandani.jpg',
+      sharpJpegOptions: { quality: 82, progressive: false },
+    });
+  });
+
   eleventyConfig.setLibrary('md', markdownIt({ html: true, breaks: true, linkify: true }));
   eleventyConfig.addPlugin(eleventyImageTransformPlugin, {
     extensions: 'html',

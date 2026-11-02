@@ -55,7 +55,7 @@ test('generated responsive images reference existing nonempty assets', () => {
   assert.ok(images > 0);
 });
 
-test('every page has Open Graph link-preview tags with a published absolute image', () => {
+test('every page has Open Graph link-preview tags with a published absolute image', async () => {
   const meta = (doc, key) => doc.querySelector(`meta[property="${key}"], meta[name="${key}"]`)?.getAttribute('content');
   const site = 'https://david.vasandani.me';
   const expected = {
@@ -83,6 +83,15 @@ test('every page has Open Graph link-preview tags with a published absolute imag
     assert.ok(fs.statSync(path.join('_site', image.slice(site.length))).size > 0, file);
     assert.ok(meta(doc, 'og:title'), file);
   }
+  // The default preview image must be small enough for Slack and WhatsApp and match its declared size.
+  const home = page('index.html');
+  const preview = path.join('_site', meta(home, 'og:image').slice(site.length));
+  assert.ok(fs.statSync(preview).size < 300 * 1024, preview);
+  const sharp = require(require.resolve('sharp', { paths: [require.resolve('@11ty/eleventy-img')] }));
+  const { width, height, format } = await sharp(preview).metadata();
+  assert.equal(String(width), meta(home, 'og:image:width'));
+  assert.equal(String(height), meta(home, 'og:image:height'));
+  assert.equal(`image/${format}`, meta(home, 'og:image:type'));
 });
 
 test('the Gemini home page links every post', () => {
