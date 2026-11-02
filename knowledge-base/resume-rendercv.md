@@ -36,3 +36,4 @@ Gotchas:
 - Put the `·` separator in `span:not(:last-child)::after`, not `span + span::before`, or a wrapped phone line starts with a dot. `content: "·" / ""` hides it from screen readers.
 - Styles live under `.resume` (a wrapper in `pages/resume.njk`) and `.resume-*`. Colours checked on #FFF0EB: #6b5750 (6.09:1) and #9a3412 (6.58:1; 5.99:1 on the callout tint #fbe4db).
 - Changing RenderCV's version or theme can change this Markdown shape. Rerun the render and check the built page's headings and meta lines.
+- CodeQL's "Bad HTML filtering regexp" check runs on tests too, and fails the PR's CodeQL check. A blocklist like `/<(script|img)[ >]/` gets flagged (case, then tabs). To test escaping, collect the tag names in the output and compare them with an allowlist instead.
