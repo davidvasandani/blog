@@ -55,6 +55,36 @@ test('generated responsive images reference existing nonempty assets', () => {
   assert.ok(images > 0);
 });
 
+test('every page has Open Graph link-preview tags with a published absolute image', () => {
+  const meta = (doc, key) => doc.querySelector(`meta[property="${key}"], meta[name="${key}"]`)?.getAttribute('content');
+  const site = 'https://david.vasandani.me';
+  const expected = {
+    'index.html': { title: 'David Vasandani', url: `${site}/`, type: 'website' },
+    'about/index.html': { title: 'About us', url: `${site}/about/`, type: 'website' },
+    'posts/hello/index.html': { title: 'hello', url: `${site}/posts/hello/`, type: 'article', description: 'hello, world!' },
+  };
+  for (const [file, want] of Object.entries(expected)) {
+    const doc = page(file);
+    assert.equal(meta(doc, 'og:title'), want.title, file);
+    assert.equal(meta(doc, 'og:url'), want.url, file);
+    assert.equal(meta(doc, 'og:type'), want.type, file);
+    assert.equal(meta(doc, 'og:site_name'), 'David Vasandani', file);
+    if (want.description) assert.equal(meta(doc, 'og:description'), want.description, file);
+    assert.ok(meta(doc, 'og:description'), file);
+    assert.ok(meta(doc, 'og:image:alt'), file);
+    assert.equal(meta(doc, 'twitter:card'), 'summary', file);
+  }
+  const files = fs.readdirSync('_site', { recursive: true }).filter(f => f.endsWith('.html') && !f.startsWith('admin'));
+  for (const file of files) {
+    const doc = page(file);
+    if (!doc.querySelector('main')) continue;
+    const image = meta(doc, 'og:image');
+    assert.ok(image?.startsWith(`${site}/`), `${file}: ${image}`);
+    assert.ok(fs.statSync(path.join('_site', image.slice(site.length))).size > 0, file);
+    assert.ok(meta(doc, 'og:title'), file);
+  }
+});
+
 test('the Gemini home page links every post', () => {
   const home = fs.readFileSync('_gemini/index.gmi', 'utf8');
   const posts = fs.readdirSync('_gemini/posts');
