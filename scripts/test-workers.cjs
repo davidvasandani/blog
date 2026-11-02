@@ -14,6 +14,25 @@ const { unstable_dev } = require('wrangler');
       const response = await worker.fetch(path);
       assert.equal(response.status, 200, path);
     }
+    // Miniflare's MF-CF-Blob header sets request.cf locally; production ignores it.
+    const netflix = { 'MF-CF-Blob': JSON.stringify({ asn: 55095 }) };
+    const other = { 'MF-CF-Blob': JSON.stringify({ asn: 13335 }) };
+    // A browser holding the generic copy revalidates with its real ETag; Netflix must still get a 200.
+    const etag = (await worker.fetch('/', { headers: other })).headers.get('etag');
+    assert.ok(etag);
+    assert.equal((await worker.fetch('/', { headers: { ...other, 'if-none-match': etag } })).status, 304);
+    const home = await worker.fetch('/', { headers: { ...netflix, 'if-none-match': etag } });
+    assert.equal(home.status, 200);
+    assert.equal(home.headers.get('cache-control'), 'private, no-store');
+    assert.equal(home.headers.get('etag'), null);
+    assert.match(await home.text(), /<main><h1[^>]*>Hi, Netflix<\/h1>/);
+    assert.match(await (await worker.fetch('/resume/', { headers: netflix })).text(),
+      /<h1>Resume<\/h1><p class="resume-target">Applying to Netflix for the Solutions Engineer 5 role in Content Promotion &amp; Distribution\.<\/p>/);
+    for (const path of ['/', '/resume/']) {
+      const text = await (await worker.fetch(path, { headers: other })).text();
+      assert.doesNotMatch(text, /Hi, Netflix|resume-target/, path);
+    }
+    assert.match(await (await worker.fetch('/', { headers: other })).text(), />Welcome </);
     const pdf = await worker.fetch('/resume/David_Vasandani_CV.pdf');
     assert.equal(pdf.status, 200);
     assert.match(pdf.headers.get('content-type'), /application\/pdf/);
