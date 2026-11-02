@@ -37,7 +37,7 @@ cv:
           - Directed AI agents to build documented, read-only tools that audit the POS vendor's settings across 343 locations, as often as needed.
           - Built a browser service for AI agents that stays logged in between runs. When a step needs a person, they take over the live session.
           - Replaced emailing the POS vendor to fix sales stuck on the wrong business date with an AI agent that makes the fix after a preview and a named approver's sign-off.
-          - Built a tool that lets AI agents run PowerShell on store POS devices through our remote-access software. Commands are read-only by default, changes need approval, and every command is logged.
+          - Built a tool that lets AI agents run PowerShell on POS devices and managers' back-office computers through our remote-access software. Integrated security cameras to check whether someone might be using the computer before making changes during business hours. Commands are read-only by default, changes need approval, and every command is logged.
       - company: Sweetgreen
         position: Senior Lead Software Engineer
         start_date: 2025-09
