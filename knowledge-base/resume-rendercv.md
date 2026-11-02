@@ -38,3 +38,30 @@ Gotchas:
 - Company grouping (follow-up, 2026-11-02): `groupCompanies()` runs after the per-entry pass. Adjacent h3 entries with the same company become a `section.resume-company` (h3 company, overall range, shared location) wrapping `div.resume-roles` with h4 roles on a CSS timeline. `groupMeta` tags each meta token with `token.meta.kind` (dates, duration, location) so later passes can find them. Splice groups back to front so earlier token indexes stay valid. Spec: `specs/vk/0d66-resume-heading-d/company-grouping.md`.
 - Changing RenderCV's version or theme can change this Markdown shape. Rerun the render and check the built page's headings and meta lines.
 - CodeQL's "Bad HTML filtering regexp" check runs on tests too, and fails the PR's CodeQL check. A blocklist like `/<(script|img)[ >]/` gets flagged (case, then tabs). To test escaping, collect the tag names in the output and compare them with an allowlist instead.
+
+## Resume release versions
+
+Task: 71064bcc-75ae-43dc-ba7e-4959fc3b9599 (VAS-968, Resume semver not githash).
+
+`resume/VERSION` is the independent resume release version, initially 1.0.0.
+`scripts/resume-version.cjs` accepts stable MAJOR.MINOR.PATCH triplets without
+leading zeros or suffixes. The npm render wrapper injects it into every PDF
+footer; `/resume/` displays it beside the PDF download. Blog package releases and
+unrelated blog edits do not change it. Authors bump major for restructuring or
+changed positioning, minor for substantive additions, and patch for corrections
+or formatting, resetting lower fields on a higher bump. Commit the bump alongside
+the change before releasing from main.
+
+The generated `resume-version.txt` marker ties the published files to the version.
+The wrapper removes it before rendering and rewrites it only when both default
+PDF and Markdown files were regenerated (checked via file identity and timestamps).
+A successful partial render or custom output path alone is not enough. Eleventy
+rejects missing or mismatched markers when a PDF/Markdown pair exists. Run
+`npm run resume -- --dont-generate-png` before the site build, including when
+upgrading from old local artifacts. Direct RenderCV invocation bypasses version
+injection. Watch first renders once so the site can build while watching; restart
+watch after a version bump. Metadata is ignored and never published.
+
+Regression tests use isolated fake renderer fixtures, including PATH without Git,
+partial renders, failures, and watch initialization. Validate the real PDF footer
+separately from JavaScript tests; the footer text comes from RenderCV, not HTML.
