@@ -21,3 +21,6 @@ The hiring repository's loyalty-scan resume material (read-only) gives the 7-day
 - Rule 28 (dense sentences): the longer phrase puts more words between "cause" and its appositive ("a hidden reward dialog..."). It still reads without backtracking, and splitting it would rewrite more than David asked, so it stays.
 - Self-audit: no new tells. The rest of the bullet already went through `/voice` in #160.
 - Result: no changes beyond David's phrase.
+
+## Follow-up, 2026-11-02
+David asked for the hyphen. The bullet now reads "32 of our highest-volume restaurants". `/voice` pass: a hyphenated compound modifier before the noun is standard style and adds no tell. No other change, and the facts column above still holds.
