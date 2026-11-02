@@ -1,15 +1,22 @@
-# Implementation plan: Clarify volume (a290)
+# Implementation plan: Fix SitePing UI (task 91b3)
 
-1. Edit `resume/David_Vasandani_CV.yaml`: in the Senior Manager loyalty-scan highlight, replace "32 of 272 restaurants" with "32 of our highest volume restaurants". Touch nothing else.
-2. Run the edited bullet through the `/voice` skill. Keep David's phrase word for word; only take other suggestions if they keep every fact and he'd agree.
-3. Write a before-and-after table with a facts column in the SpecKit feature directory (`specs/vk/a290-claify-volume/`).
-4. Verify:
-   - `git diff` touches only the one YAML line (plus planning files).
-   - Parse the old and new YAML and confirm only that highlight string changed.
-   - `npm run resume:voice` passes.
-   - Render with RenderCV and confirm the page count (3).
-   - `npm test`.
-   - Grep the diff for the confidential names.
-5. Independent Codex review of the diff. Fix confirmed findings.
-6. Record the reusable lesson in `knowledge-base/resume-voice.md` (claims that come from David rather than the notes), tag it with this task, refresh the index.
-7. Commit, push `vk/a290-claify-volume`, open a PR against `main`, wait for checks, merge.
+1. Reproduce. Build the site, open `/` at an iPhone viewport with a mocked
+   editor session, open annotate mode, and measure the toolbar. Before the
+   fix: Cancel 365px of a 393px viewport, instruction text 0px wide.
+2. Record the contact form's computed styles (input, textarea, button:
+   width, padding, margin, font, border, background, color) at desktop and
+   phone widths as a baseline.
+3. In `_includes/assets/css/inline.css`, change the selectors
+   `input, textarea, button` to `form input, form textarea, form button`,
+   and `input, textarea` / `button` the same way. No property values change.
+4. Extend `scripts/test-siteping-browser.cjs`: in a touch, 393px-wide page,
+   open annotate mode through the widget's menu and assert that Cancel is
+   narrower than half the toolbar and that the instruction text is at
+   least 200px wide. Also assert that the contact form button still fills
+   its form. The widget's shadow root is closed, so the test opens it in
+   `evaluateOnNewDocument` (test only).
+5. Add an npm script `test:siteping` and run it from `npm test` after the
+   build, so CI catches a regression.
+6. Check the fix: rerun step 1 (screenshot) and diff step 2's styles.
+   Run `npm test`, `npm run typecheck`.
+7. Codex review, knowledge page update, PR, merge.

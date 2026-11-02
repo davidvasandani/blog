@@ -1,11 +1,37 @@
-# Prior knowledge: Clarify volume (a290)
+# Prior knowledge: Fix SitePing UI (task 91b3)
 
-Pages searched in `knowledge-base/`: index, resume-voice, resume-rendercv, resume-role-timeline. Nothing in the knowledge base mentions the loyalty-scan bullet, the 272-store fleet or store volume.
+Sources: `knowledge-base/siteping.md`, `knowledge-base/dependency-testing.md`,
+`knowledge-base/cloudflare-hosting.md`, `.specify/memory/constitution.md`.
 
-## What applies
-- **Every resume change goes through `/voice`** (resume-voice.md, AGENTS.md, constitution 10), even a one-phrase edit. Keep qualifiers word for word ("likely cause"), keep the implied subject, and add no outcomes. `npm run resume:voice` (also run by `npm test`) catches dashes, curly quotes, "AI" twice in a line and the skill's word lists. It doesn't check hyphens, so "highest volume" passes either way.
-- **Confidentiality** (resume-voice.md): the repo is public. Don't name the POS vendor, even by its short name, in the resume, specs, knowledge pages or commit messages. Check `git diff origin/main` before pushing. The resume already says "the vendor" in this bullet.
-- **Claims follow evidence** (resume-role-timeline.md, constitution reviews). The hiring repo is read-only. Its loyalty-scan notes say 32 stores of 272 over 7 days; they don't rank the 32 by volume. The new wording comes from David's instruction in this task, so the spec records it as the source.
-- **Rendering** (resume-rendercv.md): `npm run resume:setup` then `npm run resume` writes ignored output to `resume/rendercv_output/`. The voice rewrite checked a 3-page result. Use ruamel from `resume/.venv` to compare YAML shapes; system Python has no PyYAML.
-- **Local `npm test`** needs Chrome for Pa11y. On this NixOS host set `PUPPETEER_EXECUTABLE_PATH` to a nix-built chromium.
-- **Before-and-after table with a facts column** is the quickest way for a reviewer to catch a changed claim (resume-voice.md).
+## SitePing (`knowledge-base/siteping.md`, VAS-945)
+- The widget only loads for signed-in CMS editors. `src/siteping.js` reads
+  Decap's `decap-cms-user` token and checks `/api/siteping/session` before it
+  calls `initSiteping`. Public readers never load the widget.
+- `scripts/build-siteping.cjs` bundles `src/siteping.js` with esbuild into
+  `_site/assets/siteping` after the Eleventy build. `_includes/layouts/base.njk`
+  loads it as a module.
+- `scripts/test-siteping-browser.cjs` drives the built widget in Puppeteer
+  (mount after verification, cross-tab logout). The page doesn't say how it
+  runs, and neither `npm test` nor CI calls it. It's a manual check.
+- `@siteping/widget` is pinned at 0.12.0 (devDependency, bundled).
+
+Not in the knowledge base (found in the widget source for this task): the
+launcher and FAB live in a closed shadow root, but the annotate toolbar,
+overlay, comment popup, markers and tooltip go straight into
+`document.body`. They set inline styles, but any property they leave unset
+takes the host page's CSS.
+
+## Testing (`knowledge-base/dependency-testing.md`)
+- `npm test` cleans, builds HTML and Gemini, runs `node --test tests/*.test.cjs`,
+  then the Pa11y audit of public pages. CI runs it with
+  `PUPPETEER_EXECUTABLE_PATH=/usr/bin/google-chrome` and skips the browser
+  download.
+- On NixOS, set `PUPPETEER_EXECUTABLE_PATH` to system Chromium.
+
+## Constitution
+- Principle 1: Blog repository only.
+- Principle 2: keep published content and the editor workflow as they are.
+  The contact form must look the same.
+- Principle 3/4: test observable behavior, deterministically, with no
+  production credentials. Mock the SitePing API.
+- Principle 9: local validation, independent review, knowledge update, PR.
