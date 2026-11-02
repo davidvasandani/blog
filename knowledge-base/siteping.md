@@ -28,5 +28,27 @@ bootstrap plus lazy widget chunks in `_site/assets/siteping`. Gemini is unchange
 `tests/siteping.test.cjs` tests the real Worker with mocked GitHub and a temporary
 persistent runtime. Pinned Miniflare v5 needs its compatibility converter and
 explicit shared-storage persistence options to test restart durability.
-`scripts/test-siteping-browser.cjs` checks the built widget and cross-tab logout
-using Puppeteer, with the same executable configuration as the accessibility test.
+`scripts/test-siteping-browser.cjs` (`npm run test:siteping`, part of `npm test`
+since task 91b3) checks the built widget and cross-tab logout using Puppeteer,
+with the same executable configuration as the accessibility test.
+
+## Page CSS reaches parts of the widget
+
+Task: 91b3f57c-0c1b-4552-9ba2-da29988361ed (Fix SitePing UI), 2026-11-02.
+
+Only the launcher and FAB live in SitePing's (closed) shadow root. The annotate
+toolbar, overlay, comment popup, markers and tooltip are appended to
+`document.body` with inline styles, so any property they leave unset takes the
+Blog's CSS. The old global `input, textarea, button { width: 100%; margin-bottom: 1em }`
+gave the toolbar's Cancel (which has `flex-shrink: 0`) the whole row on phones,
+squeezing "Tap an element or drag to select an area" to one word per line, and
+painted the popup's buttons blue. The fix scopes those rules to `form`. Keep
+Blog control styles scoped to a class or container; don't add bare `button`,
+`input`, `textarea`, `span` or `div` rules. SitePing's elements carry
+`data-siteping-ignore`, which helps when checking for leaks.
+
+The phone check in `scripts/test-siteping-browser.cjs` emulates an iPhone,
+wraps `attachShadow` to force the shadow root open, clicks `.sp-fab` then
+`[data-item-id="annotate"]`, and asserts Cancel is under half the toolbar and
+the instruction is at least 200px wide. These are widget internals: after a
+SitePing upgrade, a failure there may mean renamed selectors, not a layout bug.
