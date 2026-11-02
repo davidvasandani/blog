@@ -38,3 +38,7 @@ Don't name the POS vendor anywhere in this repo, not even by its short company n
 
 ## Checks
 A whole-file rewrite is safe to verify mechanically. Parse the old and new YAML with ruamel from `resume/.venv` (system Python has no PyYAML), compare the shapes, and confirm only summary and highlight strings changed. Then scan for dashes, curly quotes, "AI" counts and the skill's word list. Render both versions to compare page counts (3 pages here).
+
+## Camera check in remote support
+
+Task 5ab27642-ab10-41bf-83d9-2bafb85d0287, follow-up 2026-11-02. David supplied the security-camera integration and managers' back-office device scope for the remote-support bullet. It checks whether someone might be using the computer before business-hours changes. This is user-provided evidence, not newly verified by the older timeline. Preserve uncertainty and existing approval/logging controls; do not turn the check into guaranteed occupancy detection or a claimed automatic block.
