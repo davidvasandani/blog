@@ -1,0 +1,13 @@
+---
+permalink: /index.gmi
+---
+# David Vasandani
+
+This capsule has the posts from my blog. The website also has my resume and projects.
+
+=> https://david.vasandani.me david.vasandani.me
+
+## Posts
+{% for post in collections.post | reverse %}
+=> {{ post.url }} {{ post.date | machineDate }} {{ post.data.title }}
+{%- endfor %}
