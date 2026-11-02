@@ -1,7 +1,7 @@
 # Resume voice and public-repo confidentiality
 
 Task: 76c7f44d-6efd-4fda-abfc-9f3b31eeb12f (My Voice)
-Updated: 2026-11-01 (follow-up: /voice required for every resume change; task a29016bd-821a-4444-a8ae-2402820da029, Clarify volume)
+Updated: 2026-11-02 (task 2714e137-7187-48a4-a394-3f05e06a30ee, Reword: David rewrote the crash and loyalty-scan bullets). Earlier follow-up 2026-11-01: /voice required for every resume change; task a29016bd-821a-4444-a8ae-2402820da029, Clarify volume
 
 ## The rule
 David asked that every resume update go through `/voice`. Three places enforce it. `AGENTS.md`, which `CLAUDE.md` imports, gives agents the steps. Constitution principle 10 makes it part of every SpecKit task. `scripts/resume-voice.cjs` (`npm run resume:voice`, and also run by `npm test`) fails CI on dashes, curly quotes, "AI" said more than once in a line and the skill's word lists. The script can't tell whether a line was actually rewritten with the skill, so running `/voice` is still required. Run against the resume from before #160, the script flags David's original example bullet (two "AI"s) and a "leveraging".
@@ -13,7 +13,7 @@ What worked:
 - Say what was built or found, then what happened. "Built a tool that lets AI agents run PowerShell on store POS devices ..." beats "Enabled AI-driven troubleshooting".
 - Mention AI once per bullet at most. The Senior Manager role is about AI-assisted work, so it still shows up, just not three times in one line.
 - Avoid "-ing" tails ("unblocking automation while preserving manual intervention"). Split into two short sentences instead.
-- Keep qualifiers word for word: "likely cause", "reported" costs, "postponed" cutover.
+- Keep qualifiers word for word: "reported" costs, "postponed" cutover. Only David can drop one. He dropped "likely cause" from the loyalty-scan bullet on 2026-11-02 (Reword task).
 - Keep the implied subject in work bullets. The open-source entry uses "my".
 - Write a before-and-after table with a facts column (see `specs/vk/76c7-my-voice/research.md`). It's the quickest way for a reviewer to catch a changed claim.
 
@@ -28,6 +28,9 @@ Task a29016bd-821a-4444-a8ae-2402820da029 (Clarify volume, 2026-11-01). Sometime
 - The edit still goes through `/voice`, but the pass is about the rest of the bullet. Don't rewrite his phrase.
 - Leave the hiring repo's copies alone ("32 of 272 stores" there is the investigation record). It's read-only for blog tasks.
 
+Task 2714e137-7187-48a4-a394-3f05e06a30ee (Reword, 2026-11-02). David rewrote the crash and loyalty-scan bullets in his own words, so neither one says "32 of our highest-volume restaurants" any more. New claims from him: "dozens of high-volume stores", the lunch rush, reverse-engineering the POS executable, and the loyalty DLL logging nothing when the reward dialog opens. At his request the bullets also dropped facts the notes support (314 crashes, the memory-limit cause, 18 registers, 32 stores, 46 forced restarts). `specs/vk/5998-reword/spec.md` lists both sets. Don't add the dropped facts back unless he asks.
+- When David's wording is vague ("found missing logging"), ask what he means and use his answer instead of guessing.
+
 ## Confidentiality in this public repo
 `davidvasandani/blog` is public, so the "Confidential" lists in the hiring repo's resume material apply to everything committed here, including specs, knowledge pages and commit messages, not just the resume. Before committing:
 - `git diff origin/main | grep -i` for the product names those lists name. That includes the POS product and the remote-access and camera tools. Don't write the names here, even in this note.
@@ -38,3 +41,18 @@ Don't name the POS vendor anywhere in this repo, not even by its short company n
 
 ## Checks
 A whole-file rewrite is safe to verify mechanically. Parse the old and new YAML with ruamel from `resume/.venv` (system Python has no PyYAML), compare the shapes, and confirm only summary and highlight strings changed. Then scan for dashes, curly quotes, "AI" counts and the skill's word list. Render both versions to compare page counts (3 pages here).
+
+## Camera check in remote support
+
+Task 5ab27642-ab10-41bf-83d9-2bafb85d0287, follow-up 2026-11-02. David supplied the security-camera integration and managers' back-office device scope for the remote-support bullet. It checks whether someone might be using the computer before business-hours changes. This is user-provided evidence, not newly verified by the older timeline. Preserve uncertainty and existing approval/logging controls; do not turn the check into guaranteed occupancy detection or a claimed automatic block.
+
+
+## Validation and partner-support stories
+
+Task 5ab27642-ab10-41bf-83d9-2bafb85d0287, follow-up 2026-11-02. David approved the Spyce/Wonder validation story and two DoorDash stories for the resume. Preserve these distinctions when editing:
+
+- The transfer story is about export parsing, completeness checks and restoring missing items before handoff. Legal set redaction criteria and a colleague did the initial drive review. Keep roughly 12,039 approximate.
+- The three-store DoorDash incident is contributed investigation; DoorDash confirmed and fixed the configuration migration. The separate paused-store story has a successful manual REST recovery, but the webhook escalation does not establish a shipped permanent fix.
+- Household ingestion is a personal project. Validation, metadata extraction, deduplication and recovery are supported; 63 requeued downloads are not 63 completed downloads.
+
+Evidence mapping and the voice pass are recorded in `specs/vk/5ab2-timeline-audit-a/resume-stories.md`.

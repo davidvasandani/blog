@@ -3,7 +3,7 @@ const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
 const { spawnSync } = require('node:child_process');
-const { toPageMarkdown, pdfFile, pdfUrl } = require('../scripts/resume-page.cjs');
+const { toPageMarkdown, renderResume, pdfFile, pdfUrl } = require('../scripts/resume-page.cjs');
 
 const read = file => fs.readFileSync(file, 'utf8');
 const lines = file => read(file).split(/\r?\n/).map(line => line.trim());
@@ -30,6 +30,83 @@ test('local environment and rendered output stay out of git and template process
 test('resume page markdown keeps one h1 and an unbroken outline', () => {
   const markdown = "# David Vasandani's CV\n\n- Email: x\n\n# Summary\nText\n\n# Experience\n## **Co**, Role\n";
   assert.equal(toPageMarkdown(markdown), '- Email: x\n\n## Summary\nText\n\n## Experience\n### **Co**, Role');
+});
+
+test('an entry header gets a company eyebrow, one meta line and a theme callout', () => {
+  const html = renderResume([
+    '### **Sweetgreen**, Senior Manager, IT Infrastructure & Innovation', '',
+    'Culver City, CA', '', 'Feb 2026 – present', '', '10 months', '',
+    '**Theme: Running IT operations.**', '', 'Promoted from Lead.', '', '- Bullet',
+  ].join('\n'));
+  assert.equal(html, [
+    '<h3><span class="resume-org">Sweetgreen</span><span class="visually-hidden">, </span>'
+      + '<span class="resume-role">Senior Manager, IT Infrastructure &amp; Innovation</span></h3>',
+    '<p class="resume-meta"><span>Feb 2026 – present</span><span>10 months</span><span>Culver City, CA</span></p>',
+    '<p class="resume-theme"><span class="resume-label">Theme:</span> Running IT operations.</p>',
+    '<p>Promoted from Lead.</p>',
+    '<ul>\n<li>Bullet</li>\n</ul>',
+    '',
+  ].join('\n'));
+});
+
+test('a year alone is meta, a sentence is not, and plain headings stay as they are', () => {
+  const openSource = renderResume('### **Fork**\n\n2026\n\nBuilt for my own use.\n');
+  assert.equal(openSource, '<h3><strong>Fork</strong></h3>\n<p class="resume-meta"><span>2026</span></p>\n<p>Built for my own use.</p>\n');
+  const project = renderResume('### **Platform**\n\nPersonal project, built in 2026.\n\n- Bullet\n');
+  assert.match(project, /<p>Personal project, built in 2026\.<\/p>/);
+  assert.doesNotMatch(project, /resume-meta/);
+  const older = renderResume('### **Co**, Engineer\n\nRemote\n\n2016 – 2019\n\n- Bullet\n');
+  assert.match(older, /<p class="resume-meta"><span>2016 – 2019<\/span><span>Remote<\/span><\/p>/);
+});
+
+test('adjacent roles at one company share a company heading and timeline', () => {
+  const html = renderResume([
+    '## Experience', '',
+    '### **Sweetgreen**, Senior Manager', '', 'Culver City, CA', '', 'Feb 2026 – present', '', '10 months', '', '- One', '',
+    '### **Sweetgreen**, Lead', '', 'Culver City, CA', '', 'Mar 2021 – Feb 2026', '', '4 years 11 months', '', '- Two', '',
+    '### **Warby Parker**, Engineer', '', 'New York, NY', '', '2014 – 2016', '', '- Three', '',
+    '## Skills', '', 'x',
+  ].join('\n'));
+  assert.equal(html, [
+    '<h2>Experience</h2>',
+    '<section class="resume-company">',
+    '<h3>Sweetgreen</h3>',
+    '<p class="resume-meta"><span>Mar 2021 – present</span><span>Culver City, CA</span></p>',
+    '<div class="resume-roles">',
+    '<h4>Senior Manager</h4>',
+    '<p class="resume-meta"><span>Feb 2026 – present</span><span>10 months</span></p>',
+    '<ul>\n<li>One</li>\n</ul>',
+    '<h4>Lead</h4>',
+    '<p class="resume-meta"><span>Mar 2021 – Feb 2026</span><span>4 years 11 months</span></p>',
+    '<ul>\n<li>Two</li>\n</ul>',
+    '</div>',
+    '</section>',
+    '<h3><span class="resume-org">Warby Parker</span><span class="visually-hidden">, </span>'
+      + '<span class="resume-role">Engineer</span></h3>',
+    '<p class="resume-meta"><span>2014 – 2016</span><span>New York, NY</span></p>',
+    '<ul>\n<li>Three</li>\n</ul>',
+    '<h2>Skills</h2>',
+    '<p>x</p>',
+    '',
+  ].join('\n'));
+});
+
+test('grouped roles keep their own location when locations differ', () => {
+  const html = renderResume([
+    '### **Co**, B', '', 'Remote', '', '2020 – 2021', '', '- b', '',
+    '### **Co**, A', '', 'New York, NY', '', '2018 – 2020', '', '- a',
+  ].join('\n'));
+  assert.match(html, /<h3>Co<\/h3>\n<p class="resume-meta"><span>2018 – 2021<\/span><\/p>/);
+  assert.match(html, /<h4>B<\/h4>\n<p class="resume-meta"><span>2020 – 2021<\/span><span>Remote<\/span><\/p>/);
+  assert.match(html, /<h4>A<\/h4>\n<p class="resume-meta"><span>2018 – 2020<\/span><span>New York, NY<\/span><\/p>/);
+});
+
+test('resume text is still escaped inside the new markup', () => {
+  const html = renderResume('### **<b>Co</b>**, <i>Role</i>\n\n<script>x</script>\n\n2020 – 2021\n\n**Theme: <img src=x>**\n');
+  const tags = new Set(html.split('<').slice(1).map(part => part.split(/[\s>]/)[0].replace('/', '')));
+  assert.deepEqual([...tags].sort(), ['h3', 'p', 'span']);
+  assert.match(html, /&lt;script&gt;x&lt;\/script&gt;/);
+  assert.match(html, /<span class="resume-label">Theme:<\/span> &lt;img src=x&gt;/);
 });
 
 test('the Gemini capsule never contains the resume', () => {

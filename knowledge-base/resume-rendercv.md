@@ -3,7 +3,7 @@
 Current hosting update (task bd3547c1-520f-493b-a49e-18f32927121c): see [Cloudflare hosting](cloudflare-hosting.md). Provider-specific instructions below are historical.
 
 Task: e51fe535-6eff-4934-a141-6f1fb612dbda (Set up RenderCV in the blog)
-Updated: 2026-10-27 (publishing follow-up)
+Updated: 2026-10-27 (publishing follow-up); 2026-11-02 (page layout, task 0d661c6d-f22a-4c25-9ad3-ce09f436460a)
 
 ## Layout
 The resume source is `resume/David_Vasandani_CV.yaml` (RenderCV 2.8 schema). `resume/requirements.txt` pins `rendercv[full]==2.8`. The `[full]` extra is required for the CLI, the bundled Typst compiler, and fonts. No system TeX or Typst is needed. `scripts/resume.cjs` backs `npm run resume:setup` (creates `resume/.venv`), `npm run resume` and `npm run resume:watch`. It prefers the venv binary, falls back to `rendercv` on PATH, and otherwise exits 1 with setup instructions. Output goes to the gitignored `resume/rendercv_output/` (pdf, png, typ, md, html).
@@ -22,3 +22,19 @@ The resume source is `resume/David_Vasandani_CV.yaml` (RenderCV 2.8 schema). `re
 - Mastodon handles use `username: '@user@instance'`.
 - Upgrading means bumping both the pin and the schema tag on the YAML's first line. The test asserts both.
 - Local `npm test` needs Chrome for the Pa11y audit. On this NixOS host, use `PUPPETEER_EXECUTABLE_PATH=$(nix build --no-link --print-out-paths nixpkgs#chromium)/bin/chromium`.
+
+## Page layout (task 0d66, Resume Heading Design, 2026-11-02)
+RenderCV's Markdown writes each entry as `## **Company**, Title`, then the location, dates and duration as separate plain lines, then `**Theme: ...**`. Rendered straight, that's five or six stacked paragraphs per role. `scripts/resume-page.cjs` now runs a markdown-it core rule (`resumeLayout`, exported through `renderResume()`) that rewrites the token stream:
+- h3 `**Company**, Title` → `.resume-org` eyebrow plus `.resume-role`, with the comma kept in a `.visually-hidden` span so the heading still reads "Company, Title".
+- The plain lines after an h3, up to the last date, year or duration, become one `<p class="resume-meta">` ordered dates, duration, location. A line ending in "." is never meta, which keeps the Projects summary ("Personal project, ...") out.
+- A paragraph that is only `**Theme: ...**` becomes `.resume-theme` with a `.resume-label`.
+
+Gotchas:
+- Fixtures for `renderResume()` must use `###` (it takes the already-demoted page Markdown).
+- markdown-it leaves empty text tokens around `**bold**`; filter them before matching token shapes.
+- Inject only fixed strings as `html_inline` tokens. Resume text stays in `text` tokens, so it's still escaped with `html: false`.
+- Put the `·` separator in `span:not(:last-child)::after`, not `span + span::before`, or a wrapped phone line starts with a dot. `content: "·" / ""` hides it from screen readers.
+- Styles live under `.resume` (a wrapper in `pages/resume.njk`) and `.resume-*`. Colours checked on #FFF0EB: #6b5750 (6.09:1) and #9a3412 (6.58:1; 5.99:1 on the callout tint #fbe4db).
+- Company grouping (follow-up, 2026-11-02): `groupCompanies()` runs after the per-entry pass. Adjacent h3 entries with the same company become a `section.resume-company` (h3 company, overall range, shared location) wrapping `div.resume-roles` with h4 roles on a CSS timeline. `groupMeta` tags each meta token with `token.meta.kind` (dates, duration, location) so later passes can find them. Splice groups back to front so earlier token indexes stay valid. Spec: `specs/vk/0d66-resume-heading-d/company-grouping.md`.
+- Changing RenderCV's version or theme can change this Markdown shape. Rerun the render and check the built page's headings and meta lines.
+- CodeQL's "Bad HTML filtering regexp" check runs on tests too, and fails the PR's CodeQL check. A blocklist like `/<(script|img)[ >]/` gets flagged (case, then tabs). To test escaping, collect the tag names in the output and compare them with an allowlist instead.

@@ -225,3 +225,114 @@ form button {
   color: #333;
   text-decoration: none;
 }
+/* Resume page: compact entry headers (scripts/resume-page.cjs adds the classes) */
+.resume h2 {
+	margin-top: 2em;
+	padding-bottom: 0.25em;
+	border-bottom: 1px solid #e8cfc6;
+}
+
+.resume h3 {
+	margin: 2.25em 0 0.25em;
+	line-height: 1.3;
+}
+
+.resume h2 + h3 {
+	margin-top: 1.25em;
+}
+
+.resume-org {
+	display: block;
+	margin-bottom: 0.2em;
+	font-size: 0.7em;
+	font-weight: 600;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	color: #9a3412;
+}
+
+.resume-role {
+	display: block;
+}
+
+.resume .resume-meta {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0 0.5em;
+	margin: 0 0 1em;
+	font-size: 0.9em;
+	color: #6b5750;
+}
+
+.resume-meta span:not(:last-child)::after {
+	content: "·";
+	content: "·" / "";
+	margin-left: 0.5em;
+}
+
+.resume .resume-theme {
+	margin: 0 0 0.75em;
+	padding: 0.5em 0.75em;
+	border-left: 3px solid #9a3412;
+	border-radius: 0 4px 4px 0;
+	background-color: #fbe4db;
+}
+
+.resume-label {
+	font-weight: 600;
+	color: #9a3412;
+}
+
+/* Several roles at one company: a company heading, then the roles on a timeline */
+.resume-company h3 {
+	margin-bottom: 0.15em;
+}
+
+.resume h2 + .resume-company h3 {
+	margin-top: 1.25em;
+}
+
+.resume-roles ul {
+	padding-left: 1.25em;
+}
+
+.resume-roles {
+	margin-left: 5px;
+	padding-left: 20px;
+	border-left: 2px solid #e8cfc6;
+}
+
+.resume-roles h4 {
+	position: relative;
+	margin: 1.75em 0 0.25em;
+	font-size: 1.05em;
+	line-height: 1.3;
+}
+
+.resume-roles h4:first-child {
+	margin-top: 1em;
+}
+
+.resume-roles h4::before {
+	content: "";
+	position: absolute;
+	top: 0.35em;
+	left: -27px;
+	width: 10px;
+	height: 10px;
+	border-radius: 50%;
+	background-color: #9a3412;
+	box-shadow: 0 0 0 3px var(--background);
+}
+
+.visually-hidden {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	margin: -1px;
+	padding: 0;
+	overflow: hidden;
+	clip: rect(0 0 0 0);
+	white-space: nowrap;
+	border: 0;
+}
