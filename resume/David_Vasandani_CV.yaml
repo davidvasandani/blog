@@ -28,9 +28,8 @@ cv:
         summary: |-
           **Theme: Running IT operations, using AI to find problems and automate fixes.**
 
-          Promoted from Senior Lead Software Engineer. Runs IT Operations, reporting to the VP of Technology.
+          Promoted from Senior Lead Software Engineer. Runs IT Operations, reporting to the VP of Technology. Manages a Senior Systems Engineer and two IT Operations Specialists.
         highlights:
-          - "Manage a team of three: a Senior Systems Engineer and two IT Operations Specialists."
           # TODO: add the crash reduction once 2 weeks of post-rollout data exist (re-run ~2026-11-08).
           - Used AI to trace POS crashes that hit dozens of high-volume stores during the lunch rush. Reverse-engineered the POS executable, then shipped a workaround that starts the app on fewer cores.
           - The same work turned up loyalty-scan freezes, where a hidden reward dialog blocked the register screen. Used AI to decompile the vendor's loyalty DLL, found that it logs nothing when the reward dialog opens, and shared the findings with the vendor as evidence.
@@ -38,6 +37,9 @@ cv:
           - Built a browser service for AI agents that stays logged in between runs. When a step needs a person, they take over the live session.
           - Replaced emailing the POS vendor to fix sales stuck on the wrong business date with an AI agent that makes the fix after a preview and a named approver's sign-off.
           - Built a tool that lets AI agents run PowerShell on POS devices and managers' back-office computers through our remote-access software. Integrated security cameras to check whether someone might be using the computer before making changes during business hours. Commands are read-only by default, changes need approval, and every command is logged.
+          - Used order data and request traces to investigate failed DoorDash orders at three stores. Showed that requests failed before reaching our services; DoorDash confirmed and fixed a missed configuration migration.
+          - Brought a paused restaurant back online on DoorDash with a manual REST API update. Used delivery logs to show repeated HTTP 500 responses from its webhook and escalated the evidence to DoorDash.
+          - Validated Slack exports and shared-drive copies for the Spyce/Wonder data handoff under Legal's redaction criteria. Caught a copy failure and restored roughly 12,039 missing items before delivery. Fixed the Slack export so all 8,605 files could be parsed.
       - company: Sweetgreen
         position: Senior Lead Software Engineer
         start_date: 2025-09
@@ -65,7 +67,6 @@ cv:
           - Built an Ansible and Fluent Bit pipeline that ships POS logs to Datadog. It covered 222 of 252 restaurants by May 2025.
           - Built AWS Lambda and Datadog monitoring for Meraki network loss and latency and for Intune-managed time clocks, so teams could see which restaurants had network or device problems.
           - Added Cognito token caching for marketplace partners. Reported authentication costs fell from about $3,500 to $1,000 a month.
-          - Defined AWS accounts in Terraform, rolled out Atlantis and view-only SSO, and turned on AWS Config with ServiceNow integration in every account.
           - Built and ran an AWS Transfer SFTP service in Terraform for file exchange with Paytronix and our POS vendor, with a separate folder for each vendor. Worked with Security to onboard vendors.
       - company: Sweetgreen
         position: Senior Software Engineer, Infrastructure
@@ -91,7 +92,6 @@ cv:
         location: Remote
         highlights:
           - Moved Elasticsearch, Redis and Postgres off self-managed EC2 instances onto Amazon Elasticsearch Service, ElastiCache and RDS, which were more reliable and less work to run.
-          - Cut infrastructure costs by moving test environments to ECS on Spot Fleet and buying short-term Reserved Instances.
           - Set developers up with Docker for Mac and upgraded CI from CircleCI 1.0 to 2.0.
       - company: Humanitarian OpenStreetMap Team
         position: Senior Systems Engineer
@@ -110,7 +110,6 @@ cv:
           - Auto-scaled application servers on CloudWatch CPU and memory metrics and worker servers on queue depth.
           - Monitored servers with collectd and services with Consul, alerting through Sensu.
           - Increased deployments from once a week to over 400 a month over two years.
-          - Cut the infrastructure bill by over 40% by rightsizing servers and autoscaling.
     open_source:
       - name: Self-hosted AI coding platform (fork of Vibe Kanban)
         date: 2026
@@ -127,7 +126,7 @@ cv:
       - name: Household content and workflow platform
         summary: Personal project, built with AI coding agents.
         highlights:
-          - Built media and metadata imports for a household archive. Imports pick up where they stopped, check attachments, and have controls to recover failed runs.
+          - Built resumable book and magazine imports for a household library. Extracted EPUB metadata, checked file formats and used SHA-256 hashes to identify duplicates, with controls to recover failed runs.
           - Got stalled imports running again by fixing credentials and using the recovery triggers. That brought in 62 new items and requeued 63 failed downloads.
           - Automated email triage. Jev sorts each message into Johnny.Decimal labels, a separate check confirms each action, and my corrections tune it.
     skills:
