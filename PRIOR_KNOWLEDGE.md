@@ -1,37 +1,35 @@
-# Prior knowledge: Fix SitePing UI (task 91b3)
+# Prior knowledge: Resume Heading Design (task 0d66)
 
-Sources: `knowledge-base/siteping.md`, `knowledge-base/dependency-testing.md`,
-`knowledge-base/cloudflare-hosting.md`, `.specify/memory/constitution.md`.
+Searched `knowledge-base/` for resume page, RenderCV, CSS, SitePing and
+accessibility notes. Relevant pages: `resume-rendercv.md`, `siteping.md`,
+`resume-voice.md`, `cloudflare-hosting.md`.
 
-## SitePing (`knowledge-base/siteping.md`, VAS-945)
-- The widget only loads for signed-in CMS editors. `src/siteping.js` reads
-  Decap's `decap-cms-user` token and checks `/api/siteping/session` before it
-  calls `initSiteping`. Public readers never load the widget.
-- `scripts/build-siteping.cjs` bundles `src/siteping.js` with esbuild into
-  `_site/assets/siteping` after the Eleventy build. `_includes/layouts/base.njk`
-  loads it as a module.
-- `scripts/test-siteping-browser.cjs` drives the built widget in Puppeteer
-  (mount after verification, cross-tab logout). The page doesn't say how it
-  runs, and neither `npm test` nor CI calls it. It's a manual check.
-- `@siteping/widget` is pinned at 0.12.0 (devDependency, bundled).
+## How /resume/ is built (resume-rendercv.md)
+- `pages/resume.njk` is fed by `pages/resume.11tydata.js` →
+  `scripts/resume-page.cjs`, which renders RenderCV's Markdown with
+  markdown-it (raw HTML off), drops its h1 and demotes headings one level.
+  Role headings therefore arrive as `<h3>`.
+- The page only exists when `npm run resume` has rendered output
+  (`resume/rendercv_output/`, gitignored). `npm test` checks one h1 and an
+  unbroken outline (`tests/resume.test.cjs`).
+- RenderCV's own `.html` loads CDN CSS and fails Pa11y; don't publish it.
+- Pa11y (WCAG2AA) audits `/resume/` on every deploy. Locally it needs
+  Chromium via `PUPPETEER_EXECUTABLE_PATH` on this NixOS host.
 
-Not in the knowledge base (found in the widget source for this task): the
-launcher and FAB live in a closed shadow root, but the annotate toolbar,
-overlay, comment popup, markers and tooltip go straight into
-`document.body`. They set inline styles, but any property they leave unset
-takes the host page's CSS.
+## CSS boundaries (siteping.md)
+- SitePing's toolbar and popup live in the page DOM, so Blog CSS must not
+  use bare element selectors (`button`, `input`, ...). Scope new rules to a
+  class or container. Note that bare `header` already gets `padding: 1em`,
+  so don't wrap resume entries in `<header>`.
 
-## Testing (`knowledge-base/dependency-testing.md`)
-- `npm test` cleans, builds HTML and Gemini, runs `node --test tests/*.test.cjs`,
-  then the Pa11y audit of public pages. CI runs it with
-  `PUPPETEER_EXECUTABLE_PATH=/usr/bin/google-chrome` and skips the browser
-  download.
-- On NixOS, set `PUPPETEER_EXECUTABLE_PATH` to system Chromium.
+## Resume wording (resume-voice.md, AGENTS.md)
+- Every wording change to the YAML goes through `/voice`, and
+  `npm run resume:voice` runs in `npm test`. A layout-only change that leaves
+  the YAML alone has no wording to review, but the check must still pass.
+- Public repo: never name the POS vendor in specs, knowledge pages or
+  commits.
 
-## Constitution
-- Principle 1: Blog repository only.
-- Principle 2: keep published content and the editor workflow as they are.
-  The contact form must look the same.
-- Principle 3/4: test observable behavior, deterministically, with no
-  production credentials. Mock the SitePing API.
-- Principle 9: local validation, independent review, knowledge update, PR.
+## Gaps
+No page covers the resume page's visual design or RenderCV's Markdown entry
+shape (heading, then location, dates, duration on separate lines). That is
+worth recording after this task.
