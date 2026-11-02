@@ -8,13 +8,16 @@
   "durable_objects": { "bindings": [{ "name": "BLOG_FEEDBACK", "class_name": "BlogFeedback" }] },
   "migrations": [{ "tag": "siteping-v1", "new_sqlite_classes": ["BlogFeedback"] }],
   "previews": {},
+  // wrangler dev otherwise hands the Worker http:// URLs, which would trip the HTTPS redirect.
+  "dev": { "upstream_protocol": "https" },
   "routes": [
     { "pattern": "david.vasandani.me", "custom_domain": true }
   ],
   "assets": {
     "directory": "./_site",
     "binding": "ASSETS",
-    "run_worker_first": ["/api", "/api/*", "/hello"],
+    // Every request goes through the Worker so plain HTTP can be redirected.
+    "run_worker_first": true,
     "not_found_handling": "404-page"
   }
 }

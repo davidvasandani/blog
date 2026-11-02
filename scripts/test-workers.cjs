@@ -45,4 +45,22 @@ const { unstable_dev } = require('wrangler');
   } finally {
     await worker.stop();
   }
+  // Plain HTTP on the custom domain must redirect. wrangler dev rewrites the
+  // Location origin to its own, so only the status and path are checked here.
+  const insecure = await unstable_dev('workers/index.ts', {
+    config: 'wrangler.jsonc',
+    upstreamProtocol: 'http',
+    experimental: { disableExperimentalWarning: true },
+  });
+  try {
+    const page = await insecure.fetch('/resume/?x=1', { redirect: 'manual' });
+    assert.equal(page.status, 301);
+    const location = new URL(page.headers.get('location'));
+    assert.equal(location.pathname + location.search, '/resume/?x=1');
+    const post = await insecure.fetch('/api/contact', { method: 'POST', redirect: 'manual' });
+    assert.equal(post.status, 308);
+    console.log('Workers runtime: plain HTTP redirects to HTTPS.');
+  } finally {
+    await insecure.stop();
+  }
 })().catch(error => { console.error(error); process.exitCode = 1; });

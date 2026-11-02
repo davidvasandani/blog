@@ -9,7 +9,13 @@ const expressHandler = httpServerHandler({ port: 3000 });
 
 export default {
   async fetch(request, env, ctx) {
-    const path = new URL(request.url).pathname;
+    const url = new URL(request.url);
+    // Cloudflare answers plain HTTP on the custom domain, so send it to HTTPS.
+    if (url.protocol === 'http:') {
+      url.protocol = 'https:';
+      return Response.redirect(url.toString(), request.method === 'GET' || request.method === 'HEAD' ? 301 : 308);
+    }
+    const path = url.pathname;
     if (path === '/api/siteping' || path === '/api/siteping/session') {
       const editor = await authorizeEditor(request);
       if (editor instanceof Response) return editor;
