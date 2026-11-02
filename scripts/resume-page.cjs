@@ -3,6 +3,7 @@
 const fs = require('node:fs');
 const path = require('node:path');
 const markdownIt = require('markdown-it');
+const { readRenderedVersion } = require('./resume-version.cjs');
 
 const outputDir = path.join(__dirname, '..', 'resume', 'rendercv_output');
 const markdownFile = path.join(outputDir, 'David_Vasandani_CV.md');
@@ -195,8 +196,9 @@ function renderResume(markdown) {
 
 function readResume() {
   if (!fs.existsSync(markdownFile) || !fs.existsSync(pdfFile)) return null;
+  const version = readRenderedVersion();
   const html = renderResume(toPageMarkdown(fs.readFileSync(markdownFile, 'utf8')));
-  return { html, pdfUrl };
+  return { html, pdfUrl, version };
 }
 
 module.exports = { toPageMarkdown, renderResume, readResume, pdfFile, pdfUrl };
