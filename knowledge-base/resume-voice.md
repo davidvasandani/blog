@@ -56,3 +56,7 @@ Task 5ab27642-ab10-41bf-83d9-2bafb85d0287, follow-up 2026-11-02. David approved 
 - Household ingestion is a personal project. Validation, metadata extraction, deduplication and recovery are supported; 63 requeued downloads are not 63 completed downloads.
 
 Evidence mapping and the voice pass are recorded in `specs/vk/5ab2-timeline-audit-a/resume-stories.md`.
+
+## Content recovery claims
+
+Task VAS-965, c2fbb0ca-6f57-45bd-b382-038719fc40ea, 2026-11-02. The household project's recovery bullet now leads with restored content imports. Keep its two results separate: 62 new items imported, 63 failed downloads requeued. Requeuing is not proof of completion. The hiring timeline audit's F08/R041 retained these prior resume figures without retrieving the underlying run, so a wording edit does not add corroboration or justify a stronger outcome. See [the fact comparison](../specs/vk/4fff-this-is-borning/research.md).
