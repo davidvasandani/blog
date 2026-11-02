@@ -110,7 +110,7 @@ cv:
           - Auto-scaled application servers on CloudWatch CPU and memory metrics and worker servers on queue depth.
           - Monitored servers with collectd and services with Consul, alerting through Sensu.
           - Increased deployments from once a week to over 400 a month over two years.
-    open_source:
+    projects:
       - name: Self-hosted AI coding platform (fork of Vibe Kanban)
         date: 2026
         summary: Built for my own use. Work adopted it, and I'm now onboarding my team.
@@ -122,7 +122,6 @@ cv:
         date: 2026
         highlights:
           - Made an open-source website feedback tool work on phones, directing AI agents to write the change and 48 regression tests. Upstream shipped it in v0.11.0.
-    projects:
       - name: Household content and workflow platform
         summary: Personal project, built with AI coding agents.
         highlights:
