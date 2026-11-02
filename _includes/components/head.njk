@@ -6,7 +6,7 @@
   <meta name="description" content="{{ metaDescription or eleventyComputed.metaDescription or metadata.description }}">
   {# Link previews (iMessage, Slack, Mastodon). Override the image with ogImage/ogImageAlt front matter. #}
   {% set ogTitle = metadata.title if page.url == "/" else (title or metadata.title) %}
-  {% set ogImageUrl = ogImage or "/authors/david-vasandani.jpg" %}
+  {% set ogImageUrl = ogImage or "/img/og/david-vasandani.jpg" %}
   <meta property="og:title" content="{{ ogTitle }}">
   <meta property="og:description" content="{{ metaDescription or eleventyComputed.metaDescription or summary or metadata.description }}">
   <meta property="og:type" content="{{ 'article' if section == 'post' else 'website' }}">
@@ -17,8 +17,9 @@
   <meta property="og:image:alt" content="{{ ogImageAlt or ogTitle }}">
   {% else %}
   <meta property="og:image:alt" content="Photo of David Vasandani">
-  <meta property="og:image:width" content="1528">
-  <meta property="og:image:height" content="1528">
+  <meta property="og:image:type" content="image/jpeg">
+  <meta property="og:image:width" content="600">
+  <meta property="og:image:height" content="600">
   {% endif %}
   <meta name="twitter:card" content="summary">
   {% set css %}
