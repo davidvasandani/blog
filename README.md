@@ -109,6 +109,19 @@ Run `npm start` for the local site plus the pinned Decap proxy, or `npm run serv
 for the public site alone. Local CMS edits write to this checkout. The optional
 Gemini server starts with `npm run gemini:server:start` after building its output.
 
+The Gemini capsule is published at `gemini://gemini.vasandani.me`, which points
+at Flounder (`david.flounder.online`). On every push to `main`, the
+`gemini-deploy` workflow builds `_gemini` and runs `scripts/gemini-deploy.cjs`,
+which saves each file through Flounder's HTTPS editor and fails if any file
+doesn't match after saving. Flounder's SFTP port refuses connections, even
+though its docs still list it: `gemini://admin.flounder.online/sftp.gmi` says to
+connect with `sftp -P 2024`, but port 2024 refused connections from GitHub's
+runners and from a local check on 2 November 2026. The capsule home page is
+`gemini/pages/index.njk`; Gemini layouts live in `gemini/_includes/layouts`.
+`gemini://david.vasandani.me` can't work while that name is proxied by
+Cloudflare, because Spectrum on Pro and Business plans doesn't cover Gemini's
+port 1965.
+
 Before future upgrades, run the tests on the existing lockfile, then update
 packages and rerun the same checks. Keep browser import versions and their local
 test helpers aligned. See VALIDATION.md and the feature research notes for the
