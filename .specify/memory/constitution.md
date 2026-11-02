@@ -29,3 +29,5 @@ Review: 2026-11-01 SitePing integration (`/speckit.constitution`). Version 1.2.0
 Amendment: 2026-11-01, version 1.3.0 adds principle 10 at David's request: all resume updates go through the `/voice` skill.
 
 Review: 2026-11-01 Clarify volume, task a290 (`/speckit.constitution`). Version 1.3.0 applies without amendment. Principle 1: the change stays in this repository and the hiring repository is read-only. Principle 10: the one-phrase resume edit still goes through `/voice`. A claim that comes from David's own instruction rather than committed evidence is recorded with its source in the spec. Principle 9: validate locally, get an independent review, record knowledge and merge through a PR.
+
+Review: 2026-11-02 Fix SitePing UI, task 91b3 (`/speckit.constitution`). Version 1.3.0 applies without amendment. Principle 1: fix it in the Blog's own CSS, not by changing the SitePing package or another service. Principle 2: the contact form must look the same. Principles 3 and 4: a deterministic browser test with a mocked editor session covers the layout, and `npm test` runs it.

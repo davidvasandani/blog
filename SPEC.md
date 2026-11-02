@@ -1,29 +1,51 @@
-# Clarify volume in the loyalty-scan bullet
+# Fix the SitePing toolbar on phones
 
-Task: a290 (Claify Volume)
+Task: 91b3 (Fix SitePing UI)
 
-## Objective
-David asked that the loyalty-scan bullet stop citing the fleet size. The phrase "loyalty-scan freezes at 32 of 272 restaurants" should read "loyalty-scan freezes at 32 of our highest volume restaurants".
+## Problem
+On a phone, SitePing's annotate toolbar is broken. The instruction "Tap an
+element or drag to select an area" wraps one word per line down the left
+edge, and a full-width Cancel pill sits over it (David's iPhone screenshot,
+2026-11-02, on /resume/).
 
-## Scope
-- One highlight in `resume/David_Vasandani_CV.yaml`, under Sweetgreen, Senior Manager, IT Infrastructure & Innovation.
-- Only the phrase "32 of 272 restaurants" changes. The rest of the bullet stays as it is: "likely cause", the hidden reward dialog, decompiling the vendor's DLLs, fleet logs, 46 forced restarts in a week, and sending the vendor the evidence to confirm.
-- No other resume entries, templates, pages or tooling change.
-- The hiring repository stays read-only (constitution principle 1). Its resume material still says "32 of 272 stores"; that's a record of the investigation, not the published resume.
+## Cause
+SitePing puts its annotate toolbar, comment popup, markers and tooltip in
+the page's own DOM (`document.body`), not in its shadow root. The Blog's
+contact-form rule in `_includes/assets/css/inline.css` styles every
+`input`, `textarea` and `button` on the page:
 
-## Source of the new claim
-The hiring notes give 32 stores out of 272 in the fleet over 7 days. They don't say the 32 were the highest-volume stores, though they do say freezes rose at lunch and the test store was high-volume. "Our highest volume restaurants" comes from David's own instruction in this task (2026-11-01). It's his description of his own work, so it's used as given, and the spec records where it came from.
+```css
+input, textarea, button { width: 100%; padding: 1em; margin-bottom: 1em; ... }
+button { border: 1px solid var(--primary); background-color: var(--primary); ... }
+```
+
+The toolbar's Cancel button has inline height, padding, border and
+background but no width or margin, and `flex-shrink: 0`. It takes the
+global `width: 100%`, fills the flex row, and leaves the instruction
+`<span>` with no width. Reproduced in Chromium at 393px: Cancel 365px wide,
+instruction 0px wide, toolbar 187px tall. The comment popup's `textarea`
+and buttons sit in the same DOM and get the same rule.
+
+## Change
+Scope the contact-form control rules to `form` (`form input`,
+`form textarea`, `form button`). The only `input`, `textarea` and `button`
+elements in the Blog's own templates are in the contact form
+(`_includes/components/form.njk`), so it looks the same. SitePing's
+body-level controls are not inside a `<form>`, so they keep the widget's
+own styles. Don't patch or fork `@siteping/widget`.
 
 ## Requirements
-1. The bullet contains "loyalty-scan freezes at 32 of our highest volume restaurants".
-2. The bullet no longer contains "272".
-3. Every other fact, number, qualifier ("likely") and ownership claim in the bullet is unchanged, and nothing is added.
-4. The line goes through the `/voice` skill (AGENTS.md, constitution principle 10). David's wording is kept word for word, including "highest volume" without a hyphen, because he gave the exact text.
-5. `npm run resume:voice` passes.
-6. The resume still renders (RenderCV) with the same page count, if the local tooling is available.
-7. Nothing committed names the POS vendor or any confidential product.
+1. On a 393px-wide touch viewport, the annotate toolbar's instruction text
+   is readable on at most two lines, and Cancel keeps its intrinsic width
+   (well under the viewport width), not the full row.
+2. The contact form's inputs, textarea and submit button keep the same
+   computed width, padding, margin, font, border and colors.
+3. Public readers still don't load the widget; sign-in, cross-tab logout
+   and the API are unchanged.
+4. A browser regression test covers requirement 1 and runs in
+   `scripts/test-siteping-browser.cjs`.
+5. `npm test` passes.
 
-## Acceptance
-- `git diff` shows a one-line change in the resume YAML (plus the task's planning and knowledge files).
-- `npm run resume:voice` reports no problems.
-- `npm test` passes, or any failure is shown to predate this change.
+## Out of scope
+Upstream SitePing changes, theming the widget to match the Blog, and any
+other service.
