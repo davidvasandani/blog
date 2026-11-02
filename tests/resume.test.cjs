@@ -59,6 +59,48 @@ test('a year alone is meta, a sentence is not, and plain headings stay as they a
   assert.match(older, /<p class="resume-meta"><span>2016 – 2019<\/span><span>Remote<\/span><\/p>/);
 });
 
+test('adjacent roles at one company share a company heading and timeline', () => {
+  const html = renderResume([
+    '## Experience', '',
+    '### **Sweetgreen**, Senior Manager', '', 'Culver City, CA', '', 'Feb 2026 – present', '', '10 months', '', '- One', '',
+    '### **Sweetgreen**, Lead', '', 'Culver City, CA', '', 'Mar 2021 – Feb 2026', '', '4 years 11 months', '', '- Two', '',
+    '### **Warby Parker**, Engineer', '', 'New York, NY', '', '2014 – 2016', '', '- Three', '',
+    '## Skills', '', 'x',
+  ].join('\n'));
+  assert.equal(html, [
+    '<h2>Experience</h2>',
+    '<section class="resume-company">',
+    '<h3>Sweetgreen</h3>',
+    '<p class="resume-meta"><span>Mar 2021 – present</span><span>Culver City, CA</span></p>',
+    '<div class="resume-roles">',
+    '<h4>Senior Manager</h4>',
+    '<p class="resume-meta"><span>Feb 2026 – present</span><span>10 months</span></p>',
+    '<ul>\n<li>One</li>\n</ul>',
+    '<h4>Lead</h4>',
+    '<p class="resume-meta"><span>Mar 2021 – Feb 2026</span><span>4 years 11 months</span></p>',
+    '<ul>\n<li>Two</li>\n</ul>',
+    '</div>',
+    '</section>',
+    '<h3><span class="resume-org">Warby Parker</span><span class="visually-hidden">, </span>'
+      + '<span class="resume-role">Engineer</span></h3>',
+    '<p class="resume-meta"><span>2014 – 2016</span><span>New York, NY</span></p>',
+    '<ul>\n<li>Three</li>\n</ul>',
+    '<h2>Skills</h2>',
+    '<p>x</p>',
+    '',
+  ].join('\n'));
+});
+
+test('grouped roles keep their own location when locations differ', () => {
+  const html = renderResume([
+    '### **Co**, B', '', 'Remote', '', '2020 – 2021', '', '- b', '',
+    '### **Co**, A', '', 'New York, NY', '', '2018 – 2020', '', '- a',
+  ].join('\n'));
+  assert.match(html, /<h3>Co<\/h3>\n<p class="resume-meta"><span>2018 – 2021<\/span><\/p>/);
+  assert.match(html, /<h4>B<\/h4>\n<p class="resume-meta"><span>2020 – 2021<\/span><span>Remote<\/span><\/p>/);
+  assert.match(html, /<h4>A<\/h4>\n<p class="resume-meta"><span>2018 – 2020<\/span><span>New York, NY<\/span><\/p>/);
+});
+
 test('resume text is still escaped inside the new markup', () => {
   const html = renderResume('### **<b>Co</b>**, <i>Role</i>\n\n<script>x</script>\n\n2020 – 2021\n\n**Theme: <img src=x>**\n');
   const tags = new Set(html.split('<').slice(1).map(part => part.split(/[\s>]/)[0].replace('/', '')));
