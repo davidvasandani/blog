@@ -3,7 +3,7 @@ layout: layouts/page.njk
 title: Resume
 metaDescription: David Vasandani's resume.
 ---
-<p><a href="{{ resume.pdfUrl }}">Download the PDF</a></p>
+<p>Resume version {{ resume.version }} · <a href="{{ resume.pdfUrl }}">Download the PDF</a></p>
 
 <div class="resume">
 {{ resume.html | safe }}

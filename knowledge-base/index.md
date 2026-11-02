@@ -14,3 +14,4 @@
 - [Resume relevance audits](resume-relevance-audit.md): source inventories, role-specific scores, evidence/date separation, personal-to-work attribution and caveat parity across report formats. Task: 5ab27642-ab10-41bf-83d9-2bafb85d0287.
 
 - [Link previews (Open Graph)](link-previews.md): og:title/og:image tags in the shared head, the home-title exception, absolute image URLs, the `ogImage` front matter override (not `image`), and preview caching. Task: 13f2dbd4-b8af-4925-aa6a-55f7ef3f57a7 (iMessage image)
+- [Resume release versions](resume-rendercv.md#resume-release-versions): independent resume/VERSION, matching PDF and HTML labels, bump rules, and stale/partial render protection. Task: 71064bcc-75ae-43dc-ba7e-4959fc3b9599 (VAS-968).

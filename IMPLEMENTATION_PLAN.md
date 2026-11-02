@@ -1,18 +1,14 @@
-# Implementation plan: og:title and og:image (task 13f2)
+# Implementation plan: resume semantic version
 
-1. `_includes/components/head.njk`: after the description meta, add Open
-   Graph and Twitter card tags.
-   - `ogTitle` = `metadata.title` when `page.url == "/"`, else
-     `title or metadata.title`.
-   - `ogImageUrl` = front matter `ogImage` or `/authors/david-vasandani.jpg`,
-     prefixed with `metadata.url`. Alt from `ogImageAlt`, defaulting to
-     "Photo of David Vasandani".
-   - Width/height (1528) only for the default image.
-   - `og:url` = `metadata.url + page.url`; `og:type` = `article` when
-     `section == "post"`, else `website`.
-   - Nunjucks autoescapes, so quotes and `&` are escaped.
-2. `tests/frontend.test.cjs`: new test checking home, a post and the about
-   page for each tag, absolute image URLs that map to files in `_site`, and
-   the home og:title being the site name.
-3. Build, run `npm test` (Pa11y included), inspect the built head.
-4. Codex review, knowledge page, PR, merge.
+Based on SPEC.md and workspace PRIOR_KNOWLEDGE.md.
+
+1. Complete constitution, feature specification, clarification, technical plan,
+   tasks, and analysis in the task's SpecKit directory.
+2. Add a tracked resume/VERSION and shared strict release-version reader.
+3. Replace Git footer resolution and expose the version on the HTML resume.
+4. Document version meaning, bumping, and rebuilding before main releases.
+5. Cover malformed/missing versions, footer arguments without Git, and published
+   HTML version. Preserve absent-resume behavior and run regression checks.
+6. Render the PDF and inspect its extracted footer; verify the built HTML matches.
+7. Obtain an independent Codex review, resolve findings, record reusable knowledge.
+8. Commit, open the PR against main, satisfy checks, and merge.

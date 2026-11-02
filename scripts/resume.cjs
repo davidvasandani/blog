@@ -7,6 +7,7 @@
 const { spawnSync } = require('node:child_process');
 const fs = require('node:fs');
 const path = require('node:path');
+const { readVersion, renderedVersionFile } = require('./resume-version.cjs');
 
 const repoDir = path.join(__dirname, '..');
 const resumeDir = path.join(repoDir, 'resume');
@@ -40,24 +41,52 @@ function setup() {
 }
 
 function render(extraArgs) {
-  const revision = spawnSync('git', ['rev-parse', '--short=8', 'HEAD'], {
-    cwd: repoDir, encoding: 'utf8',
-  });
-  const hash = revision.status === 0 ? revision.stdout.trim() : 'unavailable';
-  if (hash === 'unavailable') console.warn('Git revision unavailable; the PDF footer will say so.');
-  const args = ['render', input, ...extraArgs,
-    '--design.templates.footer', `*NAME -- PAGE_NUMBER/TOTAL_PAGES -- Git: ${hash}*`];
+  const version = readVersion();
+  const artifacts = ['David_Vasandani_CV.pdf', 'David_Vasandani_CV.md']
+    .map(file => path.join(path.dirname(renderedVersionFile), file));
+  const fingerprint = file => {
+    try {
+      const stat = fs.statSync(file, { bigint: true });
+      return `${stat.ino}:${stat.mtimeNs}:${stat.ctimeNs}`;
+    } catch (error) {
+      if (error.code === 'ENOENT') return null;
+      throw error;
+    }
+  };
+  const before = artifacts.map(fingerprint);
+  fs.rmSync(renderedVersionFile, { force: true });
+  const footer = `*NAME -- PAGE_NUMBER/TOTAL_PAGES -- Resume version ${version}*`;
   const local = exe('rendercv');
-  if (fs.existsSync(local)) return run(local, args).status;
-  const global = run('rendercv', args);
-  if (!global.missing) return global.status;
-  console.error('RenderCV is not installed. Run `npm run resume:setup` (needs Python 3.12+) and try again.');
-  return 1;
+  const binary = fs.existsSync(local) ? local : 'rendercv';
+  const invoke = options => run(binary, ['render', input, ...options,
+    '--design.templates.footer', footer]);
+  // Complete one render before starting the watcher, so Eleventy can safely
+  // consume its version marker while the watcher remains active.
+  const result = invoke(extraArgs.filter(arg => arg !== '--watch' && arg !== '-w'));
+  if (result.missing) {
+    console.error('RenderCV is not installed. Run `npm run resume:setup` (needs Python 3.12+) and try again.');
+  }
+  if (result.status !== 0) return result.status;
+  const regenerated = artifacts.every((file, index) => {
+    const after = fingerprint(file);
+    return after !== null && after !== before[index];
+  });
+  if (regenerated) fs.writeFileSync(renderedVersionFile, `${version}\n`);
+  else console.warn('Published PDF and Markdown were not both regenerated; run npm run resume before building the site.');
+  if (extraArgs.includes('--watch') || extraArgs.includes('-w')) {
+    const watched = invoke(extraArgs);
+    if (watched.status !== 0) fs.rmSync(renderedVersionFile, { force: true });
+    return watched.status;
+  }
+  return 0;
 }
 
 const [command, ...rest] = process.argv.slice(2);
 if (command === 'setup') process.exitCode = setup();
-else if (command === 'render') process.exitCode = render(rest);
+else if (command === 'render') {
+  try { process.exitCode = render(rest); }
+  catch (error) { console.error(error.message); process.exitCode = 1; }
+}
 else {
   console.error('Usage: node scripts/resume.cjs <setup|render> [rendercv options]');
   process.exitCode = 2;
