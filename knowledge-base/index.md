@@ -17,3 +17,5 @@
 - [Resume release versions](resume-rendercv.md#resume-release-versions): independent resume/VERSION, matching PDF and HTML labels, bump rules, and stale/partial render protection. Task: 71064bcc-75ae-43dc-ba7e-4959fc3b9599 (VAS-968).
 
 - [Python provisioning delay](cloudflare-hosting.md#python-provisioning-delay): Python 3.14.8 build pin, separate resume CI coverage and the outstanding hosted timing check. Task: VAS-961, dbaa2d7b-811b-4f84-ac60-d327b8c758eb.
+
+- [Content recovery claim limits](resume-voice.md#content-recovery-claims): distinguish imported items from requeued downloads and preserve the original audit's verification limits. Task: VAS-965, c2fbb0ca-6f57-45bd-b382-038719fc40ea.
