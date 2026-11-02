@@ -32,7 +32,31 @@ npm run resume:watch   # re-renders on every save
 
 Extra RenderCV options pass through after `--`, for example `npm run resume -- --dont-generate-png`. If `resume/.venv` doesn't exist, the scripts fall back to a `rendercv` on your `PATH`.
 
-The PDF footer includes the short Git commit hash of the blog checkout, alongside the name and page count. Use `npm run resume` to include it; calling RenderCV directly bypasses the footer override. The hash identifies `HEAD`, so uncommitted edits are not represented. Watch mode captures the hash when it starts; restart it after committing. If Git or the repository metadata is unavailable, the footer reads `Git: unavailable` and the script prints a warning.
+The PDF footer and the published `/resume/` page show **Resume version 1.0.0**
+(initial release), sourced from `resume/VERSION`. This version belongs to the
+resume, independently of the blog's package version. It does not require Git.
+
+Before releasing a changed resume from main, update `resume/VERSION`:
+
+- **Major**, e.g. `1.2.3` → `2.0.0`: substantial restructuring or changed positioning.
+- **Minor**, e.g. `1.2.3` → `1.3.0`: substantive additions such as roles, achievements or skills.
+- **Patch**, e.g. `1.2.3` → `1.2.4`: corrections or formatting changes.
+
+Use three nonnegative integers without leading zeros or suffixes. Unrelated blog
+changes do not bump the resume. Commit the version bump with the resume change,
+run `npm run resume -- --dont-generate-png` and `npm run build`, and inspect both
+outputs before merging to main. The main deployment renders from these sources.
+Readers compare their PDF footer with the version beside the online PDF link.
+
+Use the npm wrapper: direct RenderCV calls bypass version injection. A successful
+render writes `rendercv_output/resume-version.txt`; the site build rejects missing
+or mismatched metadata rather than labeling an old PDF with a new version. If you
+have older generated files, rerender once. Watch mode performs an initial render
+before watching and captures the starting version; restart it after a version
+bump. Failed renders clear the marker. Skipping PDF or Markdown generation, or sending
+output elsewhere, leaves no marker unless both default published files were
+regenerated. Run a normal render before building the site. A version identifies a release, so local
+unreleased edits can still carry the previous version until you bump it.
 
 `rendercv_output/` and `.venv/` are gitignored. CI (`.github/workflows/test.yml`, job `resume`) renders the resume on every pull request and push to `main` and uploads `rendercv_output/` as the `resume` artifact.
 

@@ -3,6 +3,7 @@ const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
 const { spawnSync } = require('node:child_process');
+const { readVersion, readRenderedVersion } = require('../scripts/resume-version.cjs');
 const { toPageMarkdown, renderResume, pdfFile, pdfUrl } = require('../scripts/resume-page.cjs');
 
 const read = file => fs.readFileSync(file, 'utf8');
@@ -131,6 +132,7 @@ test('the site publishes the resume page and PDF only when the resume is rendere
   const page = read('_site/resume/index.html');
   assert.equal(page.match(/<h1[\s>]/g).length, 1);
   assert.match(page, /<title>Resume<\/title>/);
+  assert.ok(page.includes(`Resume version ${readVersion()}`));
   assert.ok(page.includes(`href="${pdfUrl}"`));
   assert.match(page, /<h2[^>]*>Experience<\/h2>/);
 });
@@ -141,7 +143,10 @@ test('render explains setup when RenderCV is not installed', t => {
   t.after(() => fs.rmSync(root, { recursive: true, force: true }));
   fs.mkdirSync(path.join(root, 'scripts'));
   fs.mkdirSync(path.join(root, 'resume'));
-  fs.copyFileSync('scripts/resume.cjs', path.join(root, 'scripts', 'resume.cjs'));
+  for (const file of ['resume.cjs', 'resume-version.cjs']) {
+    fs.copyFileSync(`scripts/${file}`, path.join(root, 'scripts', file));
+  }
+  fs.writeFileSync(path.join(root, 'resume', 'VERSION'), '2.3.4\n');
   const result = spawnSync(process.execPath, [path.join(root, 'scripts', 'resume.cjs'), 'render'], {
     encoding: 'utf8',
     env: { PATH: '' },
@@ -153,24 +158,86 @@ test('render explains setup when RenderCV is not installed', t => {
 test('render uses the virtualenv named by RESUME_VENV (Cloudflare cache location)', { skip: process.platform === 'win32' }, t => {
   const root = fs.mkdtempSync(path.join(require('node:os').tmpdir(), 'resume-venv-'));
   t.after(() => fs.rmSync(root, { recursive: true, force: true }));
+  fs.mkdirSync(path.join(root, 'scripts'));
+  fs.mkdirSync(path.join(root, 'resume'));
+  for (const file of ['resume.cjs', 'resume-version.cjs']) {
+    fs.copyFileSync(`scripts/${file}`, path.join(root, 'scripts', file));
+  }
+  fs.writeFileSync(path.join(root, 'resume', 'VERSION'), '2.3.4\n');
+  const wrapper = path.join(root, 'scripts', 'resume.cjs');
   const bin = path.join(root, 'cached-venv', 'bin');
   fs.mkdirSync(bin, { recursive: true });
   // Stand-in rendercv that records its arguments instead of rendering.
-  fs.writeFileSync(path.join(bin, 'rendercv'), '#!/bin/sh\necho "$@" > "${0%/*}/args"\n', { mode: 0o755 });
-  const result = spawnSync(process.execPath, ['scripts/resume.cjs', 'render', '--dont-generate-png'], {
+  fs.writeFileSync(path.join(bin, 'rendercv'), `#!${process.execPath}
+const fs = require('node:fs');
+const path = require('node:path');
+const args = process.argv.slice(2);
+fs.appendFileSync(path.join(__dirname, 'calls'), JSON.stringify(args) + '\\n');
+fs.writeFileSync(path.join(__dirname, 'args'), args.join(' '));
+fs.mkdirSync('rendercv_output', { recursive: true });
+if (!args.includes('--dont-generate-pdf')) fs.writeFileSync('rendercv_output/David_Vasandani_CV.pdf', 'PDF');
+if (!args.includes('--dont-generate-markdown')) fs.writeFileSync('rendercv_output/David_Vasandani_CV.md', '# Resume');
+`, { mode: 0o755 });
+  const result = spawnSync(process.execPath, [wrapper, 'render', '--dont-generate-png'], {
     encoding: 'utf8',
     env: { ...process.env, RESUME_VENV: path.join(root, 'cached-venv') },
   });
   assert.equal(result.status, 0, result.stderr);
-  const hash = spawnSync('git', ['rev-parse', '--short=8', 'HEAD'], { encoding: 'utf8' }).stdout.trim();
   assert.equal(read(path.join(bin, 'args')).trim(),
-    `render David_Vasandani_CV.yaml --dont-generate-png --design.templates.footer *NAME -- PAGE_NUMBER/TOTAL_PAGES -- Git: ${hash}*`);
+    `render David_Vasandani_CV.yaml --dont-generate-png --design.templates.footer *NAME -- PAGE_NUMBER/TOTAL_PAGES -- Resume version 2.3.4*`);
 
-  const withoutGit = spawnSync(process.execPath, ['scripts/resume.cjs', 'render'], {
+  const withoutGit = spawnSync(process.execPath, [wrapper, 'render'], {
     encoding: 'utf8',
     env: { PATH: '', RESUME_VENV: path.join(root, 'cached-venv') },
   });
   assert.equal(withoutGit.status, 0, withoutGit.stderr);
-  assert.match(withoutGit.stderr, /Git revision unavailable/);
-  assert.match(read(path.join(bin, 'args')), /Git: unavailable/);
+  assert.equal(withoutGit.stderr, '');
+  assert.match(read(path.join(bin, 'args')), /Resume version 2\.3\.4/);
+  const marker = path.join(root, 'resume', 'rendercv_output', 'resume-version.txt');
+  assert.equal(read(marker), '2.3.4\n');
+  for (const option of ['--dont-generate-pdf', '--dont-generate-markdown']) {
+    const partial = spawnSync(process.execPath, [wrapper, 'render', option], {
+      encoding: 'utf8', env: { PATH: '', RESUME_VENV: path.join(root, 'cached-venv') },
+    });
+    assert.equal(partial.status, 0, partial.stderr);
+    assert.match(partial.stderr, /not both regenerated/);
+    assert.equal(fs.existsSync(marker), false);
+  }
+  const watched = spawnSync(process.execPath, [wrapper, 'render', '--watch'], {
+    encoding: 'utf8', env: { PATH: '', RESUME_VENV: path.join(root, 'cached-venv') },
+  });
+  assert.equal(watched.status, 0, watched.stderr);
+  assert.equal(read(marker), '2.3.4\n');
+  const calls = read(path.join(bin, 'calls')).trim().split('\n').map(JSON.parse);
+  assert.equal(calls.at(-2).includes('--watch'), false);
+  assert.equal(calls.at(-1).includes('--watch'), true);
+  fs.writeFileSync(path.join(bin, 'rendercv'), '#!/bin/sh\nexit 1\n', { mode: 0o755 });
+  const failed = spawnSync(process.execPath, [wrapper, 'render'], {
+    env: { PATH: '', RESUME_VENV: path.join(root, 'cached-venv') },
+  });
+  assert.equal(failed.status, 1);
+  assert.equal(fs.existsSync(marker), false);
+});
+
+
+test('release versions reject ambiguous values and stale rendered versions', t => {
+  const root = fs.mkdtempSync(path.join(require('node:os').tmpdir(), 'resume-version-'));
+  t.after(() => fs.rmSync(root, { recursive: true, force: true }));
+  const source = path.join(root, 'VERSION');
+  const rendered = path.join(root, 'rendered.txt');
+  assert.throws(() => readVersion(source), /Cannot read resume version/);
+  for (const value of ['', '1.2', '01.2.3', '1.02.3', '1.2.03', 'v1.2.3', '1.2.3-beta', '1.2.3+abc', 'abc12345', '1.2.3\n4.5.6']) {
+    fs.writeFileSync(source, value);
+    assert.throws(() => readVersion(source), /Invalid resume version/);
+  }
+  for (const value of ['0.0.0', '1.0.0', '2.3.4', '10.20.30']) {
+    fs.writeFileSync(source, `${value}\n`);
+    fs.writeFileSync(rendered, `${value}\n`);
+    assert.equal(readVersion(source), value);
+    assert.equal(readRenderedVersion(rendered, source), value);
+  }
+  fs.writeFileSync(source, '11.0.0');
+  assert.throws(() => readRenderedVersion(rendered, source), /Run npm run resume/);
+  fs.rmSync(rendered);
+  assert.throws(() => readRenderedVersion(rendered, source), /Cannot read resume version/);
 });
