@@ -1,0 +1,11 @@
+# Technical specification: Netflix timeline and resume relevance audit
+
+Evaluate every bullet in the supplied resume preview and every item in the supplied timeline preview against Netflix job 790318930709 (Solutions Engineer 5, Content Promotion & Distribution). Deliver a traceable audit in `netflix/timeline-audit/` with source inventories, a defined scoring rubric, individual scores and explanations, resume-to-timeline mappings, chronology discrepancies, and prioritized recommendations.
+
+Use the hiring repository for implementation and its existing project knowledge for context. Capture source URLs, retrieval status and dates; use repository snapshots only with explicit provenance when a preview is unavailable. Score relevance on an anchored 0–5 scale derived from the actual role requirements; distinguish direct evidence from transferable experience, and relevance from verification. Preserve original claims and qualifications. Do not rewrite the published resume, infer ownership from commits, invent dates or inflate media-domain experience. Respect confidentiality restrictions.
+
+Acceptance: every source bullet/item has a stable ID and exactly one assessment; scores have role criteria and rationale; mappings distinguish missing evidence from contradictions; source limitations are visible; machine-readable results and a readable report agree; coverage checks pass; independent Codex review has no significant outstanding findings. Complete the requested SpecKit stages, record reusable project knowledge, then create and merge a PR against the repository base branch.
+
+Prior-knowledge refinement: role attribution uses effective promotion dates and event phases; planned work and user-supplied claims retain their qualifications. The independent resume and timeline inventories will be frozen from the linked previews before scoring.
+
+Source clarification: both supplied previews are timelines (canonical career and incident). Use the current canonical blog resume. The complete audit has 42 bullets, 12 supplemental statements, 275 career events, 74 incidents and seven project reviews; all 410 are assessed. Preview identity was confirmed through lease metadata, but rendered equivalence remains unverified.
