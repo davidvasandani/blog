@@ -37,3 +37,7 @@ The first render grew to four pages. Remove the audit's low-relevance AWS govern
 ## Validation
 
 The final resume renders to three PDF pages. The voice check, site build and all 11 resume tests pass. Generated Markdown, Typst and site HTML contain the new validation counts, HTTP 500 escalation and SHA-256 check. Independent Codex review reported no actionable findings and confirmed evidence limits, ownership distinctions and approximate counts.
+
+## Merge validation follow-up
+
+PR 174 incorporated the later main-branch POS wording changes. Required tests and security checks passed on c3f82a1, but the Cloudflare Workers build check did not appear. The available Cloudflare token can read Worker metadata but the Builds API rejected it. This documentation commit retriggers the integration without changing resume content or branch protection.
