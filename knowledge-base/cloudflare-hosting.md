@@ -23,3 +23,13 @@ HTTPS zone settings (task a6167873, 2026-11-02): `http://david.vasandani.me` use
 - Minimum TLS version: 1.2. Opportunistic Encryption: off. SSL mode is still Full.
 
 These zone-wide settings only affect proxied hostnames, and `david.vasandani.me` (the Worker custom domain) is the only one. Every other `vasandani.me` record is DNS-only, so the settings don't touch them. includeSubDomains only covers `*.david.vasandani.me`. The apex is served by Netlify and sends its own `max-age=31536000` HSTS header without includeSubDomains. Preload would cover all of `vasandani.me`, so leave it off unless every hostname serves HTTPS. If another hostname is ever switched to proxied, it must serve HTTPS first.
+
+## Python provisioning delay
+
+Task: VAS-961, dbaa2d7b-811b-4f84-ac60-d327b8c758eb, 2026-11-02.
+
+Build 95f68040 spent 4m32s installing dependencies. The screenshot shows about four minutes between Python 3.13.18 setup starting and npm starting. The application build took 37s, and initialization took a separate 8m05s. These timings point to Python provisioning; they do not prove it compiled from source.
+
+The repository now pins Python 3.14.8 in `.python-version`, matching the [documented Workers build-image default](https://developers.cloudflare.com/workers/ci-cd/builds/build-image/) on this date. The separate resume CI job reads that file. RenderCV remains pinned at 2.8. Keep the Worker's hosted `PYTHON_VERSION` aligned with the file; a git change does not update dashboard variables.
+
+Local verification on Python 3.14.8 passed resume rendering, all 13 resume tests, HTML/Gemini builds, Worker runtime tests, the deployment dry run and the 26-page accessibility audit. Hosted timing remains unverified: the available API token was invalid and dashboard access stopped at security verification. Treat the runtime alignment as a mitigation awaiting hosted measurement, not a measured four-minute saving. Future image updates may require refreshing the exact pin and repeating the measurements.

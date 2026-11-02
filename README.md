@@ -60,11 +60,22 @@ Use these settings:
 | Deploy command | `npx wrangler deploy` |
 | Preview deploy command | `npx wrangler preview` |
 | Node version | `24` |
-| Python version | `3.13` |
+| Python version | `3.14.8`, pinned in `.python-version` |
 
-Set `NODE_VERSION=24` and `PYTHON_VERSION=3.13` in build variables. Keep the
+Set `NODE_VERSION=24` and `PYTHON_VERSION=3.14.8` in build variables. Keep the
 three application secrets in the Worker's runtime settings. The build renders
 the resume PDF, builds Eleventy, and prepares the static assets before deploying.
+The Python pin matches the [documented build-image default](https://developers.cloudflare.com/workers/ci-cd/builds/build-image/)
+as of November 2, 2026. Keep the hosted `PYTHON_VERSION` setting aligned with
+`.python-version`; a repository change does not update dashboard variables.
+The resume CI job reads the same file. When refreshing the pin, rerun resume
+rendering and compare Cloudflare's installation timings.
+
+The reported slow build spent about four minutes between Python setup starting
+and npm starting. Its application build took 37 seconds; initialization took a
+separate 8m05s. Matching the image's Python default is a mitigation to verify on
+the next hosted build, not a measured speedup yet.
+
 The Git connection must target the same Worker name as `wrangler.jsonc`.
 The empty `previews` block enables branch previews. Preview secrets are configured
 separately in Cloudflare's Previews Base settings; production secrets are not
