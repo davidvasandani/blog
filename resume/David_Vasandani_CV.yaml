@@ -130,16 +130,20 @@ cv:
           - Restored stalled content imports by fixing credentials and running recovery triggers. Imported 62 new items and requeued 63 failed downloads.
           - Automated email triage. Jev sorts each message into Johnny.Decimal labels, a separate check confirms each action, and my corrections tune it.
     skills:
-      - label: Infrastructure as Code
-        details: Terraform, Terragrunt, Packer, Ansible, Consul, Vault
+      - label: AI agents & automation
+        details: Agent tool development, browser automation, approval controls, audit logging
+      - label: APIs & troubleshooting
+        details: REST APIs, webhooks, request tracing, log analysis, reverse engineering
+      - label: Infrastructure & delivery
+        details: Terraform, Terragrunt, Ansible, Packer, Docker, CircleCI, blue-green and canary deployments
       - label: AWS
-        details: ECS, Elastic Beanstalk, CloudWatch, Auto Scaling, Spot Fleet, DMS, IAM, App Mesh, CodePipeline
-      - label: Containers
-        details: Docker, Kubernetes, Helm, ChartMuseum, Rancher, ALB and NGINX ingress controllers
-      - label: CI/CD & Observability
-        details: CircleCI, Datadog, OpsGenie, Sensu
-      - label: Collaboration
-        details: Documentation, workflow management, lecturing, mentoring
+        details: Lambda, Cognito, IAM, ALB, EC2, RDS, ElastiCache, Transfer Family
+      - label: IT operations & observability
+        details: PowerShell, Intune, Meraki, Datadog, Fluent Bit, incident response, on-call runbooks
+      - label: Data & content workflows
+        details: Export validation, metadata extraction, deduplication, resumable imports
+      - label: Technical leadership
+        details: Team management, vendor escalation, stakeholder communication, rollout and rollback planning
 design:
   theme: classic
 locale:
