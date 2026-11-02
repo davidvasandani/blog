@@ -12,3 +12,5 @@
 - [SitePing and CMS sign-in](siteping.md): one GitHub editor login, shared Durable Object feedback, deployment binding, regression checks, and why Blog CSS must not use bare control selectors (the widget's toolbar and popup live in the page). Tasks: 2edab207-fbe6-4baa-96e7-37ba3e0ed70a, VAS-945; 91b3f57c-0c1b-4552-9ba2-da29988361ed (Fix SitePing UI)
 
 - [Resume relevance audits](resume-relevance-audit.md): source inventories, role-specific scores, evidence/date separation, personal-to-work attribution and caveat parity across report formats. Task: 5ab27642-ab10-41bf-83d9-2bafb85d0287.
+
+- [Link previews (Open Graph)](link-previews.md): og:title/og:image tags in the shared head, the home-title exception, absolute image URLs, the `ogImage` front matter override (not `image`), and preview caching. Task: 13f2dbd4-b8af-4925-aa6a-55f7ef3f57a7 (iMessage image)

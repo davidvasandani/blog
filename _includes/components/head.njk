@@ -4,6 +4,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{{ title or metadata.title }}</title>
   <meta name="description" content="{{ metaDescription or eleventyComputed.metaDescription or metadata.description }}">
+  {# Link previews (iMessage, Slack, Mastodon). Override the image with ogImage/ogImageAlt front matter. #}
+  {% set ogTitle = metadata.title if page.url == "/" else (title or metadata.title) %}
+  {% set ogImageUrl = ogImage or "/authors/david-vasandani.jpg" %}
+  <meta property="og:title" content="{{ ogTitle }}">
+  <meta property="og:description" content="{{ metaDescription or eleventyComputed.metaDescription or summary or metadata.description }}">
+  <meta property="og:type" content="{{ 'article' if section == 'post' else 'website' }}">
+  <meta property="og:url" content="{{ metadata.url }}{{ page.url }}">
+  <meta property="og:site_name" content="{{ metadata.title }}">
+  <meta property="og:image" content="{{ metadata.url }}{{ ogImageUrl }}">
+  {% if ogImage %}
+  <meta property="og:image:alt" content="{{ ogImageAlt or ogTitle }}">
+  {% else %}
+  <meta property="og:image:alt" content="Photo of David Vasandani">
+  <meta property="og:image:width" content="1528">
+  <meta property="og:image:height" content="1528">
+  {% endif %}
+  <meta name="twitter:card" content="summary">
   {% set css %}
     {% include "assets/css/inline.css" %}
   {% endset %}
