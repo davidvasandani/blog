@@ -45,3 +45,7 @@ A whole-file rewrite is safe to verify mechanically. Parse the old and new YAML 
 ## Camera check in remote support
 
 Task 5ab27642-ab10-41bf-83d9-2bafb85d0287, follow-up 2026-11-02. David supplied the security-camera integration and managers' back-office device scope for the remote-support bullet. It checks whether someone might be using the computer before business-hours changes. This is user-provided evidence, not newly verified by the older timeline. Preserve uncertainty and existing approval/logging controls; do not turn the check into guaranteed occupancy detection or a claimed automatic block.
+
+## Content recovery claims
+
+Task VAS-965, c2fbb0ca-6f57-45bd-b382-038719fc40ea, 2026-11-02. The household project's recovery bullet now leads with restored content imports. Keep its two results separate: 62 new items imported, 63 failed downloads requeued. Requeuing is not proof of completion. The hiring timeline audit's F08/R041 retained these prior resume figures without retrieving the underlying run, so a wording edit does not add corroboration or justify a stronger outcome. See [the fact comparison](../specs/vk/4fff-this-is-borning/research.md).

@@ -128,7 +128,7 @@ cv:
         summary: Personal project, built with AI coding agents.
         highlights:
           - Built media and metadata imports for a household archive. Imports pick up where they stopped, check attachments, and have controls to recover failed runs.
-          - Got stalled imports running again by fixing credentials and using the recovery triggers. That brought in 62 new items and requeued 63 failed downloads.
+          - Restored stalled content imports by fixing credentials and running recovery triggers. Imported 62 new items and requeued 63 failed downloads.
           - Automated email triage. Jev sorts each message into Johnny.Decimal labels, a separate check confirms each action, and my corrections tune it.
     skills:
       - label: Infrastructure as Code

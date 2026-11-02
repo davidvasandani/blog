@@ -1,35 +1,12 @@
-# Prior knowledge: Resume Heading Design (task 0d66)
+# Prior knowledge for the content recovery bullet
 
-Searched `knowledge-base/` for resume page, RenderCV, CSS, SitePing and
-accessibility notes. Relevant pages: `resume-rendercv.md`, `siteping.md`,
-`resume-voice.md`, `cloudflare-hosting.md`.
+Task: VAS-965, c2fbb0ca-6f57-45bd-b382-038719fc40ea; workspace 4fff46dc-554d-4def-95b1-0c88d549271e.
 
-## How /resume/ is built (resume-rendercv.md)
-- `pages/resume.njk` is fed by `pages/resume.11tydata.js` →
-  `scripts/resume-page.cjs`, which renders RenderCV's Markdown with
-  markdown-it (raw HTML off), drops its h1 and demotes headings one level.
-  Role headings therefore arrive as `<h3>`.
-- The page only exists when `npm run resume` has rendered output
-  (`resume/rendercv_output/`, gitignored). `npm test` checks one h1 and an
-  unbroken outline (`tests/resume.test.cjs`).
-- RenderCV's own `.html` loads CDN CSS and fails Pa11y; don't publish it.
-- Pa11y (WCAG2AA) audits `/resume/` on every deploy. Locally it needs
-  Chromium via `PUPPETEER_EXECUTABLE_PATH` on this NixOS host.
+Read-only search covered blog/knowledge-base, the hiring resume material and timeline audit, and prior blog specs. This project already has a populated local knowledge base.
 
-## CSS boundaries (siteping.md)
-- SitePing's toolbar and popup live in the page DOM, so Blog CSS must not
-  use bare element selectors (`button`, `input`, ...). Scope new rules to a
-  class or container. Note that bare `header` already gets `padding: 1em`,
-  so don't wrap resume entries in `<header>`.
+- blog/knowledge-base/resume-voice.md: apply /voice, preserve numbers, qualifiers and ownership; avoid invented outcomes and confidential product names. Historical hiring copies remain evidence, not synchronized resume copies.
+- blog/knowledge-base/resume-rendercv.md and blog/resume/README.md: edit the YAML source; rendered PDF/Markdown are ignored outputs; render before building the resume page. Node tests and Python rendering are separate checks.
+- hiring/netflix/timeline-audit/REPORT.md, F08 and R041: 62 new items and 63 requeued failures are prior resume claims. The audit did not retrieve the underlying run, and requeued does not mean completed. This edit must not strengthen those claims.
+- hiring/netflix/research/00-job-posting.md: the saved posting emphasizes content ingestion, structured troubleshooting and practical remediation. This supports leading with restored imports rather than a task-log opening. No claim of Netflix-scale work is warranted.
 
-## Resume wording (resume-voice.md, AGENTS.md)
-- Every wording change to the YAML goes through `/voice`, and
-  `npm run resume:voice` runs in `npm test`. A layout-only change that leaves
-  the YAML alone has no wording to review, but the check must still pass.
-- Public repo: never name the POS vendor in specs, knowledge pages or
-  commits.
-
-## Gaps
-No page covers the resume page's visual design or RenderCV's Markdown entry
-shape (heading, then location, dates, duration on separate lines). That is
-worth recording after this task.
+Use these findings to constrain SPEC.md and the implementation plan. No knowledge-base pages were changed during recall.
