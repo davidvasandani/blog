@@ -42,3 +42,14 @@ A whole-file rewrite is safe to verify mechanically. Parse the old and new YAML 
 ## Camera check in remote support
 
 Task 5ab27642-ab10-41bf-83d9-2bafb85d0287, follow-up 2026-11-02. David supplied the security-camera integration and managers' back-office device scope for the remote-support bullet. It checks whether someone might be using the computer before business-hours changes. This is user-provided evidence, not newly verified by the older timeline. Preserve uncertainty and existing approval/logging controls; do not turn the check into guaranteed occupancy detection or a claimed automatic block.
+
+
+## Validation and partner-support stories
+
+Task 5ab27642-ab10-41bf-83d9-2bafb85d0287, follow-up 2026-11-02. David approved the Spyce/Wonder validation story and two DoorDash stories for the resume. Preserve these distinctions when editing:
+
+- The transfer story is about export parsing, completeness checks and restoring missing items before handoff. Legal set redaction criteria and a colleague did the initial drive review. Keep roughly 12,039 approximate.
+- The three-store DoorDash incident is contributed investigation; DoorDash confirmed and fixed the configuration migration. The separate paused-store story has a successful manual REST recovery, but the webhook escalation does not establish a shipped permanent fix.
+- Household ingestion is a personal project. Validation, metadata extraction, deduplication and recovery are supported; 63 requeued downloads are not 63 completed downloads.
+
+Evidence mapping and the voice pass are recorded in `specs/vk/5ab2-timeline-audit-a/resume-stories.md`.
