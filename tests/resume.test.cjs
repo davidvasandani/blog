@@ -61,7 +61,7 @@ test('a year alone is meta, a sentence is not, and plain headings stay as they a
 
 test('resume text is still escaped inside the new markup', () => {
   const html = renderResume('### **<b>Co</b>**, <i>Role</i>\n\n<script>x</script>\n\n2020 – 2021\n\n**Theme: <img src=x>**\n');
-  assert.doesNotMatch(html, /<(b|i|script|img)[ >]/);
+  assert.doesNotMatch(html, /<(b|i|script|img)[ >]/i);
   assert.match(html, /&lt;script&gt;x&lt;\/script&gt;/);
   assert.match(html, /<span class="resume-label">Theme:<\/span> &lt;img src=x&gt;/);
 });
