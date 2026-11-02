@@ -167,9 +167,9 @@ form label {
   display: none;
 }
 
-input,
-textarea,
-button {
+form input,
+form textarea,
+form button {
   width: 100%;
   padding: 1em;
   margin-bottom: 1em;
@@ -177,12 +177,12 @@ button {
 	font-family: "Avenir", "Avenir Next", sans-serif;
 }
 
-input,
-textarea {
+form input,
+form textarea {
 	border: 1px solid black;
 }
 
-button {
+form button {
 	border: 1px solid var(--primary);
 	background-color: var(--primary);
 	color: var(--secondary);
