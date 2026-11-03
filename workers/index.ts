@@ -3,7 +3,6 @@ import { authorizeEditor } from './siteping-auth';
 export { BlogFeedback } from './siteping';
 import { api } from "../api/app";
 import { isNetflix, netflixPage, NETFLIX_PATHS } from './netflix';
-import { PROBE_IMAGE, PROBE_PAGE, probeImage, probePage } from './header-probe';
 
 // Keep the same Express routes and secrets as the existing deployment.
 api.listen(3000);
@@ -25,8 +24,6 @@ export default {
       return env.BLOG_FEEDBACK.getByName('blog').fetch(new Request(request, { headers }));
     }
     if (path === "/hello") return new Response("Hello, world!");
-    if (path === PROBE_PAGE) return probePage(request);
-    if (path === PROBE_IMAGE) return probeImage(request, env.ASSETS);
     if (path === "/api" || path.startsWith("/api/")) {
       return expressHandler.fetch!(request, env, ctx);
     }
