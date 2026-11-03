@@ -14,7 +14,7 @@
   "assets": {
     "directory": "./_site",
     "binding": "ASSETS",
-    "run_worker_first": ["/", "/resume/", "/api", "/api/*", "/hello"],
+    "run_worker_first": ["/", "/resume/", "/api", "/api/*", "/hello", "/debug/*"],
     "not_found_handling": "404-page"
   }
 }
