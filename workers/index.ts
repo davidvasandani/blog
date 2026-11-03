@@ -2,6 +2,7 @@ import { httpServerHandler } from "cloudflare:node";
 import { authorizeEditor } from './siteping-auth';
 export { BlogFeedback } from './siteping';
 import { api } from "../api/app";
+import { isNetflix, netflixPage, NETFLIX_PATHS } from './netflix';
 
 // Keep the same Express routes and secrets as the existing deployment.
 api.listen(3000);
@@ -26,6 +27,7 @@ export default {
     if (path === "/api" || path.startsWith("/api/")) {
       return expressHandler.fetch!(request, env, ctx);
     }
+    if (NETFLIX_PATHS.includes(path) && isNetflix(request)) return netflixPage(request, env.ASSETS);
     return env.ASSETS.fetch(request);
   },
 } satisfies ExportedHandler<Env>;
