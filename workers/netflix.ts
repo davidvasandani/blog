@@ -4,6 +4,8 @@ export const NETFLIX_ASN = 55095;
 export const NETFLIX_ROLE_LINE = 'Applying to Netflix for the Solutions Engineer 5 role in Content Promotion & Distribution.';
 export const NETFLIX_PATHS = ['/', '/resume/'];
 
+const escapeHtml = (text: string) => text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+
 export function isNetflix(request: Request): boolean {
   return (request.cf as { asn?: number } | undefined)?.asn === NETFLIX_ASN;
 }
@@ -19,7 +21,7 @@ export async function netflixPage(request: Request, assets: Fetcher): Promise<Re
   const rewriter = new URL(request.url).pathname === '/'
     ? new HTMLRewriter().on('main > h1', { element: el => { el.setInnerContent('Hi, Netflix'); } })
     : new HTMLRewriter().on('main > h1', {
-      element: el => { el.after(`<p class="resume-target">${NETFLIX_ROLE_LINE.replace('&', '&amp;')}</p>`, { html: true }); },
+      element: el => { el.after(`<p class="resume-target">${escapeHtml(NETFLIX_ROLE_LINE)}</p>`, { html: true }); },
     });
   const personalised = rewriter.transform(response);
   const out = new Response(personalised.body, personalised);
