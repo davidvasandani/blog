@@ -46,13 +46,12 @@ cv:
         end_date: 2026-02
         location: Culver City, CA
         summary: |-
-          **Theme: Covering for retail technology leadership through POS incidents and upgrades.**
+          **Theme: Covering for retail technology leadership through POS incidents and cutover planning.**
 
           Promoted from Lead Software Engineer.
         highlights:
           - Filled the Retail Technology leadership gap during an unplanned leave. Gave the VP of Technology the technical guidance to limit revenue loss from POS issues.
           - Took a virtual POS proof of concept through cutover planning with Security. The cutover was postponed to add telemetry first.
-          - Upgraded Alteryx Server by building a replacement host and cutting over with the business's approval. Kept the old server ready for rollback.
           - After the October 2025 end-of-day outage, wrote and ran staged Ansible changes that removed scheduled reboots from the POS devices Ansible manages, so those reboots no longer interrupt end-of-day processing.
       - company: Sweetgreen
         position: Lead Software Engineer
