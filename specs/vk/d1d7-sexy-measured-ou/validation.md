@@ -8,3 +8,6 @@
 - npm run build passed with the generated resume. Published HTML and render marker both show 1.2.0.
 - Full accessibility audit rerun with rendered resume included; passed on all 26 pages.
 - Manual voice process and fact comparison completed; no new confidential vendor names in diff. Hiring repository unchanged.
+
+## Main integration, 2026-11-04
+Merged main's removal of the Alteryx achievement and revised role theme unchanged. Resolved the sole conflict in resume/VERSION by retaining 1.2.0 above main's 1.1.2. Updated measurement guidance to remove the deleted achievement. Voice, RenderCV, site build and 14 resume tests passed; PDF remains three pages. Independent Codex review of integration changes found no actionable defects.

@@ -24,7 +24,7 @@ Matt's referral feedback asked for explicit impact and an explanation of why the
 | Browser sessions and coding platform | Measure completed workflows, interventions, restart recoveries and active user adoption over a stated period. Six servers describes scale, not productivity. |
 | DoorDash incidents | Establish affected requests, successful orders after recovery, outage duration and refunds. Separate requests that never reached internal services from the paused-store REST recovery. Do not convert failed requests into recovered sales without reconciliation. |
 | Logging, network monitoring and reboot changes | Compare detection and resolution times, affected devices and incident rates before/after rollout, controlling for fleet size. Coverage alone is not improved reliability. |
-| Alteryx, virtual POS and earlier infrastructure work | Find cutover downtime, measured build/deploy lead times, rollback duration, engineering onboarding time or comparable cost reports. Keep postponed cutover work explicitly postponed. |
+| Virtual POS and earlier infrastructure work | Find cutover downtime, measured build/deploy lead times, rollback duration, engineering onboarding time or comparable cost reports. Keep postponed cutover work explicitly postponed. |
 | SFTP onboarding and content pipelines | Record onboarding time, successful transfers/imports, rejected items, retry completion and manual interventions. Preserve personal versus employer scope. |
 | SitePing contribution | 48 regression tests and a shipped release are verification/scope evidence. User adoption or task-completion improvements need separate measurements. |
 

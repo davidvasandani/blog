@@ -2,7 +2,7 @@
 Spec: ./spec.md
 
 ## Technical context and approach
-Content-only change to resume/David_Vasandani_CV.yaml, rendered by existing scripts/resume.cjs and pages/resume.njk. Preserve YAML structure, dates, schema, toolchain and URLs. Rewrite the summary and selected highlights to foreground documented results; leave candidate-written crash bullets intact. Use the original YAML and knowledge pages as evidence, with source limitations in research.md. Keep technical mechanisms alongside outcomes. Minor bump resume/VERSION from 1.1.1 to 1.2.0 because the settings-audit achievement now adds documented contract size and sweep duration.
+Content-only change to resume/David_Vasandani_CV.yaml, rendered by existing scripts/resume.cjs and pages/resume.njk. Preserve YAML structure, dates, schema, toolchain and URLs. Rewrite the summary and selected highlights to foreground documented results; leave candidate-written crash bullets intact. Use the original YAML and knowledge pages as evidence, with source limitations in research.md. Keep technical mechanisms alongside outcomes. Minor bump resume/VERSION from main's 1.1.2 to 1.2.0 because the settings-audit achievement now adds documented contract size and sweep duration.
 
 ## Data model and contracts
 No changes. Existing RenderCV schema and generated Markdown/PDF contract apply.
