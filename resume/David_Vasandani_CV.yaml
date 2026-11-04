@@ -16,7 +16,7 @@ cv:
       username: '@davidvasandani@social.coop'
   sections:
     summary:
-      - "Engineer and technical leader with over a decade building cloud infrastructure, improving software delivery and automating operations. Promoted three times at Sweetgreen, now leading IT Operations while continuing to build tools and integrations. Uses AI to get to root cause, even inside vendor software with no source code or logs. Prototypes fast to unblock people, then builds the version that lasts so the fix isn't a one-off. Works with engineering, business teams and external partners to resolve problems and carry changes through rollout."
+      - "Engineer and technical leader with over a decade building cloud infrastructure, improving software delivery and automating operations. Built partner authentication caching that cut reported costs from about $3,500 to $1,000 a month. Restored roughly 12,039 missing items before an external data handoff. Promoted three times at Sweetgreen, now leading IT Operations while still building tools and integrations. Uses AI to find root causes inside vendor software with no source code or logs. Builds quick fixes to unblock people, then reusable tools, working with engineering, business teams and external partners through rollout."
     experience:
       # Sweetgreen: one entry per role, newest first. Dates are the effective
       # dates in ChartHop's job history (Personal History tab).
@@ -33,13 +33,13 @@ cv:
           # TODO: add the crash reduction once 2 weeks of post-rollout data exist (re-run ~2026-11-08).
           - Used AI to trace POS crashes that hit dozens of high-volume stores during the lunch rush. Reverse-engineered the POS executable, then shipped a workaround that starts the app on fewer cores.
           - The same work turned up loyalty-scan freezes, where a hidden reward dialog blocked the register screen. Used AI to decompile the vendor's loyalty DLL, found that it logs nothing when the reward dialog opens, and shared the findings with the vendor as evidence.
-          - Directed AI agents to build documented, read-only tools that audit the POS vendor's settings across 343 locations, as often as needed.
+          - Directed AI agents to turn the POS vendor's undocumented settings API into a contract covering 104 read operations and documented, read-only audit tools. A fleet sweep covered 343 locations, including labs and sandboxes, in about 6 minutes.
           - Built a browser service for AI agents that stays logged in between runs. When a step needs a person, they take over the live session.
           - Replaced emailing the POS vendor to fix sales stuck on the wrong business date with an AI agent that makes the fix after a preview and a named approver's sign-off.
           - Built a tool that lets AI agents run PowerShell on POS devices and managers' back-office computers through our remote-access software. Integrated security cameras to check whether someone might be using the computer before making changes during business hours. Commands are read-only by default, changes need approval, and every command is logged.
-          - Used order data and request traces to investigate failed DoorDash orders at three stores. Showed that requests failed before reaching our services; DoorDash confirmed and fixed a missed configuration migration.
+          - Isolated failed DoorDash orders at three stores to requests that never reached our services, using order data and request traces. DoorDash confirmed and fixed a missed configuration migration.
           - Brought a paused restaurant back online on DoorDash with a manual REST API update. Used delivery logs to show repeated HTTP 500 responses from its webhook and escalated the evidence to DoorDash.
-          - Validated Slack exports and shared-drive copies for the Spyce/Wonder data handoff under Legal's redaction criteria. Caught a copy failure and restored roughly 12,039 missing items before delivery. Fixed the Slack export so all 8,605 files could be parsed.
+          - Restored roughly 12,039 missing items before the Spyce/Wonder data handoff after catching a shared-drive copy failure. Fixed the Slack export so all 8,605 files could be parsed. Validated the exports and copies under Legal's redaction criteria.
       - company: Sweetgreen
         position: Senior Lead Software Engineer
         start_date: 2025-09
@@ -64,9 +64,9 @@ cv:
 
           Promoted from Senior Software Engineer.
         highlights:
-          - Built an Ansible and Fluent Bit pipeline that ships POS logs to Datadog. It covered 222 of 252 restaurants by May 2025.
+          - Brought POS logs from 222 of 252 restaurants into Datadog by May 2025 with an Ansible and Fluent Bit pipeline.
           - Built AWS Lambda and Datadog monitoring for Meraki network loss and latency and for Intune-managed time clocks, so teams could see which restaurants had network or device problems.
-          - Added Cognito token caching for marketplace partners. Reported authentication costs fell from about $3,500 to $1,000 a month.
+          - Cut reported authentication costs by about $2,500 a month, from about $3,500 to $1,000, by adding Cognito token caching for marketplace partners.
           - Built and ran an AWS Transfer SFTP service in Terraform for file exchange with Paytronix and our POS vendor, with a separate folder for each vendor. Worked with Security to onboard vendors.
       - company: Sweetgreen
         position: Senior Software Engineer, Infrastructure
@@ -105,11 +105,11 @@ cv:
         date: 2014 – 2016
         location: New York, NY
         highlights:
+          - Increased deployments from once a week to over 400 a month over two years.
           - Designed an AWS VPC with security as the first requirement and moved our Rackspace Public Cloud instances into it.
           - Moved to immutable infrastructure built with Packer, Ansible, Terraform and Consul, with auto scaling groups and blue-green and canary deploys.
           - Auto-scaled application servers on CloudWatch CPU and memory metrics and worker servers on queue depth.
           - Monitored servers with collectd and services with Consul, alerting through Sensu.
-          - Increased deployments from once a week to over 400 a month over two years.
     projects:
       - name: Self-hosted AI coding platform (fork of Vibe Kanban)
         date: 2026
@@ -126,7 +126,7 @@ cv:
         summary: Personal project, built with AI coding agents.
         highlights:
           - Built resumable book and magazine imports for a household library. Extracted EPUB metadata, checked file formats and used SHA-256 hashes to identify duplicates, with controls to recover failed runs.
-          - Restored stalled content imports by fixing credentials and running recovery triggers. Imported 62 new items and requeued 63 failed downloads.
+          - Imported 62 new items and requeued 63 failed downloads after restoring stalled content imports. Fixed credentials and ran recovery triggers.
           - Automated email triage. Jev sorts each message into Johnny.Decimal labels, a separate check confirms each action, and my corrections tune it.
     skills:
       - label: AI agents & automation
