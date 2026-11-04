@@ -18,5 +18,6 @@
 
 - [Python provisioning delay](cloudflare-hosting.md#python-provisioning-delay): Python 3.14.8 build pin, separate resume CI coverage and the outstanding hosted timing check. Task: VAS-961, dbaa2d7b-811b-4f84-ac60-d327b8c758eb.
 
+- [Measured outcomes and STAR bullets](resume-voice.md#measured-outcomes-and-star-bullets): numbers need a source row, estimates only from David, restored facts need the recorded ask, framework names as decoration versus subject, the YAML colon trap, RenderCV page-break and summary-paragraph quirks, and holding three pages. Task: 7e87-star-method (STAR Method).
 - [Content recovery claim limits](resume-voice.md#content-recovery-claims): distinguish imported items from requeued downloads and preserve the original audit's verification limits. Task: VAS-965, c2fbb0ca-6f57-45bd-b382-038719fc40ea.
 - [Visitor personalisation in the Worker](visitor-personalisation.md): run_worker_first paths, HTMLRewriter on assets, ASN detection, no-store and 304 bypass, and simulating request.cf locally. Task: 13f2dbd4-b8af-4925-aa6a-55f7ef3f57a7 (Netflix greeting)

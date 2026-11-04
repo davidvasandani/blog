@@ -1,7 +1,7 @@
 # Resume voice and public-repo confidentiality
 
 Task: 76c7f44d-6efd-4fda-abfc-9f3b31eeb12f (My Voice)
-Updated: 2026-11-02 (task 2714e137-7187-48a4-a394-3f05e06a30ee, Reword: David rewrote the crash and loyalty-scan bullets). Earlier follow-up 2026-11-01: /voice required for every resume change; task a29016bd-821a-4444-a8ae-2402820da029, Clarify volume
+Updated: 2026-11-04 (task 7e87-star-method, STAR Method: measured outcomes and STAR-shaped bullets). Earlier: 2026-11-02 (task 2714e137-7187-48a4-a394-3f05e06a30ee, Reword: David rewrote the crash and loyalty-scan bullets). Earlier follow-up 2026-11-01: /voice required for every resume change; task a29016bd-821a-4444-a8ae-2402820da029, Clarify volume
 
 ## The rule
 David asked that every resume update go through `/voice`. Three places enforce it. `AGENTS.md`, which `CLAUDE.md` imports, gives agents the steps. Constitution principle 10 makes it part of every SpecKit task. `scripts/resume-voice.cjs` (`npm run resume:voice`, and also run by `npm test`) fails CI on dashes, curly quotes, "AI" said more than once in a line and the skill's word lists. The script can't tell whether a line was actually rewritten with the skill, so running `/voice` is still required. Run against the resume from before #160, the script flags David's original example bullet (two "AI"s) and a "leveraging".
@@ -60,3 +60,15 @@ Evidence mapping and the voice pass are recorded in `specs/vk/5ab2-timeline-audi
 ## Content recovery claims
 
 Task VAS-965, c2fbb0ca-6f57-45bd-b382-038719fc40ea, 2026-11-02. The household project's recovery bullet now leads with restored content imports. Keep its two results separate: 62 new items imported, 63 failed downloads requeued. Requeuing is not proof of completion. The hiring timeline audit's F08/R041 retained these prior resume figures without retrieving the underlying run, so a wording edit does not add corroboration or justify a stronger outcome. See [the fact comparison](../specs/vk/4fff-this-is-borning/research.md).
+
+## Measured outcomes and STAR bullets
+
+Task 7e87-star-method, 2026-11-04. The hiring manager asked for every bullet to set up the business problem, say what was built or found, and measure the result in hard numbers, estimates allowed, with fewer framework names. Resume version 2.0.0 is written that way. Rules that came out of it:
+
+- A number goes on the resume only with a source row: a hiring evidence page, David's recorded instruction, or a dated re-run of a query recorded in hiring with its window and caveats. Estimates only David can make (licensing avoided, hours returned, lost sales) are listed for him in hiring, never invented here.
+- "Don't add dropped facts back unless David asks" was satisfied by his reply to the hiring manager ("They all need measured outcomes") plus opening the task with the feedback attached. Record the reason in the spec when restoring a fact he once removed.
+- Framework names leave a bullet when they are decoration and stay when they are the subject or a scope qualifier ("the POS devices Ansible manages"). The skills list keeps them all. Removing a name is not a fact change, but say so in the facts column.
+- A colon followed by a space inside an unquoted YAML highlight turns the line into a mapping and fails the render. Use a comma or quote the string.
+- Long entries need `design.entries.allow_page_break: true`, or RenderCV moves the whole entry to the next page and leaves a gap. A second paragraph in an entry `summary` renders as monospace raw text; join the theme line and the paragraph with a single newline instead of a blank line.
+- Grep tracked and untracked changes for confidential names (`git diff --name-only origin/main` plus `git ls-files --others --exclude-standard`). A `git diff` alone skips new spec files, which is where two private file names carrying confidential words slipped in before the Codex review caught them. Describe hiring sources generically here instead of pasting their paths.
+- A STAR rewrite grows the text by about 15 percent. Hold three pages by cutting the lowest-relevance bullets from the oldest roles first and listing every cut in the spec.
