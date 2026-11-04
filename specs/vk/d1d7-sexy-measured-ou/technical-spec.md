@@ -1,0 +1,4 @@
+# Measured outcomes
+Task: d1d7-sexy-measured-ou
+
+Respond to Matt's attached feedback by improving the published resume's measurable impact and technical complexity for Netflix Solutions Engineer 5, Content Promotion & Distribution. Change blog/resume/David_Vasandani_CV.yaml using committed evidence in blog and the read-only hiring repository. Preserve role dates, ownership, qualifications, confidentiality and verified quantities. Lead with outcomes where evidence supports them; distinguish scope counts from business results. Derive arithmetic only with explicit basis, never invent savings, recovered revenue, headcount or crash reductions. Record missing measurements and collection methods in a sanitized knowledge page. Apply /voice to each changed line. Preserve rendering and URLs. Validate voice, resume render, site tests and independent Codex review; commit knowledge and merge a PR. Pipeline files stay uncommitted when ignored.

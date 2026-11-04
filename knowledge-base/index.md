@@ -20,3 +20,5 @@
 
 - [Content recovery claim limits](resume-voice.md#content-recovery-claims): distinguish imported items from requeued downloads and preserve the original audit's verification limits. Task: VAS-965, c2fbb0ca-6f57-45bd-b382-038719fc40ea.
 - [Visitor personalisation in the Worker](visitor-personalisation.md): run_worker_first paths, HTMLRewriter on assets, ASN detection, no-store and 304 bypass, and simulating request.cf locally. Task: 13f2dbd4-b8af-4925-aa6a-55f7ef3f57a7 (Netflix greeting)
+
+- [Resume measured outcomes](resume-measured-outcomes.md): supported cost arithmetic, settings-audit measurements, scope versus business impact, and missing baselines for future claims. Task: d1d7-sexy-measured-ou.
