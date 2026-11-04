@@ -144,7 +144,11 @@ page, excluding the remote CMS application. Pa11y and Puppeteer are pinned
 direct dependencies. An inaccessible fixture proves the audit fails on errors.
 Puppeteer downloads Chrome during installation; for a system browser, install
 with `PUPPETEER_SKIP_DOWNLOAD=true` and set `PUPPETEER_EXECUTABLE_PATH` when
-testing. Run `npm run test:a11y` to audit an existing build.
+testing. Run `npm run test:a11y` to audit an existing build. To use an existing
+Chrome instead, such as a leased firecrawl-browser native session, set
+`A11Y_CDP_URL` to its DevTools URL (e.g. `http://172.16.100.101:9223`). Pages
+are fed to that browser over the DevTools connection, so it needs no route back
+to the machine running the tests.
 
 ## Build tooling
 
