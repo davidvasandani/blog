@@ -21,6 +21,10 @@ Task: 7e87-star-method. Run 2026-11-04 on branch `vk/7e87-star-method`.
 
 Main merged VAS-950 (remove the Alteryx bullet, reword the Senior Lead theme, version 1.1.2) while CI ran. Rebased onto it: the Alteryx bullet is gone, the new theme wording is kept, and the version stays 2.0.0. Voice check, render (3 pages) and resume tests re-run after the rebase.
 
+## Delivery
+
+`main` requires verified signatures and admin merges are disabled on this host, so the task commit was recreated through GitHub's commit mutation (identical tree, GitHub-signed), as the dependency-testing knowledge page describes. After the force-push the Cloudflare Workers build check did not start for the new head, as happened once before on this repository; this documentation commit retriggers it without changing the resume.
+
 ## Not verified here
 
 The crash reduction is a read-only query of the monitoring system on 2026-11-04 over an 11-day window, recorded in the hiring repository with its query and caveats. It is not a test fixture. The resume comment asks for a longer window before the next release.
