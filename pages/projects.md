@@ -19,7 +19,7 @@ I helped expand an open-source website feedback tool to phones, directing AI-ass
 
 ## Household content and workflow platform
 
-A personal platform built with AI coding agents to manage a household archive and recurring tasks. Media and metadata imports can resume after interruptions, validate attachments and recover failed downloads. Email triage uses Jev classification and Johnny.Decimal-based labels, with action verification and human feedback.
+A personal platform built with AI coding agents to manage a household archive and recurring tasks. Media and metadata imports can resume after interruptions, validate attachments and recover failed downloads. Email triage uses a hosted classifier and Johnny.Decimal-based labels, with action verification and human feedback.
 
 ## Personal blog
 
