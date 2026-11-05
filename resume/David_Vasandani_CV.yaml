@@ -16,7 +16,7 @@ cv:
       username: '@davidvasandani@social.coop'
   sections:
     summary:
-      - "Engineer and technical leader with over a decade building cloud infrastructure, improving software delivery and automating operations. Seven years at Sweetgreen, promoted three times, now leading IT Operations for a chain of nearly 300 restaurants while still building tools and integrations. Uses AI to get to root cause, even inside vendor software with no source code or logs. Most recently reverse-engineered the POS vendor's app to find why registers at the busiest stores crashed during lunch, and the fix cut crashes on those registers from about 7 a day to 2 in the following 11 days. Prototypes fast to unblock people, then builds the version that lasts so the fix isn't a one-off. Works with engineering, business teams and external partners to resolve problems and carry changes through rollout."
+      - "Hands-on engineer at the boundary with vendors and partners: POS, loyalty, delivery and store devices. Seven years at Sweetgreen, promoted three times, now running IT Operations for nearly 300 restaurants while still doing the engineering below. Uses AI to find the cause of production problems inside vendor software with no logs or source code, then turns the fix into a tool others can run safely, read-only by default, with a named approver and an audit log."
     experience:
       # Sweetgreen: one entry per role, newest first. Dates are the effective
       # dates in ChartHop's job history (Personal History tab).
@@ -25,29 +25,22 @@ cv:
         start_date: 2026-02
         end_date: present
         location: Culver City, CA
-        summary: |-
-          **Theme: Running IT operations, using AI to find problems and automate fixes.**
-          Promoted from Senior Lead Software Engineer. Runs IT Operations, reporting to the VP of Technology. Manages a Senior Systems Engineer and two IT Operations Specialists.
+        summary: Promoted from Senior Lead Software Engineer. Runs IT Operations with a team of three, a Senior Systems Engineer and two IT Operations Specialists.
         highlights:
           # Crash figures: the 2026-11-04 re-run compares Oct 13 to 23 with Oct 25 to Nov 4 on the registers in the rollout. Re-run with a longer window before the next release.
-          - Registers at dozens of high-volume stores crashed during the lunch rush, 314 times in one month, and neither the vendor's lab nor ours could reproduce it. Used AI to map memory on live registers and reverse-engineered the POS executable. It is a 32-bit app that reserves memory for every CPU core, so the newest 20-thread registers ran out of address space first. Shipped a workaround that starts the app on fewer cores, freeing about 610 MB per register, to 18 registers in 2 weeks. Crashes on those registers fell from about 7 a day to 2 in the following 11 days.
-          - The same work turned up loyalty-scan freezes, where a hidden reward dialog blocked the register screen until someone restarted it. Measured the fleet for a week, 53,617 scans, and found 46 freezes that only a restart cleared, at 32 of 272 restaurants. Used AI to decompile the vendor's loyalty DLL, found that it logs nothing when the reward dialog opens, and shared the findings with the vendor as evidence. Added three loyalty-step metrics to monitoring.
-          - Store settings on the POS could only be read one store at a time in the vendor's web portal, through an API with no documentation, so nobody could check them across the fleet. Directed AI agents to catalog every call the portal's web app makes, sample 12 stores read-only and write it up as a 104-operation contract pinned to the vendor's build. The build fails on any call we haven't classified. The read-only tools generated from it audit all 343 locations in about 6 minutes, with credentials and personal data redacted.
-          - When a store's end-of-day close failed, the next day's sales landed on the wrong business date, and the only fix was to email the POS vendor and wait. Reverse-engineered the vendor's correction form and built an AI agent that previews the fix, needs a named approver's sign-off, and reports unknown instead of retrying a change that can't be undone. Finance's controller reviewed the flow, and the agent has handled these corrections in-house since September 2026, 5 stores in its first week.
-          - Sales totals read through the same vendor API showed the vendor's daily sales report overstating two stores by about $55K after corrections. Handed the vendor the side-by-side numbers. It regenerated the report, and both stores then matched the finance system to the penny.
-          - Built a browser service for AI agents that stays logged in between runs. When a step needs a person, they take over the live session.
-          - Built a tool that lets AI agents run PowerShell on POS devices and managers' back-office computers through our remote-access software. Integrated security cameras to check whether someone might be using the computer before making changes during business hours. Commands are read-only by default, changes need approval, and every command is logged.
-          - DoorDash orders failed at three stores for two days, and the partner's first theory blamed a downstream system. Used order data and request traces to show the requests failed before reaching our services. DoorDash confirmed a missed configuration migration and fixed it.
-          - Brought a paused restaurant back online on DoorDash with a manual REST API update. Used delivery logs to show repeated HTTP 500 responses from its webhook and escalated the evidence to DoorDash.
-          - Validated Slack exports and shared-drive copies for the Spyce/Wonder data handoff under Legal's redaction criteria. Caught a copy failure and restored roughly 12,039 missing items before delivery. Fixed the Slack export so all 8,605 files could be parsed.
+          - Registers at dozens of high-volume stores crashed during the lunch rush, 314 times in one month, and neither the vendor's lab nor ours could reproduce it. Used AI to map memory on live registers and reverse-engineered the POS executable. It is a 32-bit app that reserves memory for every CPU core, so the newest 20-thread registers ran out of address space first. Shipped a workaround that starts the app on fewer cores, freeing about 610 MB per register. Within 2 weeks it was on the 18 registers that had crashed in the previous 30 days, and crashes on those registers fell from about 7 a day to 2 in the following 11 days.
+          - Store settings on the POS could only be read one store at a time in the vendor's web portal, through an API with no documentation, so nobody could check them across the fleet. Directed AI agents to catalog every call the portal's web app makes, sample 12 stores read-only and write it up as a 104-operation contract pinned to the vendor's build. The build fails on any call we haven't classified. The read-only tools generated from it audit all 343 POS locations, lab and sandbox included, in about 6 minutes, with credentials and personal data redacted.
+          - When a store's end-of-day close failed, the next day's sales landed on the wrong business date, and the only fix was to email the POS vendor and wait. Reverse-engineered the vendor's correction form and built an agent that previews the fix, needs a named approver's sign-off, and reports unknown instead of retrying a change that can't be undone. Finance's controller reviewed the flow, and the agent has handled these corrections in-house since September 2026, 5 stores in its first week. Sales totals read through the same API also caught the vendor's daily sales report overstating two stores by about $55K after corrections. Handed the vendor the side-by-side numbers, and after it regenerated the report both stores matched the finance system to the penny.
+          - Loyalty scans froze registers until someone restarted them. A week of fleet data, 53,617 scans, showed 46 of these freezes at 32 of the 272 restaurants scanning that week. Decompiled the vendor's loyalty DLL with an agent, found that a hidden reward dialog blocks the screen and that the DLL logs nothing when the dialog opens, shared that evidence with the vendor, and added three loyalty-step metrics to monitoring.
+          - Built the tools the AI agents work through. One runs PowerShell on POS devices and managers' back-office computers over our remote-access software, read-only by default, with approval required for changes, every command logged, and a security-camera check for whether someone might be using the computer before a change during business hours. The other is a browser service that stays logged in between runs and hands the live session to a person when a step needs one.
+          - DoorDash orders failed at three stores for two days, and the partner's first theory blamed a downstream system. Used order data and request traces to show the requests failed before reaching our services, and DoorDash confirmed a missed configuration migration and fixed it. Separately, brought a paused restaurant back online with a manual REST API update and escalated its webhook's repeated HTTP 500 responses to DoorDash with the delivery logs.
+          - Validated the Slack exports and shared-drive copies for the Spyce/Wonder data handoff under Legal's redaction criteria. Caught a copy failure and restored roughly 12,039 missing items before delivery, and fixed the Slack export so all 8,605 files could be parsed.
       - company: Sweetgreen
         position: Senior Lead Software Engineer
         start_date: 2025-09
         end_date: 2026-02
         location: Culver City, CA
-        summary: |-
-          **Theme: Covering for retail technology leadership through POS incidents and cutover planning.**
-          Promoted from Lead Software Engineer.
+        summary: Promoted from Lead Software Engineer.
         highlights:
           - Filled the Retail Technology leadership gap during an unplanned leave. Gave the VP of Technology the technical guidance to limit revenue loss from POS issues.
           - Took a virtual POS proof of concept through cutover planning with Security. The cutover was postponed to add telemetry first.
@@ -57,9 +50,7 @@ cv:
         start_date: 2021-03
         end_date: 2025-08
         location: Culver City, CA
-        summary: |-
-          **Theme: Connecting restaurant systems and making their health visible.**
-          Promoted from Senior Software Engineer.
+        summary: Promoted from Senior Software Engineer.
         highlights:
           - Restaurants could stop taking online orders while CPU and memory monitors stayed green, because there was no monitoring on the registers themselves. Led POS monitoring from proposal through Security and business reviews to fleet approval over nearly a year. Built the collection pipeline on an open-source collector instead of a paid per-host agent, and it shipped logs to Datadog from the fleet of nearly 300 restaurants.
           - The company needed centralized asset discovery and vulnerability scanning across every store, which meant connecting AWS to the store networks. Designed and implemented a hub-and-spoke network architecture for it, then worked through Security and business reviews for roughly ten months to get approval for fleet rollout.
@@ -71,14 +62,12 @@ cv:
         start_date: 2019-08
         end_date: 2021-02
         location: Culver City, CA
-        summary: |-
-          **Theme: Making software delivery faster and safer.**
-          Joined as Senior Engineer, Infrastructure. Retitled Senior Software Engineer in March 2020.
+        summary: Joined as Senior Engineer, Infrastructure. Retitled Senior Software Engineer in March 2020.
         highlights:
-          - Infrastructure code lived in one Terraform monorepo that people applied from their own machines. Split it into smaller repositories, each with its own state and deployed by CI, so a bad change could break less and developers shipped faster.
+          - Infrastructure code lived in one Terraform monorepo that people applied from their own machines. Split it into smaller repositories, each with its own state and applied from CI instead of from laptops, so a bad change could break less.
           - Built blue-green infrastructure on weighted load-balancer target groups, so teams could run canary deploys and roll back fast.
-          - Pushed for Datadog and led its rollout. Monitoring moved into one place, and costs went down.
-          - Standardized infrastructure and deploys across 15+ services, so new services launched sooner and new engineers got up to speed faster.
+          - Pushed for Datadog and led its rollout, which brought monitoring into one tool.
+          - Standardized infrastructure and deploys across 15+ services, so every service was built and shipped the same way and a new one started from the shared setup.
       - company: LearnZillion
         position: Senior Operations Engineer
         date: 2016 – 2019
@@ -114,21 +103,18 @@ cv:
         summary: Personal project, built with AI coding agents.
         highlights:
           - Built resumable book and magazine imports for a household library. Extracted EPUB metadata, checked file formats and used SHA-256 hashes to identify duplicates, with controls to recover failed runs.
-          - Restored stalled content imports by fixing credentials and running recovery triggers. Imported 62 new items and requeued 63 failed downloads.
-          - Automated email triage. Jev sorts each message into Johnny.Decimal labels, a separate check confirms each action, and my corrections tune it.
+          - Automated email triage. A hosted classifier sorts each message into Johnny.Decimal labels, a separate check confirms each action, and my corrections tune it.
     skills:
-      - label: AI agents & automation
-        details: Agent tool development, browser automation, approval controls, audit logging
       - label: APIs & troubleshooting
         details: REST APIs, webhooks, request tracing, log analysis, reverse engineering
+      - label: AI agents & automation
+        details: Agent tool development, browser automation, approval controls, audit logging
+      - label: IT operations & observability
+        details: PowerShell, Intune, Meraki, Datadog, Fluent Bit, incident response, on-call runbooks
       - label: Infrastructure & delivery
         details: Terraform, Terragrunt, Ansible, Packer, Docker, CircleCI, blue-green and canary deployments
       - label: AWS
         details: Lambda, Cognito, IAM, ALB, EC2, RDS, ElastiCache, Transfer Family
-      - label: IT operations & observability
-        details: PowerShell, Intune, Meraki, Datadog, Fluent Bit, incident response, on-call runbooks
-      - label: Data & content workflows
-        details: Export validation, metadata extraction, deduplication, resumable imports
       - label: Technical leadership
         details: Team management, vendor escalation, stakeholder communication, rollout and rollback planning
 design:
@@ -136,6 +122,9 @@ design:
   entries:
     # Long entries may continue on the next page instead of moving whole and leaving a gap.
     allow_page_break: true
+  sections:
+    # The reviewer asked for dates without elapsed durations ("10 months") beside them.
+    show_time_spans_in: []
 locale:
   language: english
 settings:
