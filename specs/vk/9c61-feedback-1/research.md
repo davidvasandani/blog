@@ -54,6 +54,8 @@ All remain in git history at resume version 2.0.0.
 - The "Data & content workflows" skills row.
 - "The same work turned up" (loyalty bullet link sentence), "over a decade", "prototypes fast ... builds the version that lasts", "works with engineering, business teams and external partners" (summary claims the bullets now carry).
 
+- The Humanitarian OpenStreetMap Team entry (2016 to 2018, one bullet), removed at David's instruction on 2026-11-05 after the 3.0.0 merge (resume 3.1.0). No wording changed elsewhere; `npm run resume:voice` re-run.
+
 Nothing from the merged bullets was cut.
 
 ## Voice pass

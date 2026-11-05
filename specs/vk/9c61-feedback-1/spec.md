@@ -58,6 +58,8 @@ Interview stories, the resume page layout and transform, the Gemini output, new 
 - **"Dozens of high-volume stores".** David's phrase stays. The bullet adds the 18-register denominator beside it (the registers that had crashed in the previous 30 days), and the PR asks David whether he wants the phrase narrowed, because the evidence puts most crashes at 8 stores.
 - **Skills row.** "Data & content workflows" is removed. The household import bullet keeps "metadata" and "deduplication" in its wording, and the knowledge base's relevance rule says a skills-row label is not proof of proficiency anyway.
 
+- **Humanitarian OpenStreetMap Team (2016 to 2018).** On 2026-11-05, after the 3.0.0 merge, David said "Remove Humanitarian OpenStreetMap". The entry is removed in resume 3.1.0, which also settles the overlap question the reviewer raised. FR-8 no longer applies to that role.
+
 ## Open questions
 
-None for implementation. Three questions go to David in the hiring repository rather than onto the page: how the 2016 to 2019 and 2016 to 2018 roles overlapped (employment, consulting or volunteering), whether he has figures for the 2019 to 2021 outcomes this task rewrites, and whether he wants "dozens of high-volume stores" narrowed.
+None for implementation. Two questions go to David in the hiring repository rather than onto the page: whether he has figures for the 2019 to 2021 outcomes this task rewrites, and whether he wants "dozens of high-volume stores" narrowed.
