@@ -103,6 +103,17 @@ router.get("/callback", async (req: Request, res: Response) => {
 // the incoming webhook in SLACK_WEBHOOK_URL.
 const slackText = (text: string) => text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 
+// Sales pitches that get past the honeypot. Someone writing to David has no
+// reason to offer an unsubscribe link or ask him to reply "YES".
+const SPAM_PATTERNS = [
+  /\bunsubscribe\b/i,
+  /\bopt[ -]?out\b/i,
+  /\breply\s+(with\s+)?["'“]?yes\b/i,
+  /\b(back ?links?|link building|guest posts?|domain authority|lead generation)\b/i,
+  /\bmore (websites|sites) to link to\b/i,
+];
+const isSpam = (text: string) => SPAM_PATTERNS.some(pattern => pattern.test(text));
+
 router.post("/contact", express.urlencoded({ extended: false }), async (req: Request, res: Response) => {
   const form = (req.body ?? {}) as Record<string, unknown>;
   const field = (name: string) => (typeof form[name] === "string" ? (form[name] as string).trim() : "");
@@ -116,6 +127,13 @@ router.post("/contact", express.urlencoded({ extended: false }), async (req: Req
   const message = field("message");
   if (!name || !email || !message || name.length > 200 || email.length > 320 || message.length > 5000) {
     res.status(400).send("Please fill in your name, email and message, then send it again.");
+    return;
+  }
+  // Answer like a delivered message so senders can't tune around the filter;
+  // the log line keeps a record in case a real message is caught.
+  if (isSpam(message)) {
+    console.warn(`Dropped contact form spam from ${email}`);
+    res.redirect(303, "/contact/thanks/");
     return;
   }
   const webhook = process.env.SLACK_WEBHOOK_URL;

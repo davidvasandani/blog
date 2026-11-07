@@ -171,7 +171,11 @@ repository. Locally, `npm start` keeps using the Decap proxy instead.
 
 The contact form posts to `/api/contact`, which sends each message to Slack
 through an incoming webhook and then shows `/contact/thanks/`. A hidden
-`company` field catches bots; those submissions are dropped. Create an incoming
+`company` field catches bots; those submissions are dropped. Messages that read
+like sales pitches (an unsubscribe line, "reply YES", backlink or lead
+generation offers) are dropped too. The sender still sees the thanks page, and
+the Worker logs `Dropped contact form spam from <email>` so a real message
+caught by mistake can be found with `npx wrangler tail`. Create an incoming
 webhook for the channel that should receive messages and set it as
 `SLACK_WEBHOOK_URL`, on the same Worker. Without it the form answers
 with an error rather than losing messages silently.

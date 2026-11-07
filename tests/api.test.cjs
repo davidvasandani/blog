@@ -151,6 +151,32 @@ test('contact form drops honeypot submissions without calling Slack', async t =>
   assert.equal(calls.length, 0);
 });
 
+test('contact form drops sales pitches without calling Slack', async t => {
+  setEnv(t, { SLACK_WEBHOOK_URL: 'https://hooks.slack.test/services/x' });
+  const calls = mockFetch(t, () => new Response('ok'));
+  t.mock.method(console, 'warn', () => {});
+  const pitches = [
+    'Would you like more websites to link to vasandani.me?\nIf so, reply YES and I\'ll send you a short overview.\n\nIf now isn\'t a good time, a short "unsubscribe" reply is all it takes.',
+    'A real person helps with setup. It\'s free for 14 days.\n\nBest,\nOwen, Ultra Lead Generation\n\nNot interested? Unsubscribe here: https://example.com/unsubscribe',
+    'We sell high quality backlinks for your blog.',
+  ];
+  for (const text of pitches) {
+    const result = await contact({ ...message, message: text });
+    assert.equal(result.statusCode, 303);
+    assert.equal(result.headers.location, '/contact/thanks/');
+  }
+  assert.equal(calls.length, 0);
+});
+
+test('contact form still delivers ordinary messages that mention links or replies', async t => {
+  setEnv(t, { SLACK_WEBHOOK_URL: 'https://hooks.slack.test/services/x' });
+  const calls = mockFetch(t, () => new Response('ok'));
+  for (const text of ['Loved your post. Can I link to it from my newsletter?', 'Yes, I would like to chat about the role. Please reply when you can.']) {
+    assert.equal((await contact({ ...message, message: text })).statusCode, 303);
+  }
+  assert.equal(calls.length, 2);
+});
+
 test('contact form rejects missing or oversized fields', async t => {
   setEnv(t, { SLACK_WEBHOOK_URL: 'https://hooks.slack.test/services/x' });
   const calls = mockFetch(t, () => new Response('ok'));
