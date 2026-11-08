@@ -151,6 +151,50 @@ test('contact form drops honeypot submissions without calling Slack', async t =>
   assert.equal(calls.length, 0);
 });
 
+const JEV = 'https://api.typesafe.ai/v1/systemone';
+const SLACK = 'https://hooks.slack.test/services/x';
+const pitch = 'Would you like more websites to link to vasandani.me?\nIf so, reply YES and I\'ll send you a short overview.';
+const jevSays = noul => Response.json({ model: 'jev-1.13.0', answers: { spam: { type: 'noul', noul } } });
+
+test('contact form drops a message Jev rates as spam without calling Slack', async t => {
+  setEnv(t, { SLACK_WEBHOOK_URL: SLACK, TYPESAFE_API_KEY: 'jev-key' });
+  t.mock.method(console, 'warn', () => {});
+  const calls = mockFetch(t, url => url === JEV ? jevSays(0.97) : new Response('ok'));
+  const result = await contact({ ...message, message: pitch });
+  assert.equal(result.statusCode, 303);
+  assert.equal(result.headers.location, '/contact/thanks/');
+  assert.deepEqual(calls.map(call => call.url), [JEV]);
+  const { model, state, questions } = calls[0].body;
+  assert.equal(model, 'jev-latest');
+  assert.equal(state.message, pitch);
+  assert.equal(state.email, 'ada@example.com');
+  assert.equal(questions.spam.type, 'noul');
+});
+
+test('contact form delivers a message Jev rates below the spam threshold', async t => {
+  setEnv(t, { SLACK_WEBHOOK_URL: SLACK, TYPESAFE_API_KEY: 'jev-key' });
+  const calls = mockFetch(t, url => url === JEV ? jevSays(0.4) : new Response('ok'));
+  assert.equal((await contact(message)).statusCode, 303);
+  assert.deepEqual(calls.map(call => call.url), [JEV, SLACK]);
+});
+
+test('contact form still delivers when Jev is unset, failing or unreadable', async t => {
+  setEnv(t, { SLACK_WEBHOOK_URL: SLACK, TYPESAFE_API_KEY: '' });
+  let calls = mockFetch(t, () => new Response('ok'));
+  assert.equal((await contact(message)).statusCode, 303);
+  assert.deepEqual(calls.map(call => call.url), [SLACK]);
+  process.env.TYPESAFE_API_KEY = 'jev-key';
+  for (const jev of [
+    () => new Response('overloaded', { status: 529 }),
+    () => Promise.reject(new TypeError('fetch failed')),
+    () => Response.json({ answers: {} }),
+  ]) {
+    calls = mockFetch(t, url => url === JEV ? jev() : new Response('ok'));
+    assert.equal((await contact(message)).statusCode, 303);
+    assert.deepEqual(calls.map(call => call.url), [JEV, SLACK]);
+  }
+});
+
 test('contact form rejects missing or oversized fields', async t => {
   setEnv(t, { SLACK_WEBHOOK_URL: 'https://hooks.slack.test/services/x' });
   const calls = mockFetch(t, () => new Response('ok'));
