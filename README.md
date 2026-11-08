@@ -30,6 +30,7 @@ interactive commands below; never commit their values:
 npx wrangler secret put GITHUB_CLIENT_ID
 npx wrangler secret put GITHUB_CLIENT_SECRET
 npx wrangler secret put SLACK_WEBHOOK_URL
+npx wrangler secret put TYPESAFE_API_KEY
 ```
 
 The GitHub OAuth App callback stays
@@ -171,7 +172,14 @@ repository. Locally, `npm start` keeps using the Decap proxy instead.
 
 The contact form posts to `/api/contact`, which sends each message to Slack
 through an incoming webhook and then shows `/contact/thanks/`. A hidden
-`company` field catches bots; those submissions are dropped. Create an incoming
+`company` field catches bots; those submissions are dropped. When
+`TYPESAFE_API_KEY` is set, each message is also sent to TypeSafe's
+[Jev](https://docs.typesafe.ai/) model, which returns how likely it is to be
+spam. Messages at 0.9 or above are dropped. The sender still sees the thanks
+page, and the Worker logs `Dropped contact form spam from <email>` with the
+probability, so a real message caught by mistake can be found with
+`npx wrangler tail`. If the key is unset or Jev doesn't answer within five
+seconds, the message goes to Slack as before. Create an incoming
 webhook for the channel that should receive messages and set it as
 `SLACK_WEBHOOK_URL`, on the same Worker. Without it the form answers
 with an error rather than losing messages silently.
