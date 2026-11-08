@@ -107,7 +107,7 @@ const slackText = (text: string) => text.replace(/&/g, "&amp;").replace(/</g, "&
 // (https://docs.typesafe.ai/primitives/noul.md). Catches sales pitches that
 // get past the honeypot. Returns null when TYPESAFE_API_KEY is unset or Jev
 // can't answer, so the message is still delivered.
-const SPAM_THRESHOLD = 0.8;
+const SPAM_THRESHOLD = 0.9;
 
 async function spamProbability(name: string, email: string, message: string): Promise<number | null> {
   const key = process.env.TYPESAFE_API_KEY;

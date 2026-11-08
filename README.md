@@ -175,7 +175,7 @@ through an incoming webhook and then shows `/contact/thanks/`. A hidden
 `company` field catches bots; those submissions are dropped. When
 `TYPESAFE_API_KEY` is set, each message is also sent to TypeSafe's
 [Jev](https://docs.typesafe.ai/) model, which returns how likely it is to be
-spam. Messages at 0.8 or above are dropped. The sender still sees the thanks
+spam. Messages at 0.9 or above are dropped. The sender still sees the thanks
 page, and the Worker logs `Dropped contact form spam from <email>` with the
 probability, so a real message caught by mistake can be found with
 `npx wrangler tail`. If the key is unset or Jev doesn't answer within five
