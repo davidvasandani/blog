@@ -63,7 +63,7 @@
     "clean-css": "5.3.3",
     "concurrently": "10.0.6",
     "date-fns": "4.4.0",
-    "decap-server": "3.11.5",
+    "decap-server": "3.11.6",
     "esbuild": "0.25.12",
     "htm": "3.1.1",
     "html-minifier-terser": "7.2.0",
