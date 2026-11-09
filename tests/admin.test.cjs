@@ -28,6 +28,60 @@ test('CMS backend and content schemas preserve local editing and publishing path
   assert.ok(pages.fields.find(f => f.name === 'permalink'));
 });
 
+const RESUME = 'resume/David_Vasandani_CV.yaml';
+const resumeFile = () => yaml.load(read('config.yml')).collections.find(c => c.name === 'resume').files[0];
+
+test('Resume collection edits the RenderCV file in place', () => {
+  const resume = yaml.load(read('config.yml')).collections.find(c => c.name === 'resume');
+  assert.equal(resume.label, 'Resume');
+  assert.equal(resume.folder, undefined);
+  assert.equal(resume.create, undefined);
+  assert.equal(resume.delete, false);
+  assert.equal(resume.files.length, 1);
+  assert.equal(resume.files[0].file, RESUME);
+  // A .yaml extension isn't inferred as YAML for a single file.
+  assert.equal(resume.files[0].format, 'yml');
+});
+
+// Every key the resume uses needs a field, or a form save could lose it.
+function uncovered(value, field, where) {
+  if (field.widget === 'hidden') return [];
+  if (field.fields && field.widget !== 'list') {
+    assert.equal(typeof value, 'object', where);
+    return Object.entries(value).flatMap(([key, child]) => {
+      const sub = field.fields.find(f => f.name === key);
+      return sub ? uncovered(child, sub, `${where}.${key}`) : [`${where}.${key}`];
+    });
+  }
+  if (field.widget === 'list') {
+    assert.ok(Array.isArray(value), where);
+    const item = field.fields ? { widget: 'object', fields: field.fields } : field.field;
+    return item ? value.flatMap((child, i) => uncovered(child, item, `${where}[${i}]`)) : [];
+  }
+  assert.notEqual(typeof value, 'object', `${where} holds a structure but its field is a ${field.widget}`);
+  return [];
+}
+
+test('Resume form has a field for every key in the resume file', () => {
+  const data = yaml.load(fs.readFileSync(RESUME, 'utf8'));
+  assert.deepEqual(uncovered(data, { widget: 'object', fields: resumeFile().fields }, 'resume'), []);
+});
+
+test('a CMS save of the unchanged resume keeps the data RenderCV reads', () => {
+  // Same steps as decap-cms-core's YAML toFile, with the yaml 1.x major it bundles.
+  const YAML = require('yaml');
+  const source = fs.readFileSync(RESUME, 'utf8');
+  const data = YAML.parseDocument(source).toJSON();
+  const order = resumeFile().fields.map(f => f.name);
+  const contents = YAML.createNode(data);
+  contents.items.sort((a, b) => order.indexOf(a.key.toString()) - order.indexOf(b.key.toString()));
+  const doc = new YAML.Document();
+  doc.contents = contents;
+  const saved = doc.toString();
+  assert.deepEqual(yaml.load(saved), yaml.load(source));
+  assert.deepEqual(Object.keys(yaml.load(saved)), order);
+});
+
 function preview(name, data) {
   // Substitute only remote module imports; execute the shipped component with real helpers.
   const source = read(`preview-templates/${name}.js`)
