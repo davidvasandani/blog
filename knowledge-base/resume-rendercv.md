@@ -73,3 +73,20 @@ Task: VAS-931 / df1c3a90-2839-43df-8cac-960631834dfd (Merge Open Source and Proj
 `cv.sections.projects` is the single Projects section for open-source contributions and personal projects. The former Open Source entries precede the household platform entry. Section keys supply rendered headings, so join the YAML lists rather than renaming headings in templates. The same source produces both `/resume/` and its PDF; regenerate before validating either output. Compare parsed entry objects when regrouping to catch lost details without relying on date-sensitive PDF bytes.
 
 The category merge ships as résumé version 1.1.1, a patch for grouping/formatting. Preserve newer source wording when integrating this change; only the section keys need changing.
+
+## Google Docs copy
+
+Task: d38c-open-in-google-d (2026-11-09).
+
+`pages/resume.njk` adds the Google Docs action beside the PDF download. The native
+Google Doc is a snapshot of the YAML, not a generated build artifact; maintenance
+instructions and its snapshot version live in `resume/README.md`. Preserve its ID
+when updating it and verify all source text after writes. Google Docs appends an
+empty final paragraph, so readback can have one extra newline.
+
+The connected Drive create action requires omitting `parent_folder_id` for OAuth.
+Move the created file into ChatGPT with `update_file`, using the parents returned
+by metadata. The connector's share action supports named people and domain access,
+not anonymous viewers. A public blog link needs Anyone with the link / Viewer;
+verify this separately before releasing the link. Public Viewer access was verified through Drive metadata and an unauthenticated
+HTTP request on 2026-11-09 before releasing the link.
