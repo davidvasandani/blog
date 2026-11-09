@@ -78,7 +78,8 @@
     "serverless-http": "4.0.0",
     "typescript": "7.0.2",
     "uglify-js": "3.19.3",
-    "wrangler": "4.155.0"
+    "wrangler": "4.155.0",
+    "yaml": "1.10.2"
   },
   "dependencies": {
     "@siteping/adapter-kit": "0.2.0",
