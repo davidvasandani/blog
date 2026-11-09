@@ -172,6 +172,11 @@ Then set its `GITHUB_CLIENT_ID` and `GITHUB_CLIENT_SECRET` as environment
 secrets on the Cloudflare Worker. Editors need write access to the
 repository. Locally, `npm start` keeps using the Decap proxy instead.
 
+The CMS has three collections: Post (`posts/`), Page (`pages/`) and Resume
+(`resume/David_Vasandani_CV.yaml`). See
+[resume/README.md](resume/README.md#editing-in-the-cms) for what a Resume save
+changes in the file.
+
 ### Contact form
 
 The contact form posts to `/api/contact`, which sends each message to Slack
