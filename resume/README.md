@@ -92,3 +92,13 @@ These used to be comments in the YAML. They live here because a CMS save would d
 ## Upgrading RenderCV
 
 Bump the version in `requirements.txt` and the schema tag on the first line of the YAML, then run `npm run resume:setup && npm run resume`. Check the [changelog](https://docs.rendercv.com/changelog/) for schema changes. `tests/resume.test.cjs` asserts the pin and schema tag, so update it too.
+
+## Google Docs copy
+
+The resume page also links to a [Google Docs copy](https://docs.google.com/document/d/1ty2P7btr9BMInYlEB-rjPcHeYSeVWji5EHsfIlZaA1I/edit).
+It is a snapshot of resume version 3.2.0, created on 2026-11-09. The YAML remains
+its source of truth; site builds do not update Google Docs. When publishing a
+resume revision, update the document from the same YAML, check its wording and
+section order, and update this snapshot version. Keep the document ID stable so
+existing links continue to work. Blog visitors need “Anyone with the link”
+Viewer access; editing should remain restricted.
