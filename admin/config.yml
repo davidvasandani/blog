@@ -55,3 +55,117 @@ collections:
           - { label: "Key", name: "key", widget: "string" }
           - { label: "Order", name: "order", widget: "number", default: 0 }
       - { label: "Body", name: "body", widget: "markdown" }
+  # The RenderCV resume. Saving rewrites the whole file from the form, which
+  # drops YAML comments and reflows long lines; see resume/README.md.
+  - name: "resume"
+    label: "Resume"
+    delete: false
+    editor:
+      preview: false
+    files:
+      - name: "cv"
+        label: "Resume"
+        file: "resume/David_Vasandani_CV.yaml"
+        format: "yml"
+        fields:
+          - label: "CV"
+            name: "cv"
+            widget: "object"
+            fields:
+              - { label: "Name", name: "name", widget: "string" }
+              - { label: "Headline", name: "headline", widget: "string", required: false }
+              - { label: "Location", name: "location", widget: "string", required: false }
+              - { label: "Email", name: "email", widget: "string", required: false }
+              - { label: "Website", name: "website", widget: "string", required: false }
+              - label: "Social networks"
+                name: "social_networks"
+                widget: "list"
+                required: false
+                summary: "{{fields.network}}: {{fields.username}}"
+                fields:
+                  - { label: "Network", name: "network", widget: "string", hint: "A RenderCV network name, such as LinkedIn, GitHub or Mastodon" }
+                  - { label: "Username", name: "username", widget: "string" }
+              - label: "Sections"
+                name: "sections"
+                widget: "object"
+                fields:
+                  - label: "Summary"
+                    name: "summary"
+                    widget: "list"
+                    required: false
+                    field: { label: "Paragraph", name: "paragraph", widget: "text" }
+                  - label: "Experience"
+                    name: "experience"
+                    widget: "list"
+                    required: false
+                    summary: "{{fields.company}}, {{fields.position}}"
+                    fields:
+                      - { label: "Company", name: "company", widget: "string" }
+                      - { label: "Position", name: "position", widget: "string", required: false }
+                      - { label: "Start date", name: "start_date", widget: "string", required: false, hint: "YYYY-MM. Use start and end dates or Date, not both." }
+                      - { label: "End date", name: "end_date", widget: "string", required: false, hint: "YYYY-MM or present" }
+                      - { label: "Date", name: "date", widget: "string", required: false, hint: "Free text such as 2016 – 2019, instead of start and end dates" }
+                      - { label: "Location", name: "location", widget: "string", required: false }
+                      - { label: "Summary", name: "summary", widget: "text", required: false }
+                      - label: "Highlights"
+                        name: "highlights"
+                        widget: "list"
+                        required: false
+                        field: { label: "Highlight", name: "highlight", widget: "text" }
+                  - label: "Projects"
+                    name: "projects"
+                    widget: "list"
+                    required: false
+                    summary: "{{fields.name}}"
+                    fields:
+                      - { label: "Name", name: "name", widget: "string" }
+                      - { label: "Date", name: "date", widget: "string", required: false }
+                      - { label: "Summary", name: "summary", widget: "text", required: false }
+                      - label: "Highlights"
+                        name: "highlights"
+                        widget: "list"
+                        required: false
+                        field: { label: "Highlight", name: "highlight", widget: "text" }
+                  - label: "Skills"
+                    name: "skills"
+                    widget: "list"
+                    required: false
+                    summary: "{{fields.label}}"
+                    fields:
+                      - { label: "Label", name: "label", widget: "string" }
+                      - { label: "Details", name: "details", widget: "text" }
+          - label: "Design"
+            name: "design"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Theme", name: "theme", widget: "select", options: ["classic", "ember", "engineeringclassic", "engineeringresumes", "harvard", "ink", "moderncv", "opal", "sb2nov"] }
+              - label: "Entries"
+                name: "entries"
+                widget: "object"
+                required: false
+                fields:
+                  - { label: "Allow page breaks inside entries", name: "allow_page_break", widget: "boolean", required: false }
+              - label: "Sections"
+                name: "sections"
+                widget: "object"
+                required: false
+                fields:
+                  - { label: "Show time spans in", name: "show_time_spans_in", widget: "list", required: false, hint: "Section names. Leave empty to hide elapsed durations." }
+          - label: "Locale"
+            name: "locale"
+            widget: "object"
+            collapsed: true
+            required: false
+            fields:
+              - { label: "Language", name: "language", widget: "string", required: false }
+          - label: "Settings"
+            name: "settings"
+            widget: "object"
+            collapsed: true
+            required: false
+            fields:
+              - { label: "Current date", name: "current_date", widget: "string", required: false, hint: "today, or a date" }
+              # scripts/resume.cjs and the site build read rendercv_output, so keep it out of the form.
+              - { label: "Render command", name: "render_command", widget: "hidden", required: false }
+              - { label: "PDF title", name: "pdf_title", widget: "string", required: false }

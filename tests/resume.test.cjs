@@ -16,9 +16,12 @@ test('RenderCV is pinned to an exact release with its CLI extras', () => {
 
 test('resume source targets the pinned schema and names David', () => {
   const source = read('resume/David_Vasandani_CV.yaml');
-  assert.match(source, /refs\/tags\/v2\.8\/schema\.json/);
+  // A CMS save drops comments, including this editor hint, so it is optional.
+  const schema = source.match(/\$schema=\S+/);
+  if (schema) assert.match(schema[0], /refs\/tags\/v2\.8\/schema\.json$/);
   assert.match(source, /^ {2}name: David Vasandani$/m);
-  assert.match(source, /^ {2}theme: classic$/m);
+  // Any built-in theme; the CMS offers the same list.
+  assert.match(source, /^ {2}theme: (classic|ember|engineeringclassic|engineeringresumes|harvard|ink|moderncv|opal|sb2nov)$/m);
 });
 
 test('local environment and rendered output stay out of git and template processing', () => {

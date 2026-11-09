@@ -1,6 +1,5 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/rendercv/rendercv/refs/tags/v2.8/schema.json
-# Resume source for RenderCV. Render with `npm run resume`; see README.md.
-# Role attribution notes: specs/vk/018c-senior-vs-lead-v/research.md.
+# Resume source for RenderCV. Notes on these entries live in README.md, because a CMS save drops comments.
 cv:
   name: David Vasandani
   headline: Solutions Engineer
@@ -18,8 +17,6 @@ cv:
     summary:
       - "Hands-on engineer at the boundary with vendors and partners: POS, loyalty, delivery, and store devices. Seven years at Sweetgreen, promoted three times, now running IT Infrastructure & Platform Operations for nearly 300 restaurants and 2 corporate offices, while still doing the engineering below. Uses AI to find the cause of production problems and then turns the fix into a tool others can run safely"
     experience:
-      # Sweetgreen: one entry per role, newest first. Dates are the effective
-      # dates in ChartHop's job history (Personal History tab).
       - company: Sweetgreen
         position: Senior Manager, IT Infrastructure & Platform Operations
         start_date: 2026-02
@@ -114,10 +111,8 @@ cv:
 design:
   theme: classic
   entries:
-    # Long entries may continue on the next page instead of moving whole and leaving a gap.
     allow_page_break: true
   sections:
-    # The reviewer asked for dates without elapsed durations ("10 months") beside them.
     show_time_spans_in: []
 locale:
   language: english

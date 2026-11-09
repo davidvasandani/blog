@@ -69,6 +69,26 @@ unreleased edits can still carry the previous version until you bump it.
 - Editors with the YAML language server get validation and autocomplete from the schema line at the top of the file.
 - For a tailored variant (for example, one application), copy the YAML to a new file and render it with `resume/.venv/bin/rendercv render <file>.yaml` from `resume/`.
 
+## Editing in the CMS
+
+`/admin/` has a **Resume** collection next to Post and Page. It edits `David_Vasandani_CV.yaml` in place, with a field for every key the file uses: contact details, the summary, each role with its highlights, projects, skills, and the RenderCV design, locale and settings blocks (collapsed at the bottom). The render output folder isn't in the form, because `scripts/resume.cjs` and the site build only look in `rendercv_output`. Lists can be reordered by dragging.
+
+- Saving creates a draft in the editorial workflow, the same as a post. Publishing it opens a pull request, and CI renders the resume and runs `npm run resume:voice` there. The `/voice` rule above still applies before merge, and so does the `resume/VERSION` bump, which the CMS can't edit.
+- Decap writes the whole file from the form data. Every YAML comment is dropped, long lines are folded at 80 columns and quoting may change, so the first save shows a large diff with the same data. `tests/admin.test.cjs` checks that an unchanged save parses back to the same data. Put notes in this README, not in YAML comments. A CMS save also removes the schema line at the top. To get editor validation back, paste it in again with the tag matching `requirements.txt`:
+  `# yaml-language-server: $schema=https://raw.githubusercontent.com/rendercv/rendercv/refs/tags/v2.8/schema.json`
+- Each role uses either Start date and End date, or Date, not both. A field you type in and then clear may be saved as an empty string, so check the PR's `resume` artifact after clearing one.
+- The form has four sections (Summary, Experience, Projects, Skills). A new section, or a new key on an entry, needs a matching field in `admin/config.yml`; `tests/admin.test.cjs` fails until it has one.
+- A colon followed by a space inside a value is safe in the CMS, which quotes it. When editing the YAML by hand, quote such values. Unquoted, YAML either rejects the line or reads a highlight as a mapping.
+
+## Notes on the source
+
+These used to be comments in the YAML. They live here because a CMS save would drop them.
+
+- Sweetgreen has one experience entry per role, newest first. Dates are the effective dates in ChartHop's job history (Personal History tab). Role attribution notes are in `specs/vk/018c-senior-vs-lead-v/research.md`.
+- Crash figures in the first current-role highlight come from the 2026-11-04 re-run, which compares Oct 13 to 23 with Oct 25 to Nov 4 on the registers in the rollout. Re-run with a longer window before the next release.
+- `design.entries.allow_page_break: true` lets a long entry continue on the next page instead of moving whole and leaving a gap.
+- `design.sections.show_time_spans_in: []` hides elapsed durations ("10 months") beside dates, at the reviewer's request.
+
 ## Upgrading RenderCV
 
 Bump the version in `requirements.txt` and the schema tag on the first line of the YAML, then run `npm run resume:setup && npm run resume`. Check the [changelog](https://docs.rendercv.com/changelog/) for schema changes. `tests/resume.test.cjs` asserts the pin and schema tag, so update it too.
