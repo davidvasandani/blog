@@ -16,24 +16,23 @@ cv:
       username: '@davidvasandani@social.coop'
   sections:
     summary:
-      - "Hands-on engineer at the boundary with vendors and partners: POS, loyalty, delivery and store devices. Seven years at Sweetgreen, promoted three times, now running IT Operations for nearly 300 restaurants while still doing the engineering below. Uses AI to find the cause of production problems inside vendor software with no logs or source code, then turns the fix into a tool others can run safely, read-only by default, with a named approver and an audit log."
+      - "Hands-on engineer at the boundary with vendors and partners: POS, loyalty, delivery, and store devices. Seven years at Sweetgreen, promoted three times, now running IT Infrastructure & Platform Operations for nearly 300 restaurants and 2 corporate offices, while still doing the engineering below. Uses AI to find the cause of production problems and then turns the fix into a tool others can run safely"
     experience:
       # Sweetgreen: one entry per role, newest first. Dates are the effective
       # dates in ChartHop's job history (Personal History tab).
       - company: Sweetgreen
-        position: Senior Manager, IT Infrastructure & Innovation
+        position: Senior Manager, IT Infrastructure & Platform Operations
         start_date: 2026-02
         end_date: present
         location: Culver City, CA
-        summary: Promoted from Senior Lead Software Engineer. Runs IT Operations with a team of three, a Senior Systems Engineer and two IT Operations Specialists.
+        summary: Promoted from Senior Lead Software Engineer. Runs IT Operations with a team of three: a Senior Systems Engineer for Network and two IT Operations Specialists.
         highlights:
           # Crash figures: the 2026-11-04 re-run compares Oct 13 to 23 with Oct 25 to Nov 4 on the registers in the rollout. Re-run with a longer window before the next release.
-          - Registers at dozens of high-volume stores crashed during the lunch rush, 314 times in one month, and neither the vendor's lab nor ours could reproduce it. Used AI to map memory on live registers and reverse-engineered the POS executable. It is a 32-bit app that reserves memory for every CPU core, so the newest 20-thread registers ran out of address space first. Shipped a workaround that starts the app on fewer cores, freeing about 610 MB per register. Within 2 weeks it was on the 18 registers that had crashed in the previous 30 days, and crashes on those registers fell from about 7 a day to 2 in the following 11 days.
-          - Store settings on the POS could only be read one store at a time in the vendor's web portal, through an API with no documentation, so nobody could check them across the fleet. Directed AI agents to catalog every call the portal's web app makes, sample 12 stores read-only and write it up as a 104-operation contract pinned to the vendor's build. The build fails on any call we haven't classified. The read-only tools generated from it audit all 343 POS locations, lab and sandbox included, in about 6 minutes, with credentials and personal data redacted.
-          - When a store's end-of-day close failed, the next day's sales landed on the wrong business date, and the only fix was to email the POS vendor and wait. Reverse-engineered the vendor's correction form and built an agent that previews the fix, needs a named approver's sign-off, and reports unknown instead of retrying a change that can't be undone. Finance's controller reviewed the flow, and the agent has handled these corrections in-house since September 2026, 5 stores in its first week. Sales totals read through the same API also caught the vendor's daily sales report overstating two stores by about $55K after corrections. Handed the vendor the side-by-side numbers, and after it regenerated the report both stores matched the finance system to the penny.
-          - Loyalty scans froze registers until someone restarted them. A week of fleet data, 53,617 scans, showed 46 of these freezes at 32 of the 272 restaurants scanning that week. Decompiled the vendor's loyalty DLL with an agent, found that a hidden reward dialog blocks the screen and that the DLL logs nothing when the dialog opens, shared that evidence with the vendor, and added three loyalty-step metrics to monitoring.
+          - Assigned to stop lunch-rush register crashes (314 in one month across 38 high-volume stores) that neither the vendor’s lab nor ours could reproduce. Used AI to map memory on live registers and reverse-engineered the 32-bit POS app, finding it ran out of address space on new 20-thread CPUs. Shipped a core-limiting workaround that freed ~610 MB per register and cut crashes about 97% (from 77 to 2 across comparable 11-day periods) before the vendor delivered a patch. It’s now our standard configuration.
+          - Store settings on the POS could only be read one store at a time in the vendor's web portal, through an API with no documentation, so nobody could check them across the fleet. Directed AI agents to catalog every call the portal's web app makes, sample 12 stores read-only, and write it up as a 104-operation contract pinned to the vendor's build. The build fails on any call we haven't classified. The read-only tools generated from it audit all 343 POS locations, including lab and sandbox, in about 6 minutes, with credentials and personal data redacted.
+          - When a store's end-of-day close failed, the next day's sales landed on the wrong business date, and the only fix was to email the POS vendor and wait. Reverse-engineered the vendor's correction form and built an agent that previews the fix, needs a named approver's sign-off, and reports unknown instead of retrying a change that can't be undone. Finance's controller reviewed the flow, and the agent has handled these corrections in-house since September 2026, with 5 stores in its first week. Sales totals read through the same API also caught the vendor's daily sales report overstating two stores by about $55K after corrections. Handed the vendor the side-by-side numbers, and after it regenerated the report, both stores matched the finance system to the penny.
           - Built the tools the AI agents work through. One runs PowerShell on POS devices and managers' back-office computers over our remote-access software, read-only by default, with approval required for changes, every command logged, and a security-camera check for whether someone might be using the computer before a change during business hours. The other is a browser service that stays logged in between runs and hands the live session to a person when a step needs one.
-          - DoorDash orders failed at three stores for two days, and the partner's first theory blamed a downstream system. Used order data and request traces to show the requests failed before reaching our services, and DoorDash confirmed a missed configuration migration and fixed it. Separately, brought a paused restaurant back online with a manual REST API update and escalated its webhook's repeated HTTP 500 responses to DoorDash with the delivery logs.
+          - DoorDash orders failed at three stores for two days, and the partner's first theory blamed a downstream system. Used order data and request traces to show requests failed before reaching our services; DoorDash confirmed a missed configuration migration and fixed it. Separately, brought a paused restaurant back online with a manual REST API update and escalated its webhook's repeated HTTP 500 responses to DoorDash with the delivery logs.
           - Validated the Slack exports and shared-drive copies for the Spyce/Wonder data handoff under Legal's redaction criteria. Caught a copy failure and restored roughly 12,039 missing items before delivery, and fixed the Slack export so all 8,605 files could be parsed.
       - company: Sweetgreen
         position: Senior Lead Software Engineer
@@ -43,7 +42,7 @@ cv:
         summary: Promoted from Lead Software Engineer.
         highlights:
           - Filled the Retail Technology leadership gap during an unplanned leave. Gave the VP of Technology the technical guidance to limit revenue loss from POS issues.
-          - Took a virtual POS proof of concept through cutover planning with Security. The cutover was postponed to add telemetry first.
+          - Took a virtual POS proof of concept through cutover planning with Security. Postponed the cutover to add telemetry first.
           - After the October 2025 end-of-day outage, wrote and ran staged Ansible changes that removed scheduled reboots from the POS devices Ansible manages, so those reboots no longer interrupt end-of-day processing.
       - company: Sweetgreen
         position: Lead Software Engineer
@@ -53,7 +52,7 @@ cv:
         summary: Promoted from Senior Software Engineer.
         highlights:
           - Restaurants could stop taking online orders while CPU and memory monitors stayed green, because there was no monitoring on the registers themselves. Led POS monitoring from proposal through Security and business reviews to fleet approval over nearly a year. Built the collection pipeline on an open-source collector instead of a paid per-host agent, and it shipped logs to Datadog from the fleet of nearly 300 restaurants.
-          - The company needed centralized asset discovery and vulnerability scanning across every store, which meant connecting AWS to the store networks. Designed and implemented a hub-and-spoke network architecture for it, then worked through Security and business reviews for roughly ten months to get approval for fleet rollout.
+          - The company needed centralized asset discovery and vulnerability scanning across every store, which meant connecting AWS to the store networks. Designed and implemented a hub-and-spoke network architecture, then worked through Security and business reviews for roughly ten months to get approval for a fleet rollout.
           - Built monitoring for store network loss and latency and for Intune-managed time clocks, so teams could see which restaurants had network or device problems.
           - Marketplace partners' login costs rose after a pricing change on the identity service. Added token caching for those partners. Reported costs fell from about $3,500 to $1,000 a month.
           - Built and ran a managed SFTP service for file exchange with Paytronix and our POS vendor, with a separate folder for each vendor, and worked with Security to onboard them.
@@ -73,7 +72,7 @@ cv:
         date: 2016 – 2019
         location: Remote
         highlights:
-          - Moved Elasticsearch, Redis and Postgres off self-managed servers onto managed cloud services, which were more reliable and less work to run.
+          - Moved Elasticsearch, Redis, and Postgres off self-managed servers onto managed cloud services, which were more reliable and required less work to run.
       - company: Warby Parker
         position: Automation Engineer
         date: 2014 – 2016
@@ -86,7 +85,7 @@ cv:
         date: 2026
         summary: Built for my own use. Work adopted it, and I'm now onboarding my team.
         highlights:
-          - Connected it to Jira, Slack, GitHub, AWS and ChatGPT, so agents can finish work without someone logging in for them or copying tickets over by hand.
+          - Connected it to Jira, Slack, GitHub, AWS, and ChatGPT, so agents can finish work without someone logging in for them or copying tickets over by hand.
           - The upstream tool ran every agent on one machine, so a restart lost running work. Grew it into a 6-server cluster where agent work survives restarts and the cluster opens its own repair tickets.
           - Designed it and directed Claude and Codex agents to build it. Every change starts as a written spec, then gets a review and automated tests before release.
       - name: SitePing web feedback platform
@@ -96,7 +95,7 @@ cv:
       - name: Household content and workflow platform
         summary: Personal project, built with AI coding agents.
         highlights:
-          - Built resumable book and magazine imports for a household library. Extracted EPUB metadata, checked file formats and used SHA-256 hashes to identify duplicates, with controls to recover failed runs.
+          - Built resumable book and magazine imports for a household library. Extracted EPUB metadata, checked file formats, and used SHA-256 hashes to identify duplicates, with controls to recover failed runs.
           - Automated email triage. A hosted classifier sorts each message into Johnny.Decimal labels, a separate check confirms each action, and my corrections tune it.
     skills:
       - label: APIs & troubleshooting
