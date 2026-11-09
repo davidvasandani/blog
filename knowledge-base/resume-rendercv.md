@@ -20,7 +20,7 @@ The resume source is `resume/David_Vasandani_CV.yaml` (RenderCV 2.8 schema). `re
 - `settings.current_date: today` stamps "Last updated", so PDFs differ between days. This is one reason output isn't committed.
 - Long values in the education `degree` column wrap badly in the `classic` theme. Use abbreviations (BS, MS).
 - Mastodon handles use `username: '@user@instance'`.
-- Upgrading means bumping both the pin and the schema tag on the YAML's first line. The test asserts both.
+- Upgrading means bumping both the pin and the schema tag on the YAML's first line. The test asserts the pin, and the schema tag only when the line is present, because a CMS save removes it (see [Resume in Decap](resume-decap.md)).
 - Local `npm test` needs Chrome for the Pa11y audit. On this NixOS host, use `PUPPETEER_EXECUTABLE_PATH=$(nix build --no-link --print-out-paths nixpkgs#chromium)/bin/chromium`.
 
 ## Page layout (task 0d66, Resume Heading Design, 2026-11-02)
