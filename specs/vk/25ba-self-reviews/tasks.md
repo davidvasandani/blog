@@ -22,4 +22,4 @@ Paths starting with `hiring:` are in the private repository; file names there ar
 ## Phase 4: Knowledge and review
 - [x] T010 [P] Knowledge page and index in `hiring:` knowledge base, README entry (depends on T007)
 - [x] T011 [P] Add a section on review documents to `knowledge-base/resume-voice.md` and a line to `knowledge-base/index.md`
-- [ ] T012 Independent Codex review of both diffs; fix confirmed findings and log them in `hiring:` task spec folder (depends on T007, T009, T010, T011)
+- [x] T012 Independent Codex review of both diffs; fix confirmed findings and log them in `hiring:` task spec folder (depends on T007, T009, T010, T011)
