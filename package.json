@@ -82,7 +82,7 @@
     "yaml": "1.10.2"
   },
   "dependencies": {
-    "@siteping/adapter-kit": "0.2.0",
+    "@siteping/adapter-kit": "0.2.1",
     "@siteping/server": "0.2.0",
     "express": "5.3.0",
     "gemdown": "0.8.0",
