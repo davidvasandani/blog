@@ -84,3 +84,14 @@ Task: 9c61-feedback-1, 2026-11-05. A second reviewer read version 2.0.0 and aske
 - RenderCV's classic theme prints "10 months" beside experience dates by default; `design.sections.show_time_spans_in: []` removes them. The page transform (`scripts/resume-page.cjs`) treats the duration line and the theme callout as optional, so the source can drop both without a script change.
 - Questions only David can answer (how two overlapping roles were arranged, whether his own phrase should narrow, figures for old outcomes, language proficiency) go in hiring as a table, not onto the page and not into the PR as a blocker.
 - A major version bump: fewer bullets, a new summary and a reordered skills list is "changed positioning" under the README's rule even though no number changed.
+
+## Review documents as evidence
+
+Task: 25ba-self-reviews, 2026-11-11. David supplied year-end review documents and asked for an analysis, a timeline update and proposed resume lines. The documents and everything derived from them stay in the private repository. Rules that came out of it:
+
+- A review looks back over a year. It can corroborate a dated record, and a review someone else wrote is a second source, but it does not date work and its figures are unverified. Dates and roles come from the dated records; attribute by event date, not by the year the review covers or the title it uses.
+- Activity counts (pull requests, lines changed) are not outcomes and stay off the resume. When a review's count disagrees with a record, use wording true of both or the record's figure.
+- A review's "led" does not upgrade a record that says contributed.
+- "Propose" is not "publish". Proposed lines are drafted through `/voice` in the private repository with an evidence row, a risk and a recommendation each, and this repository's `resume/` stays untouched until David picks. An adopted line goes through `/voice` again here.
+- Development feedback is interview preparation. It never goes on the resume or into this repository.
+- When printing environment variables for debugging, list names only. A value filter keyed on a few words can miss a credential with a different name.
