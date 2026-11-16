@@ -29,7 +29,6 @@ cv:
           - Democratized access to POS store settings, from one store at a time in the vendor portal's nested menus to all 343 POS locations in about 6 minutes. Directed AI agents to document the portal's undocumented API (104 operations), and the read-only audit tools are generated from it.
           - Built an in-house agent, reverse-engineered from the POS vendor's correction form, that fixes sales misdated by failed end-of-day closes. Accounting's book close, tip payouts and the field's labor models no longer wait on vendor support or super-admin access. Piloted at 5 stores, then fleetwide.
           - Reverse-engineered our remote-access software's command prompt into an MCP server with role-based access, approved scripts, read-only commands and audit logs. AI agents connect directly to store computers to triage issues, surface configuration errors and take screenshots for IT Support and IT Field Services.
-          - Validated the Slack exports and shared-drive copies for the Spyce/Wonder data handoff under Legal's redaction criteria. Caught a copy failure and restored roughly 12,039 missing items before delivery, and fixed the Slack export so all 8,605 files could be parsed.
       - company: Sweetgreen
         position: Senior Lead Software Engineer
         start_date: 2025-09
