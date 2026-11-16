@@ -36,7 +36,6 @@ cv:
         location: Culver City, CA
         summary: Promoted from Lead Software Engineer.
         highlights:
-          - Filled the Retail Technology leadership gap during an unplanned leave. Gave the VP of Technology the technical guidance to limit revenue loss from POS issues.
           - Took a virtual POS proof of concept through cutover planning with Security. Postponed the cutover to add telemetry first.
           - After the October 2025 end-of-day outage, wrote and ran staged Ansible changes that removed scheduled reboots from the POS devices Ansible manages, so those reboots no longer interrupt end-of-day processing.
       - company: Sweetgreen
