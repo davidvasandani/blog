@@ -65,9 +65,30 @@ unreleased edits can still carry the previous version until you bump it.
 - Run every wording change through the `/voice` skill first, then check that it kept every fact, number, qualifier and ownership claim. `AGENTS.md` at the repository root has the steps. `npm run resume:voice` flags dashes, curly quotes, "AI" said more than once in a line and the skill's word lists. `npm test` runs the same check, so CI fails on them too. The script only finds the tells it can match, so a clean run doesn't mean the line went through `/voice`.
 - Lines marked `TODO` are placeholders to replace with real content.
 - Section titles under `cv.sections` are free-form. Each section holds one entry type (text, experience, education, bullet, one-line `label`/`details`, and so on). See the [entry types](https://docs.rendercv.com/user_guide/structure_of_the_yaml_input_file/).
-- Change the look with `design.theme`. The built-ins are `classic`, `ember`, `engineeringclassic`, `engineeringresumes`, `harvard`, `ink`, `moderncv`, `opal` and `sb2nov`.
+- The selected PDF design is **Industrial Grid** (`design.theme: industrialgrid`), implemented in `industrialgrid/`. The built-ins are `classic`, `ember`, `engineeringclassic`, `engineeringresumes`, `harvard`, `ink`, `moderncv`, `opal` and `sb2nov`.
 - Editors with the YAML language server get validation and autocomplete from the schema line at the top of the file.
 - For a tailored variant (for example, one application), copy the YAML to a new file and render it with `resume/.venv/bin/rendercv render <file>.yaml` from `resume/`.
+
+## Industrial Grid template
+
+The PDF uses the selected design study 13: a left-aligned JetBrains Mono
+masthead, Work Sans body text, slate section markers numbered 01–04, and a
+two-column skills grid. The masthead and versioned footer repeat on each page.
+The first two experience entries occupy the opening page; the remaining roles
+start a new page with a repeated Experience heading. Projects start a new page.
+The current content fits three US Letter pages; longer edits can add pages.
+
+`industrialgrid/` contains the Typst/Jinja templates and a small schema class
+that inherits the pinned RenderCV design schema. It customizes the four entry
+types used here (text, experience, projects/normal, and one-line skills).
+Additional entry types need matching templates. Markdown generation and the
+blog's HTML resume layout still use the existing RenderCV pipeline.
+
+`fonts/` vendors JetBrains Mono Bold and the regular, bold, italic, and bold
+italic Work Sans faces, with their OFL licenses. RenderCV discovers this folder
+automatically, so local builds and CI use the same fonts without a machine-local
+font installation. Visual changes belong in the theme, while resume wording
+stays in the YAML. The CMS theme selector includes `industrialgrid`.
 
 ## Editing in the CMS
 
