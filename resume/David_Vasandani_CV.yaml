@@ -44,7 +44,7 @@ cv:
         location: Culver City, CA
         summary: Promoted from Senior Software Engineer.
         highlights:
-          - Restaurants could stop taking online orders while CPU and memory monitors stayed green, because there was no monitoring on the registers themselves. Led POS monitoring from proposal through Security and business reviews to fleet approval over nearly a year. Built the collection pipeline on an open-source collector instead of a paid per-host agent, and it shipped logs to Datadog from the fleet of nearly 300 restaurants.
+          - Led centralized monitoring for the POS fleet behind in-store and online ordering, where alerting had been retroactive and manual. Fleetwide logs now enable technology, operations, and business teams to receive proactive alerts and the data to make decisions and see how a change affects the fleet.
           - The company needed centralized asset discovery and vulnerability scanning across every store, which meant connecting AWS to the store networks. Designed and implemented a hub-and-spoke network architecture, then worked through Security and business reviews for roughly ten months to get approval for a fleet rollout.
           - Built monitoring for store network loss and latency and for Intune-managed time clocks, so teams could see which restaurants had network or device problems.
           - Marketplace partners' login costs rose after a pricing change on the identity service. Added token caching for those partners. Reported costs fell from about $3,500 to $1,000 a month.
