@@ -48,7 +48,6 @@ cv:
           - The company needed centralized asset discovery and vulnerability scanning across every store, which meant connecting AWS to the store networks. Designed and implemented a hub-and-spoke network architecture, then worked through Security and business reviews for roughly ten months to get approval for a fleet rollout.
           - Built monitoring for store network loss and latency and for Intune-managed time clocks, so teams could see which restaurants had network or device problems.
           - Marketplace partners' login costs rose after a pricing change on the identity service. Added token caching for those partners. Reported costs fell from about $3,500 to $1,000 a month.
-          - Built and ran a managed SFTP service for file exchange with Paytronix and our POS vendor, with a separate folder for each vendor, and worked with Security to onboard them.
       - company: Sweetgreen
         position: Senior Software Engineer, Infrastructure
         start_date: 2019-08
