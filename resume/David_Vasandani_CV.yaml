@@ -50,11 +50,10 @@ cv:
         start_date: 2019-08
         end_date: 2021-02
         location: Culver City, CA
-        summary: Joined as Senior Engineer, Infrastructure. Retitled Senior Software Engineer in March 2020.
         highlights:
           - Infrastructure code lived in one Terraform monorepo that people applied from their own machines. Split it into smaller repositories, each with its own state and applied from CI instead of from laptops, so a bad change could break less.
           - Built blue-green infrastructure on weighted load-balancer target groups, so teams could run canary deploys and roll back fast.
-          - Pushed for Datadog and led its rollout, which brought monitoring into one tool.
+          - Advocated for Datadog and led its rollout, which brought monitoring into one tool.
           - Standardized infrastructure and deploys across 15+ services, so every service was built and shipped the same way and a new one started from the shared setup.
       - company: LearnZillion
         position: Senior Operations Engineer
