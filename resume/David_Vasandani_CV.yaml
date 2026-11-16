@@ -22,7 +22,7 @@ cv:
         start_date: 2026-02
         end_date: present
         location: Culver City, CA
-        summary: "Promoted from Senior Lead Software Engineer. Runs IT Operations with a team of three: a Senior Systems Engineer for Network and two IT Operations Specialists."
+        summary: "Runs IT Operations with a team of three: a Senior Systems Engineer for Network and two IT Operations Specialists."
         highlights:
           - Reverse-engineered the 32-bit POS app after neither the vendor's lab nor ours could reproduce lunch-rush register crashes, and found it ran out of address space on new CPUs. Shipped a workaround that cut crashes ~ 97%.
           - Debugged a loyalty UX issue that froze registers and prevented checkout, 46 times in one week across 32 restaurants. Directed an AI agent to decompile the vendor's loyalty DLL, traced the freezes to an unlogged reward dialog, and shipped a fix without vendor support.
@@ -34,7 +34,6 @@ cv:
         start_date: 2025-09
         end_date: 2026-02
         location: Culver City, CA
-        summary: Promoted from Lead Software Engineer.
         highlights:
           - New POS devices took days to set up from a full Windows image that was outdated as soon as it was built. I automated configuration with Ansible in a pipeline that deploys to any device, physical or virtual, preventing configuration drift, outdated documentation, and knowledge silos.
       - company: Sweetgreen
@@ -42,12 +41,10 @@ cv:
         start_date: 2021-03
         end_date: 2025-08
         location: Culver City, CA
-        summary: Promoted from Senior Software Engineer.
         highlights:
           - Led centralized monitoring for the POS fleet behind in-store and online ordering, where alerting had been retroactive and manual. Fleetwide logs now enable technology, operations, and business teams to receive proactive alerts and the data to make decisions and see how a change affects the fleet.
           - The company needed centralized asset discovery and vulnerability scanning across every store, which meant connecting AWS to the store networks. Designed and implemented a hub-and-spoke network architecture, then worked through Security and business reviews for roughly ten months to get approval for a fleet rollout.
           - Built monitoring for store network loss and latency and for Intune-managed time clocks, so teams could see which restaurants had network or device problems.
-          - Marketplace partners' login costs rose after a pricing change on the identity service. Added token caching for those partners. Reported costs fell from about $3,500 to $1,000 a month.
       - company: Sweetgreen
         position: Senior Software Engineer, Infrastructure
         start_date: 2019-08
