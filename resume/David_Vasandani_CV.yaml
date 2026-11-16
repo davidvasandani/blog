@@ -99,7 +99,7 @@ cv:
       - label: Technical leadership
         details: Team management, vendor escalation, stakeholder communication, rollout and rollback planning
 design:
-  theme: classic
+  theme: industrialgrid
   entries:
     allow_page_break: true
   sections:
