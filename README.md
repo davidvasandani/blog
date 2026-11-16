@@ -77,6 +77,15 @@ and npm starting. Its application build took 37 seconds; initialization took a
 separate 8m05s. Matching the image's Python default is a mitigation to verify on
 the next hosted build, not a measured speedup yet.
 
+If a build stalls in **Installing**, compare its detected Python version with
+`.python-version` at that build's commit. In the Blog Worker's **Settings >
+Build > Build Variables and Secrets**, check that `PYTHON_VERSION` matches
+that pin. Change a stale value there; changing the runtime variables or an npm
+script will not fix runtime selection before the build command starts. Start
+a new build and verify the selected Python version, then record the completed
+Installing and Building durations separately. A running timer alone does not
+establish the final build duration or a speedup.
+
 The Git connection must target the same Worker name as `wrangler.jsonc`.
 The empty `previews` block enables branch previews. Preview secrets are configured
 separately in Cloudflare's Previews Base settings; production secrets are not
