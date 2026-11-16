@@ -72,7 +72,8 @@ unreleased edits can still carry the previous version until you bump it.
 ## Industrial Grid template
 
 The PDF uses the selected design study 13: a left-aligned JetBrains Mono
-masthead, Work Sans body text, slate section markers numbered 01–04, and a
+masthead with the name and role on the left and a separate contact column on
+the right, Work Sans body text, slate section markers numbered 01–04, and a
 two-column skills grid. The masthead and versioned footer repeat on each page.
 The first two experience entries occupy the opening page; the remaining roles
 start a new page with a repeated Experience heading. Projects start a new page.

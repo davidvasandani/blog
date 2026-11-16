@@ -13,21 +13,28 @@
 #set list(indent: 11pt, body-indent: 3pt, tight: false, spacing: 5pt, marker: text(fill: slate)[•])
 #set page(
   paper: "us-letter",
-  margin: (top: 185pt, bottom: 62pt, left: 48pt, right: 48pt),
+  margin: (top: 150pt, bottom: 62pt, left: 48pt, right: 48pt),
   header-ascent: 0pt,
-  header: block(height: 185pt)[
-    #v(0pt)
-    #text(font: "JetBrains Mono", weight: "bold", size: 28pt)[{{ cv.name }}]
-    #v(9pt)
-    #text(size: 12pt, weight: "bold", fill: slate)[{{ cv.headline }}]
-    #v(8pt)
-    #text(size: 8.5pt)[
-      {% for connection in cv._connections %}
-      {{ connection }}{% if not loop.last %} #h(8pt) {% endif %}
-      {% endfor %}
-    ]
-    #v(27pt)
-    #line(length: 100%, stroke: 0.6pt + slate)
+  header: block(height: 150pt)[
+    #grid(
+      columns: (1fr, 190pt),
+      column-gutter: 24pt,
+      align: top,
+      [
+        #text(font: "JetBrains Mono", weight: "bold", size: 24pt)[{{ cv.name }}]
+        #v(10pt)
+        #text(size: 12pt, weight: "bold", fill: slate)[{{ cv.headline }}]
+      ],
+      block(inset: (left: 14pt), stroke: (left: 0.5pt + rgb("d7dcdf")))[
+        #set text(size: 8.5pt)
+        #set par(leading: 3pt, spacing: 4pt)
+        {% for connection in cv._connections %}
+        #box[{{ connection }}]
+
+        {% endfor %}
+      ],
+    )
+    #v(20pt)
   ],
   footer-descent: 18pt,
   footer: [
