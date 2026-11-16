@@ -18,3 +18,6 @@ diagrams/.diagram-design/
 .wrangler/
 .dev.vars*
 .env*
+
+# Python cache for the custom resume theme
+resume/industrialgrid/__pycache__/
