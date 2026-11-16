@@ -21,7 +21,7 @@ cv:
         position: Senior Manager, IT Infrastructure & Platform Operations
         start_date: 2026-02
         end_date: present
-        location: Culver City, CA
+        location: Culver City/Hybrid
         summary: "Runs IT Operations with a team of three: a Senior Systems Engineer for Network and two IT Operations Specialists."
         highlights:
           - Reverse-engineered the 32-bit POS app after neither the vendor's lab nor ours could reproduce lunch-rush register crashes, and found it ran out of address space on new CPUs. Shipped a workaround that cut crashes ~ 97%.
@@ -33,14 +33,14 @@ cv:
         position: Senior Lead Software Engineer
         start_date: 2025-09
         end_date: 2026-02
-        location: Culver City, CA
+        location: Culver City/Hybrid
         highlights:
           - New POS devices took days to set up from a full Windows image that was outdated as soon as it was built. I automated configuration with Ansible in a pipeline that deploys to any device, physical or virtual, preventing configuration drift, outdated documentation, and knowledge silos.
       - company: Sweetgreen
         position: Lead Software Engineer
         start_date: 2021-03
         end_date: 2025-08
-        location: Culver City, CA
+        location: Culver City/Hybrid
         highlights:
           - Led centralized monitoring for the POS fleet behind in-store and online ordering, where alerting had been retroactive and manual. Fleetwide logs now enable technology, operations, and business teams to receive proactive alerts and the data to make decisions and see how a change affects the fleet.
           - The company needed centralized asset discovery and vulnerability scanning across every store, which meant connecting AWS to the store networks. Designed and implemented a hub-and-spoke network architecture, then worked through Security and business reviews for roughly ten months to get approval for a fleet rollout.
@@ -49,7 +49,7 @@ cv:
         position: Senior Software Engineer, Infrastructure
         start_date: 2019-08
         end_date: 2021-02
-        location: Culver City, CA
+        location: Culver City/Hybrid
         highlights:
           - Infrastructure code lived in one Terraform monorepo that people applied from their own machines. Split it into smaller repositories, each with its own state and applied from CI instead of from laptops, so a bad change could break less.
           - Built blue-green infrastructure on weighted load-balancer target groups, so teams could run canary deploys and roll back fast.
