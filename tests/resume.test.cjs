@@ -20,8 +20,8 @@ test('resume source targets the pinned schema and names David', () => {
   const schema = source.match(/\$schema=\S+/);
   if (schema) assert.match(schema[0], /refs\/tags\/v2\.8\/schema\.json$/);
   assert.match(source, /^ {2}name: David Vasandani$/m);
-  // Any built-in theme; the CMS offers the same list.
-  assert.match(source, /^ {2}theme: (classic|ember|engineeringclassic|engineeringresumes|harvard|ink|moderncv|opal|sb2nov)$/m);
+  // Built-in themes and the repository-owned Industrial Grid theme.
+  assert.match(source, /^ {2}theme: (industrialgrid|classic|ember|engineeringclassic|engineeringresumes|harvard|ink|moderncv|opal|sb2nov)$/m);
 });
 
 test('local environment and rendered output stay out of git and template processing', () => {
