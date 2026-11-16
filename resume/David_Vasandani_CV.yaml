@@ -27,8 +27,8 @@ cv:
           - Reverse-engineered the 32-bit POS app after neither the vendor's lab nor ours could reproduce lunch-rush register crashes, and found it ran out of address space on new CPUs. Shipped a workaround that cut crashes ~ 97%.
           - Debugged a loyalty UX issue that froze registers and prevented checkout, 46 times in one week across 32 restaurants. Directed an AI agent to decompile the vendor's loyalty DLL, traced the freezes to an unlogged reward dialog, and shipped a fix without vendor support.
           - Democratized access to POS store settings, from one store at a time in the vendor portal's nested menus to all 343 POS locations in about 6 minutes. Directed AI agents to document the portal's undocumented API (104 operations), and the read-only audit tools are generated from it.
-          - Built an in-house agent, reverse-engineered from the POS vendor's correction form, that fixes sales misdated by failed end-of-day closes. Accounting's book close, tip payouts and the field's labor models no longer wait on vendor support or super-admin access. Piloted at 5 stores, then fleetwide.
-          - Reverse-engineered our remote-access software's command prompt into an MCP server with role-based access, approved scripts, read-only commands and audit logs. AI agents connect directly to store computers to triage issues, surface configuration errors and take screenshots for IT Support and IT Field Services.
+          - Built an in-house agent, modeled on the POS vendor's correction form, that fixes sales misdated by failed end-of-day closes. Accounting's book close, tip payouts and the field's labor models no longer wait on vendor support or super-admin access. Piloted at 5 stores, then fleetwide.
+          - Turned our remote-access software's command prompt into an MCP server with role-based access, approved scripts, read-only commands and audit logs. AI agents connect directly to store computers to triage issues, surface configuration errors and take screenshots for IT Support and IT Field Services.
       - company: Sweetgreen
         position: Senior Lead Software Engineer
         start_date: 2025-09
