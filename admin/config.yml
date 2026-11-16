@@ -139,7 +139,7 @@ collections:
             widget: "object"
             collapsed: true
             fields:
-              - { label: "Theme", name: "theme", widget: "select", options: ["classic", "ember", "engineeringclassic", "engineeringresumes", "harvard", "ink", "moderncv", "opal", "sb2nov"] }
+              - { label: "Theme", name: "theme", widget: "select", options: ["industrialgrid", "classic", "ember", "engineeringclassic", "engineeringresumes", "harvard", "ink", "moderncv", "opal", "sb2nov"] }
               - label: "Entries"
                 name: "entries"
                 widget: "object"
