@@ -36,7 +36,7 @@ cv:
         location: Culver City, CA
         summary: Promoted from Lead Software Engineer.
         highlights:
-          - Took a virtual POS proof of concept through cutover planning with Security. Postponed the cutover to add telemetry first.
+          - New POS devices took days to set up from a full Windows image that was outdated as soon as it was built. I automated configuration with Ansible in a pipeline that deploys to any device, physical or virtual, preventing configuration drift, outdated documentation, and knowledge silos.
           - After the October 2025 end-of-day outage, wrote and ran staged Ansible changes that removed scheduled reboots from the POS devices Ansible manages, so those reboots no longer interrupt end-of-day processing.
       - company: Sweetgreen
         position: Lead Software Engineer
