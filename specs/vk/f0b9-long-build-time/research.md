@@ -10,3 +10,7 @@
 ## Self-hosted Firecrawl follow-up, 2026-11-17
 
 At the user's request, retried through the self-hosted Firecrawl browser MCP. Both the cloudflare-routing and David saved profiles redirect to Cloudflare sign-in. The David profile's Google sign-in offers the personal account as signed out; choosing it reaches Enter your password. No hosted build configuration was accessible and no settings were changed. The unused cloudflare-routing session was closed without saving profile changes. The David session remains available for the user to authenticate.
+
+## User-supplied API credential follow-up
+
+The supplied 1Password item contains an account-owned Cloudflare API token. Account-scoped verification succeeds (active), and Workers script listing succeeds and includes david-vasandani-blog. The user-token verification endpoint rejects this token type, so that rejection alone does not establish that an account token is invalid. However, listing the Blog's build triggers through the documented Builds API returns HTTP 401, code 12006, Invalid token. Token-policy inspection returns 403 Unauthorized to access requested resource, so the precise missing permission or token-type limitation is not confirmed. No hosted settings changed.
