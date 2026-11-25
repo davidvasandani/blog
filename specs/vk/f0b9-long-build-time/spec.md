@@ -22,7 +22,7 @@ As the Blog owner, I want builds to use the intended runtime so publishing does 
 - Documentation gives a repeatable way to detect an obsolete build override.
 
 ## Out of scope
-Dependency upgrades, resume wording, other services, and unrelated Cloudflare account settings.
+Dependency upgrades, resume wording, other services, and unrelated Cloudflare account settings. The user later explicitly authorized adding Workers CI access to the supplied token through the browser.
 
 ## Open questions
 Hosted access and current setting need investigation; these are execution dependencies, not missing product requirements.

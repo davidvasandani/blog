@@ -14,3 +14,13 @@ At the user's request, retried through the self-hosted Firecrawl browser MCP. Bo
 ## User-supplied API credential follow-up
 
 The supplied 1Password item contains an account-owned Cloudflare API token. Account-scoped verification succeeds (active), and Workers script listing succeeds and includes david-vasandani-blog. The user-token verification endpoint rejects this token type, so that rejection alone does not establish that an account token is invalid. However, listing the Blog's build triggers through the documented Builds API returns HTTP 401, code 12006, Invalid token. Token-policy inspection returns 403 Unauthorized to access requested resource, so the precise missing permission or token-type limitation is not confirmed. No hosted settings changed.
+
+## Hosted repair, 2026-11-25
+
+Authenticated dashboard inspection confirmed `PYTHON_VERSION=3.13` in both the Blog's Production and Previews Base build variables. Updated each to `3.14.8`, saved, reloaded the page, and read both values back. `NODE_VERSION=24`, build/deploy commands and application secrets were preserved. No repository runtime pin or application code change was needed.
+
+The original build `0c04b000-9e57-4df2-b0be-50ae61c7642a`, on commit `2191598`, completed in 5m23s: initialization 3s, cloning 4s, installing 4m19s, building 46s, deploying 12s. Python setup started at 11:59:26.319 and npm installation started at 12:02:56.361, a gap of 210.042 seconds.
+
+The user explicitly requested the API token update. Added only Workers CI Write to the existing account token through the browser and confirmed the saved permission. The existing secret value was not rotated. The Builds API still returned 401/code 12006 afterward; the dashboard was used to complete the build repair. A successful account-token verification or Workers script read does not establish Builds API compatibility.
+
+Started retry `9b00a9e4-0cf7-4e15-b0f6-c38e180e42d2` of the same commit through the dashboard. Its result and timing comparison belong in `validation.md`.
