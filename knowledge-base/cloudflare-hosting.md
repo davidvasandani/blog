@@ -33,3 +33,26 @@ Build 95f68040 spent 4m32s installing dependencies. The screenshot shows about f
 The repository now pins Python 3.14.8 in `.python-version`, matching the [documented Workers build-image default](https://developers.cloudflare.com/workers/ci-cd/builds/build-image/) on this date. The separate resume CI job reads that file. RenderCV remains pinned at 2.8. Keep the Worker's hosted `PYTHON_VERSION` aligned with the file; a git change does not update dashboard variables.
 
 Local verification on Python 3.14.8 passed resume rendering, all 13 resume tests, HTML/Gemini builds, Worker runtime tests, the deployment dry run and the 26-page accessibility audit. Hosted timing remains unverified: the available API token was invalid and dashboard access stopped at security verification. Treat the runtime alignment as a mitigation awaiting hosted measurement, not a measured four-minute saving. Future image updates may require refreshing the exact pin and repeating the measurements.
+
+## Build override repair verified
+
+Task: f0b9-long-build-time, 2026-11-25.
+
+The November 16 build still selected Python 3.13.18 even though its source commit, `2191598`, already pinned 3.14.8. Authenticated inspection found `PYTHON_VERSION=3.13` in both Production and Previews Base build variables. Set both to `3.14.8`, saved, reloaded and confirmed the values. The build commands, Node selection and runtime secrets did not change.
+
+A retry of the same commit deployed successfully as version `f88da017`. The build-detail pages report:
+
+| Stage | Original 0c04b000 | Retry 9b00a9e4 |
+| --- | --- | --- |
+| Initializing | 3s | 20s |
+| Cloning | 4s | 2s |
+| Installing | 4m19s | 34s |
+| Building | 46s | 37s |
+| Deploying | 12s | 21s |
+| Total | 5m23s | 1m55s |
+
+The original gap between Python setup starting and npm starting was 210.042 seconds. The retry detected Python 3.14.8 and had no separate Python install step. Both runs restored dependency caches, and npm itself took 38s before and 26s after. This is one comparison across different dates, not a guaranteed build time. The deployment-list row reported 1m46s for the retry; the table uses the build-detail page consistently. After deployment, the home page, resume page and PDF returned 200, and the PDF had a valid header.
+
+When runtime selection drifts, check **Settings > Builds > Variables and secrets** in both **Production** and **Previews Base** against `.python-version` at the build's commit. Runtime secrets are separate. Editing an npm command cannot repair tool selection that happens before that command starts.
+
+Account-owned API tokens must be verified through `/accounts/{account_id}/tokens/verify`. A failure at the user-token verification endpoint alone does not prove the token is invalid. The user authorized adding Workers CI Write to the existing token, and the dashboard confirmed it saved, but the Builds API still rejected that account token with 401/code 12006. Use a successful Builds API read as the access check. This repair used the authenticated browser.
