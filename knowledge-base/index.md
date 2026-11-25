@@ -16,7 +16,7 @@
 - [Link previews (Open Graph)](link-previews.md): og:title/og:image tags in the shared head, the home-title exception, absolute image URLs, the `ogImage` front matter override (not `image`), the small build-time preview image Slack needs, the headers Slack sends (32 KB Range on HTML, separate image fetchers), and preview caching. Tasks: 13f2dbd4-b8af-4925-aa6a-55f7ef3f57a7 (iMessage image); 9f5f-fix-slack-previe (Fix Slack Preview)
 - [Resume release versions](resume-rendercv.md#resume-release-versions): independent resume/VERSION, matching PDF and HTML labels, bump rules, and stale/partial render protection. Task: 71064bcc-75ae-43dc-ba7e-4959fc3b9599 (VAS-968).
 
-- [Python provisioning delay](cloudflare-hosting.md#python-provisioning-delay): Python 3.14.8 build pin, separate resume CI coverage and the outstanding hosted timing check. Task: VAS-961, dbaa2d7b-811b-4f84-ac60-d327b8c758eb.
+- [Python provisioning delay](cloudflare-hosting.md#python-provisioning-delay): Python 3.14.8 build pin, separate resume CI coverage and the original hosted timing limitation. Task: VAS-961, dbaa2d7b-811b-4f84-ac60-d327b8c758eb.
 
 - [Measured outcomes and STAR bullets](resume-voice.md#measured-outcomes-and-star-bullets): numbers need a source row, estimates only from David, restored facts need the recorded ask, framework names as decoration versus subject, the YAML colon trap, RenderCV page-break and summary-paragraph quirks, and holding three pages. Task: 7e87-star-method (STAR Method).
 - [Content recovery claim limits](resume-voice.md#content-recovery-claims): distinguish imported items from requeued downloads and preserve the original audit's verification limits. Task: VAS-965, c2fbb0ca-6f57-45bd-b382-038719fc40ea.
@@ -26,3 +26,5 @@
 - [Google Docs resume copy](resume-rendercv.md#google-docs-copy): snapshot maintenance, native document verification, OAuth folder placement and public-viewing checks. Task: d38c-open-in-google-d.
 - [Contact form spam filter](contact-spam.md): honeypot then TypeSafe Jev spam score before Slack, the 0.9 cutoff and the scores behind it, fail-open on any Jev error, the `TYPESAFE_API_KEY` secret, and finding dropped messages with `wrangler tail`. Task: VAS-985, 4203627c-9d41-4123-a268-1ae32f6ffb38.
 - [Review documents as evidence](resume-voice.md#review-documents-as-evidence): a review corroborates but does not date, activity counts are not outcomes, proposals stay private until picked, and development feedback is interview preparation only. Task: 25ba-self-reviews.
+
+- [Build override repair verified](cloudflare-hosting.md#build-override-repair-verified): Production and Previews Base runtime overrides, same-commit timing comparison, and account-token verification versus Builds API access. Task: f0b9-long-build-time.
