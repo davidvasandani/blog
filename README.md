@@ -72,10 +72,21 @@ as of November 2, 2026. Keep the hosted `PYTHON_VERSION` setting aligned with
 The resume CI job reads the same file. When refreshing the pin, rerun resume
 rendering and compare Cloudflare's installation timings.
 
-The reported slow build spent about four minutes between Python setup starting
-and npm starting. Its application build took 37 seconds; initialization took a
-separate 8m05s. Matching the image's Python default is a mitigation to verify on
-the next hosted build, not a measured speedup yet.
+On November 25, 2026, both Production and Previews Base still had
+`PYTHON_VERSION=3.13`. Updating both to `3.14.8` removed the runtime mismatch.
+A retry of commit `2191598` completed successfully in 1m55s, compared with
+5m23s for the original build. The build-detail pages show installation falling
+from 4m19s to 34s and building from 46s to 37s. These are observations from
+two runs on different dates, not a guaranteed duration for future builds.
+
+If a build stalls in **Installing**, compare its detected Python version with
+`.python-version` at that build's commit. In the Blog Worker's **Settings >
+Builds > Variables and secrets**, check that `PYTHON_VERSION` matches
+that pin in both **Production** and **Previews Base**. Change a stale value there; changing the runtime variables or an npm
+script will not fix runtime selection before the build command starts. Start
+a new build and verify the selected Python version, then record the completed
+Installing and Building durations separately. A running timer alone does not
+establish the final build duration or a speedup.
 
 The Git connection must target the same Worker name as `wrangler.jsonc`.
 The empty `previews` block enables branch previews. Preview secrets are configured
