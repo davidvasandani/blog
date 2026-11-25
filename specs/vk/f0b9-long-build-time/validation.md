@@ -21,4 +21,4 @@ This is one comparison across different dates, not a controlled benchmark. Both 
 
 The user authorized adding Workers CI Write to the supplied account token. Confirmed the saved permission in the dashboard. Builds API still returns 401/code 12006 with that account token, so the hosted repair used the authenticated browser. Earlier authentication blockers are resolved for the browser and retained as investigation history in research.md.
 
-After deployment, the home page and resume page returned HTTP 200. The PDF returned HTTP 200, application/pdf, 53,309 bytes and a valid %PDF- header. Independent review and PR checks are pending.
+After deployment, the home page and resume page returned HTTP 200. The PDF returned HTTP 200, application/pdf, 53,309 bytes and a valid %PDF- header. Independent Codex CLI review (`codex review --base origin/main`) completed with no actionable defects. It confirmed a documentation/planning-only diff and a clean diff check; hosted claims were verified by the primary agent, not independently by the reviewer. PR checks are pending.
