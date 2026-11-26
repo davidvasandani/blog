@@ -4,6 +4,7 @@ const path = require('node:path');
 const { pathToFileURL } = require('node:url');
 const pa11y = require('pa11y');
 const puppeteer = require('puppeteer');
+const { preflight } = require('./puppeteer-preflight.cjs');
 
 async function audit(directory) {
   const files = [];
@@ -17,6 +18,7 @@ async function audit(directory) {
   }
   collect(directory);
   if (!files.length) throw new Error('No public HTML files found for accessibility audit.');
+  await preflight();
   const browser = await puppeteer.launch({ headless: true, args: ['--no-sandbox'] });
   try {
     const failures = [];

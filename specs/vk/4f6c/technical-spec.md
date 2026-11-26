@@ -1,0 +1,2 @@
+# Repair interrupted Chrome downloads
+Before accessibility tests, resolve the installed Puppeteer Chrome revision and configured cache root. Inspect the executable for the current platform and revision. A healthy executable ends setup without writes. Remove only the exact incomplete Chrome build directory and invoke the local pinned installer once. Propagate failure with the build and path. Exercise recovery, sibling preservation, failure and healthy reuse in temporary directories using an injected installer. Validate through the browser-backed accessibility suite.

@@ -1,0 +1,1 @@
+The dependency-testing and resume pages document browser-backed checks. The repository Puppeteer configuration places the browser under node_modules/.cache/puppeteer and supports selecting a system executable. Preserve that override when adding setup.
