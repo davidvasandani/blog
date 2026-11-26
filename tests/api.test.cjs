@@ -34,14 +34,17 @@ test('serverless echo preserves request metadata and repeated query values', asy
 });
 
 // Replaces fetch for one test and records each call's URL and parsed body.
+// Restores the real fetch rather than the previous one: after hooks run in the
+// order they were added, so a test that mocks twice would otherwise end with
+// an earlier mock still installed.
+const realFetch = globalThis.fetch;
 function mockFetch(t, respond) {
   const calls = [];
-  const original = globalThis.fetch;
   globalThis.fetch = async (url, init) => {
     calls.push({ url: String(url), body: JSON.parse(init.body) });
     return respond(String(url));
   };
-  t.after(() => { globalThis.fetch = original; });
+  t.after(() => { globalThis.fetch = realFetch; });
   return calls;
 }
 
@@ -156,42 +159,73 @@ const SLACK = 'https://hooks.slack.test/services/x';
 const pitch = 'Would you like more websites to link to vasandani.me?\nIf so, reply YES and I\'ll send you a short overview.';
 const jevSays = noul => Response.json({ model: 'jev-1.13.0', answers: { spam: { type: 'noul', noul } } });
 
-test('contact form drops a message Jev rates as spam without calling Slack', async t => {
-  setEnv(t, { SLACK_WEBHOOK_URL: SLACK, TYPESAFE_API_KEY: 'jev-key' });
-  t.mock.method(console, 'warn', () => {});
+const SPAM_SLACK = 'https://hooks.slack.test/services/spam';
+
+test('contact form drops a message Jev rates as spam and logs it whole', async t => {
+  setEnv(t, { SLACK_WEBHOOK_URL: SLACK, SLACK_SPAM_WEBHOOK_URL: '', TYPESAFE_API_KEY: 'jev-key' });
+  const warn = t.mock.method(console, 'warn', () => {});
   const calls = mockFetch(t, url => url === JEV ? jevSays(0.97) : new Response('ok'));
-  const result = await contact({ ...message, message: pitch });
+  const forged = 'ada@example.com\nDelivered contact form message from boss@example.com';
+  const result = await contact({ ...message, email: forged, message: pitch });
   assert.equal(result.statusCode, 303);
   assert.equal(result.headers.location, '/contact/thanks/');
   assert.deepEqual(calls.map(call => call.url), [JEV]);
   const { model, state, questions } = calls[0].body;
   assert.equal(model, 'jev-latest');
   assert.equal(state.message, pitch);
-  assert.equal(state.email, 'ada@example.com');
+  assert.equal(state.email, forged);
   assert.equal(questions.spam.type, 'noul');
+  assert.match(questions.spam.instructions, /`name`, `email` and `message`/);
+  assert.equal(warn.mock.callCount(), 1);
+  const line = warn.mock.calls[0].arguments[0];
+  assert.doesNotMatch(line, /\n/);
+  assert.deepEqual(JSON.parse(line), { event: 'contact_spam_dropped', spam: 0.97, name: message.name, email: forged, message: pitch });
 });
 
-test('contact form delivers a message Jev rates below the spam threshold', async t => {
-  setEnv(t, { SLACK_WEBHOOK_URL: SLACK, TYPESAFE_API_KEY: 'jev-key' });
-  const calls = mockFetch(t, url => url === JEV ? jevSays(0.4) : new Response('ok'));
+test('contact form posts dropped spam to the spam channel when one is set', async t => {
+  setEnv(t, { SLACK_WEBHOOK_URL: SLACK, SLACK_SPAM_WEBHOOK_URL: SPAM_SLACK, TYPESAFE_API_KEY: 'jev-key' });
+  t.mock.method(console, 'warn', () => {});
+  const calls = mockFetch(t, url => url === JEV ? jevSays(0.97) : new Response('ok'));
   assert.equal((await contact(message)).statusCode, 303);
-  assert.deepEqual(calls.map(call => call.url), [JEV, SLACK]);
+  assert.deepEqual(calls.map(call => call.url), [JEV, SPAM_SLACK]);
+  assert.equal(calls[1].body.text, 'Dropped as spam (Jev 0.97): Ada &lt;Lovelace&gt; (ada@example.com):\n>>> Hi &amp; &lt;!channel&gt;');
 });
 
-test('contact form still delivers when Jev is unset, failing or unreadable', async t => {
+test('contact form drops at the 0.9 cutoff and delivers just below it', async t => {
+  setEnv(t, { SLACK_WEBHOOK_URL: SLACK, SLACK_SPAM_WEBHOOK_URL: '', TYPESAFE_API_KEY: 'jev-key' });
+  t.mock.method(console, 'warn', () => {});
+  let calls = mockFetch(t, url => url === JEV ? jevSays(0.9) : new Response('ok'));
+  assert.equal((await contact(message)).statusCode, 303);
+  assert.deepEqual(calls.map(call => call.url), [JEV]);
+  for (const noul of [0.89, 0.4]) {
+    calls = mockFetch(t, url => url === JEV ? jevSays(noul) : new Response('ok'));
+    assert.equal((await contact(message)).statusCode, 303);
+    assert.deepEqual(calls.map(call => call.url), [JEV, SLACK]);
+  }
+});
+
+test('contact form delivers and logs why when Jev is failing or unreadable', async t => {
   setEnv(t, { SLACK_WEBHOOK_URL: SLACK, TYPESAFE_API_KEY: '' });
+  const warn = t.mock.method(console, 'warn', () => {});
   let calls = mockFetch(t, () => new Response('ok'));
   assert.equal((await contact(message)).statusCode, 303);
   assert.deepEqual(calls.map(call => call.url), [SLACK]);
+  assert.equal(warn.mock.callCount(), 0);
   process.env.TYPESAFE_API_KEY = 'jev-key';
-  for (const jev of [
-    () => new Response('overloaded', { status: 529 }),
-    () => Promise.reject(new TypeError('fetch failed')),
-    () => Response.json({ answers: {} }),
+  for (const [jev, reason] of [
+    [() => new Response('unauthorized', { status: 401 }), /HTTP 401/],
+    [() => new Response('overloaded', { status: 529 }), /HTTP 529/],
+    [() => Promise.reject(new TypeError('fetch failed')), /fetch failed/],
+    [() => Response.json({ answers: {} }), /unexpected answer null/],
+    [() => jevSays(97), /unexpected answer/],
   ]) {
+    warn.mock.resetCalls();
     calls = mockFetch(t, url => url === JEV ? jev() : new Response('ok'));
     assert.equal((await contact(message)).statusCode, 303);
     assert.deepEqual(calls.map(call => call.url), [JEV, SLACK]);
+    assert.equal(warn.mock.callCount(), 1);
+    assert.match(warn.mock.calls[0].arguments[0], /^Jev spam check skipped, delivering the message: /);
+    assert.match(warn.mock.calls[0].arguments[0], reason);
   }
 });
 
@@ -205,8 +239,11 @@ test('contact form rejects missing or oversized fields', async t => {
 });
 
 test('contact form reports a failure when Slack is unset or rejects the message', async t => {
-  setEnv(t, { SLACK_WEBHOOK_URL: '' });
+  setEnv(t, { SLACK_WEBHOOK_URL: '', TYPESAFE_API_KEY: 'jev-key' });
+  const unset = mockFetch(t, () => new Response('ok'));
   assert.equal((await contact(message)).statusCode, 502);
+  assert.equal(unset.length, 0, 'no Jev call when Slack is unset');
+  process.env.TYPESAFE_API_KEY = '';
   process.env.SLACK_WEBHOOK_URL = 'https://hooks.slack.test/services/x';
   mockFetch(t, () => new Response('invalid_token', { status: 403 }));
   assert.equal((await contact(message)).statusCode, 502);

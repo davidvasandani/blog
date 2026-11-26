@@ -31,6 +31,7 @@ npx wrangler secret put GITHUB_CLIENT_ID
 npx wrangler secret put GITHUB_CLIENT_SECRET
 npx wrangler secret put SLACK_WEBHOOK_URL
 npx wrangler secret put TYPESAFE_API_KEY
+npx wrangler secret put SLACK_SPAM_WEBHOOK_URL  # optional
 ```
 
 The GitHub OAuth App callback stays
@@ -201,10 +202,13 @@ through an incoming webhook and then shows `/contact/thanks/`. A hidden
 `TYPESAFE_API_KEY` is set, each message is also sent to TypeSafe's
 [Jev](https://docs.typesafe.ai/) model, which returns how likely it is to be
 spam. Messages at 0.9 or above are dropped. The sender still sees the thanks
-page, and the Worker logs `Dropped contact form spam from <email>` with the
-probability, so a real message caught by mistake can be found with
-`npx wrangler tail`. If the key is unset or Jev doesn't answer within five
-seconds, the message goes to Slack as before. Create an incoming
+page. The Worker logs the whole dropped message as one JSON line
+(`"event":"contact_spam_dropped"`), which `npx wrangler tail` shows. To keep
+dropped messages somewhere you can read later, set `SLACK_SPAM_WEBHOOK_URL` to
+a second incoming webhook for a quiet channel; each one is posted there too.
+If the key is unset or Jev fails, gives an unexpected answer or doesn't answer
+within five seconds, the Worker logs `Jev spam check skipped` with the reason
+and the message goes to Slack as before. Create an incoming
 webhook for the channel that should receive messages and set it as
 `SLACK_WEBHOOK_URL`, on the same Worker. Without it the form answers
 with an error rather than losing messages silently.
