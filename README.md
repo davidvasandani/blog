@@ -158,6 +158,15 @@ Puppeteer downloads Chrome during installation; for a system browser, install
 with `PUPPETEER_SKIP_DOWNLOAD=true` and set `PUPPETEER_EXECUTABLE_PATH` when
 testing. Run `npm run test:a11y` to audit an existing build.
 
+Before launching Chrome, both `npm test` and `npm run test:a11y` check for the
+Chrome build pinned by Puppeteer. On Linux x64 the build lives under
+`node_modules/.cache/puppeteer/chrome/linux-<buildId>/` by default. If the
+executable is missing, setup removes that one directory if present, then runs
+the local Puppeteer installer once. A usable executable is reused without changing
+the cache. Set `PUPPETEER_CACHE_DIR` to use a different cache. An explicit
+`PUPPETEER_EXECUTABLE_PATH` or a non-Chrome `PUPPETEER_BROWSER` skips this check.
+If repair fails, the error gives the build ID and expected executable path.
+
 ## Build tooling
 
 The Worker build sets `RESUME_VENV=node_modules/.cache/resume-venv` for the

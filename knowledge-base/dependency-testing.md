@@ -45,3 +45,23 @@ Task: 0b580ba2-71f3-4437-83a4-8ea5080e8fe4 (Upgrade Dependencies, advisory follo
 - npm audit's suggested decap-server downgrade to 3.11.3 still declares @hapi/joi directly. Inspect the resulting tree rather than trusting the suggested version.
 
 Evidence: VALIDATION.md and specs/001-dependency-advisories/research.md. The compressed-request tests exercise rejection/recovery on both Express majors; they also pass on the old versions and do not reproduce the timing-dependent crash.
+
+## Interrupted Chrome downloads (task 4f6c)
+
+`npm test` and `npm run test:a11y` share the same Chrome check before the audit
+launches. The check uses Puppeteer's configured cache and the pinned Chrome
+build for the current platform. If the executable is missing,
+the check removes only that build's directory if present, runs the installed
+browser installer once and checks the executable again. Other builds stay in the
+cache. A failed repair reports the build ID and expected executable path.
+
+`PUPPETEER_CACHE_DIR` changes the cache location. An explicit
+`PUPPETEER_EXECUTABLE_PATH` or a non-Chrome `PUPPETEER_BROWSER` bypasses Chrome
+repair. A usable managed executable needs no cache writes or downloads.
+
+On Linux x64 the recovery target is `<cache>/chrome/linux-<buildId>/`.
+A per-build lock coordinates concurrent audits. The installer downloads into a
+temporary cache inside that build directory so it cannot reuse a truncated zip
+beside it. If repair is interrupted, the next run can clean up that temporary
+download as part of the same build. Other Chrome versions and browser caches
+remain available.
